@@ -1,0 +1,13 @@
+prefix=/u/b/b/bbritto/.local
+exec_prefix=/u/b/b/bbritto/.local
+libdir=/u/b/b/bbritto/private/CS-739-Distributed-Systems/P1/part3/.local/lib
+sharedlibdir=/u/b/b/bbritto/private/CS-739-Distributed-Systems/P1/part3/.local/lib
+includedir=/u/b/b/bbritto/private/CS-739-Distributed-Systems/P1/part3/.local/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.11
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}

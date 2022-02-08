@@ -25,7 +25,9 @@ long long count;
 #define SEEK_LOCATION           900
 #define FILE_NAME               "README.md"
 #define ONE_MB_FILE_NAME        "files/one_mb_file"
-#define ONE_MB                  1000000           
+#define ONE_MB                  1000000
+#define CHUNK_SIZE              1024     
+#define THREE_KB                3072    
 
 void printExecutionTime(struct timespec * tpStart, struct timespec * tpEnd, char *metric);
 void incrementCount();
@@ -33,6 +35,8 @@ void accessMainMemory();
 void performDiskSeek(); // UNSURE: Won't this be an SSD seek?
 void readMemorySeq();
 void readSSDSeq(); 
+void readSSDRandom();
+
 
 int main(int argc, char **argv)
 {
@@ -91,6 +95,8 @@ int main(int argc, char **argv)
         // TODO: Read 4K randomly from SSD*
         case 8:
         {
+            for (int i = 0; i < ITERATIONS; i++)
+                readSSDRandom();
 
             break;
         }
@@ -143,6 +149,35 @@ int main(int argc, char **argv)
     return 0;
 }
 
+void readSSDRandom()
+{
+    struct timespec start;
+    struct timespec stop;
+    char *fsimage = ONE_MB_FILE_NAME;
+    int fd;
+    unsigned char buf[CHUNK_SIZE];
+
+    if ((fd = open(fsimage, O_RDWR, 0666)) < 0)
+    {
+        dbgprintf("Failure: open() failed with errno: %d\n", errno);
+        exit(1);
+    }
+
+    // reads from 4kb .. 0 (backwards)
+    int seekLocation = THREE_KB;
+    clock_gettime(CLOCK_TYPE, &start);
+    for (int i = seekLocation; i > 0; i -= CHUNK_SIZE)
+    {
+        dbgprintf("seek loc %d\n", i);
+        lseek(fd, i, SEEK_SET);
+        read(fd, &buf, CHUNK_SIZE);
+    }
+    clock_gettime(CLOCK_TYPE, &stop);
+    
+    printExecutionTime(&start, &stop, "Read 4K randomly from SSD");
+    close(fd);
+}
+
 void readSSDSeq()
 {
     struct timespec start;
@@ -158,10 +193,11 @@ void readSSDSeq()
     }
 
     clock_gettime(CLOCK_TYPE, &start);
-    fd = read(fd, &buf, ONE_MB);
+    read(fd, &buf, ONE_MB);
     clock_gettime(CLOCK_TYPE, &stop);
 
-    printExecutionTime(&start, &stop, "Read 1 MB sequentially from disk");
+    printExecutionTime(&start, &stop, "Read 1 MB sequentially from SSD");
+    close(fd);
 }
 
 void readMemorySeq()

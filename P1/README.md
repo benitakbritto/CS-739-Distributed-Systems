@@ -15,9 +15,10 @@ TODO: Add description of command line args
 gcc -o part1 part1.c -Wall
 ```
 
+TODO: Add description of command line args
 ## Run
 ```
-./part1 
+./part1 <command line arg>
 ```
 
 # part 2

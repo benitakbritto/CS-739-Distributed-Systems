@@ -19,16 +19,37 @@ long long count;
 
 void printExecutionTime(struct timespec * tpStart, struct timespec * tpEnd, char *metric);
 void incrementCount();
-long long getCount();
+void accessMainMemory();
 
 int main(int argc, char **argv)
 {
+    
+
+    // Mutex lock/unlock
     for (int i = 0; i < ITERATIONS; i++)
         incrementCount();
+    
+    // Main Memory reference
+    for (int i = 0; i < ITERATIONS; i++)
+        accessMainMemory();
 
     return 0;
 }
 
+
+void accessMainMemory()
+{
+    struct timespec start;
+    struct timespec stop;
+    char *ptr = "abc";
+    char c;
+
+    clock_gettime(CLOCK_TYPE, &start);
+    c = *ptr; // deref - mem access
+    clock_gettime(CLOCK_TYPE, &stop);
+
+    printExecutionTime(&start, &stop, "Main Memory Access");
+}
 
 void printExecutionTime(struct timespec * tpStart, struct timespec * tpEnd, char *metric)
 {

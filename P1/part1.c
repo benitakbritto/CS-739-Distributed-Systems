@@ -24,32 +24,144 @@ long long count;
 #define ITERATIONS              5
 #define SEEK_LOCATION           900
 #define FILE_NAME               "README.md"
+#define ONE_MB_FILE_NAME        "files/one_mb_file"
+#define ONE_MB                  1000000           
 
 void printExecutionTime(struct timespec * tpStart, struct timespec * tpEnd, char *metric);
 void incrementCount();
 void accessMainMemory();
-void performDiskSeek();
+void performDiskSeek(); // UNSURE: Won't this be an SSD seek?
 void readMemorySeq();
+void readSSDSeq(); 
 
 int main(int argc, char **argv)
 {
-    // Mutex lock/unlock
-    for (int i = 0; i < ITERATIONS; i++)
-        incrementCount();
+    if (argc != 2)
+    {
+        printf("Failure: Specify argument\n");
+        exit(1);
+    }
+
+    switch(atoi(argv[1]))
+    {
+        // TODO: L1 cache reference  
+        case 1:
+        {
+
+            break;
+        }
+        // TODO: Branch mispredict
+        case 2:
+        {
+
+            break;
+        }
+        // TODO: L2 cache reference
+        case 3:
+        {
+
+            break;
+        }
+        // Mutex lock/unlock
+        case 4:
+        {
+            for (int i = 0; i < ITERATIONS; i++)
+                incrementCount();
+            break;
+        }
+        // Main memory reference
+        case 5:
+        {
+            for (int i = 0; i < ITERATIONS; i++)
+                accessMainMemory();
+            break;
+        }
+        // TODO: Compress 1K bytes with Zippy 
+        case 6:
+        {
+
+            break;
+        }
+        // TODO: Send 1K bytes over 1 Gbps network
+        case 7:
+        {
+
+            break;
+        }
+        // TODO: Read 4K randomly from SSD*
+        case 8:
+        {
+
+            break;
+        }
+        // UNSURE: Read 1 MB sequentially from memory
+        case 9:
+        {
+            for (int i = 0; i < ITERATIONS; i++)
+                readMemorySeq();
+            break;
+        }
+        // TODO: Round trip within same datacenter
+        case 10:
+        {
+
+            break;
+        }       
+        // Read 1 MB sequentially from SSD*
+        case 11:
+        {
+            for (int i = 0; i < ITERATIONS; i++)
+                readSSDSeq();
+            break;
+        }
+        // UNSURE: Disk seek
+        case 12:
+        {
+            for (int i = 0; i < ITERATIONS; i++)
+                performDiskSeek();
+            break;
+        }
+        // TODO: Read 1 MB sequentially from disk
+        case 13:
+        {
+
+            break;
+        }
+        // TODO: Send packet CA->Netherlands->CA
+        case 14:
+        {
+
+            break;
+        }
+        default:
+        {
+            printf("Failure: Incorrect argument\n");
+            exit(1);
+        }
+    }
     
-    // Main Memory reference
-    for (int i = 0; i < ITERATIONS; i++)
-        accessMainMemory();
-
-    // Disk Seek
-    for (int i = 0; i < ITERATIONS; i++)
-        performDiskSeek();
-
-    // Read 1 MB sequentially from memory
-    for (int i = 0; i < ITERATIONS; i++)
-        readMemorySeq();
-
     return 0;
+}
+
+void readSSDSeq()
+{
+    struct timespec start;
+    struct timespec stop;
+    char *fsimage = ONE_MB_FILE_NAME;
+    int fd;
+    unsigned char buf[ONE_MB];
+
+    if ((fd = open(fsimage, O_RDWR, 0666)) < 0)
+    {
+        dbgprintf("Failure: open() failed with errno: %d\n", errno);
+        exit(1);
+    }
+
+    clock_gettime(CLOCK_TYPE, &start);
+    fd = read(fd, &buf, ONE_MB);
+    clock_gettime(CLOCK_TYPE, &stop);
+
+    printExecutionTime(&start, &stop, "Read 1 MB sequentially from disk");
 }
 
 void readMemorySeq()

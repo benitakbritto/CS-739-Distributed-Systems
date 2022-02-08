@@ -13,11 +13,12 @@ References:
 #include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <string.h>
 
 pthread_mutex_t count_mutex;
 long long count;
 
-#define DEBUG                   0
+#define DEBUG                   1
 #define dbgprintf(...)          if (DEBUG) { printf(__VA_ARGS__); }
 #define CLOCK_TYPE              CLOCK_REALTIME
 #define ITERATIONS              5
@@ -28,6 +29,7 @@ void printExecutionTime(struct timespec * tpStart, struct timespec * tpEnd, char
 void incrementCount();
 void accessMainMemory();
 void performDiskSeek();
+void readMemorySeq();
 
 int main(int argc, char **argv)
 {
@@ -43,7 +45,31 @@ int main(int argc, char **argv)
     for (int i = 0; i < ITERATIONS; i++)
         performDiskSeek();
 
+    // Read 1 MB sequentially from memory
+    for (int i = 0; i < ITERATIONS; i++)
+        readMemorySeq();
+
     return 0;
+}
+
+void readMemorySeq()
+{
+    long long size = 125000;
+    dbgprintf("long long size: %ld\n", sizeof(long long));
+    long long * ptr = calloc(size, 8);
+    long long c;
+    struct timespec start;
+    struct timespec stop;
+
+    clock_gettime(CLOCK_TYPE, &start);
+    for (int i = 0; i < size; i++)
+    {
+        c = *ptr;
+        ptr++;
+    }
+    clock_gettime(CLOCK_TYPE, &stop);
+
+    printExecutionTime(&start, &stop, "Read 1 MB sequentially from memory");
 }
 
 

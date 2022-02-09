@@ -1,21 +1,3 @@
-/*
- *
- * Copyright 2015 gRPC authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 #include <iostream>
 #include <memory>
 #include <string>
@@ -48,33 +30,42 @@ using helloworld::ComplexDataStructureRequest;
 class GreeterServiceImpl final : public Greeter::Service 
 {
   Status AcceptInt(ServerContext* context, const IntRequest* request,
-                       CustomResponse* reply) override {
-    reply->set_val("Received " + std::to_string(request->val()));
+                       CustomResponse* reply) override 
+  {
+    //reply->set_val("Received " + std::to_string(request->val()));
+    reply->set_val("Received");
     return Status::OK;
   }
 
   Status AcceptDouble(ServerContext* context, const DoubleRequest* request,
-                       CustomResponse* reply) override {
-    reply->set_val("Received " + std::to_string(request->val()));
+                       CustomResponse* reply) override 
+  {
+    // reply->set_val("Received " + std::to_string(request->val()));
+    reply->set_val("Received");
     return Status::OK;
   }
 
   Status AcceptString(ServerContext* context, const StringRequest* request,
-                       CustomResponse* reply) override {
-    reply->set_val("Received " + request->val());
+                       CustomResponse* reply) override 
+  {
+    // reply->set_val("Received " + request->val());
+    reply->set_val("Received");
     return Status::OK;
   }
 
   Status AcceptComplexDataStructure(ServerContext* context, const ComplexDataStructureRequest* request,
                        CustomResponse* reply) override {
-    reply->set_val("Received " + std::to_string(request->val1()) + "," + std::to_string(request->val2()) + "," + request->val3());
+    // reply->set_val("Received " + std::to_string(request->val1()) + "," + std::to_string(request->val2()) + "," + request->val3());
+    reply->set_val("Received");
     return Status::OK;
   }
 
   Status AcceptClientSideStream(ServerContext* context, ServerReader<StringRequest>* reader,
-                     CustomResponse* reply) override {
+                     CustomResponse* reply) override 
+  {
     StringRequest currentStr;
-    while (reader->Read(&currentStr)) {
+    while (reader->Read(&currentStr)) 
+    {
       // do nothing
     }
 
@@ -84,7 +75,8 @@ class GreeterServiceImpl final : public Greeter::Service
 
 };
 
-void RunServer() {
+void RunServer() 
+{
   std::string server_address("0.0.0.0:50051");
   GreeterServiceImpl service;
 
@@ -105,7 +97,8 @@ void RunServer() {
   server->Wait();
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv) 
+{
   RunServer();
 
   return 0;

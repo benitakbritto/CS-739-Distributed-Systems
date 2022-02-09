@@ -1,21 +1,3 @@
-/*
- *
- * Copyright 2015 gRPC authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 #include <iostream>
 #include <memory>
 #include <string>
@@ -28,6 +10,8 @@
 #else
 #include "helloworld.grpc.pb.h"
 #endif
+
+#define ITERATIONS 5
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -76,6 +60,7 @@ class GreeterClient
 
   std::string AcceptDouble(const std::double_t& req) 
   {
+    // TOFIX: Incorrect placement of marshalling time
     struct timespec start, stop;
     clock_gettime(CLOCK_REALTIME, &start);
     DoubleRequest request;
@@ -104,6 +89,7 @@ class GreeterClient
 
   std::string AcceptString(const std::string& req) 
   {
+    // TOFIX: Incorrect placement of marshalling time
     struct timespec start, stop;
     clock_gettime(CLOCK_REALTIME, &start);
     StringRequest request;
@@ -131,6 +117,7 @@ class GreeterClient
 
   std::string AcceptComplexDataStructure(const std::int32_t& req1, const std::double_t& req2, const std::string& req3) 
   {
+    // TOFIX: Incorrect placement of marshalling time
     struct timespec start, stop;
     clock_gettime(CLOCK_REALTIME, &start);
     ComplexDataStructureRequest request;
@@ -169,22 +156,41 @@ class GreeterClient
     return ret;
   }
 
-  void AcceptClientSideStream() 
+  // dividing into fixed sized chunks
+  void AcceptClientSideStream1(std::int32_t size) 
   {
     StringRequest request;
     CustomResponse reply;
     ClientContext context;
-    const int kPoints = 16; // TO CHANGE
+    int chunkSize = 128;
+    int iterations = size / chunkSize;
+    int remainder = size % chunkSize;
+    if (size < chunkSize)
+    {
+      chunkSize = size;
+    }
+    std::string toSend = CreateString(chunkSize);
 
     std::unique_ptr<ClientWriter<StringRequest> > writer(
         stub_->AcceptClientSideStream(&context, &reply));
-    for (int i = 0; i < kPoints; i++) 
+    for (int i = 0; i < iterations; i++) 
     {
-      request.set_val("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+      request.set_val(toSend);
       if (!writer->Write(request)) 
       {
         // Broken stream.
+        std::cout << "AcceptClientSideStream broke" << std::endl;
         break;
+      }
+    }
+
+    if (remainder)
+    {
+      request.set_val(CreateString(remainder));
+      // Broken stream.
+      if (!writer->Write(request)) 
+      {
+        std::cout << "AcceptClientSideStream broke" << std::endl;
       }
     }
     writer->WritesDone();
@@ -192,11 +198,47 @@ class GreeterClient
     Status status = writer->Finish();
     if (status.ok()) 
     {
-      std::cout << "Finished" << std::endl;
+      // std::cout << "Finished" << std::endl;
     } 
     else 
     {
-      std::cout << "AcceptClientSideStream rpc failed." << std::endl;
+      // std::cout << "AcceptClientSideStream rpc failed." << std::endl;
+    }
+  }
+
+  // dividing into fixed stream iterations
+  void AcceptClientSideStream2(std::int32_t size) 
+  {
+    StringRequest request;
+    CustomResponse reply;
+    ClientContext context;
+    int streamIterations = 8;
+    
+    std::string toSend = CreateString(size / streamIterations);
+
+    std::unique_ptr<ClientWriter<StringRequest> > writer(
+        stub_->AcceptClientSideStream(&context, &reply));
+    for (int i = 0; i < streamIterations; i++) 
+    {
+      request.set_val(toSend);
+      if (!writer->Write(request)) 
+      {
+        // Broken stream.
+        std::cout << "AcceptClientSideStream broke" << std::endl;
+        break;
+      }
+    }
+
+    writer->WritesDone();
+
+    Status status = writer->Finish();
+    if (status.ok()) 
+    {
+      // std::cout << "Finished" << std::endl;
+    } 
+    else 
+    {
+      // std::cout << "AcceptClientSideStream rpc failed." << std::endl;
     }
   }
 
@@ -208,11 +250,6 @@ class GreeterClient
 
 int main(int argc, char** argv) 
 {
-  // Instantiate the client. It requires a channel, out of which the actual RPCs
-  // are created. This channel models a connection to an endpoint specified by
-  // the argument "--target=" which is the only expected argument.
-  // We indicate that the channel isn't authenticated (use of
-  // InsecureChannelCredentials()).
   std::string target_str;
   target_str = "localhost:50051";
   GreeterClient greeter(
@@ -232,8 +269,13 @@ int main(int argc, char** argv)
     // Time to marshall int
     case 1:
     {
-      std::int32_t intReq = 1;
-      reply = greeter.AcceptInt(intReq);
+      std::cout<< " *** TESTING INT *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        std::int32_t intReq = 1;
+        reply = greeter.AcceptInt(intReq);
+      }
+      
       //std::cout << "Greeter received: " << reply << std::endl;
       break;
     }
@@ -241,8 +283,13 @@ int main(int argc, char** argv)
     // Time to marshall double
     case 2:
     { 
-      std::double_t doubleReq = 1.0;
-      reply = greeter.AcceptDouble(doubleReq);
+      std::cout<< " *** TESTING DOUBLE *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        std::double_t doubleReq = 1.0;
+        reply = greeter.AcceptDouble(doubleReq);
+      }
+      
       //std::cout << "Greeter received: " << reply << std::endl;
       break;
     }
@@ -250,13 +297,31 @@ int main(int argc, char** argv)
     // Time to marshall string
     case 3:
     {
-      
-      if (argc != 3) 
+      int32_t len1 = 512;
+      int32_t len2 = 1024;
+      int32_t len3 = 2048;
+
+      std::cout<< " *** TESTING STRING OF LEN = 512 *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
       {
-        std::cout << "Failure: Specify len" <<std::endl;
+        std::string stringReq = greeter.CreateString(len1);
+        reply = greeter.AcceptString(stringReq);
       }
-      std::string stringReq = greeter.CreateString(std::stoi(argv[2]));
-      reply = greeter.AcceptString(stringReq);
+
+      std::cout<< " *** TESTING STRING OF LEN = 1024 *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        std::string stringReq = greeter.CreateString(len2);
+        reply = greeter.AcceptString(stringReq);
+      }
+
+      std::cout<< " *** TESTING STRING OF LEN = 2048 *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        std::string stringReq = greeter.CreateString(len3);
+        reply = greeter.AcceptString(stringReq);
+      }
+
       //std::cout << "Greeter received: " << reply << std::endl;
       break;
     }
@@ -264,10 +329,39 @@ int main(int argc, char** argv)
     // Time to marshall complex ds
     case 4: 
     {
-      std::int32_t intReq = 1;
-      std::double_t doubleReq = 1.0;
-      std::string stringReq = "Hi";
-      reply = greeter.AcceptComplexDataStructure(intReq, doubleReq, stringReq);
+      int32_t len1 = 512;
+      int32_t len2 = 1024;
+      int32_t len3 = 2048;
+
+      std::cout<< " *** TESTING COMPLEX DATA STRUCTURE 1 *** " << std::endl;
+      std::cout<< " *** CONTENTS: INT, DOUBLE, STRING LEN = 512 *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        std::int32_t intReq = 1;
+        std::double_t doubleReq = 1.0;
+        std::string stringReq = greeter.CreateString(len1);
+        reply = greeter.AcceptComplexDataStructure(intReq, doubleReq, stringReq);
+      }
+
+      std::cout<< " *** TESTING COMPLEX DATA STRUCTURE 2 *** " << std::endl;
+      std::cout<< " *** CONTENTS: INT, DOUBLE, STRING LEN = 1024 *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        std::int32_t intReq = 1;
+        std::double_t doubleReq = 1.0;
+        std::string stringReq = greeter.CreateString(len2);
+        reply = greeter.AcceptComplexDataStructure(intReq, doubleReq, stringReq);
+      }
+
+      std::cout<< " *** TESTING COMPLEX DATA STRUCTURE 3 *** " << std::endl;
+      std::cout<< " *** CONTENTS: INT, DOUBLE, STRING LEN = 2048 *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        std::int32_t intReq = 1;
+        std::double_t doubleReq = 1.0;
+        std::string stringReq = greeter.CreateString(len3);
+        reply = greeter.AcceptComplexDataStructure(intReq, doubleReq, stringReq);
+      }
       //std::cout << "Greeter received: " << reply << std::endl;
       break;
     }
@@ -278,58 +372,158 @@ int main(int argc, char** argv)
     case 5: 
     {
       struct timespec start, stop;
-      int iterations = 10;
-      for (int i = 0; i < iterations; i++)
+      int32_t len1 = 512;
+      int32_t len2 = 1024;
+      int32_t len3 = 2048;
+
+      std::cout<< " *** TESTING INT *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
       {
-        std::int32_t intReq = 1;
         clock_gettime(CLOCK_REALTIME, &start);
+        std::int32_t intReq = 1;
         reply = greeter.AcceptInt(intReq);
         clock_gettime(CLOCK_REALTIME, &stop);
-        //std::cout << "Greeter received: " << reply << std::endl;
-        std::cout<< "Round trip time to send small message: "<<(stop.tv_sec - start.tv_sec)<<" s "
-                                  <<(stop.tv_nsec - start.tv_nsec)<<" ns"<<std::endl;
+        std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
+                                  << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
       }
+
+      std::cout<< " *** TESTING DOUBLE *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        clock_gettime(CLOCK_REALTIME, &start);
+        std::double_t doubleReq = 1.0;
+        reply = greeter.AcceptDouble(doubleReq);
+        clock_gettime(CLOCK_REALTIME, &stop);
+        std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
+                                  << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
+      }
+
+      std::cout<< " *** TESTING STRING OF LEN = 512 *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        clock_gettime(CLOCK_REALTIME, &start);
+        std::string stringReq = greeter.CreateString(len1);
+        reply = greeter.AcceptString(stringReq);
+        clock_gettime(CLOCK_REALTIME, &stop);
+        std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
+                                  << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
+      }
+
+      std::cout<< " *** TESTING STRING OF LEN = 1024 *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        clock_gettime(CLOCK_REALTIME, &start);
+        std::string stringReq = greeter.CreateString(len2);
+        reply = greeter.AcceptString(stringReq);
+        clock_gettime(CLOCK_REALTIME, &stop);
+        std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
+                                  << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
+      }
+
+      std::cout<< " *** TESTING STRING OF LEN = 2048 *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        clock_gettime(CLOCK_REALTIME, &start);
+        std::string stringReq = greeter.CreateString(len3);
+        reply = greeter.AcceptString(stringReq);
+        clock_gettime(CLOCK_REALTIME, &stop);
+        std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
+                                  << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
+      }
+
+      std::cout<< " *** TESTING COMPLEX DATA STRUCTURE 1 *** " << std::endl;
+      std::cout<< " *** CONTENTS: INT, DOUBLE, STRING LEN = 512 *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        clock_gettime(CLOCK_REALTIME, &start);
+        std::int32_t intReq = 1;
+        std::double_t doubleReq = 1.0;
+        std::string stringReq = greeter.CreateString(len1);
+        reply = greeter.AcceptComplexDataStructure(intReq, doubleReq, stringReq);
+        clock_gettime(CLOCK_REALTIME, &stop);
+        std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
+                                  << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
+      }
+
+      std::cout<< " *** TESTING COMPLEX DATA STRUCTURE 1 *** " << std::endl;
+      std::cout<< " *** CONTENTS: INT, DOUBLE, STRING LEN = 1024 *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        clock_gettime(CLOCK_REALTIME, &start);
+        std::int32_t intReq = 1;
+        std::double_t doubleReq = 1.0;
+        std::string stringReq = greeter.CreateString(len2);
+        reply = greeter.AcceptComplexDataStructure(intReq, doubleReq, stringReq);
+        clock_gettime(CLOCK_REALTIME, &stop);
+        std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
+                                  << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
+      }
+
+      std::cout<< " *** TESTING COMPLEX DATA STRUCTURE 1 *** " << std::endl;
+      std::cout<< " *** CONTENTS: INT, DOUBLE, STRING LEN = 2048 *** " << std::endl;
+      for (int i = 0; i < ITERATIONS; i++)
+      {
+        clock_gettime(CLOCK_REALTIME, &start);
+        std::int32_t intReq = 1;
+        std::double_t doubleReq = 1.0;
+        std::string stringReq = greeter.CreateString(len3);
+        reply = greeter.AcceptComplexDataStructure(intReq, doubleReq, stringReq);
+        clock_gettime(CLOCK_REALTIME, &stop);
+        std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
+                                  << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
+      }
+
+
       break;
     }
 
-    // TODO: try for multiple sizes
+    // large messages without streaming
     case 6:
     {
-      int stringSizes[] = {512, 1024, 1536, 2048, 2560, 3072, 3584, 4096, 4608, 5120};
-      std::string req = greeter.CreateString(stringSizes[1]);
       struct timespec start, stop;
+      int sizeArr[] = {128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072};
+      int len = sizeof(sizeArr)/sizeof(sizeArr[0]);
 
-      clock_gettime(CLOCK_REALTIME, &start);
-      reply = greeter.AcceptString(req);
-      clock_gettime(CLOCK_REALTIME, &stop);
-
-      std::cout<< "Round trip time to send large message of size " << stringSizes[1] << ": "<<(stop.tv_sec - start.tv_sec)<<" s "
-                                  <<(stop.tv_nsec - start.tv_nsec)<<" ns"<<std::endl;
-
+      for (int i = 0; i < len; i++)
+      {
+        std::cout<< " *** TESTING STRING OF LEN = " << sizeArr[i]  << " *** " << std::endl;
+        for (int j = 0; j < ITERATIONS; j++)
+        {
+          clock_gettime(CLOCK_REALTIME, &start);
+          std::string req = greeter.CreateString(sizeArr[i]);
+          reply = greeter.AcceptString(req);
+          clock_gettime(CLOCK_REALTIME, &stop);
+          std::cout<< "Round trip time to send large message : " << (stop.tv_sec - start.tv_sec)<< " s "
+                                  << (stop.tv_nsec - start.tv_nsec) << " ns"<<std::endl;
+        }
+      }
+    
       break;
     }
 
-     // TODO: large message w client streaming
+    // large message w client streaming
     case 7:
     {
       struct timespec start, stop;
-
-      clock_gettime(CLOCK_REALTIME, &start);
-      greeter.AcceptClientSideStream();
-      clock_gettime(CLOCK_REALTIME, &stop);
-
-      std::cout<< "Round trip time to send large message client streaming of size " << 1024 << ": " <<(stop.tv_sec - start.tv_sec)<< " s "
-                                  << (stop.tv_nsec - start.tv_nsec) << " ns" << std::endl;
+      int sizeArr[] = {128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072};
+      int len = sizeof(sizeArr)/sizeof(sizeArr[0]);
+      for (int i = 0; i < len; i++) 
+      {
+        std::cout<< " *** TESTING STRING OF LEN = " << sizeArr[i]  << " *** " << std::endl;
+        for (int j = 0; j < ITERATIONS; j++) 
+        {
+          clock_gettime(CLOCK_REALTIME, &start);
+          //greeter.AcceptClientSideStream1(sizeArr[i]);
+          greeter.AcceptClientSideStream2(sizeArr[i]);
+          clock_gettime(CLOCK_REALTIME, &stop);
+          std::cout<< "Round trip time to send large message with client streaming : " << (stop.tv_sec - start.tv_sec)<< " s "
+                                  << (stop.tv_nsec - start.tv_nsec) << " ns"<<std::endl;
+        }
+        
+      }
 
       break;
     }
-
-     // TODO: large message w server streaming
-    case 8:
-    {
-      break;
-    }
-
     default:
     {
       std::cout << "No such arg" << std::endl;

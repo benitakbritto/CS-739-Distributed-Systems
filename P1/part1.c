@@ -27,22 +27,25 @@ long long count;
 #define ONE_MB_FILE_NAME        "files/one_mb_file"
 #define ONE_MB                  1000000
 #define CHUNK_SIZE              1024     
-#define THREE_KB                3072    
+#define FOUR_KB                 4096    
 
 void printExecutionTime(struct timespec * tpStart, struct timespec * tpEnd, char *metric);
 void incrementCount();
 void accessMainMemory();
-void performDiskSeek(); // UNSURE: Won't this be an SSD seek?
+void performDiskSeek();
 void readMemorySeq();
-void readSSDSeq(); 
+void readOneMBSeq(); 
 void readSSDRandom();
+void showFlagUsage();
 
 
 int main(int argc, char **argv)
 {
+    srand(time(NULL));
     if (argc != 2)
     {
         printf("Failure: Specify argument\n");
+        showFlagUsage();
         exit(1);
     }
 
@@ -117,7 +120,7 @@ int main(int argc, char **argv)
         case 11:
         {
             for (int i = 0; i < ITERATIONS; i++)
-                readSSDSeq();
+                readOneMBSeq();
             break;
         }
         // UNSURE: Disk seek
@@ -127,10 +130,11 @@ int main(int argc, char **argv)
                 performDiskSeek();
             break;
         }
-        // TODO: Read 1 MB sequentially from disk
+        // Read 1 MB sequentially from disk
         case 13:
         {
-
+            for (int i = 0; i < ITERATIONS; i++)
+                readOneMBSeq();
             break;
         }
         // TODO: Send packet CA->Netherlands->CA
@@ -142,11 +146,32 @@ int main(int argc, char **argv)
         default:
         {
             printf("Failure: Incorrect argument\n");
+            showFlagUsage();
             exit(1);
         }
     }
     
     return 0;
+}
+
+void showFlagUsage()
+{
+    printf("Usage: -t <num>\n");
+    printf("\t where num is:\n");
+    printf("\t 1 = L1 cache reference\n");
+    printf("\t 2 = Branch mispredict\n");
+    printf("\t 3 = L2 cache reference\n");
+    printf("\t 4 = Mutex lock/unlock\n");
+    printf("\t 5 = Main memory reference\n");
+    printf("\t 6 = Compress 1K bytes with Zippy\n");
+    printf("\t 7 = Send 1K bytes over 1 Gbps network\n");
+    printf("\t 8 = Read 4K randomly from SSD*\n");
+    printf("\t 9 = Read 1 MB sequentially from memory\n");
+    printf("\t 10 = Round trip within same datacenter\n");
+    printf("\t 11 = Read 1 MB sequentially from SSD*\n");
+    printf("\t 12 = Disk seek\n");
+    printf("\t 13 = Read 1 MB sequentially from disk\n");
+    printf("\t 14 = Send packet CA->Netherlands->CA\n");
 }
 
 void readSSDRandom()
@@ -155,7 +180,8 @@ void readSSDRandom()
     struct timespec stop;
     char *fsimage = ONE_MB_FILE_NAME;
     int fd;
-    unsigned char buf[CHUNK_SIZE];
+    unsigned char buf[FOUR_KB];
+    int maxRandomNumber = 100024;
 
     if ((fd = open(fsimage, O_RDWR, 0666)) < 0)
     {
@@ -163,22 +189,20 @@ void readSSDRandom()
         exit(1);
     }
 
-    // reads from 4kb .. 0 (backwards)
-    int seekLocation = THREE_KB;
+    int seekLocation = rand() % maxRandomNumber;  
+    printf("seekLocation: %d\n", seekLocation);
+
     clock_gettime(CLOCK_TYPE, &start);
-    for (int i = seekLocation; i > 0; i -= CHUNK_SIZE)
-    {
-        dbgprintf("seek loc %d\n", i);
-        lseek(fd, i, SEEK_SET);
-        read(fd, &buf, CHUNK_SIZE);
-    }
+    lseek(fd, seekLocation, SEEK_SET);    
+    read(fd, &buf, FOUR_KB);
+
     clock_gettime(CLOCK_TYPE, &stop);
-    
+
     printExecutionTime(&start, &stop, "Read 4K randomly from SSD");
     close(fd);
 }
 
-void readSSDSeq()
+void readOneMBSeq()
 {
     struct timespec start;
     struct timespec stop;
@@ -196,7 +220,7 @@ void readSSDSeq()
     read(fd, &buf, ONE_MB);
     clock_gettime(CLOCK_TYPE, &stop);
 
-    printExecutionTime(&start, &stop, "Read 1 MB sequentially from SSD");
+    printExecutionTime(&start, &stop, "Read 1 MB sequentially");
     close(fd);
 }
 
@@ -260,9 +284,7 @@ void printExecutionTime(struct timespec * tpStart, struct timespec * tpEnd, char
     long sec = tpEnd->tv_sec - tpStart->tv_sec;
     long nsec =  tpEnd->tv_nsec - tpStart->tv_nsec;
     
-    printf("Execution time for %s\n", metric);
-    printf("Seconds diff: %ld\n", sec);
-    printf("Nano seconds diff: %ld\n", nsec);
+    printf("Execution time for %s: %ld s %ld ns \n", metric, sec, nsec);
 }
 
 void incrementCount()

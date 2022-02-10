@@ -2,6 +2,8 @@
 #include <memory>
 #include <string>
 #include <time.h>
+#include <ctype.h>
+#include <unistd.h>
 
 #include <grpcpp/grpcpp.h>
 
@@ -12,6 +14,7 @@
 #endif
 
 #define ITERATIONS 5
+#define CLOCK_TYPE CLOCK_MONOTONIC
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -33,14 +36,8 @@ class GreeterClient
   
   std::string AcceptInt(const std::int32_t& req) 
   {
-    struct timespec start, stop;
-    clock_gettime(CLOCK_REALTIME, &start);
     IntRequest request;
     request.set_val(req);
-    clock_gettime(CLOCK_REALTIME, &stop);
-
-    std::cout<< "Time to marshall int: "<<(stop.tv_sec - start.tv_sec)<<" s "
-                                  <<(stop.tv_nsec - start.tv_nsec)<<" ns"<<std::endl;
 
     CustomResponse reply;
     ClientContext context;
@@ -60,16 +57,8 @@ class GreeterClient
 
   std::string AcceptDouble(const std::double_t& req) 
   {
-    // TOFIX: Incorrect placement of marshalling time
-    struct timespec start, stop;
-    clock_gettime(CLOCK_REALTIME, &start);
     DoubleRequest request;
     request.set_val(req);
-    clock_gettime(CLOCK_REALTIME, &stop);
-
-    std::cout<< "Time to marshall double: "<<(stop.tv_sec - start.tv_sec)<<" s "
-                                  <<(stop.tv_nsec - start.tv_nsec)<<" ns"<<std::endl;
-
 
     CustomResponse reply;
     ClientContext context;
@@ -89,15 +78,8 @@ class GreeterClient
 
   std::string AcceptString(const std::string& req) 
   {
-    // TOFIX: Incorrect placement of marshalling time
-    struct timespec start, stop;
-    clock_gettime(CLOCK_REALTIME, &start);
     StringRequest request;
     request.set_val(req);
-    clock_gettime(CLOCK_REALTIME, &stop);
-
-    std::cout<< "Time to marshall string: "<<(stop.tv_sec - start.tv_sec)<<" s "
-                                  <<(stop.tv_nsec - start.tv_nsec)<<" ns"<<std::endl;
 
     CustomResponse reply;
     ClientContext context;
@@ -117,17 +99,10 @@ class GreeterClient
 
   std::string AcceptComplexDataStructure(const std::int32_t& req1, const std::double_t& req2, const std::string& req3) 
   {
-    // TOFIX: Incorrect placement of marshalling time
-    struct timespec start, stop;
-    clock_gettime(CLOCK_REALTIME, &start);
     ComplexDataStructureRequest request;
     request.set_val1(req1);
     request.set_val2(req2);
     request.set_val3(req3);
-    clock_gettime(CLOCK_REALTIME, &stop);
-
-    std::cout<< "Time to marshall complex: "<<(stop.tv_sec - start.tv_sec)<<" s "
-                                  <<(stop.tv_nsec - start.tv_nsec)<<" ns"<<std::endl;
 
     CustomResponse reply;
     ClientContext context;
@@ -242,6 +217,18 @@ class GreeterClient
     }
   }
 
+  void showFlagUsage()
+  {
+    std::cout << "Usage: -t <num> to run test cases" << std::endl;
+    std::cout << "where num is" << std::endl;
+    std::cout << "1 = Marshal & Unmarshall Int" << std::endl;
+    std::cout << "2 = Marshal & Unmarshal Double" << std::endl;
+    std::cout << "3 = Marshal & Unmarshal Strings" << std::endl;
+    std::cout << "4 = Marshal & Unmarshal Complex Data Structures" << std::endl;
+    std::cout << "5 = Round trip time of small messages" << std::endl;
+    std::cout << "6 = Round trip time of large messages (without streaming)" << std::endl;
+    std::cout << "7 = Round trip time of large messages (with client side streaming)" << std::endl;
+  }
 
  private:
   std::unique_ptr<Greeter::Stub> stub_;
@@ -250,20 +237,54 @@ class GreeterClient
 
 int main(int argc, char** argv) 
 {
+  opterr = 0;
   std::string target_str;
   target_str = "localhost:50051";
-  GreeterClient greeter(
-      grpc::CreateChannel(target_str, grpc::InsecureChannelCredentials()));
+  GreeterClient greeter(grpc::CreateChannel(target_str, grpc::InsecureChannelCredentials()));
   std::string reply;
-
-  if (argc < 2)
+  std::int32_t tFlagValue = 0;
+  std::int32_t hflag = 0;
+  std::int32_t c;
+  while ((c = getopt(argc, argv, "ht:")) != -1)
   {
-    std::cout << "Failed: Need arguments to run" << std::endl;
-    return 1;
+    switch (c)
+    {
+      case 'h':
+        hflag = 1;
+        break;
+      case 't':
+        tFlagValue = std::stoi(optarg);
+        break;
+      case '?':
+        if (optopt == 'c')
+        {
+          std::cout << "Option -" << optopt << "requires an argument."<< std::endl;
+        }
+        else if (isprint (optopt))
+        {
+          std::cout << "Unknown option " << optopt << std::endl;
+        }
+        else
+        {  
+          std::cout << "Unknown option character" << optopt << std::endl;
+        }
+      default:
+        abort();
+
+    }
   }
 
-  // TODO: Add desc of argv[1] types
-  int argIntVal = std::stoi(argv[1]);
+  if (hflag)
+  {
+    greeter.showFlagUsage();
+  }
+
+  if (tFlagValue == 0)
+  {
+    return 0;
+  }
+
+  int argIntVal = tFlagValue;
   switch (argIntVal)
   {
     // Time to marshall int
@@ -379,10 +400,10 @@ int main(int argc, char** argv)
       std::cout<< " *** TESTING INT *** " << std::endl;
       for (int i = 0; i < ITERATIONS; i++)
       {
-        clock_gettime(CLOCK_REALTIME, &start);
+        clock_gettime(CLOCK_TYPE, &start);
         std::int32_t intReq = 1;
         reply = greeter.AcceptInt(intReq);
-        clock_gettime(CLOCK_REALTIME, &stop);
+        clock_gettime(CLOCK_TYPE, &stop);
         std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
                                   << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
       }
@@ -390,10 +411,10 @@ int main(int argc, char** argv)
       std::cout<< " *** TESTING DOUBLE *** " << std::endl;
       for (int i = 0; i < ITERATIONS; i++)
       {
-        clock_gettime(CLOCK_REALTIME, &start);
+        clock_gettime(CLOCK_TYPE, &start);
         std::double_t doubleReq = 1.0;
         reply = greeter.AcceptDouble(doubleReq);
-        clock_gettime(CLOCK_REALTIME, &stop);
+        clock_gettime(CLOCK_TYPE, &stop);
         std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
                                   << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
       }
@@ -401,10 +422,10 @@ int main(int argc, char** argv)
       std::cout<< " *** TESTING STRING OF LEN = 512 *** " << std::endl;
       for (int i = 0; i < ITERATIONS; i++)
       {
-        clock_gettime(CLOCK_REALTIME, &start);
+        clock_gettime(CLOCK_TYPE, &start);
         std::string stringReq = greeter.CreateString(len1);
         reply = greeter.AcceptString(stringReq);
-        clock_gettime(CLOCK_REALTIME, &stop);
+        clock_gettime(CLOCK_TYPE, &stop);
         std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
                                   << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
       }
@@ -412,10 +433,10 @@ int main(int argc, char** argv)
       std::cout<< " *** TESTING STRING OF LEN = 1024 *** " << std::endl;
       for (int i = 0; i < ITERATIONS; i++)
       {
-        clock_gettime(CLOCK_REALTIME, &start);
+        clock_gettime(CLOCK_TYPE, &start);
         std::string stringReq = greeter.CreateString(len2);
         reply = greeter.AcceptString(stringReq);
-        clock_gettime(CLOCK_REALTIME, &stop);
+        clock_gettime(CLOCK_TYPE, &stop);
         std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
                                   << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
       }
@@ -423,10 +444,10 @@ int main(int argc, char** argv)
       std::cout<< " *** TESTING STRING OF LEN = 2048 *** " << std::endl;
       for (int i = 0; i < ITERATIONS; i++)
       {
-        clock_gettime(CLOCK_REALTIME, &start);
+        clock_gettime(CLOCK_TYPE, &start);
         std::string stringReq = greeter.CreateString(len3);
         reply = greeter.AcceptString(stringReq);
-        clock_gettime(CLOCK_REALTIME, &stop);
+        clock_gettime(CLOCK_TYPE, &stop);
         std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
                                   << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
       }
@@ -435,12 +456,12 @@ int main(int argc, char** argv)
       std::cout<< " *** CONTENTS: INT, DOUBLE, STRING LEN = 512 *** " << std::endl;
       for (int i = 0; i < ITERATIONS; i++)
       {
-        clock_gettime(CLOCK_REALTIME, &start);
+        clock_gettime(CLOCK_TYPE, &start);
         std::int32_t intReq = 1;
         std::double_t doubleReq = 1.0;
         std::string stringReq = greeter.CreateString(len1);
         reply = greeter.AcceptComplexDataStructure(intReq, doubleReq, stringReq);
-        clock_gettime(CLOCK_REALTIME, &stop);
+        clock_gettime(CLOCK_TYPE, &stop);
         std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
                                   << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
       }
@@ -449,12 +470,12 @@ int main(int argc, char** argv)
       std::cout<< " *** CONTENTS: INT, DOUBLE, STRING LEN = 1024 *** " << std::endl;
       for (int i = 0; i < ITERATIONS; i++)
       {
-        clock_gettime(CLOCK_REALTIME, &start);
+        clock_gettime(CLOCK_TYPE, &start);
         std::int32_t intReq = 1;
         std::double_t doubleReq = 1.0;
         std::string stringReq = greeter.CreateString(len2);
         reply = greeter.AcceptComplexDataStructure(intReq, doubleReq, stringReq);
-        clock_gettime(CLOCK_REALTIME, &stop);
+        clock_gettime(CLOCK_TYPE, &stop);
         std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
                                   << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
       }
@@ -463,12 +484,12 @@ int main(int argc, char** argv)
       std::cout<< " *** CONTENTS: INT, DOUBLE, STRING LEN = 2048 *** " << std::endl;
       for (int i = 0; i < ITERATIONS; i++)
       {
-        clock_gettime(CLOCK_REALTIME, &start);
+        clock_gettime(CLOCK_TYPE, &start);
         std::int32_t intReq = 1;
         std::double_t doubleReq = 1.0;
         std::string stringReq = greeter.CreateString(len3);
         reply = greeter.AcceptComplexDataStructure(intReq, doubleReq, stringReq);
-        clock_gettime(CLOCK_REALTIME, &stop);
+        clock_gettime(CLOCK_TYPE, &stop);
         std::cout<< "Round trip time to send small message: "<< (stop.tv_sec - start.tv_sec) <<" s "
                                   << (stop.tv_nsec - start.tv_nsec) <<" ns" << std::endl;
       }
@@ -489,10 +510,10 @@ int main(int argc, char** argv)
         std::cout<< " *** TESTING STRING OF LEN = " << sizeArr[i]  << " *** " << std::endl;
         for (int j = 0; j < ITERATIONS; j++)
         {
-          clock_gettime(CLOCK_REALTIME, &start);
+          clock_gettime(CLOCK_TYPE, &start);
           std::string req = greeter.CreateString(sizeArr[i]);
           reply = greeter.AcceptString(req);
-          clock_gettime(CLOCK_REALTIME, &stop);
+          clock_gettime(CLOCK_TYPE, &stop);
           std::cout<< "Round trip time to send large message : " << (stop.tv_sec - start.tv_sec)<< " s "
                                   << (stop.tv_nsec - start.tv_nsec) << " ns"<<std::endl;
         }
@@ -512,10 +533,10 @@ int main(int argc, char** argv)
         std::cout<< " *** TESTING STRING OF LEN = " << sizeArr[i]  << " *** " << std::endl;
         for (int j = 0; j < ITERATIONS; j++) 
         {
-          clock_gettime(CLOCK_REALTIME, &start);
+          clock_gettime(CLOCK_TYPE, &start);
           //greeter.AcceptClientSideStream1(sizeArr[i]);
           greeter.AcceptClientSideStream2(sizeArr[i]);
-          clock_gettime(CLOCK_REALTIME, &stop);
+          clock_gettime(CLOCK_TYPE, &stop);
           std::cout<< "Round trip time to send large message with client streaming : " << (stop.tv_sec - start.tv_sec)<< " s "
                                   << (stop.tv_nsec - start.tv_nsec) << " ns"<<std::endl;
         }
@@ -526,7 +547,7 @@ int main(int argc, char** argv)
     }
     default:
     {
-      std::cout << "No such arg" << std::endl;
+      std::cout << "Invalid argument for -t flag. Run -h to learn more" << std::endl;
       break;
     }
   }

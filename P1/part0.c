@@ -1,11 +1,16 @@
 /*
+
 References:
 1) https://linux.die.net/man/3/clock_gettime
 2) https://gist.github.com/pfigue/9ce8a2c0b14a2542acd7
 3) https://users.pja.edu.pl/~jms/qnx/help/watcom/clibref/qnx/clock_gettime.html\\
 
-Compile:
-gcc -o part0 part0.c -Wall
+Which timing function? -- clock_gettime()
+    Use clock_gettime() since more precise (nanoseconds) than
+    gettimeofday() (microseconds)
+
+Which clock in in clock_gettime()? -- Monotonic
+    Ref: https://www.gnu.org/software/libc/manual/html_node/Getting-the-Time.html
 
 */
 
@@ -13,7 +18,9 @@ gcc -o part0 part0.c -Wall
 #include <time.h>
 #include <stdlib.h>
 
-#define ITERATIONS 5
+#define ITERATIONS              5
+#define DEBUG                   0
+#define dbgprintf(...)          if (DEBUG) { printf(__VA_ARGS__); }
 
 enum clockType {REALTIME, MONOTONIC, PROCESS_CPUTIME_ID, THREAD_CPUTIME_ID} c;
 
@@ -42,7 +49,6 @@ void executeFunction(int clockType)
 {
     clockid_t clk_id = getClockId(clockType);
     simpleLoop(clk_id);
-    printResolutionOfClockType(clk_id);
 }
 
 void simpleLoop(clockid_t clk_id)
@@ -62,7 +68,7 @@ void simpleLoop(clockid_t clk_id)
         printf("Iteration %d \n", i);
     }
 
-    clock_gettime(clk_id, &tpEnd);
+    rc = clock_gettime(clk_id, &tpEnd);
     if (rc == -1)
     {
         perror("Failed: clock_gettime\n");

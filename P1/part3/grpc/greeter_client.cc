@@ -13,7 +13,7 @@
 #include "helloworld.grpc.pb.h"
 #endif
 
-#define ITERATIONS 5
+#define ITERATIONS 100
 #define CLOCK_TYPE CLOCK_MONOTONIC
 
 using grpc::Channel;
@@ -227,7 +227,8 @@ class GreeterClient
     std::cout << "4 = Marshal & Unmarshal Complex Data Structures" << std::endl;
     std::cout << "5 = Round trip time of small messages" << std::endl;
     std::cout << "6 = Round trip time of large messages (without streaming)" << std::endl;
-    std::cout << "7 = Round trip time of large messages (with client side streaming)" << std::endl;
+    std::cout << "7 = Round trip time of large messages (with client side streaming 1)" << std::endl;
+    std::cout << "7 = Round trip time of large messages (with client side streaming 2)" << std::endl;
   }
 
  private:
@@ -240,6 +241,7 @@ int main(int argc, char** argv)
   opterr = 0;
   std::string target_str;
   target_str = "localhost:50051";
+  //target_str = "52.151.53.152:50051";
   GreeterClient greeter(grpc::CreateChannel(target_str, grpc::InsecureChannelCredentials()));
   std::string reply;
   std::int32_t tFlagValue = 0;
@@ -522,8 +524,31 @@ int main(int argc, char** argv)
       break;
     }
 
-    // large message w client streaming
+    // large message w client streaming 1
     case 7:
+    {
+      struct timespec start, stop;
+      int sizeArr[] = {128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072};
+      int len = sizeof(sizeArr)/sizeof(sizeArr[0]);
+      for (int i = 0; i < len; i++) 
+      {
+        std::cout<< " *** TESTING STRING OF LEN = " << sizeArr[i]  << " *** " << std::endl;
+        for (int j = 0; j < ITERATIONS; j++) 
+        {
+          clock_gettime(CLOCK_TYPE, &start);
+          greeter.AcceptClientSideStream1(sizeArr[i]);
+          //greeter.AcceptClientSideStream2(sizeArr[i]);
+          clock_gettime(CLOCK_TYPE, &stop);
+          std::cout<< "Round trip time to send large message with client streaming 1 : " << (stop.tv_sec - start.tv_sec)<< " s "
+                                  << (stop.tv_nsec - start.tv_nsec) << " ns"<<std::endl;
+        }
+        
+      }
+
+      break;
+    }
+    // large message w client streaming 2
+    case 8:
     {
       struct timespec start, stop;
       int sizeArr[] = {128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072};
@@ -537,7 +562,7 @@ int main(int argc, char** argv)
           //greeter.AcceptClientSideStream1(sizeArr[i]);
           greeter.AcceptClientSideStream2(sizeArr[i]);
           clock_gettime(CLOCK_TYPE, &stop);
-          std::cout<< "Round trip time to send large message with client streaming : " << (stop.tv_sec - start.tv_sec)<< " s "
+          std::cout<< "Round trip time to send large message with client streaming 2 : " << (stop.tv_sec - start.tv_sec)<< " s "
                                   << (stop.tv_nsec - start.tv_nsec) << " ns"<<std::endl;
         }
         

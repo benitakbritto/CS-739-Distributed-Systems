@@ -21,9 +21,9 @@ long long count;
 #define DEBUG                   1
 #define dbgprintf(...)          if (DEBUG) { printf(__VA_ARGS__); }
 #define CLOCK_TYPE              CLOCK_REALTIME
-#define ITERATIONS              5
+#define ITERATIONS              100
 #define SEEK_LOCATION           900
-#define FILE_NAME               "README.md"
+#define FILE_NAME               "files/one_mb_file"
 #define ONE_MB_FILE_NAME        "files/one_mb_file"
 #define ONE_MB                  1000000
 #define CHUNK_SIZE              1024     
@@ -37,7 +37,6 @@ void readMemorySeq();
 void readOneMBSeq(); 
 void readSSDRandom();
 void showFlagUsage();
-
 
 int main(int argc, char **argv)
 {
@@ -79,8 +78,7 @@ int main(int argc, char **argv)
         // Main memory reference
         case 5:
         {
-            for (int i = 0; i < ITERATIONS; i++)
-                accessMainMemory();
+            accessMainMemory();
             break;
         }
         // TODO: Compress 1K bytes with Zippy 
@@ -106,8 +104,8 @@ int main(int argc, char **argv)
         // UNSURE: Read 1 MB sequentially from memory
         case 9:
         {
-            for (int i = 0; i < ITERATIONS; i++)
-                readMemorySeq();
+            
+            readMemorySeq();
             break;
         }
         // TODO: Round trip within same datacenter
@@ -181,7 +179,6 @@ void readSSDRandom()
     char *fsimage = ONE_MB_FILE_NAME;
     int fd;
     unsigned char buf[FOUR_KB];
-    int maxRandomNumber = 100024;
 
     if ((fd = open(fsimage, O_RDWR, 0666)) < 0)
     {
@@ -189,7 +186,7 @@ void readSSDRandom()
         exit(1);
     }
 
-    int seekLocation = rand() % maxRandomNumber;  
+    int seekLocation = rand();
     printf("seekLocation: %d\n", seekLocation);
 
     clock_gettime(CLOCK_TYPE, &start);
@@ -226,22 +223,38 @@ void readOneMBSeq()
 
 void readMemorySeq()
 {
-    long long size = 125000;
-    dbgprintf("long long size: %ld\n", sizeof(long long));
-    long long * ptr = calloc(size, 8);
-    long long c;
     struct timespec start;
     struct timespec stop;
+    long FOUR_HUNDRED_MB = 400000000;
+    long EIGHT_MB = 8000000;
+    
+    // create an array that is bigger than all caches combined
+    char *ptr = calloc(FOUR_HUNDRED_MB, sizeof(char));
+    char c;
 
-    clock_gettime(CLOCK_TYPE, &start);
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < ITERATIONS; i++)
     {
-        c = *ptr;
-        ptr++;
+        long index = (i * ONE_MB + EIGHT_MB) % FOUR_HUNDRED_MB;
+        clock_gettime(CLOCK_TYPE, &start);
+        for (int j = 0; j < ONE_MB; j++)
+        {
+            long k = (index + j) % FOUR_HUNDRED_MB;
+        }
+        clock_gettime(CLOCK_TYPE, &stop);
+        printExecutionTime(&start, &stop, "offset");
     }
-    clock_gettime(CLOCK_TYPE, &stop);
 
-    printExecutionTime(&start, &stop, "Read 1 MB sequentially from memory");
+    for (int i = 0; i < ITERATIONS; i++)
+    {
+        long index = (i * ONE_MB + EIGHT_MB) % FOUR_HUNDRED_MB; // stride
+        clock_gettime(CLOCK_TYPE, &start);
+        for (int j = 0; j < ONE_MB; j++)
+        {
+            c = *(ptr + (index + j) % FOUR_HUNDRED_MB); // deref - mem access
+        }
+        clock_gettime(CLOCK_TYPE, &stop);
+        printExecutionTime(&start, &stop, "Read 1 MB sequentially from memory");
+    }
 }
 
 
@@ -258,8 +271,9 @@ void performDiskSeek()
         exit(1);
     }
 
+    int seekLocation = rand() % CHUNK_SIZE;
     clock_gettime(CLOCK_TYPE, &start);
-    lseek(fd, SEEK_LOCATION, SEEK_SET);
+    lseek(fd, seekLocation, SEEK_SET);
     clock_gettime(CLOCK_TYPE, &stop);
 
     printExecutionTime(&start, &stop, "Disk Seek");
@@ -269,14 +283,22 @@ void accessMainMemory()
 {
     struct timespec start;
     struct timespec stop;
-    char *ptr = "abc";
+    long FOUR_HUNDRED_MB = 400000000;
+    long EIGHT_MB = 8000000;
+    
+    // create an array that is bigger than all caches combined
+    char *ptr = calloc(FOUR_HUNDRED_MB, sizeof(char));
     char c;
 
-    clock_gettime(CLOCK_TYPE, &start);
-    c = *ptr; // deref - mem access
-    clock_gettime(CLOCK_TYPE, &stop);
-
-    printExecutionTime(&start, &stop, "Main Memory Access");
+    for (int i = 0; i < ITERATIONS; i++)
+    {
+        long index = (i * ONE_MB + EIGHT_MB) % FOUR_HUNDRED_MB; // stride
+        printf("%ld\n", index);
+        clock_gettime(CLOCK_TYPE, &start);
+        c = *(ptr + index); // deref - mem access
+        clock_gettime(CLOCK_TYPE, &stop);
+        printExecutionTime(&start, &stop, "Main Memory Access");
+    }
 }
 
 void printExecutionTime(struct timespec * tpStart, struct timespec * tpEnd, char *metric)

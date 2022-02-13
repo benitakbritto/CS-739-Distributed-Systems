@@ -1,0 +1,2211 @@
+ *** TESTING STRING OF LEN = 128 *** 
+Time to marshall string: 0 s 4621 ns
+Round trip time to send large message : 0 s 164624943 ns
+Time to marshall string: 0 s 3046 ns
+Round trip time to send large message : 0 s 53870230 ns
+Time to marshall string: 0 s 2611 ns
+Round trip time to send large message : 0 s 54090542 ns
+Time to marshall string: 0 s 2656 ns
+Round trip time to send large message : 0 s 54104631 ns
+Time to marshall string: 0 s 3002 ns
+Round trip time to send large message : 0 s 54275582 ns
+Time to marshall string: 0 s 3038 ns
+Round trip time to send large message : 0 s 54426713 ns
+Time to marshall string: 0 s 2558 ns
+Round trip time to send large message : 0 s 54224571 ns
+Time to marshall string: 0 s 3014 ns
+Round trip time to send large message : 0 s 54411528 ns
+Time to marshall string: 0 s 2573 ns
+Round trip time to send large message : 0 s 54260937 ns
+Time to marshall string: 0 s 2611 ns
+Round trip time to send large message : 0 s 54210395 ns
+Time to marshall string: 0 s 2908 ns
+Round trip time to send large message : 1 s -945869862 ns
+Time to marshall string: 0 s 2604 ns
+Round trip time to send large message : 0 s 54207444 ns
+Time to marshall string: 0 s 3057 ns
+Round trip time to send large message : 0 s 54164866 ns
+Time to marshall string: 0 s 2919 ns
+Round trip time to send large message : 0 s 54202951 ns
+Time to marshall string: 0 s 2812 ns
+Round trip time to send large message : 0 s 54153574 ns
+Time to marshall string: 0 s 2501 ns
+Round trip time to send large message : 0 s 54169970 ns
+Time to marshall string: 0 s 3091 ns
+Round trip time to send large message : 0 s 54141215 ns
+Time to marshall string: 0 s 2660 ns
+Round trip time to send large message : 0 s 55382197 ns
+Time to marshall string: 0 s 2895 ns
+Round trip time to send large message : 0 s 54061637 ns
+Time to marshall string: 0 s 2614 ns
+Round trip time to send large message : 0 s 54221775 ns
+Time to marshall string: 0 s 2723 ns
+Round trip time to send large message : 0 s 54253664 ns
+Time to marshall string: 0 s 2758 ns
+Round trip time to send large message : 0 s 54519409 ns
+Time to marshall string: 0 s 3113 ns
+Round trip time to send large message : 0 s 54086185 ns
+Time to marshall string: 0 s 2661 ns
+Round trip time to send large message : 0 s 54361740 ns
+Time to marshall string: 0 s 6683 ns
+Round trip time to send large message : 0 s 54521520 ns
+Time to marshall string: 0 s 2859 ns
+Round trip time to send large message : 0 s 54202736 ns
+Time to marshall string: 0 s 2711 ns
+Round trip time to send large message : 0 s 54164999 ns
+Time to marshall string: 0 s 2978 ns
+Round trip time to send large message : 0 s 54097034 ns
+Time to marshall string: 0 s 2974 ns
+Round trip time to send large message : 0 s 54310942 ns
+Time to marshall string: 0 s 2837 ns
+Round trip time to send large message : 1 s -945074193 ns
+Time to marshall string: 0 s 2948 ns
+Round trip time to send large message : 0 s 54224249 ns
+Time to marshall string: 0 s 3390 ns
+Round trip time to send large message : 0 s 54276844 ns
+Time to marshall string: 0 s 3083 ns
+Round trip time to send large message : 0 s 54258760 ns
+Time to marshall string: 0 s 2734 ns
+Round trip time to send large message : 0 s 54189288 ns
+Time to marshall string: 0 s 3039 ns
+Round trip time to send large message : 0 s 54211305 ns
+Time to marshall string: 0 s 2683 ns
+Round trip time to send large message : 0 s 54126880 ns
+Time to marshall string: 0 s 3158 ns
+Round trip time to send large message : 0 s 54925543 ns
+Time to marshall string: 0 s 2942 ns
+Round trip time to send large message : 0 s 54089213 ns
+Time to marshall string: 0 s 3093 ns
+Round trip time to send large message : 0 s 54331134 ns
+Time to marshall string: 0 s 2588 ns
+Round trip time to send large message : 0 s 54252305 ns
+Time to marshall string: 0 s 2572 ns
+Round trip time to send large message : 0 s 54153796 ns
+Time to marshall string: 0 s 2597 ns
+Round trip time to send large message : 0 s 54122690 ns
+Time to marshall string: 0 s 2986 ns
+Round trip time to send large message : 0 s 54243399 ns
+Time to marshall string: 0 s 2796 ns
+Round trip time to send large message : 0 s 54392582 ns
+Time to marshall string: 0 s 2902 ns
+Round trip time to send large message : 0 s 54143273 ns
+Time to marshall string: 0 s 2799 ns
+Round trip time to send large message : 0 s 54390386 ns
+Time to marshall string: 0 s 2795 ns
+Round trip time to send large message : 0 s 54249285 ns
+Time to marshall string: 0 s 3152 ns
+Round trip time to send large message : 1 s -945986986 ns
+Time to marshall string: 0 s 4132 ns
+Round trip time to send large message : 0 s 54279310 ns
+Time to marshall string: 0 s 2705 ns
+Round trip time to send large message : 0 s 54735468 ns
+Time to marshall string: 0 s 2651 ns
+Round trip time to send large message : 0 s 54236667 ns
+Time to marshall string: 0 s 2886 ns
+Round trip time to send large message : 0 s 54086442 ns
+Time to marshall string: 0 s 2622 ns
+Round trip time to send large message : 0 s 54111959 ns
+Time to marshall string: 0 s 3075 ns
+Round trip time to send large message : 0 s 54202189 ns
+Time to marshall string: 0 s 2603 ns
+Round trip time to send large message : 0 s 54346669 ns
+Time to marshall string: 0 s 3401 ns
+Round trip time to send large message : 0 s 54376034 ns
+Time to marshall string: 0 s 3583 ns
+Round trip time to send large message : 0 s 54211146 ns
+Time to marshall string: 0 s 3500 ns
+Round trip time to send large message : 0 s 54265396 ns
+Time to marshall string: 0 s 3370 ns
+Round trip time to send large message : 0 s 54419688 ns
+Time to marshall string: 0 s 3776 ns
+Round trip time to send large message : 0 s 54160456 ns
+Time to marshall string: 0 s 3260 ns
+Round trip time to send large message : 0 s 54444241 ns
+Time to marshall string: 0 s 3999 ns
+Round trip time to send large message : 0 s 54232551 ns
+Time to marshall string: 0 s 3600 ns
+Round trip time to send large message : 0 s 54780638 ns
+Time to marshall string: 0 s 3751 ns
+Round trip time to send large message : 0 s 54266746 ns
+Time to marshall string: 0 s 3603 ns
+Round trip time to send large message : 0 s 54409770 ns
+Time to marshall string: 0 s 4445 ns
+Round trip time to send large message : 1 s -945704245 ns
+Time to marshall string: 0 s 3548 ns
+Round trip time to send large message : 0 s 58821254 ns
+Time to marshall string: 0 s 3669 ns
+Round trip time to send large message : 0 s 54268094 ns
+Time to marshall string: 0 s 3153 ns
+Round trip time to send large message : 0 s 54220820 ns
+Time to marshall string: 0 s 3444 ns
+Round trip time to send large message : 0 s 54241044 ns
+Time to marshall string: 0 s 3618 ns
+Round trip time to send large message : 0 s 54058949 ns
+Time to marshall string: 0 s 3450 ns
+Round trip time to send large message : 0 s 54321975 ns
+Time to marshall string: 0 s 3475 ns
+Round trip time to send large message : 0 s 54337167 ns
+Time to marshall string: 0 s 3443 ns
+Round trip time to send large message : 0 s 54587500 ns
+Time to marshall string: 0 s 3454 ns
+Round trip time to send large message : 0 s 54305996 ns
+Time to marshall string: 0 s 4799 ns
+Round trip time to send large message : 0 s 54411238 ns
+Time to marshall string: 0 s 3562 ns
+Round trip time to send large message : 0 s 54247648 ns
+Time to marshall string: 0 s 3681 ns
+Round trip time to send large message : 0 s 54457843 ns
+Time to marshall string: 0 s 3284 ns
+Round trip time to send large message : 0 s 54363848 ns
+Time to marshall string: 0 s 4045 ns
+Round trip time to send large message : 0 s 54228533 ns
+Time to marshall string: 0 s 3429 ns
+Round trip time to send large message : 0 s 54592515 ns
+Time to marshall string: 0 s 3395 ns
+Round trip time to send large message : 0 s 54444906 ns
+Time to marshall string: 0 s 3463 ns
+Round trip time to send large message : 0 s 54335577 ns
+Time to marshall string: 0 s 3404 ns
+Round trip time to send large message : 0 s 54416489 ns
+Time to marshall string: 0 s 3537 ns
+Round trip time to send large message : 1 s -945535028 ns
+Time to marshall string: 0 s 6364 ns
+Round trip time to send large message : 0 s 54265576 ns
+Time to marshall string: 0 s 3340 ns
+Round trip time to send large message : 0 s 54362183 ns
+Time to marshall string: 0 s 3272 ns
+Round trip time to send large message : 0 s 54246324 ns
+Time to marshall string: 0 s 4368 ns
+Round trip time to send large message : 0 s 54494423 ns
+Time to marshall string: 0 s 3591 ns
+Round trip time to send large message : 0 s 54345738 ns
+Time to marshall string: 0 s 3755 ns
+Round trip time to send large message : 0 s 54545672 ns
+Time to marshall string: 0 s 3973 ns
+Round trip time to send large message : 0 s 54627689 ns
+Time to marshall string: 0 s 3452 ns
+Round trip time to send large message : 0 s 54405173 ns
+Time to marshall string: 0 s 3317 ns
+Round trip time to send large message : 0 s 54441573 ns
+Time to marshall string: 0 s 2709 ns
+Round trip time to send large message : 0 s 54818505 ns
+Time to marshall string: 0 s 3405 ns
+Round trip time to send large message : 0 s 54335717 ns
+Time to marshall string: 0 s 2725 ns
+Round trip time to send large message : 0 s 54220962 ns
+Time to marshall string: 0 s 2710 ns
+Round trip time to send large message : 0 s 54336518 ns
+Time to marshall string: 0 s 2901 ns
+Round trip time to send large message : 0 s 54205989 ns
+Time to marshall string: 0 s 2591 ns
+Round trip time to send large message : 0 s 54676437 ns
+ *** TESTING STRING OF LEN = 256 *** 
+Time to marshall string: 0 s 3190 ns
+Round trip time to send large message : 0 s 54250304 ns
+Time to marshall string: 0 s 2643 ns
+Round trip time to send large message : 0 s 54224674 ns
+Time to marshall string: 0 s 2765 ns
+Round trip time to send large message : 1 s -945640991 ns
+Time to marshall string: 0 s 3003 ns
+Round trip time to send large message : 0 s 54049221 ns
+Time to marshall string: 0 s 3012 ns
+Round trip time to send large message : 0 s 54064158 ns
+Time to marshall string: 0 s 2631 ns
+Round trip time to send large message : 0 s 55428110 ns
+Time to marshall string: 0 s 3181 ns
+Round trip time to send large message : 0 s 54080784 ns
+Time to marshall string: 0 s 2643 ns
+Round trip time to send large message : 0 s 54258087 ns
+Time to marshall string: 0 s 3165 ns
+Round trip time to send large message : 0 s 54115865 ns
+Time to marshall string: 0 s 2939 ns
+Round trip time to send large message : 0 s 56245435 ns
+Time to marshall string: 0 s 2700 ns
+Round trip time to send large message : 0 s 55406402 ns
+Time to marshall string: 0 s 2999 ns
+Round trip time to send large message : 0 s 54197504 ns
+Time to marshall string: 0 s 2938 ns
+Round trip time to send large message : 0 s 54037952 ns
+Time to marshall string: 0 s 3774 ns
+Round trip time to send large message : 0 s 54933127 ns
+Time to marshall string: 0 s 2708 ns
+Round trip time to send large message : 0 s 54153828 ns
+Time to marshall string: 0 s 2803 ns
+Round trip time to send large message : 0 s 54076961 ns
+Time to marshall string: 0 s 3112 ns
+Round trip time to send large message : 0 s 54047107 ns
+Time to marshall string: 0 s 3009 ns
+Round trip time to send large message : 0 s 54367888 ns
+Time to marshall string: 0 s 2776 ns
+Round trip time to send large message : 0 s 54176583 ns
+Time to marshall string: 0 s 3080 ns
+Round trip time to send large message : 0 s 54362132 ns
+Time to marshall string: 0 s 3866 ns
+Round trip time to send large message : 1 s -945504453 ns
+Time to marshall string: 0 s 2777 ns
+Round trip time to send large message : 0 s 54502916 ns
+Time to marshall string: 0 s 2834 ns
+Round trip time to send large message : 0 s 54248122 ns
+Time to marshall string: 0 s 2722 ns
+Round trip time to send large message : 0 s 54153136 ns
+Time to marshall string: 0 s 2649 ns
+Round trip time to send large message : 0 s 54284616 ns
+Time to marshall string: 0 s 2766 ns
+Round trip time to send large message : 0 s 54468148 ns
+Time to marshall string: 0 s 2752 ns
+Round trip time to send large message : 0 s 54566493 ns
+Time to marshall string: 0 s 3056 ns
+Round trip time to send large message : 0 s 56850923 ns
+Time to marshall string: 0 s 2739 ns
+Round trip time to send large message : 0 s 54350088 ns
+Time to marshall string: 0 s 2858 ns
+Round trip time to send large message : 0 s 54339719 ns
+Time to marshall string: 0 s 3084 ns
+Round trip time to send large message : 0 s 54264522 ns
+Time to marshall string: 0 s 4980 ns
+Round trip time to send large message : 0 s 54408396 ns
+Time to marshall string: 0 s 3675 ns
+Round trip time to send large message : 0 s 54239445 ns
+Time to marshall string: 0 s 3484 ns
+Round trip time to send large message : 0 s 54527664 ns
+Time to marshall string: 0 s 3232 ns
+Round trip time to send large message : 0 s 54304574 ns
+Time to marshall string: 0 s 3588 ns
+Round trip time to send large message : 0 s 54650759 ns
+Time to marshall string: 0 s 4094 ns
+Round trip time to send large message : 0 s 54408300 ns
+Time to marshall string: 0 s 3509 ns
+Round trip time to send large message : 0 s 54781231 ns
+Time to marshall string: 0 s 3282 ns
+Round trip time to send large message : 0 s 54739443 ns
+Time to marshall string: 0 s 3856 ns
+Round trip time to send large message : 1 s -944144116 ns
+Time to marshall string: 0 s 4276 ns
+Round trip time to send large message : 0 s 54143030 ns
+Time to marshall string: 0 s 3855 ns
+Round trip time to send large message : 0 s 54237504 ns
+Time to marshall string: 0 s 66728 ns
+Round trip time to send large message : 0 s 54507440 ns
+Time to marshall string: 0 s 3648 ns
+Round trip time to send large message : 0 s 54183893 ns
+Time to marshall string: 0 s 4155 ns
+Round trip time to send large message : 0 s 54189806 ns
+Time to marshall string: 0 s 3861 ns
+Round trip time to send large message : 0 s 54375205 ns
+Time to marshall string: 0 s 3346 ns
+Round trip time to send large message : 0 s 54326252 ns
+Time to marshall string: 0 s 3479 ns
+Round trip time to send large message : 0 s 54925610 ns
+Time to marshall string: 0 s 3451 ns
+Round trip time to send large message : 0 s 54354660 ns
+Time to marshall string: 0 s 3671 ns
+Round trip time to send large message : 0 s 54654814 ns
+Time to marshall string: 0 s 3722 ns
+Round trip time to send large message : 0 s 54363191 ns
+Time to marshall string: 0 s 3196 ns
+Round trip time to send large message : 0 s 54277515 ns
+Time to marshall string: 0 s 3573 ns
+Round trip time to send large message : 0 s 54570811 ns
+Time to marshall string: 0 s 3545 ns
+Round trip time to send large message : 0 s 54503120 ns
+Time to marshall string: 0 s 3401 ns
+Round trip time to send large message : 0 s 54588914 ns
+Time to marshall string: 0 s 3885 ns
+Round trip time to send large message : 0 s 54412752 ns
+Time to marshall string: 0 s 3423 ns
+Round trip time to send large message : 0 s 54470078 ns
+Time to marshall string: 0 s 3197 ns
+Round trip time to send large message : 1 s -945464326 ns
+Time to marshall string: 0 s 3555 ns
+Round trip time to send large message : 0 s 54393034 ns
+Time to marshall string: 0 s 3623 ns
+Round trip time to send large message : 0 s 54370982 ns
+Time to marshall string: 0 s 4093 ns
+Round trip time to send large message : 0 s 54093878 ns
+Time to marshall string: 0 s 6261 ns
+Round trip time to send large message : 0 s 54350349 ns
+Time to marshall string: 0 s 3233 ns
+Round trip time to send large message : 0 s 54343851 ns
+Time to marshall string: 0 s 3305 ns
+Round trip time to send large message : 0 s 54336493 ns
+Time to marshall string: 0 s 3772 ns
+Round trip time to send large message : 0 s 54361865 ns
+Time to marshall string: 0 s 3609 ns
+Round trip time to send large message : 0 s 54716496 ns
+Time to marshall string: 0 s 3587 ns
+Round trip time to send large message : 0 s 54405025 ns
+Time to marshall string: 0 s 3580 ns
+Round trip time to send large message : 0 s 54401847 ns
+Time to marshall string: 0 s 3768 ns
+Round trip time to send large message : 0 s 54459586 ns
+Time to marshall string: 0 s 3612 ns
+Round trip time to send large message : 0 s 54321404 ns
+Time to marshall string: 0 s 3352 ns
+Round trip time to send large message : 0 s 54286967 ns
+Time to marshall string: 0 s 3631 ns
+Round trip time to send large message : 0 s 54237985 ns
+Time to marshall string: 0 s 3528 ns
+Round trip time to send large message : 0 s 54316457 ns
+Time to marshall string: 0 s 3980 ns
+Round trip time to send large message : 0 s 54289780 ns
+Time to marshall string: 0 s 4286 ns
+Round trip time to send large message : 0 s 54404166 ns
+Time to marshall string: 0 s 3353 ns
+Round trip time to send large message : 1 s -945554228 ns
+Time to marshall string: 0 s 3243 ns
+Round trip time to send large message : 0 s 54396798 ns
+Time to marshall string: 0 s 3523 ns
+Round trip time to send large message : 0 s 59367023 ns
+Time to marshall string: 0 s 3609 ns
+Round trip time to send large message : 0 s 54259754 ns
+Time to marshall string: 0 s 3383 ns
+Round trip time to send large message : 0 s 54476861 ns
+Time to marshall string: 0 s 4387 ns
+Round trip time to send large message : 0 s 54366343 ns
+Time to marshall string: 0 s 3445 ns
+Round trip time to send large message : 0 s 54657174 ns
+Time to marshall string: 0 s 3555 ns
+Round trip time to send large message : 0 s 55113966 ns
+Time to marshall string: 0 s 3596 ns
+Round trip time to send large message : 0 s 54808596 ns
+Time to marshall string: 0 s 3391 ns
+Round trip time to send large message : 0 s 55917406 ns
+Time to marshall string: 0 s 3497 ns
+Round trip time to send large message : 0 s 54192937 ns
+Time to marshall string: 0 s 3462 ns
+Round trip time to send large message : 0 s 54865416 ns
+Time to marshall string: 0 s 3089 ns
+Round trip time to send large message : 0 s 54096069 ns
+Time to marshall string: 0 s 2817 ns
+Round trip time to send large message : 0 s 54170415 ns
+Time to marshall string: 0 s 2672 ns
+Round trip time to send large message : 0 s 53930061 ns
+Time to marshall string: 0 s 2832 ns
+Round trip time to send large message : 0 s 54218176 ns
+Time to marshall string: 0 s 2935 ns
+Round trip time to send large message : 0 s 54202676 ns
+Time to marshall string: 0 s 2882 ns
+Round trip time to send large message : 0 s 54160303 ns
+Time to marshall string: 0 s 2762 ns
+Round trip time to send large message : 0 s 54148180 ns
+Time to marshall string: 0 s 2886 ns
+Round trip time to send large message : 1 s -945775729 ns
+Time to marshall string: 0 s 2731 ns
+Round trip time to send large message : 0 s 54265020 ns
+Time to marshall string: 0 s 2614 ns
+Round trip time to send large message : 0 s 54187755 ns
+Time to marshall string: 0 s 3036 ns
+Round trip time to send large message : 0 s 54093069 ns
+Time to marshall string: 0 s 2882 ns
+Round trip time to send large message : 0 s 54285883 ns
+Time to marshall string: 0 s 3061 ns
+Round trip time to send large message : 0 s 54160960 ns
+ *** TESTING STRING OF LEN = 512 *** 
+Time to marshall string: 0 s 23185 ns
+Round trip time to send large message : 0 s 54295114 ns
+Time to marshall string: 0 s 3645 ns
+Round trip time to send large message : 0 s 54368749 ns
+Time to marshall string: 0 s 3244 ns
+Round trip time to send large message : 0 s 54375387 ns
+Time to marshall string: 0 s 3347 ns
+Round trip time to send large message : 0 s 54384564 ns
+Time to marshall string: 0 s 2811 ns
+Round trip time to send large message : 0 s 54126940 ns
+Time to marshall string: 0 s 3229 ns
+Round trip time to send large message : 0 s 54579589 ns
+Time to marshall string: 0 s 2928 ns
+Round trip time to send large message : 0 s 54215443 ns
+Time to marshall string: 0 s 2826 ns
+Round trip time to send large message : 0 s 54303483 ns
+Time to marshall string: 0 s 3199 ns
+Round trip time to send large message : 0 s 54072648 ns
+Time to marshall string: 0 s 2816 ns
+Round trip time to send large message : 0 s 54165403 ns
+Time to marshall string: 0 s 3311 ns
+Round trip time to send large message : 0 s 54218696 ns
+Time to marshall string: 0 s 3251 ns
+Round trip time to send large message : 0 s 54110869 ns
+Time to marshall string: 0 s 3111 ns
+Round trip time to send large message : 1 s -945978140 ns
+Time to marshall string: 0 s 3925 ns
+Round trip time to send large message : 0 s 54183258 ns
+Time to marshall string: 0 s 3142 ns
+Round trip time to send large message : 0 s 54424973 ns
+Time to marshall string: 0 s 3634 ns
+Round trip time to send large message : 0 s 54190585 ns
+Time to marshall string: 0 s 3171 ns
+Round trip time to send large message : 0 s 53951664 ns
+Time to marshall string: 0 s 3378 ns
+Round trip time to send large message : 0 s 54065226 ns
+Time to marshall string: 0 s 3292 ns
+Round trip time to send large message : 0 s 54083262 ns
+Time to marshall string: 0 s 3012 ns
+Round trip time to send large message : 0 s 54144367 ns
+Time to marshall string: 0 s 2785 ns
+Round trip time to send large message : 0 s 54070139 ns
+Time to marshall string: 0 s 2744 ns
+Round trip time to send large message : 0 s 54281232 ns
+Time to marshall string: 0 s 3243 ns
+Round trip time to send large message : 0 s 54259056 ns
+Time to marshall string: 0 s 2731 ns
+Round trip time to send large message : 0 s 54444679 ns
+Time to marshall string: 0 s 2933 ns
+Round trip time to send large message : 0 s 54349611 ns
+Time to marshall string: 0 s 2846 ns
+Round trip time to send large message : 0 s 54253665 ns
+Time to marshall string: 0 s 2826 ns
+Round trip time to send large message : 0 s 54060529 ns
+Time to marshall string: 0 s 3047 ns
+Round trip time to send large message : 0 s 54184815 ns
+Time to marshall string: 0 s 2847 ns
+Round trip time to send large message : 0 s 54126792 ns
+Time to marshall string: 0 s 2881 ns
+Round trip time to send large message : 0 s 54189967 ns
+Time to marshall string: 0 s 2864 ns
+Round trip time to send large message : 0 s 54148873 ns
+Time to marshall string: 0 s 2864 ns
+Round trip time to send large message : 1 s -945832949 ns
+Time to marshall string: 0 s 2835 ns
+Round trip time to send large message : 0 s 54514161 ns
+Time to marshall string: 0 s 2859 ns
+Round trip time to send large message : 0 s 54200138 ns
+Time to marshall string: 0 s 3085 ns
+Round trip time to send large message : 0 s 54292170 ns
+Time to marshall string: 0 s 2941 ns
+Round trip time to send large message : 0 s 54699556 ns
+Time to marshall string: 0 s 2827 ns
+Round trip time to send large message : 0 s 54330372 ns
+Time to marshall string: 0 s 48035 ns
+Round trip time to send large message : 0 s 54239992 ns
+Time to marshall string: 0 s 3083 ns
+Round trip time to send large message : 0 s 54140279 ns
+Time to marshall string: 0 s 2809 ns
+Round trip time to send large message : 0 s 54200916 ns
+Time to marshall string: 0 s 2725 ns
+Round trip time to send large message : 0 s 54443631 ns
+Time to marshall string: 0 s 2963 ns
+Round trip time to send large message : 0 s 54057681 ns
+Time to marshall string: 0 s 2835 ns
+Round trip time to send large message : 0 s 54204777 ns
+Time to marshall string: 0 s 2834 ns
+Round trip time to send large message : 0 s 54138285 ns
+Time to marshall string: 0 s 3062 ns
+Round trip time to send large message : 0 s 54418428 ns
+Time to marshall string: 0 s 3120 ns
+Round trip time to send large message : 0 s 54368426 ns
+Time to marshall string: 0 s 3241 ns
+Round trip time to send large message : 0 s 54270471 ns
+Time to marshall string: 0 s 2995 ns
+Round trip time to send large message : 0 s 54497857 ns
+Time to marshall string: 0 s 3024 ns
+Round trip time to send large message : 0 s 54336041 ns
+Time to marshall string: 0 s 2894 ns
+Round trip time to send large message : 1 s -945351381 ns
+Time to marshall string: 0 s 3067 ns
+Round trip time to send large message : 0 s 54847816 ns
+Time to marshall string: 0 s 3237 ns
+Round trip time to send large message : 0 s 54403965 ns
+Time to marshall string: 0 s 2883 ns
+Round trip time to send large message : 0 s 54505693 ns
+Time to marshall string: 0 s 3504 ns
+Round trip time to send large message : 0 s 54165280 ns
+Time to marshall string: 0 s 2998 ns
+Round trip time to send large message : 0 s 54312498 ns
+Time to marshall string: 0 s 2948 ns
+Round trip time to send large message : 0 s 53947677 ns
+Time to marshall string: 0 s 3160 ns
+Round trip time to send large message : 0 s 54403822 ns
+Time to marshall string: 0 s 2969 ns
+Round trip time to send large message : 0 s 54058150 ns
+Time to marshall string: 0 s 3365 ns
+Round trip time to send large message : 0 s 54311240 ns
+Time to marshall string: 0 s 2864 ns
+Round trip time to send large message : 0 s 54156347 ns
+Time to marshall string: 0 s 3437 ns
+Round trip time to send large message : 0 s 56402333 ns
+Time to marshall string: 0 s 3090 ns
+Round trip time to send large message : 0 s 54099763 ns
+Time to marshall string: 0 s 4243 ns
+Round trip time to send large message : 0 s 54300146 ns
+Time to marshall string: 0 s 4964 ns
+Round trip time to send large message : 0 s 54463719 ns
+Time to marshall string: 0 s 3561 ns
+Round trip time to send large message : 0 s 54407178 ns
+Time to marshall string: 0 s 3721 ns
+Round trip time to send large message : 0 s 54385903 ns
+Time to marshall string: 0 s 3782 ns
+Round trip time to send large message : 0 s 54492202 ns
+Time to marshall string: 0 s 3833 ns
+Round trip time to send large message : 1 s -945753911 ns
+Time to marshall string: 0 s 3440 ns
+Round trip time to send large message : 0 s 54397589 ns
+Time to marshall string: 0 s 3638 ns
+Round trip time to send large message : 0 s 54433123 ns
+Time to marshall string: 0 s 3809 ns
+Round trip time to send large message : 0 s 54425466 ns
+Time to marshall string: 0 s 3700 ns
+Round trip time to send large message : 0 s 54585274 ns
+Time to marshall string: 0 s 4494 ns
+Round trip time to send large message : 0 s 54390414 ns
+Time to marshall string: 0 s 3690 ns
+Round trip time to send large message : 0 s 55173652 ns
+Time to marshall string: 0 s 3878 ns
+Round trip time to send large message : 0 s 54368659 ns
+Time to marshall string: 0 s 3608 ns
+Round trip time to send large message : 0 s 54578066 ns
+Time to marshall string: 0 s 4655 ns
+Round trip time to send large message : 0 s 54260169 ns
+Time to marshall string: 0 s 3750 ns
+Round trip time to send large message : 0 s 54593766 ns
+Time to marshall string: 0 s 5168 ns
+Round trip time to send large message : 0 s 54488582 ns
+Time to marshall string: 0 s 3403 ns
+Round trip time to send large message : 0 s 54605044 ns
+Time to marshall string: 0 s 3798 ns
+Round trip time to send large message : 0 s 54291707 ns
+Time to marshall string: 0 s 3313 ns
+Round trip time to send large message : 0 s 54466288 ns
+Time to marshall string: 0 s 3394 ns
+Round trip time to send large message : 0 s 53952302 ns
+Time to marshall string: 0 s 3036 ns
+Round trip time to send large message : 0 s 54373572 ns
+Time to marshall string: 0 s 3294 ns
+Round trip time to send large message : 0 s 54233070 ns
+Time to marshall string: 0 s 3214 ns
+Round trip time to send large message : 0 s 54346839 ns
+Time to marshall string: 0 s 3087 ns
+Round trip time to send large message : 1 s -945553398 ns
+Time to marshall string: 0 s 3002 ns
+Round trip time to send large message : 0 s 54249082 ns
+Time to marshall string: 0 s 3263 ns
+Round trip time to send large message : 0 s 58410019 ns
+Time to marshall string: 0 s 3376 ns
+Round trip time to send large message : 0 s 54341471 ns
+Time to marshall string: 0 s 3100 ns
+Round trip time to send large message : 0 s 54495777 ns
+Time to marshall string: 0 s 3141 ns
+Round trip time to send large message : 0 s 54175355 ns
+Time to marshall string: 0 s 3128 ns
+Round trip time to send large message : 0 s 54587223 ns
+Time to marshall string: 0 s 3244 ns
+Round trip time to send large message : 0 s 54496808 ns
+Time to marshall string: 0 s 2933 ns
+Round trip time to send large message : 0 s 54541862 ns
+Time to marshall string: 0 s 3051 ns
+Round trip time to send large message : 0 s 54303465 ns
+Time to marshall string: 0 s 3347 ns
+Round trip time to send large message : 0 s 54200127 ns
+Time to marshall string: 0 s 3049 ns
+Round trip time to send large message : 0 s 54047566 ns
+Time to marshall string: 0 s 3251 ns
+Round trip time to send large message : 0 s 54070495 ns
+Time to marshall string: 0 s 3278 ns
+Round trip time to send large message : 0 s 54059599 ns
+ *** TESTING STRING OF LEN = 1024 *** 
+Time to marshall string: 0 s 3769 ns
+Round trip time to send large message : 0 s 54176718 ns
+Time to marshall string: 0 s 3364 ns
+Round trip time to send large message : 0 s 54313625 ns
+Time to marshall string: 0 s 3621 ns
+Round trip time to send large message : 0 s 54371118 ns
+Time to marshall string: 0 s 3325 ns
+Round trip time to send large message : 0 s 54200916 ns
+Time to marshall string: 0 s 3248 ns
+Round trip time to send large message : 1 s -945854790 ns
+Time to marshall string: 0 s 3981 ns
+Round trip time to send large message : 0 s 54483888 ns
+Time to marshall string: 0 s 3337 ns
+Round trip time to send large message : 0 s 54481458 ns
+Time to marshall string: 0 s 3523 ns
+Round trip time to send large message : 0 s 54343211 ns
+Time to marshall string: 0 s 4312 ns
+Round trip time to send large message : 0 s 54487491 ns
+Time to marshall string: 0 s 3518 ns
+Round trip time to send large message : 0 s 54148956 ns
+Time to marshall string: 0 s 3551 ns
+Round trip time to send large message : 0 s 54186689 ns
+Time to marshall string: 0 s 3515 ns
+Round trip time to send large message : 0 s 53999003 ns
+Time to marshall string: 0 s 3563 ns
+Round trip time to send large message : 0 s 54070867 ns
+Time to marshall string: 0 s 3232 ns
+Round trip time to send large message : 0 s 53957638 ns
+Time to marshall string: 0 s 3504 ns
+Round trip time to send large message : 0 s 54398149 ns
+Time to marshall string: 0 s 3400 ns
+Round trip time to send large message : 0 s 53999122 ns
+Time to marshall string: 0 s 3319 ns
+Round trip time to send large message : 0 s 54195294 ns
+Time to marshall string: 0 s 3325 ns
+Round trip time to send large message : 0 s 54347199 ns
+Time to marshall string: 0 s 4000 ns
+Round trip time to send large message : 0 s 54672181 ns
+Time to marshall string: 0 s 4200 ns
+Round trip time to send large message : 0 s 54393712 ns
+Time to marshall string: 0 s 4583 ns
+Round trip time to send large message : 0 s 54366167 ns
+Time to marshall string: 0 s 4285 ns
+Round trip time to send large message : 0 s 54091528 ns
+Time to marshall string: 0 s 4782 ns
+Round trip time to send large message : 1 s -945512157 ns
+Time to marshall string: 0 s 4036 ns
+Round trip time to send large message : 0 s 54239352 ns
+Time to marshall string: 0 s 4494 ns
+Round trip time to send large message : 0 s 54419640 ns
+Time to marshall string: 0 s 4415 ns
+Round trip time to send large message : 0 s 54563236 ns
+Time to marshall string: 0 s 4326 ns
+Round trip time to send large message : 0 s 54480972 ns
+Time to marshall string: 0 s 4227 ns
+Round trip time to send large message : 0 s 54749151 ns
+Time to marshall string: 0 s 4266 ns
+Round trip time to send large message : 0 s 54186340 ns
+Time to marshall string: 0 s 4414 ns
+Round trip time to send large message : 0 s 54637914 ns
+Time to marshall string: 0 s 4415 ns
+Round trip time to send large message : 0 s 54261457 ns
+Time to marshall string: 0 s 4186 ns
+Round trip time to send large message : 0 s 54357937 ns
+Time to marshall string: 0 s 5126 ns
+Round trip time to send large message : 0 s 54267188 ns
+Time to marshall string: 0 s 4234 ns
+Round trip time to send large message : 0 s 54320697 ns
+Time to marshall string: 0 s 4337 ns
+Round trip time to send large message : 0 s 54141548 ns
+Time to marshall string: 0 s 4441 ns
+Round trip time to send large message : 0 s 54355660 ns
+Time to marshall string: 0 s 4424 ns
+Round trip time to send large message : 0 s 54332253 ns
+Time to marshall string: 0 s 4985 ns
+Round trip time to send large message : 0 s 54380455 ns
+Time to marshall string: 0 s 4372 ns
+Round trip time to send large message : 0 s 54204601 ns
+Time to marshall string: 0 s 4431 ns
+Round trip time to send large message : 0 s 54245929 ns
+Time to marshall string: 0 s 4753 ns
+Round trip time to send large message : 0 s 54274954 ns
+Time to marshall string: 0 s 4231 ns
+Round trip time to send large message : 1 s -945690139 ns
+Time to marshall string: 0 s 4819 ns
+Round trip time to send large message : 0 s 54689577 ns
+Time to marshall string: 0 s 4572 ns
+Round trip time to send large message : 0 s 54448002 ns
+Time to marshall string: 0 s 4502 ns
+Round trip time to send large message : 0 s 54732136 ns
+Time to marshall string: 0 s 4568 ns
+Round trip time to send large message : 0 s 54249649 ns
+Time to marshall string: 0 s 3997 ns
+Round trip time to send large message : 0 s 54629701 ns
+Time to marshall string: 0 s 4201 ns
+Round trip time to send large message : 0 s 54354378 ns
+Time to marshall string: 0 s 4305 ns
+Round trip time to send large message : 0 s 54378752 ns
+Time to marshall string: 0 s 5289 ns
+Round trip time to send large message : 0 s 54426871 ns
+Time to marshall string: 0 s 4403 ns
+Round trip time to send large message : 0 s 54380244 ns
+Time to marshall string: 0 s 4182 ns
+Round trip time to send large message : 0 s 54450312 ns
+Time to marshall string: 0 s 4425 ns
+Round trip time to send large message : 0 s 54335487 ns
+Time to marshall string: 0 s 3966 ns
+Round trip time to send large message : 0 s 54301501 ns
+Time to marshall string: 0 s 4007 ns
+Round trip time to send large message : 0 s 54444611 ns
+Time to marshall string: 0 s 4159 ns
+Round trip time to send large message : 0 s 54329598 ns
+Time to marshall string: 0 s 3981 ns
+Round trip time to send large message : 0 s 54467411 ns
+Time to marshall string: 0 s 3572 ns
+Round trip time to send large message : 0 s 54500563 ns
+Time to marshall string: 0 s 4074 ns
+Round trip time to send large message : 0 s 54523345 ns
+Time to marshall string: 0 s 3538 ns
+Round trip time to send large message : 1 s -945114313 ns
+Time to marshall string: 0 s 3572 ns
+Round trip time to send large message : 0 s 54140797 ns
+Time to marshall string: 0 s 3487 ns
+Round trip time to send large message : 0 s 54483693 ns
+Time to marshall string: 0 s 3392 ns
+Round trip time to send large message : 0 s 54248164 ns
+Time to marshall string: 0 s 3168 ns
+Round trip time to send large message : 0 s 54304386 ns
+Time to marshall string: 0 s 3493 ns
+Round trip time to send large message : 0 s 54163980 ns
+Time to marshall string: 0 s 4501 ns
+Round trip time to send large message : 0 s 54456693 ns
+Time to marshall string: 0 s 3537 ns
+Round trip time to send large message : 0 s 54414581 ns
+Time to marshall string: 0 s 10386 ns
+Round trip time to send large message : 0 s 54193738 ns
+Time to marshall string: 0 s 3663 ns
+Round trip time to send large message : 0 s 54669831 ns
+Time to marshall string: 0 s 3222 ns
+Round trip time to send large message : 0 s 54187809 ns
+Time to marshall string: 0 s 3791 ns
+Round trip time to send large message : 0 s 54166284 ns
+Time to marshall string: 0 s 3562 ns
+Round trip time to send large message : 0 s 54402534 ns
+Time to marshall string: 0 s 3534 ns
+Round trip time to send large message : 0 s 54302449 ns
+Time to marshall string: 0 s 3697 ns
+Round trip time to send large message : 0 s 54368360 ns
+Time to marshall string: 0 s 3375 ns
+Round trip time to send large message : 0 s 54272567 ns
+Time to marshall string: 0 s 6176 ns
+Round trip time to send large message : 0 s 54156288 ns
+Time to marshall string: 0 s 4499 ns
+Round trip time to send large message : 0 s 54403831 ns
+Time to marshall string: 0 s 4428 ns
+Round trip time to send large message : 0 s 54419966 ns
+Time to marshall string: 0 s 5832 ns
+Round trip time to send large message : 1 s -945642689 ns
+Time to marshall string: 0 s 4460 ns
+Round trip time to send large message : 0 s 54411011 ns
+Time to marshall string: 0 s 4319 ns
+Round trip time to send large message : 0 s 54348733 ns
+Time to marshall string: 0 s 4799 ns
+Round trip time to send large message : 0 s 54326444 ns
+Time to marshall string: 0 s 4693 ns
+Round trip time to send large message : 0 s 54336061 ns
+Time to marshall string: 0 s 4440 ns
+Round trip time to send large message : 0 s 54387998 ns
+Time to marshall string: 0 s 4364 ns
+Round trip time to send large message : 0 s 54574100 ns
+Time to marshall string: 0 s 4217 ns
+Round trip time to send large message : 0 s 54436120 ns
+Time to marshall string: 0 s 3778 ns
+Round trip time to send large message : 0 s 54538028 ns
+Time to marshall string: 0 s 4400 ns
+Round trip time to send large message : 0 s 54355763 ns
+Time to marshall string: 0 s 4548 ns
+Round trip time to send large message : 0 s 57950924 ns
+Time to marshall string: 0 s 4446 ns
+Round trip time to send large message : 0 s 54337640 ns
+Time to marshall string: 0 s 4874 ns
+Round trip time to send large message : 0 s 54419403 ns
+Time to marshall string: 0 s 4063 ns
+Round trip time to send large message : 0 s 54531473 ns
+Time to marshall string: 0 s 4313 ns
+Round trip time to send large message : 0 s 54461587 ns
+Time to marshall string: 0 s 4092 ns
+Round trip time to send large message : 0 s 55673511 ns
+Time to marshall string: 0 s 4326 ns
+Round trip time to send large message : 0 s 54745214 ns
+Time to marshall string: 0 s 4628 ns
+Round trip time to send large message : 0 s 54432979 ns
+Time to marshall string: 0 s 4418 ns
+Round trip time to send large message : 1 s -945658299 ns
+Time to marshall string: 0 s 4468 ns
+Round trip time to send large message : 0 s 54552292 ns
+Time to marshall string: 0 s 4196 ns
+Round trip time to send large message : 0 s 54355795 ns
+Time to marshall string: 0 s 4256 ns
+Round trip time to send large message : 0 s 54503157 ns
+ *** TESTING STRING OF LEN = 2048 *** 
+Time to marshall string: 0 s 25311 ns
+Round trip time to send large message : 0 s 54702955 ns
+Time to marshall string: 0 s 4580 ns
+Round trip time to send large message : 0 s 54556969 ns
+Time to marshall string: 0 s 4910 ns
+Round trip time to send large message : 0 s 54412028 ns
+Time to marshall string: 0 s 4674 ns
+Round trip time to send large message : 0 s 54735201 ns
+Time to marshall string: 0 s 4552 ns
+Round trip time to send large message : 0 s 54222258 ns
+Time to marshall string: 0 s 5090 ns
+Round trip time to send large message : 0 s 54133444 ns
+Time to marshall string: 0 s 4531 ns
+Round trip time to send large message : 0 s 54185566 ns
+Time to marshall string: 0 s 5163 ns
+Round trip time to send large message : 0 s 54129805 ns
+Time to marshall string: 0 s 5071 ns
+Round trip time to send large message : 0 s 55690885 ns
+Time to marshall string: 0 s 5653 ns
+Round trip time to send large message : 0 s 54156391 ns
+Time to marshall string: 0 s 5100 ns
+Round trip time to send large message : 0 s 54587478 ns
+Time to marshall string: 0 s 5015 ns
+Round trip time to send large message : 0 s 54249804 ns
+Time to marshall string: 0 s 5075 ns
+Round trip time to send large message : 0 s 54215298 ns
+Time to marshall string: 0 s 4352 ns
+Round trip time to send large message : 0 s 54236838 ns
+Time to marshall string: 0 s 4266 ns
+Round trip time to send large message : 1 s -936936304 ns
+Time to marshall string: 0 s 3849 ns
+Round trip time to send large message : 0 s 54209879 ns
+Time to marshall string: 0 s 3865 ns
+Round trip time to send large message : 0 s 54335779 ns
+Time to marshall string: 0 s 3752 ns
+Round trip time to send large message : 0 s 54006824 ns
+Time to marshall string: 0 s 4005 ns
+Round trip time to send large message : 0 s 54020639 ns
+Time to marshall string: 0 s 3621 ns
+Round trip time to send large message : 0 s 54134821 ns
+Time to marshall string: 0 s 3787 ns
+Round trip time to send large message : 0 s 54290442 ns
+Time to marshall string: 0 s 4161 ns
+Round trip time to send large message : 0 s 54224398 ns
+Time to marshall string: 0 s 3982 ns
+Round trip time to send large message : 0 s 54296166 ns
+Time to marshall string: 0 s 3923 ns
+Round trip time to send large message : 0 s 54923121 ns
+Time to marshall string: 0 s 3713 ns
+Round trip time to send large message : 0 s 54035257 ns
+Time to marshall string: 0 s 3682 ns
+Round trip time to send large message : 0 s 54190294 ns
+Time to marshall string: 0 s 3805 ns
+Round trip time to send large message : 0 s 54183464 ns
+Time to marshall string: 0 s 3698 ns
+Round trip time to send large message : 0 s 54315363 ns
+Time to marshall string: 0 s 3675 ns
+Round trip time to send large message : 0 s 54320661 ns
+Time to marshall string: 0 s 4202 ns
+Round trip time to send large message : 0 s 54234358 ns
+Time to marshall string: 0 s 4140 ns
+Round trip time to send large message : 0 s 54108476 ns
+Time to marshall string: 0 s 3582 ns
+Round trip time to send large message : 0 s 54147109 ns
+Time to marshall string: 0 s 3761 ns
+Round trip time to send large message : 1 s -945670346 ns
+Time to marshall string: 0 s 4368 ns
+Round trip time to send large message : 0 s 54314742 ns
+Time to marshall string: 0 s 3894 ns
+Round trip time to send large message : 0 s 55739299 ns
+Time to marshall string: 0 s 3864 ns
+Round trip time to send large message : 0 s 54336796 ns
+Time to marshall string: 0 s 4179 ns
+Round trip time to send large message : 0 s 54268870 ns
+Time to marshall string: 0 s 4216 ns
+Round trip time to send large message : 0 s 54449544 ns
+Time to marshall string: 0 s 4166 ns
+Round trip time to send large message : 0 s 54251449 ns
+Time to marshall string: 0 s 4063 ns
+Round trip time to send large message : 0 s 54246677 ns
+Time to marshall string: 0 s 3638 ns
+Round trip time to send large message : 0 s 54276698 ns
+Time to marshall string: 0 s 4215 ns
+Round trip time to send large message : 0 s 54251601 ns
+Time to marshall string: 0 s 4405 ns
+Round trip time to send large message : 0 s 54412368 ns
+Time to marshall string: 0 s 3592 ns
+Round trip time to send large message : 0 s 54207677 ns
+Time to marshall string: 0 s 3777 ns
+Round trip time to send large message : 0 s 54028951 ns
+Time to marshall string: 0 s 3937 ns
+Round trip time to send large message : 0 s 54203043 ns
+Time to marshall string: 0 s 4398 ns
+Round trip time to send large message : 0 s 54351629 ns
+Time to marshall string: 0 s 4349 ns
+Round trip time to send large message : 0 s 54201026 ns
+Time to marshall string: 0 s 4544 ns
+Round trip time to send large message : 0 s 54249748 ns
+Time to marshall string: 0 s 3678 ns
+Round trip time to send large message : 0 s 54434104 ns
+Time to marshall string: 0 s 7670 ns
+Round trip time to send large message : 0 s 54161933 ns
+Time to marshall string: 0 s 4528 ns
+Round trip time to send large message : 1 s -945551137 ns
+Time to marshall string: 0 s 4784 ns
+Round trip time to send large message : 0 s 54458037 ns
+Time to marshall string: 0 s 5077 ns
+Round trip time to send large message : 0 s 54603157 ns
+Time to marshall string: 0 s 4771 ns
+Round trip time to send large message : 0 s 54339554 ns
+Time to marshall string: 0 s 4459 ns
+Round trip time to send large message : 0 s 54341570 ns
+Time to marshall string: 0 s 4868 ns
+Round trip time to send large message : 0 s 54207520 ns
+Time to marshall string: 0 s 4739 ns
+Round trip time to send large message : 0 s 54307744 ns
+Time to marshall string: 0 s 4643 ns
+Round trip time to send large message : 0 s 54596426 ns
+Time to marshall string: 0 s 4930 ns
+Round trip time to send large message : 0 s 54302659 ns
+Time to marshall string: 0 s 5906 ns
+Round trip time to send large message : 0 s 54440407 ns
+Time to marshall string: 0 s 5006 ns
+Round trip time to send large message : 0 s 56493200 ns
+Time to marshall string: 0 s 5206 ns
+Round trip time to send large message : 0 s 54335049 ns
+Time to marshall string: 0 s 4658 ns
+Round trip time to send large message : 0 s 54227918 ns
+Time to marshall string: 0 s 5127 ns
+Round trip time to send large message : 0 s 54577206 ns
+Time to marshall string: 0 s 4781 ns
+Round trip time to send large message : 0 s 54483290 ns
+Time to marshall string: 0 s 5180 ns
+Round trip time to send large message : 0 s 54564241 ns
+Time to marshall string: 0 s 4642 ns
+Round trip time to send large message : 0 s 54247256 ns
+Time to marshall string: 0 s 5254 ns
+Round trip time to send large message : 0 s 54201403 ns
+Time to marshall string: 0 s 4633 ns
+Round trip time to send large message : 1 s -945752779 ns
+Time to marshall string: 0 s 4677 ns
+Round trip time to send large message : 0 s 54319583 ns
+Time to marshall string: 0 s 4584 ns
+Round trip time to send large message : 0 s 54280502 ns
+Time to marshall string: 0 s 4757 ns
+Round trip time to send large message : 0 s 54315911 ns
+Time to marshall string: 0 s 4774 ns
+Round trip time to send large message : 0 s 54385916 ns
+Time to marshall string: 0 s 4786 ns
+Round trip time to send large message : 0 s 54459368 ns
+Time to marshall string: 0 s 4685 ns
+Round trip time to send large message : 0 s 54280387 ns
+Time to marshall string: 0 s 4812 ns
+Round trip time to send large message : 0 s 54318468 ns
+Time to marshall string: 0 s 5815 ns
+Round trip time to send large message : 0 s 54258062 ns
+Time to marshall string: 0 s 4669 ns
+Round trip time to send large message : 0 s 54272199 ns
+Time to marshall string: 0 s 6357 ns
+Round trip time to send large message : 0 s 54349239 ns
+Time to marshall string: 0 s 6380 ns
+Round trip time to send large message : 0 s 54821813 ns
+Time to marshall string: 0 s 4398 ns
+Round trip time to send large message : 0 s 54359782 ns
+Time to marshall string: 0 s 5029 ns
+Round trip time to send large message : 0 s 54339792 ns
+Time to marshall string: 0 s 4672 ns
+Round trip time to send large message : 0 s 58661974 ns
+Time to marshall string: 0 s 5340 ns
+Round trip time to send large message : 0 s 54276702 ns
+Time to marshall string: 0 s 4790 ns
+Round trip time to send large message : 0 s 54439321 ns
+Time to marshall string: 0 s 4970 ns
+Round trip time to send large message : 0 s 54857092 ns
+Time to marshall string: 0 s 5078 ns
+Round trip time to send large message : 1 s -945777304 ns
+Time to marshall string: 0 s 4665 ns
+Round trip time to send large message : 0 s 55605681 ns
+Time to marshall string: 0 s 4672 ns
+Round trip time to send large message : 0 s 54191950 ns
+Time to marshall string: 0 s 4648 ns
+Round trip time to send large message : 0 s 54174544 ns
+Time to marshall string: 0 s 6341 ns
+Round trip time to send large message : 0 s 54129300 ns
+Time to marshall string: 0 s 5362 ns
+Round trip time to send large message : 0 s 54465647 ns
+Time to marshall string: 0 s 4655 ns
+Round trip time to send large message : 0 s 54184274 ns
+Time to marshall string: 0 s 5254 ns
+Round trip time to send large message : 0 s 54211906 ns
+Time to marshall string: 0 s 4659 ns
+Round trip time to send large message : 0 s 54363395 ns
+Time to marshall string: 0 s 5173 ns
+Round trip time to send large message : 0 s 54266416 ns
+Time to marshall string: 0 s 4600 ns
+Round trip time to send large message : 0 s 54310407 ns
+Time to marshall string: 0 s 4674 ns
+Round trip time to send large message : 0 s 54120206 ns
+Time to marshall string: 0 s 4762 ns
+Round trip time to send large message : 0 s 54529571 ns
+ *** TESTING STRING OF LEN = 4096 *** 
+Time to marshall string: 0 s 23096 ns
+Round trip time to send large message : 0 s 54933514 ns
+Time to marshall string: 0 s 5760 ns
+Round trip time to send large message : 0 s 54392622 ns
+Time to marshall string: 0 s 6091 ns
+Round trip time to send large message : 0 s 54262468 ns
+Time to marshall string: 0 s 6044 ns
+Round trip time to send large message : 0 s 54266012 ns
+Time to marshall string: 0 s 5861 ns
+Round trip time to send large message : 0 s 54656215 ns
+Time to marshall string: 0 s 6313 ns
+Round trip time to send large message : 0 s 54394135 ns
+Time to marshall string: 0 s 5811 ns
+Round trip time to send large message : 1 s -945649334 ns
+Time to marshall string: 0 s 5599 ns
+Round trip time to send large message : 0 s 54220312 ns
+Time to marshall string: 0 s 6018 ns
+Round trip time to send large message : 0 s 54042770 ns
+Time to marshall string: 0 s 5530 ns
+Round trip time to send large message : 0 s 54485286 ns
+Time to marshall string: 0 s 6749 ns
+Round trip time to send large message : 0 s 54209651 ns
+Time to marshall string: 0 s 5831 ns
+Round trip time to send large message : 0 s 54452425 ns
+Time to marshall string: 0 s 5888 ns
+Round trip time to send large message : 0 s 54360752 ns
+Time to marshall string: 0 s 5653 ns
+Round trip time to send large message : 0 s 54599503 ns
+Time to marshall string: 0 s 6133 ns
+Round trip time to send large message : 0 s 54456589 ns
+Time to marshall string: 0 s 6113 ns
+Round trip time to send large message : 0 s 54221048 ns
+Time to marshall string: 0 s 6061 ns
+Round trip time to send large message : 0 s 54601003 ns
+Time to marshall string: 0 s 6313 ns
+Round trip time to send large message : 0 s 54368665 ns
+Time to marshall string: 0 s 5812 ns
+Round trip time to send large message : 0 s 56783227 ns
+Time to marshall string: 0 s 6021 ns
+Round trip time to send large message : 0 s 54260852 ns
+Time to marshall string: 0 s 5721 ns
+Round trip time to send large message : 0 s 54464076 ns
+Time to marshall string: 0 s 6321 ns
+Round trip time to send large message : 0 s 54500300 ns
+Time to marshall string: 0 s 5814 ns
+Round trip time to send large message : 0 s 54291583 ns
+Time to marshall string: 0 s 6056 ns
+Round trip time to send large message : 0 s 54216882 ns
+Time to marshall string: 0 s 5509 ns
+Round trip time to send large message : 1 s -945935135 ns
+Time to marshall string: 0 s 5485 ns
+Round trip time to send large message : 0 s 54148345 ns
+Time to marshall string: 0 s 4804 ns
+Round trip time to send large message : 0 s 54152364 ns
+Time to marshall string: 0 s 4979 ns
+Round trip time to send large message : 0 s 54232978 ns
+Time to marshall string: 0 s 4957 ns
+Round trip time to send large message : 0 s 54173876 ns
+Time to marshall string: 0 s 5063 ns
+Round trip time to send large message : 0 s 54041611 ns
+Time to marshall string: 0 s 5138 ns
+Round trip time to send large message : 0 s 54244800 ns
+Time to marshall string: 0 s 4800 ns
+Round trip time to send large message : 0 s 54427570 ns
+Time to marshall string: 0 s 5087 ns
+Round trip time to send large message : 0 s 54379910 ns
+Time to marshall string: 0 s 4701 ns
+Round trip time to send large message : 0 s 54199835 ns
+Time to marshall string: 0 s 4986 ns
+Round trip time to send large message : 0 s 53981121 ns
+Time to marshall string: 0 s 5544 ns
+Round trip time to send large message : 0 s 54318510 ns
+Time to marshall string: 0 s 5086 ns
+Round trip time to send large message : 0 s 54062492 ns
+Time to marshall string: 0 s 4883 ns
+Round trip time to send large message : 0 s 54029409 ns
+Time to marshall string: 0 s 5337 ns
+Round trip time to send large message : 0 s 53990291 ns
+Time to marshall string: 0 s 6146 ns
+Round trip time to send large message : 0 s 54224316 ns
+Time to marshall string: 0 s 4868 ns
+Round trip time to send large message : 0 s 54276166 ns
+Time to marshall string: 0 s 4877 ns
+Round trip time to send large message : 0 s 54539955 ns
+Time to marshall string: 0 s 5452 ns
+Round trip time to send large message : 0 s 54334153 ns
+Time to marshall string: 0 s 5272 ns
+Round trip time to send large message : 1 s -945770738 ns
+Time to marshall string: 0 s 5342 ns
+Round trip time to send large message : 0 s 54113866 ns
+Time to marshall string: 0 s 4943 ns
+Round trip time to send large message : 0 s 54239330 ns
+Time to marshall string: 0 s 4897 ns
+Round trip time to send large message : 0 s 54270621 ns
+Time to marshall string: 0 s 5360 ns
+Round trip time to send large message : 0 s 54195764 ns
+Time to marshall string: 0 s 5233 ns
+Round trip time to send large message : 0 s 54379362 ns
+Time to marshall string: 0 s 4933 ns
+Round trip time to send large message : 0 s 54730859 ns
+Time to marshall string: 0 s 4990 ns
+Round trip time to send large message : 0 s 54433237 ns
+Time to marshall string: 0 s 5277 ns
+Round trip time to send large message : 0 s 54777039 ns
+Time to marshall string: 0 s 5024 ns
+Round trip time to send large message : 0 s 54438354 ns
+Time to marshall string: 0 s 5347 ns
+Round trip time to send large message : 0 s 54267524 ns
+Time to marshall string: 0 s 5218 ns
+Round trip time to send large message : 0 s 54254286 ns
+Time to marshall string: 0 s 5291 ns
+Round trip time to send large message : 0 s 54365283 ns
+Time to marshall string: 0 s 4721 ns
+Round trip time to send large message : 0 s 56846198 ns
+Time to marshall string: 0 s 5119 ns
+Round trip time to send large message : 0 s 54367953 ns
+Time to marshall string: 0 s 5005 ns
+Round trip time to send large message : 0 s 54344192 ns
+Time to marshall string: 0 s 5187 ns
+Round trip time to send large message : 0 s 54270873 ns
+Time to marshall string: 0 s 4846 ns
+Round trip time to send large message : 0 s 54249762 ns
+Time to marshall string: 0 s 5183 ns
+Round trip time to send large message : 1 s -946027895 ns
+Time to marshall string: 0 s 27151 ns
+Round trip time to send large message : 0 s 54488149 ns
+Time to marshall string: 0 s 6164 ns
+Round trip time to send large message : 0 s 54361845 ns
+Time to marshall string: 0 s 5766 ns
+Round trip time to send large message : 0 s 54397567 ns
+Time to marshall string: 0 s 5489 ns
+Round trip time to send large message : 0 s 54482271 ns
+Time to marshall string: 0 s 5986 ns
+Round trip time to send large message : 0 s 54575935 ns
+Time to marshall string: 0 s 6087 ns
+Round trip time to send large message : 0 s 54705528 ns
+Time to marshall string: 0 s 6038 ns
+Round trip time to send large message : 0 s 54529353 ns
+Time to marshall string: 0 s 5876 ns
+Round trip time to send large message : 0 s 55193146 ns
+Time to marshall string: 0 s 6088 ns
+Round trip time to send large message : 0 s 54613159 ns
+Time to marshall string: 0 s 5814 ns
+Round trip time to send large message : 0 s 55374483 ns
+Time to marshall string: 0 s 6232 ns
+Round trip time to send large message : 0 s 55367715 ns
+Time to marshall string: 0 s 6660 ns
+Round trip time to send large message : 0 s 54432358 ns
+Time to marshall string: 0 s 6460 ns
+Round trip time to send large message : 0 s 54453465 ns
+Time to marshall string: 0 s 5819 ns
+Round trip time to send large message : 0 s 54534528 ns
+Time to marshall string: 0 s 6811 ns
+Round trip time to send large message : 0 s 54402064 ns
+Time to marshall string: 0 s 6092 ns
+Round trip time to send large message : 0 s 54547629 ns
+Time to marshall string: 0 s 5727 ns
+Round trip time to send large message : 0 s 54395192 ns
+Time to marshall string: 0 s 5852 ns
+Round trip time to send large message : 1 s -945585119 ns
+Time to marshall string: 0 s 6089 ns
+Round trip time to send large message : 0 s 54374959 ns
+Time to marshall string: 0 s 6127 ns
+Round trip time to send large message : 0 s 54460692 ns
+Time to marshall string: 0 s 5445 ns
+Round trip time to send large message : 0 s 54475035 ns
+Time to marshall string: 0 s 4780 ns
+Round trip time to send large message : 0 s 54374635 ns
+Time to marshall string: 0 s 5004 ns
+Round trip time to send large message : 0 s 54450764 ns
+Time to marshall string: 0 s 4889 ns
+Round trip time to send large message : 0 s 55030395 ns
+Time to marshall string: 0 s 5178 ns
+Round trip time to send large message : 0 s 54332601 ns
+Time to marshall string: 0 s 4875 ns
+Round trip time to send large message : 0 s 54617274 ns
+Time to marshall string: 0 s 5019 ns
+Round trip time to send large message : 0 s 64454009 ns
+Time to marshall string: 0 s 11910 ns
+Round trip time to send large message : 0 s 54477277 ns
+Time to marshall string: 0 s 4738 ns
+Round trip time to send large message : 0 s 54281492 ns
+Time to marshall string: 0 s 5167 ns
+Round trip time to send large message : 0 s 56631720 ns
+Time to marshall string: 0 s 5124 ns
+Round trip time to send large message : 0 s 54292048 ns
+Time to marshall string: 0 s 5490 ns
+Round trip time to send large message : 0 s 54173739 ns
+Time to marshall string: 0 s 5223 ns
+Round trip time to send large message : 0 s 54414594 ns
+Time to marshall string: 0 s 4809 ns
+Round trip time to send large message : 0 s 54376470 ns
+Time to marshall string: 0 s 4920 ns
+Round trip time to send large message : 0 s 54399491 ns
+Time to marshall string: 0 s 4922 ns
+Round trip time to send large message : 1 s -945672423 ns
+Time to marshall string: 0 s 5196 ns
+Round trip time to send large message : 0 s 54448913 ns
+Time to marshall string: 0 s 5112 ns
+Round trip time to send large message : 0 s 54407884 ns
+ *** TESTING STRING OF LEN = 8192 *** 
+Time to marshall string: 0 s 12514 ns
+Round trip time to send large message : 0 s 73019256 ns
+Time to marshall string: 0 s 7275 ns
+Round trip time to send large message : 0 s 54364750 ns
+Time to marshall string: 0 s 7835 ns
+Round trip time to send large message : 0 s 54357074 ns
+Time to marshall string: 0 s 7203 ns
+Round trip time to send large message : 0 s 54422395 ns
+Time to marshall string: 0 s 12089 ns
+Round trip time to send large message : 0 s 54335847 ns
+Time to marshall string: 0 s 7365 ns
+Round trip time to send large message : 0 s 54380135 ns
+Time to marshall string: 0 s 7397 ns
+Round trip time to send large message : 0 s 54375943 ns
+Time to marshall string: 0 s 8033 ns
+Round trip time to send large message : 0 s 54494306 ns
+Time to marshall string: 0 s 7160 ns
+Round trip time to send large message : 0 s 54525544 ns
+Time to marshall string: 0 s 7305 ns
+Round trip time to send large message : 0 s 54453532 ns
+Time to marshall string: 0 s 7149 ns
+Round trip time to send large message : 0 s 54747350 ns
+Time to marshall string: 0 s 7220 ns
+Round trip time to send large message : 0 s 54464437 ns
+Time to marshall string: 0 s 8827 ns
+Round trip time to send large message : 0 s 54828779 ns
+Time to marshall string: 0 s 7578 ns
+Round trip time to send large message : 0 s 54531129 ns
+Time to marshall string: 0 s 7367 ns
+Round trip time to send large message : 0 s 54729496 ns
+Time to marshall string: 0 s 8112 ns
+Round trip time to send large message : 1 s -933567666 ns
+Time to marshall string: 0 s 7341 ns
+Round trip time to send large message : 0 s 54497226 ns
+Time to marshall string: 0 s 7465 ns
+Round trip time to send large message : 0 s 54622371 ns
+Time to marshall string: 0 s 8572 ns
+Round trip time to send large message : 0 s 54753548 ns
+Time to marshall string: 0 s 44543 ns
+Round trip time to send large message : 0 s 54726289 ns
+Time to marshall string: 0 s 8641 ns
+Round trip time to send large message : 0 s 54675618 ns
+Time to marshall string: 0 s 8562 ns
+Round trip time to send large message : 0 s 54587797 ns
+Time to marshall string: 0 s 9097 ns
+Round trip time to send large message : 0 s 54736819 ns
+Time to marshall string: 0 s 8626 ns
+Round trip time to send large message : 0 s 54660063 ns
+Time to marshall string: 0 s 8892 ns
+Round trip time to send large message : 0 s 54545578 ns
+Time to marshall string: 0 s 8548 ns
+Round trip time to send large message : 0 s 54651854 ns
+Time to marshall string: 0 s 9211 ns
+Round trip time to send large message : 0 s 54768121 ns
+Time to marshall string: 0 s 9047 ns
+Round trip time to send large message : 0 s 54698201 ns
+Time to marshall string: 0 s 9028 ns
+Round trip time to send large message : 0 s 54671505 ns
+Time to marshall string: 0 s 8684 ns
+Round trip time to send large message : 0 s 54907376 ns
+Time to marshall string: 0 s 8567 ns
+Round trip time to send large message : 0 s 54561895 ns
+Time to marshall string: 0 s 8823 ns
+Round trip time to send large message : 0 s 54741639 ns
+Time to marshall string: 0 s 8982 ns
+Round trip time to send large message : 0 s 64942882 ns
+Time to marshall string: 0 s 8884 ns
+Round trip time to send large message : 1 s -945602700 ns
+Time to marshall string: 0 s 8924 ns
+Round trip time to send large message : 0 s 54524902 ns
+Time to marshall string: 0 s 9244 ns
+Round trip time to send large message : 0 s 54669870 ns
+Time to marshall string: 0 s 8838 ns
+Round trip time to send large message : 0 s 54591605 ns
+Time to marshall string: 0 s 7975 ns
+Round trip time to send large message : 0 s 54500304 ns
+Time to marshall string: 0 s 7247 ns
+Round trip time to send large message : 0 s 54368592 ns
+Time to marshall string: 0 s 7058 ns
+Round trip time to send large message : 0 s 54585194 ns
+Time to marshall string: 0 s 7247 ns
+Round trip time to send large message : 0 s 54533035 ns
+Time to marshall string: 0 s 7329 ns
+Round trip time to send large message : 0 s 54536498 ns
+Time to marshall string: 0 s 7007 ns
+Round trip time to send large message : 0 s 54370158 ns
+Time to marshall string: 0 s 86511 ns
+Round trip time to send large message : 0 s 54363023 ns
+Time to marshall string: 0 s 7319 ns
+Round trip time to send large message : 0 s 54536220 ns
+Time to marshall string: 0 s 7155 ns
+Round trip time to send large message : 0 s 54597686 ns
+Time to marshall string: 0 s 7816 ns
+Round trip time to send large message : 0 s 54435531 ns
+Time to marshall string: 0 s 7728 ns
+Round trip time to send large message : 0 s 58318688 ns
+Time to marshall string: 0 s 7203 ns
+Round trip time to send large message : 0 s 54498507 ns
+Time to marshall string: 0 s 7007 ns
+Round trip time to send large message : 0 s 78059068 ns
+Time to marshall string: 0 s 7262 ns
+Round trip time to send large message : 0 s 54453583 ns
+Time to marshall string: 0 s 6987 ns
+Round trip time to send large message : 1 s -945588703 ns
+Time to marshall string: 0 s 7426 ns
+Round trip time to send large message : 0 s 54457287 ns
+Time to marshall string: 0 s 6834 ns
+Round trip time to send large message : 0 s 54384728 ns
+Time to marshall string: 0 s 7074 ns
+Round trip time to send large message : 0 s 54446147 ns
+Time to marshall string: 0 s 7126 ns
+Round trip time to send large message : 0 s 56514711 ns
+Time to marshall string: 0 s 83259 ns
+Round trip time to send large message : 0 s 55608265 ns
+Time to marshall string: 0 s 7399 ns
+Round trip time to send large message : 0 s 55676671 ns
+Time to marshall string: 0 s 7199 ns
+Round trip time to send large message : 0 s 54439241 ns
+Time to marshall string: 0 s 7179 ns
+Round trip time to send large message : 0 s 54804857 ns
+Time to marshall string: 0 s 7036 ns
+Round trip time to send large message : 0 s 54364984 ns
+Time to marshall string: 0 s 7426 ns
+Round trip time to send large message : 0 s 54530264 ns
+Time to marshall string: 0 s 7243 ns
+Round trip time to send large message : 0 s 54347725 ns
+Time to marshall string: 0 s 7265 ns
+Round trip time to send large message : 0 s 54369777 ns
+Time to marshall string: 0 s 7163 ns
+Round trip time to send large message : 0 s 54377729 ns
+Time to marshall string: 0 s 6991 ns
+Round trip time to send large message : 0 s 54434554 ns
+Time to marshall string: 0 s 7055 ns
+Round trip time to send large message : 0 s 54684737 ns
+Time to marshall string: 0 s 7210 ns
+Round trip time to send large message : 0 s 54654464 ns
+Time to marshall string: 0 s 7002 ns
+Round trip time to send large message : 0 s 54399911 ns
+Time to marshall string: 0 s 7531 ns
+Round trip time to send large message : 1 s -945318530 ns
+Time to marshall string: 0 s 7080 ns
+Round trip time to send large message : 0 s 54321297 ns
+Time to marshall string: 0 s 8083 ns
+Round trip time to send large message : 0 s 54417635 ns
+Time to marshall string: 0 s 7377 ns
+Round trip time to send large message : 0 s 55121130 ns
+Time to marshall string: 0 s 7917 ns
+Round trip time to send large message : 0 s 54455824 ns
+Time to marshall string: 0 s 9096 ns
+Round trip time to send large message : 0 s 54738502 ns
+Time to marshall string: 0 s 8675 ns
+Round trip time to send large message : 0 s 54578472 ns
+Time to marshall string: 0 s 8964 ns
+Round trip time to send large message : 0 s 55230919 ns
+Time to marshall string: 0 s 8626 ns
+Round trip time to send large message : 0 s 54651681 ns
+Time to marshall string: 0 s 8441 ns
+Round trip time to send large message : 0 s 54640772 ns
+Time to marshall string: 0 s 9110 ns
+Round trip time to send large message : 0 s 54600777 ns
+Time to marshall string: 0 s 8848 ns
+Round trip time to send large message : 0 s 54624913 ns
+Time to marshall string: 0 s 9373 ns
+Round trip time to send large message : 0 s 54787091 ns
+Time to marshall string: 0 s 8605 ns
+Round trip time to send large message : 0 s 56623069 ns
+Time to marshall string: 0 s 9066 ns
+Round trip time to send large message : 0 s 54533930 ns
+Time to marshall string: 0 s 9145 ns
+Round trip time to send large message : 0 s 54710832 ns
+Time to marshall string: 0 s 8342 ns
+Round trip time to send large message : 0 s 54619624 ns
+Time to marshall string: 0 s 8496 ns
+Round trip time to send large message : 0 s 54667841 ns
+Time to marshall string: 0 s 8574 ns
+Round trip time to send large message : 0 s 54608511 ns
+Time to marshall string: 0 s 99093 ns
+Round trip time to send large message : 1 s -945019713 ns
+Time to marshall string: 0 s 8670 ns
+Round trip time to send large message : 0 s 54846149 ns
+Time to marshall string: 0 s 9209 ns
+Round trip time to send large message : 0 s 54677487 ns
+Time to marshall string: 0 s 8521 ns
+Round trip time to send large message : 0 s 54801913 ns
+Time to marshall string: 0 s 8862 ns
+Round trip time to send large message : 0 s 54559612 ns
+Time to marshall string: 0 s 8088 ns
+Round trip time to send large message : 0 s 54681251 ns
+Time to marshall string: 0 s 7398 ns
+Round trip time to send large message : 0 s 54446764 ns
+Time to marshall string: 0 s 7585 ns
+Round trip time to send large message : 0 s 54459212 ns
+Time to marshall string: 0 s 7763 ns
+Round trip time to send large message : 0 s 54428834 ns
+Time to marshall string: 0 s 7235 ns
+Round trip time to send large message : 0 s 54340345 ns
+Time to marshall string: 0 s 6995 ns
+Round trip time to send large message : 0 s 54639080 ns
+Time to marshall string: 0 s 7341 ns
+Round trip time to send large message : 0 s 55999203 ns
+ *** TESTING STRING OF LEN = 16384 *** 
+Time to marshall string: 0 s 34781 ns
+Round trip time to send large message : 0 s 57232748 ns
+Time to marshall string: 0 s 12705 ns
+Round trip time to send large message : 0 s 56041702 ns
+Time to marshall string: 0 s 12097 ns
+Round trip time to send large message : 0 s 56823313 ns
+Time to marshall string: 0 s 12031 ns
+Round trip time to send large message : 0 s 57557947 ns
+Time to marshall string: 0 s 12384 ns
+Round trip time to send large message : 0 s 55617634 ns
+Time to marshall string: 0 s 11823 ns
+Round trip time to send large message : 0 s 55835139 ns
+Time to marshall string: 0 s 12196 ns
+Round trip time to send large message : 1 s -943675660 ns
+Time to marshall string: 0 s 12010 ns
+Round trip time to send large message : 0 s 56460861 ns
+Time to marshall string: 0 s 12172 ns
+Round trip time to send large message : 0 s 56178114 ns
+Time to marshall string: 0 s 11898 ns
+Round trip time to send large message : 0 s 55957187 ns
+Time to marshall string: 0 s 12079 ns
+Round trip time to send large message : 0 s 55756932 ns
+Time to marshall string: 0 s 12331 ns
+Round trip time to send large message : 0 s 55875363 ns
+Time to marshall string: 0 s 11994 ns
+Round trip time to send large message : 0 s 56319763 ns
+Time to marshall string: 0 s 11966 ns
+Round trip time to send large message : 0 s 56938845 ns
+Time to marshall string: 0 s 11940 ns
+Round trip time to send large message : 0 s 56095335 ns
+Time to marshall string: 0 s 11943 ns
+Round trip time to send large message : 0 s 55654829 ns
+Time to marshall string: 0 s 12107 ns
+Round trip time to send large message : 0 s 56053907 ns
+Time to marshall string: 0 s 12267 ns
+Round trip time to send large message : 0 s 55456318 ns
+Time to marshall string: 0 s 11986 ns
+Round trip time to send large message : 0 s 56070657 ns
+Time to marshall string: 0 s 12109 ns
+Round trip time to send large message : 0 s 56103887 ns
+Time to marshall string: 0 s 11768 ns
+Round trip time to send large message : 0 s 57086470 ns
+Time to marshall string: 0 s 37016 ns
+Round trip time to send large message : 0 s 55578958 ns
+Time to marshall string: 0 s 12165 ns
+Round trip time to send large message : 0 s 55891205 ns
+Time to marshall string: 0 s 12387 ns
+Round trip time to send large message : 1 s -943923706 ns
+Time to marshall string: 0 s 12403 ns
+Round trip time to send large message : 0 s 56518678 ns
+Time to marshall string: 0 s 12411 ns
+Round trip time to send large message : 0 s 56015426 ns
+Time to marshall string: 0 s 12152 ns
+Round trip time to send large message : 0 s 56038138 ns
+Time to marshall string: 0 s 11910 ns
+Round trip time to send large message : 0 s 55571739 ns
+Time to marshall string: 0 s 11859 ns
+Round trip time to send large message : 0 s 55636201 ns
+Time to marshall string: 0 s 14557 ns
+Round trip time to send large message : 0 s 55624986 ns
+Time to marshall string: 0 s 15219 ns
+Round trip time to send large message : 0 s 56009484 ns
+Time to marshall string: 0 s 15897 ns
+Round trip time to send large message : 0 s 55835579 ns
+Time to marshall string: 0 s 20218 ns
+Round trip time to send large message : 0 s 56502946 ns
+Time to marshall string: 0 s 14666 ns
+Round trip time to send large message : 0 s 56303805 ns
+Time to marshall string: 0 s 14355 ns
+Round trip time to send large message : 0 s 55905555 ns
+Time to marshall string: 0 s 15098 ns
+Round trip time to send large message : 0 s 55719805 ns
+Time to marshall string: 0 s 15137 ns
+Round trip time to send large message : 0 s 55520739 ns
+Time to marshall string: 0 s 14599 ns
+Round trip time to send large message : 0 s 56604576 ns
+Time to marshall string: 0 s 14617 ns
+Round trip time to send large message : 0 s 55777325 ns
+Time to marshall string: 0 s 14747 ns
+Round trip time to send large message : 0 s 55715275 ns
+Time to marshall string: 0 s 14734 ns
+Round trip time to send large message : 0 s 56719013 ns
+Time to marshall string: 0 s 14860 ns
+Round trip time to send large message : 1 s -943523761 ns
+Time to marshall string: 0 s 14917 ns
+Round trip time to send large message : 0 s 59030377 ns
+Time to marshall string: 0 s 15220 ns
+Round trip time to send large message : 0 s 57283811 ns
+Time to marshall string: 0 s 15577 ns
+Round trip time to send large message : 0 s 57540243 ns
+Time to marshall string: 0 s 14757 ns
+Round trip time to send large message : 0 s 55776368 ns
+Time to marshall string: 0 s 14984 ns
+Round trip time to send large message : 0 s 55997796 ns
+Time to marshall string: 0 s 12376 ns
+Round trip time to send large message : 0 s 55879254 ns
+Time to marshall string: 0 s 11867 ns
+Round trip time to send large message : 0 s 56116602 ns
+Time to marshall string: 0 s 12180 ns
+Round trip time to send large message : 0 s 56072289 ns
+Time to marshall string: 0 s 12216 ns
+Round trip time to send large message : 0 s 55686472 ns
+Time to marshall string: 0 s 12653 ns
+Round trip time to send large message : 0 s 55757904 ns
+Time to marshall string: 0 s 12599 ns
+Round trip time to send large message : 0 s 56783539 ns
+Time to marshall string: 0 s 12206 ns
+Round trip time to send large message : 0 s 56350400 ns
+Time to marshall string: 0 s 12212 ns
+Round trip time to send large message : 0 s 56307351 ns
+Time to marshall string: 0 s 15135 ns
+Round trip time to send large message : 0 s 55883944 ns
+Time to marshall string: 0 s 12092 ns
+Round trip time to send large message : 0 s 56361935 ns
+Time to marshall string: 0 s 12014 ns
+Round trip time to send large message : 0 s 56049031 ns
+Time to marshall string: 0 s 11814 ns
+Round trip time to send large message : 0 s 55643420 ns
+Time to marshall string: 0 s 12017 ns
+Round trip time to send large message : 1 s -943686208 ns
+Time to marshall string: 0 s 52693 ns
+Round trip time to send large message : 0 s 55733546 ns
+Time to marshall string: 0 s 12177 ns
+Round trip time to send large message : 0 s 55897128 ns
+Time to marshall string: 0 s 12506 ns
+Round trip time to send large message : 0 s 55518302 ns
+Time to marshall string: 0 s 12500 ns
+Round trip time to send large message : 0 s 55510479 ns
+Time to marshall string: 0 s 11999 ns
+Round trip time to send large message : 0 s 56054424 ns
+Time to marshall string: 0 s 11952 ns
+Round trip time to send large message : 0 s 56460366 ns
+Time to marshall string: 0 s 12154 ns
+Round trip time to send large message : 0 s 55894149 ns
+Time to marshall string: 0 s 11986 ns
+Round trip time to send large message : 0 s 56349731 ns
+Time to marshall string: 0 s 12082 ns
+Round trip time to send large message : 0 s 55675070 ns
+Time to marshall string: 0 s 12323 ns
+Round trip time to send large message : 0 s 55660304 ns
+Time to marshall string: 0 s 11854 ns
+Round trip time to send large message : 0 s 55696460 ns
+Time to marshall string: 0 s 11725 ns
+Round trip time to send large message : 0 s 55720815 ns
+Time to marshall string: 0 s 11784 ns
+Round trip time to send large message : 0 s 55858698 ns
+Time to marshall string: 0 s 11581 ns
+Round trip time to send large message : 0 s 56311128 ns
+Time to marshall string: 0 s 12079 ns
+Round trip time to send large message : 0 s 55552576 ns
+Time to marshall string: 0 s 11752 ns
+Round trip time to send large message : 0 s 55913615 ns
+Time to marshall string: 0 s 12119 ns
+Round trip time to send large message : 0 s 55951189 ns
+Time to marshall string: 0 s 12128 ns
+Round trip time to send large message : 1 s -944388205 ns
+Time to marshall string: 0 s 12749 ns
+Round trip time to send large message : 0 s 55595517 ns
+Time to marshall string: 0 s 11957 ns
+Round trip time to send large message : 0 s 55745527 ns
+Time to marshall string: 0 s 12106 ns
+Round trip time to send large message : 0 s 55923054 ns
+Time to marshall string: 0 s 11669 ns
+Round trip time to send large message : 0 s 56735600 ns
+Time to marshall string: 0 s 12097 ns
+Round trip time to send large message : 0 s 56292742 ns
+Time to marshall string: 0 s 12431 ns
+Round trip time to send large message : 0 s 55740413 ns
+Time to marshall string: 0 s 14686 ns
+Round trip time to send large message : 0 s 56091209 ns
+Time to marshall string: 0 s 15244 ns
+Round trip time to send large message : 0 s 55808725 ns
+Time to marshall string: 0 s 14723 ns
+Round trip time to send large message : 0 s 55945409 ns
+Time to marshall string: 0 s 15260 ns
+Round trip time to send large message : 0 s 55697954 ns
+Time to marshall string: 0 s 15383 ns
+Round trip time to send large message : 0 s 56022850 ns
+Time to marshall string: 0 s 15549 ns
+Round trip time to send large message : 0 s 59009035 ns
+Time to marshall string: 0 s 14594 ns
+Round trip time to send large message : 0 s 57382723 ns
+Time to marshall string: 0 s 14691 ns
+Round trip time to send large message : 0 s 55864767 ns
+Time to marshall string: 0 s 14362 ns
+Round trip time to send large message : 0 s 55818503 ns
+Time to marshall string: 0 s 24356 ns
+Round trip time to send large message : 0 s 56259289 ns
+Time to marshall string: 0 s 16302 ns
+Round trip time to send large message : 0 s 55289117 ns
+Time to marshall string: 0 s 14886 ns
+Round trip time to send large message : 1 s -944228310 ns
+Time to marshall string: 0 s 15058 ns
+Round trip time to send large message : 0 s 55827811 ns
+Time to marshall string: 0 s 14850 ns
+Round trip time to send large message : 0 s 55722689 ns
+Time to marshall string: 0 s 16480 ns
+Round trip time to send large message : 0 s 55965793 ns
+Time to marshall string: 0 s 14931 ns
+Round trip time to send large message : 0 s 56229999 ns
+ *** TESTING STRING OF LEN = 32768 *** 
+Time to marshall string: 0 s 67401 ns
+Round trip time to send large message : 0 s 60037558 ns
+Time to marshall string: 0 s 53059 ns
+Round trip time to send large message : 0 s 60480315 ns
+Time to marshall string: 0 s 43001 ns
+Round trip time to send large message : 0 s 61579324 ns
+Time to marshall string: 0 s 44480 ns
+Round trip time to send large message : 0 s 60802724 ns
+Time to marshall string: 0 s 44134 ns
+Round trip time to send large message : 0 s 61482463 ns
+Time to marshall string: 0 s 48514 ns
+Round trip time to send large message : 0 s 60063823 ns
+Time to marshall string: 0 s 45539 ns
+Round trip time to send large message : 0 s 60399221 ns
+Time to marshall string: 0 s 44805 ns
+Round trip time to send large message : 0 s 60475540 ns
+Time to marshall string: 0 s 45381 ns
+Round trip time to send large message : 0 s 61238493 ns
+Time to marshall string: 0 s 43758 ns
+Round trip time to send large message : 0 s 60954318 ns
+Time to marshall string: 0 s 45310 ns
+Round trip time to send large message : 0 s 60809076 ns
+Time to marshall string: 0 s 52123 ns
+Round trip time to send large message : 1 s -939275455 ns
+Time to marshall string: 0 s 43348 ns
+Round trip time to send large message : 0 s 59541008 ns
+Time to marshall string: 0 s 43631 ns
+Round trip time to send large message : 0 s 61077040 ns
+Time to marshall string: 0 s 42586 ns
+Round trip time to send large message : 0 s 60113064 ns
+Time to marshall string: 0 s 44050 ns
+Round trip time to send large message : 0 s 61225060 ns
+Time to marshall string: 0 s 44545 ns
+Round trip time to send large message : 0 s 59888645 ns
+Time to marshall string: 0 s 44362 ns
+Round trip time to send large message : 0 s 60579147 ns
+Time to marshall string: 0 s 46339 ns
+Round trip time to send large message : 0 s 60277886 ns
+Time to marshall string: 0 s 46881 ns
+Round trip time to send large message : 0 s 59748427 ns
+Time to marshall string: 0 s 47142 ns
+Round trip time to send large message : 0 s 60122743 ns
+Time to marshall string: 0 s 41860 ns
+Round trip time to send large message : 0 s 60507433 ns
+Time to marshall string: 0 s 46702 ns
+Round trip time to send large message : 0 s 60846728 ns
+Time to marshall string: 0 s 46332 ns
+Round trip time to send large message : 0 s 62946569 ns
+Time to marshall string: 0 s 42804 ns
+Round trip time to send large message : 0 s 60530180 ns
+Time to marshall string: 0 s 43883 ns
+Round trip time to send large message : 0 s 60278403 ns
+Time to marshall string: 0 s 45228 ns
+Round trip time to send large message : 0 s 61129836 ns
+Time to marshall string: 0 s 41336 ns
+Round trip time to send large message : 0 s 60933965 ns
+Time to marshall string: 0 s 44953 ns
+Round trip time to send large message : 1 s -939818606 ns
+Time to marshall string: 0 s 45351 ns
+Round trip time to send large message : 0 s 60542915 ns
+Time to marshall string: 0 s 45030 ns
+Round trip time to send large message : 0 s 62000386 ns
+Time to marshall string: 0 s 42148 ns
+Round trip time to send large message : 0 s 61005417 ns
+Time to marshall string: 0 s 43073 ns
+Round trip time to send large message : 0 s 62630151 ns
+Time to marshall string: 0 s 44344 ns
+Round trip time to send large message : 0 s 61093653 ns
+Time to marshall string: 0 s 45614 ns
+Round trip time to send large message : 0 s 60198374 ns
+Time to marshall string: 0 s 112528 ns
+Round trip time to send large message : 0 s 62707620 ns
+Time to marshall string: 0 s 44485 ns
+Round trip time to send large message : 0 s 61842859 ns
+Time to marshall string: 0 s 43357 ns
+Round trip time to send large message : 0 s 62862083 ns
+Time to marshall string: 0 s 45325 ns
+Round trip time to send large message : 0 s 60824280 ns
+Time to marshall string: 0 s 42090 ns
+Round trip time to send large message : 0 s 60198049 ns
+Time to marshall string: 0 s 52842 ns
+Round trip time to send large message : 0 s 59612320 ns
+Time to marshall string: 0 s 43168 ns
+Round trip time to send large message : 0 s 60351788 ns
+Time to marshall string: 0 s 45508 ns
+Round trip time to send large message : 0 s 61070945 ns
+Time to marshall string: 0 s 44958 ns
+Round trip time to send large message : 0 s 60214320 ns
+Time to marshall string: 0 s 51136 ns
+Round trip time to send large message : 1 s -939138366 ns
+Time to marshall string: 0 s 46597 ns
+Round trip time to send large message : 0 s 60437843 ns
+Time to marshall string: 0 s 43605 ns
+Round trip time to send large message : 0 s 60157834 ns
+Time to marshall string: 0 s 43650 ns
+Round trip time to send large message : 0 s 60113649 ns
+Time to marshall string: 0 s 44007 ns
+Round trip time to send large message : 0 s 60142922 ns
+Time to marshall string: 0 s 49565 ns
+Round trip time to send large message : 0 s 60800903 ns
+Time to marshall string: 0 s 46229 ns
+Round trip time to send large message : 0 s 60198470 ns
+Time to marshall string: 0 s 44151 ns
+Round trip time to send large message : 0 s 62417698 ns
+Time to marshall string: 0 s 44378 ns
+Round trip time to send large message : 0 s 59643890 ns
+Time to marshall string: 0 s 42500 ns
+Round trip time to send large message : 0 s 60837949 ns
+Time to marshall string: 0 s 43259 ns
+Round trip time to send large message : 0 s 61463407 ns
+Time to marshall string: 0 s 42738 ns
+Round trip time to send large message : 0 s 60201986 ns
+Time to marshall string: 0 s 43986 ns
+Round trip time to send large message : 0 s 59904112 ns
+Time to marshall string: 0 s 43691 ns
+Round trip time to send large message : 0 s 59741277 ns
+Time to marshall string: 0 s 56466 ns
+Round trip time to send large message : 0 s 61089927 ns
+Time to marshall string: 0 s 47625 ns
+Round trip time to send large message : 0 s 60714211 ns
+Time to marshall string: 0 s 43897 ns
+Round trip time to send large message : 0 s 59538719 ns
+Time to marshall string: 0 s 43854 ns
+Round trip time to send large message : 1 s -938060409 ns
+Time to marshall string: 0 s 43025 ns
+Round trip time to send large message : 0 s 62156504 ns
+Time to marshall string: 0 s 79223 ns
+Round trip time to send large message : 0 s 61339539 ns
+Time to marshall string: 0 s 42753 ns
+Round trip time to send large message : 0 s 60932688 ns
+Time to marshall string: 0 s 42968 ns
+Round trip time to send large message : 0 s 61225309 ns
+Time to marshall string: 0 s 44373 ns
+Round trip time to send large message : 0 s 60473838 ns
+Time to marshall string: 0 s 44920 ns
+Round trip time to send large message : 0 s 59775362 ns
+Time to marshall string: 0 s 42197 ns
+Round trip time to send large message : 0 s 60266564 ns
+Time to marshall string: 0 s 56343 ns
+Round trip time to send large message : 0 s 61280224 ns
+Time to marshall string: 0 s 53783 ns
+Round trip time to send large message : 0 s 62513435 ns
+Time to marshall string: 0 s 52056 ns
+Round trip time to send large message : 0 s 62534686 ns
+Time to marshall string: 0 s 58290 ns
+Round trip time to send large message : 0 s 60597923 ns
+Time to marshall string: 0 s 61511 ns
+Round trip time to send large message : 0 s 61051407 ns
+Time to marshall string: 0 s 144537 ns
+Round trip time to send large message : 0 s 62063062 ns
+Time to marshall string: 0 s 63263 ns
+Round trip time to send large message : 0 s 60209978 ns
+Time to marshall string: 0 s 60168 ns
+Round trip time to send large message : 0 s 60726636 ns
+Time to marshall string: 0 s 55317 ns
+Round trip time to send large message : 1 s -939587971 ns
+Time to marshall string: 0 s 54858 ns
+Round trip time to send large message : 0 s 60363401 ns
+Time to marshall string: 0 s 54087 ns
+Round trip time to send large message : 0 s 61639855 ns
+Time to marshall string: 0 s 54332 ns
+Round trip time to send large message : 0 s 60477606 ns
+Time to marshall string: 0 s 53614 ns
+Round trip time to send large message : 0 s 60357935 ns
+Time to marshall string: 0 s 54234 ns
+Round trip time to send large message : 0 s 60001202 ns
+Time to marshall string: 0 s 52970 ns
+Round trip time to send large message : 0 s 67427130 ns
+Time to marshall string: 0 s 64296 ns
+Round trip time to send large message : 0 s 61021642 ns
+Time to marshall string: 0 s 52602 ns
+Round trip time to send large message : 0 s 60130159 ns
+Time to marshall string: 0 s 44262 ns
+Round trip time to send large message : 0 s 60039482 ns
+Time to marshall string: 0 s 44155 ns
+Round trip time to send large message : 0 s 60859312 ns
+Time to marshall string: 0 s 42780 ns
+Round trip time to send large message : 0 s 60893905 ns
+Time to marshall string: 0 s 42228 ns
+Round trip time to send large message : 0 s 61319766 ns
+Time to marshall string: 0 s 49297 ns
+Round trip time to send large message : 0 s 60547397 ns
+Time to marshall string: 0 s 42326 ns
+Round trip time to send large message : 0 s 62081124 ns
+Time to marshall string: 0 s 41160 ns
+Round trip time to send large message : 0 s 60307328 ns
+Time to marshall string: 0 s 44718 ns
+Round trip time to send large message : 0 s 59567982 ns
+Time to marshall string: 0 s 42554 ns
+Round trip time to send large message : 1 s -939580314 ns
+Time to marshall string: 0 s 44117 ns
+Round trip time to send large message : 0 s 61995745 ns
+Time to marshall string: 0 s 42978 ns
+Round trip time to send large message : 0 s 60234786 ns
+Time to marshall string: 0 s 46108 ns
+Round trip time to send large message : 0 s 61534739 ns
+Time to marshall string: 0 s 43151 ns
+Round trip time to send large message : 0 s 61028486 ns
+Time to marshall string: 0 s 45116 ns
+Round trip time to send large message : 0 s 60430043 ns
+ *** TESTING STRING OF LEN = 65536 *** 
+Time to marshall string: 0 s 82730 ns
+Round trip time to send large message : 0 s 68843529 ns
+Time to marshall string: 0 s 74218 ns
+Round trip time to send large message : 0 s 63968529 ns
+Time to marshall string: 0 s 74709 ns
+Round trip time to send large message : 0 s 64001040 ns
+Time to marshall string: 0 s 75443 ns
+Round trip time to send large message : 0 s 65388756 ns
+Time to marshall string: 0 s 76780 ns
+Round trip time to send large message : 0 s 63771493 ns
+Time to marshall string: 0 s 79517 ns
+Round trip time to send large message : 0 s 63496056 ns
+Time to marshall string: 0 s 78246 ns
+Round trip time to send large message : 0 s 64244631 ns
+Time to marshall string: 0 s 80594 ns
+Round trip time to send large message : 0 s 66502507 ns
+Time to marshall string: 0 s 87034 ns
+Round trip time to send large message : 0 s 65473441 ns
+Time to marshall string: 0 s 81920 ns
+Round trip time to send large message : 1 s -936062369 ns
+Time to marshall string: 0 s 75816 ns
+Round trip time to send large message : 0 s 64200242 ns
+Time to marshall string: 0 s 136170 ns
+Round trip time to send large message : 0 s 66377163 ns
+Time to marshall string: 0 s 76633 ns
+Round trip time to send large message : 0 s 63601552 ns
+Time to marshall string: 0 s 75237 ns
+Round trip time to send large message : 0 s 61920840 ns
+Time to marshall string: 0 s 75726 ns
+Round trip time to send large message : 0 s 61944187 ns
+Time to marshall string: 0 s 78649 ns
+Round trip time to send large message : 0 s 61336384 ns
+Time to marshall string: 0 s 75423 ns
+Round trip time to send large message : 0 s 61715880 ns
+Time to marshall string: 0 s 75017 ns
+Round trip time to send large message : 0 s 61229899 ns
+Time to marshall string: 0 s 76188 ns
+Round trip time to send large message : 0 s 61604504 ns
+Time to marshall string: 0 s 76142 ns
+Round trip time to send large message : 0 s 63839717 ns
+Time to marshall string: 0 s 77879 ns
+Round trip time to send large message : 0 s 62526373 ns
+Time to marshall string: 0 s 76662 ns
+Round trip time to send large message : 0 s 61262311 ns
+Time to marshall string: 0 s 80644 ns
+Round trip time to send large message : 0 s 62159156 ns
+Time to marshall string: 0 s 73993 ns
+Round trip time to send large message : 0 s 60973151 ns
+Time to marshall string: 0 s 75159 ns
+Round trip time to send large message : 0 s 60611346 ns
+Time to marshall string: 0 s 75545 ns
+Round trip time to send large message : 1 s -939411546 ns
+Time to marshall string: 0 s 79919 ns
+Round trip time to send large message : 0 s 60777326 ns
+Time to marshall string: 0 s 76017 ns
+Round trip time to send large message : 0 s 60724214 ns
+Time to marshall string: 0 s 74764 ns
+Round trip time to send large message : 0 s 63698183 ns
+Time to marshall string: 0 s 77156 ns
+Round trip time to send large message : 0 s 61884220 ns
+Time to marshall string: 0 s 76164 ns
+Round trip time to send large message : 0 s 60984059 ns
+Time to marshall string: 0 s 74595 ns
+Round trip time to send large message : 0 s 61935824 ns
+Time to marshall string: 0 s 74309 ns
+Round trip time to send large message : 0 s 60972211 ns
+Time to marshall string: 0 s 78796 ns
+Round trip time to send large message : 0 s 61428501 ns
+Time to marshall string: 0 s 74854 ns
+Round trip time to send large message : 0 s 61468343 ns
+Time to marshall string: 0 s 74172 ns
+Round trip time to send large message : 0 s 61077772 ns
+Time to marshall string: 0 s 88302 ns
+Round trip time to send large message : 0 s 61099238 ns
+Time to marshall string: 0 s 76449 ns
+Round trip time to send large message : 0 s 60513847 ns
+Time to marshall string: 0 s 75160 ns
+Round trip time to send large message : 0 s 60500810 ns
+Time to marshall string: 0 s 83043 ns
+Round trip time to send large message : 0 s 60150525 ns
+Time to marshall string: 0 s 80018 ns
+Round trip time to send large message : 0 s 61095576 ns
+Time to marshall string: 0 s 76116 ns
+Round trip time to send large message : 0 s 60737188 ns
+Time to marshall string: 0 s 76124 ns
+Round trip time to send large message : 1 s -939012860 ns
+Time to marshall string: 0 s 74258 ns
+Round trip time to send large message : 0 s 60647235 ns
+Time to marshall string: 0 s 76247 ns
+Round trip time to send large message : 0 s 61104803 ns
+Time to marshall string: 0 s 77220 ns
+Round trip time to send large message : 0 s 61778036 ns
+Time to marshall string: 0 s 75560 ns
+Round trip time to send large message : 0 s 60477768 ns
+Time to marshall string: 0 s 75340 ns
+Round trip time to send large message : 0 s 61879033 ns
+Time to marshall string: 0 s 84841 ns
+Round trip time to send large message : 0 s 61061402 ns
+Time to marshall string: 0 s 78228 ns
+Round trip time to send large message : 0 s 61838209 ns
+Time to marshall string: 0 s 76820 ns
+Round trip time to send large message : 0 s 61695872 ns
+Time to marshall string: 0 s 74706 ns
+Round trip time to send large message : 0 s 60183645 ns
+Time to marshall string: 0 s 75589 ns
+Round trip time to send large message : 0 s 63303087 ns
+Time to marshall string: 0 s 74424 ns
+Round trip time to send large message : 0 s 60881376 ns
+Time to marshall string: 0 s 75821 ns
+Round trip time to send large message : 0 s 61676667 ns
+Time to marshall string: 0 s 78964 ns
+Round trip time to send large message : 0 s 60691582 ns
+Time to marshall string: 0 s 75204 ns
+Round trip time to send large message : 0 s 63463639 ns
+Time to marshall string: 0 s 76771 ns
+Round trip time to send large message : 0 s 62350915 ns
+Time to marshall string: 0 s 75337 ns
+Round trip time to send large message : 1 s -939232526 ns
+Time to marshall string: 0 s 75228 ns
+Round trip time to send large message : 0 s 59935748 ns
+Time to marshall string: 0 s 75939 ns
+Round trip time to send large message : 0 s 61141414 ns
+Time to marshall string: 0 s 76395 ns
+Round trip time to send large message : 0 s 60765197 ns
+Time to marshall string: 0 s 75396 ns
+Round trip time to send large message : 0 s 61328616 ns
+Time to marshall string: 0 s 75227 ns
+Round trip time to send large message : 0 s 61702135 ns
+Time to marshall string: 0 s 76593 ns
+Round trip time to send large message : 0 s 60459052 ns
+Time to marshall string: 0 s 81609 ns
+Round trip time to send large message : 0 s 61137767 ns
+Time to marshall string: 0 s 75002 ns
+Round trip time to send large message : 0 s 60523928 ns
+Time to marshall string: 0 s 74522 ns
+Round trip time to send large message : 0 s 61173692 ns
+Time to marshall string: 0 s 77393 ns
+Round trip time to send large message : 0 s 63185801 ns
+Time to marshall string: 0 s 77305 ns
+Round trip time to send large message : 0 s 61081452 ns
+Time to marshall string: 0 s 76295 ns
+Round trip time to send large message : 0 s 61637971 ns
+Time to marshall string: 0 s 75488 ns
+Round trip time to send large message : 0 s 62748847 ns
+Time to marshall string: 0 s 77311 ns
+Round trip time to send large message : 0 s 61016974 ns
+Time to marshall string: 0 s 76567 ns
+Round trip time to send large message : 0 s 63410659 ns
+Time to marshall string: 0 s 75685 ns
+Round trip time to send large message : 1 s -939570948 ns
+Time to marshall string: 0 s 75221 ns
+Round trip time to send large message : 0 s 61654683 ns
+Time to marshall string: 0 s 82098 ns
+Round trip time to send large message : 0 s 60960259 ns
+Time to marshall string: 0 s 75513 ns
+Round trip time to send large message : 0 s 60195424 ns
+Time to marshall string: 0 s 76847 ns
+Round trip time to send large message : 0 s 60797646 ns
+Time to marshall string: 0 s 78206 ns
+Round trip time to send large message : 0 s 60788644 ns
+Time to marshall string: 0 s 149101 ns
+Round trip time to send large message : 0 s 61064455 ns
+Time to marshall string: 0 s 76329 ns
+Round trip time to send large message : 0 s 62084421 ns
+Time to marshall string: 0 s 79558 ns
+Round trip time to send large message : 0 s 61325799 ns
+Time to marshall string: 0 s 74984 ns
+Round trip time to send large message : 0 s 62376147 ns
+Time to marshall string: 0 s 81882 ns
+Round trip time to send large message : 0 s 61045467 ns
+Time to marshall string: 0 s 75172 ns
+Round trip time to send large message : 0 s 60157179 ns
+Time to marshall string: 0 s 77037 ns
+Round trip time to send large message : 0 s 61164508 ns
+Time to marshall string: 0 s 80452 ns
+Round trip time to send large message : 0 s 60900625 ns
+Time to marshall string: 0 s 76115 ns
+Round trip time to send large message : 0 s 61811629 ns
+Time to marshall string: 0 s 76742 ns
+Round trip time to send large message : 0 s 60587758 ns
+Time to marshall string: 0 s 75985 ns
+Round trip time to send large message : 1 s -938208881 ns
+Time to marshall string: 0 s 75163 ns
+Round trip time to send large message : 0 s 60542357 ns
+Time to marshall string: 0 s 76590 ns
+Round trip time to send large message : 0 s 60563642 ns
+Time to marshall string: 0 s 77139 ns
+Round trip time to send large message : 0 s 60186926 ns
+Time to marshall string: 0 s 78115 ns
+Round trip time to send large message : 0 s 61396756 ns
+Time to marshall string: 0 s 77581 ns
+Round trip time to send large message : 0 s 60556343 ns
+Time to marshall string: 0 s 76012 ns
+Round trip time to send large message : 0 s 60761282 ns
+Time to marshall string: 0 s 74608 ns
+Round trip time to send large message : 0 s 60551734 ns
+Time to marshall string: 0 s 75347 ns
+Round trip time to send large message : 0 s 61463828 ns
+Time to marshall string: 0 s 75930 ns
+Round trip time to send large message : 0 s 60906624 ns
+ *** TESTING STRING OF LEN = 131072 *** 
+Time to marshall string: 0 s 172295 ns
+Round trip time to send large message : 0 s 72422435 ns
+Time to marshall string: 0 s 152126 ns
+Round trip time to send large message : 0 s 63914126 ns
+Time to marshall string: 0 s 151804 ns
+Round trip time to send large message : 0 s 63410692 ns
+Time to marshall string: 0 s 147595 ns
+Round trip time to send large message : 0 s 63128010 ns
+Time to marshall string: 0 s 159932 ns
+Round trip time to send large message : 0 s 64634030 ns
+Time to marshall string: 0 s 145383 ns
+Round trip time to send large message : 0 s 62821864 ns
+Time to marshall string: 0 s 170304 ns
+Round trip time to send large message : 1 s -933838137 ns
+Time to marshall string: 0 s 173984 ns
+Round trip time to send large message : 0 s 64424297 ns
+Time to marshall string: 0 s 146553 ns
+Round trip time to send large message : 0 s 66134437 ns
+Time to marshall string: 0 s 148097 ns
+Round trip time to send large message : 0 s 63627620 ns
+Time to marshall string: 0 s 145969 ns
+Round trip time to send large message : 0 s 63730670 ns
+Time to marshall string: 0 s 148766 ns
+Round trip time to send large message : 0 s 64987301 ns
+Time to marshall string: 0 s 152753 ns
+Round trip time to send large message : 0 s 63886790 ns
+Time to marshall string: 0 s 148443 ns
+Round trip time to send large message : 0 s 64627479 ns
+Time to marshall string: 0 s 265234 ns
+Round trip time to send large message : 0 s 64460850 ns
+Time to marshall string: 0 s 149952 ns
+Round trip time to send large message : 0 s 65971854 ns
+Time to marshall string: 0 s 172647 ns
+Round trip time to send large message : 0 s 63315321 ns
+Time to marshall string: 0 s 145134 ns
+Round trip time to send large message : 0 s 63663808 ns
+Time to marshall string: 0 s 153292 ns
+Round trip time to send large message : 0 s 62720724 ns
+Time to marshall string: 0 s 151249 ns
+Round trip time to send large message : 0 s 64103554 ns
+Time to marshall string: 0 s 146534 ns
+Round trip time to send large message : 0 s 63528528 ns
+Time to marshall string: 0 s 150489 ns
+Round trip time to send large message : 0 s 63523075 ns
+Time to marshall string: 0 s 200944 ns
+Round trip time to send large message : 1 s -937093237 ns
+Time to marshall string: 0 s 151550 ns
+Round trip time to send large message : 0 s 63151647 ns
+Time to marshall string: 0 s 148125 ns
+Round trip time to send large message : 0 s 63990989 ns
+Time to marshall string: 0 s 146821 ns
+Round trip time to send large message : 0 s 64676917 ns
+Time to marshall string: 0 s 150142 ns
+Round trip time to send large message : 0 s 65148461 ns
+Time to marshall string: 0 s 146891 ns
+Round trip time to send large message : 0 s 63358370 ns
+Time to marshall string: 0 s 145820 ns
+Round trip time to send large message : 0 s 65545284 ns
+Time to marshall string: 0 s 146541 ns
+Round trip time to send large message : 0 s 65338190 ns
+Time to marshall string: 0 s 157974 ns
+Round trip time to send large message : 0 s 70012420 ns
+Time to marshall string: 0 s 154093 ns
+Round trip time to send large message : 0 s 66199084 ns
+Time to marshall string: 0 s 148525 ns
+Round trip time to send large message : 0 s 64851592 ns
+Time to marshall string: 0 s 152191 ns
+Round trip time to send large message : 0 s 64433841 ns
+Time to marshall string: 0 s 148529 ns
+Round trip time to send large message : 0 s 64710124 ns
+Time to marshall string: 0 s 146562 ns
+Round trip time to send large message : 0 s 64742321 ns
+Time to marshall string: 0 s 145781 ns
+Round trip time to send large message : 0 s 64808558 ns
+Time to marshall string: 0 s 147140 ns
+Round trip time to send large message : 1 s -936468328 ns
+Time to marshall string: 0 s 153126 ns
+Round trip time to send large message : 0 s 65120079 ns
+Time to marshall string: 0 s 148819 ns
+Round trip time to send large message : 0 s 66341141 ns
+Time to marshall string: 0 s 147410 ns
+Round trip time to send large message : 0 s 64314458 ns
+Time to marshall string: 0 s 147405 ns
+Round trip time to send large message : 0 s 63839289 ns
+Time to marshall string: 0 s 146217 ns
+Round trip time to send large message : 0 s 62977241 ns
+Time to marshall string: 0 s 143995 ns
+Round trip time to send large message : 0 s 63456511 ns
+Time to marshall string: 0 s 151066 ns
+Round trip time to send large message : 0 s 64550917 ns
+Time to marshall string: 0 s 145871 ns
+Round trip time to send large message : 0 s 64981783 ns
+Time to marshall string: 0 s 157727 ns
+Round trip time to send large message : 0 s 64546676 ns
+Time to marshall string: 0 s 149884 ns
+Round trip time to send large message : 0 s 63816135 ns
+Time to marshall string: 0 s 185297 ns
+Round trip time to send large message : 0 s 63810385 ns
+Time to marshall string: 0 s 169107 ns
+Round trip time to send large message : 0 s 63122581 ns
+Time to marshall string: 0 s 154041 ns
+Round trip time to send large message : 0 s 63019820 ns
+Time to marshall string: 0 s 145695 ns
+Round trip time to send large message : 0 s 63928219 ns
+Time to marshall string: 0 s 151777 ns
+Round trip time to send large message : 0 s 63947968 ns
+Time to marshall string: 0 s 149942 ns
+Round trip time to send large message : 1 s -935075261 ns
+Time to marshall string: 0 s 147726 ns
+Round trip time to send large message : 0 s 64529580 ns
+Time to marshall string: 0 s 155297 ns
+Round trip time to send large message : 0 s 64073350 ns
+Time to marshall string: 0 s 156804 ns
+Round trip time to send large message : 0 s 64629624 ns
+Time to marshall string: 0 s 160148 ns
+Round trip time to send large message : 0 s 65299732 ns
+Time to marshall string: 0 s 146107 ns
+Round trip time to send large message : 0 s 65483595 ns
+Time to marshall string: 0 s 172693 ns
+Round trip time to send large message : 0 s 63825776 ns
+Time to marshall string: 0 s 183871 ns
+Round trip time to send large message : 0 s 62956288 ns
+Time to marshall string: 0 s 147428 ns
+Round trip time to send large message : 0 s 63584352 ns
+Time to marshall string: 0 s 154101 ns
+Round trip time to send large message : 0 s 63444362 ns
+Time to marshall string: 0 s 150352 ns
+Round trip time to send large message : 0 s 65644777 ns
+Time to marshall string: 0 s 181146 ns
+Round trip time to send large message : 0 s 64580128 ns
+Time to marshall string: 0 s 148474 ns
+Round trip time to send large message : 0 s 63240396 ns
+Time to marshall string: 0 s 144165 ns
+Round trip time to send large message : 0 s 63734364 ns
+Time to marshall string: 0 s 217680 ns
+Round trip time to send large message : 0 s 64630343 ns
+Time to marshall string: 0 s 145471 ns
+Round trip time to send large message : 1 s -937046562 ns
+Time to marshall string: 0 s 149783 ns
+Round trip time to send large message : 0 s 63637980 ns
+Time to marshall string: 0 s 149525 ns
+Round trip time to send large message : 0 s 64256742 ns
+Time to marshall string: 0 s 146334 ns
+Round trip time to send large message : 0 s 66151221 ns
+Time to marshall string: 0 s 152923 ns
+Round trip time to send large message : 0 s 64717740 ns
+Time to marshall string: 0 s 146591 ns
+Round trip time to send large message : 0 s 64783200 ns
+Time to marshall string: 0 s 148424 ns
+Round trip time to send large message : 0 s 63537531 ns
+Time to marshall string: 0 s 146157 ns
+Round trip time to send large message : 0 s 64176278 ns
+Time to marshall string: 0 s 151406 ns
+Round trip time to send large message : 0 s 64204187 ns
+Time to marshall string: 0 s 146016 ns
+Round trip time to send large message : 0 s 63616063 ns
+Time to marshall string: 0 s 147221 ns
+Round trip time to send large message : 0 s 65549904 ns
+Time to marshall string: 0 s 155048 ns
+Round trip time to send large message : 0 s 63584974 ns
+Time to marshall string: 0 s 149171 ns
+Round trip time to send large message : 0 s 65530484 ns
+Time to marshall string: 0 s 146903 ns
+Round trip time to send large message : 0 s 63738113 ns
+Time to marshall string: 0 s 149383 ns
+Round trip time to send large message : 0 s 67695944 ns
+Time to marshall string: 0 s 146417 ns
+Round trip time to send large message : 0 s 62905772 ns
+Time to marshall string: 0 s 149693 ns
+Round trip time to send large message : 1 s -932653251 ns
+Time to marshall string: 0 s 147746 ns
+Round trip time to send large message : 0 s 64867071 ns
+Time to marshall string: 0 s 151037 ns
+Round trip time to send large message : 0 s 62891765 ns
+Time to marshall string: 0 s 148421 ns
+Round trip time to send large message : 0 s 64915823 ns
+Time to marshall string: 0 s 148827 ns
+Round trip time to send large message : 0 s 66408017 ns
+Time to marshall string: 0 s 198756 ns
+Round trip time to send large message : 0 s 65161207 ns
+Time to marshall string: 0 s 145670 ns
+Round trip time to send large message : 0 s 65337653 ns
+Time to marshall string: 0 s 153936 ns
+Round trip time to send large message : 0 s 64647624 ns
+Time to marshall string: 0 s 145827 ns
+Round trip time to send large message : 0 s 63663262 ns
+Time to marshall string: 0 s 147066 ns
+Round trip time to send large message : 0 s 65231756 ns
+Time to marshall string: 0 s 153303 ns
+Round trip time to send large message : 0 s 63883251 ns
+Time to marshall string: 0 s 147960 ns
+Round trip time to send large message : 0 s 65283591 ns
+Time to marshall string: 0 s 152669 ns
+Round trip time to send large message : 0 s 65488188 ns
+Time to marshall string: 0 s 148084 ns
+Round trip time to send large message : 0 s 63757180 ns
+Time to marshall string: 0 s 148571 ns
+Round trip time to send large message : 0 s 64234677 ns
+Time to marshall string: 0 s 151627 ns
+Round trip time to send large message : 1 s -936353562 ns

@@ -1,0 +1,1611 @@
+ *** TESTING INT *** 
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 8356216 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 450801 ns
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 418901 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 415001 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 404501 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 412101 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 405501 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 439000 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 406801 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 417901 ns
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 448901 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 394601 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 393901 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 382401 ns
+Time to marshall int: 0 s 100 ns
+Round trip time to send small message: 0 s 353800 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 352601 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 352501 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 420201 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 391600 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 367201 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 346501 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 347301 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 346500 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 346001 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 345201 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 345600 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 346301 ns
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 345801 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 376601 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 351200 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 379901 ns
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 385901 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 353101 ns
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 390101 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 401700 ns
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 348201 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 518401 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 354201 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 369001 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 342300 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 353401 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 336801 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 372201 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 397500 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 361401 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 367501 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 380601 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 371100 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 335400 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 374801 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 351901 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 336700 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 337301 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 336601 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 336500 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 337200 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 335901 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 340701 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 350900 ns
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 358401 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 374801 ns
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 354301 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 333700 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 480901 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 371901 ns
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 354001 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 358601 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 348400 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 348701 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 347001 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 370100 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 421701 ns
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 402701 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 334101 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 331801 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 359500 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 372801 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 330901 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 331200 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 330701 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 331401 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 346701 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 333500 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 337101 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 351601 ns
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 366600 ns
+Time to marshall int: 0 s 300 ns
+Round trip time to send small message: 0 s 365001 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 331901 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 357401 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 331100 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 423201 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 381301 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 351001 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 358700 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 355000 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 343301 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 323601 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 324400 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 323601 ns
+Time to marshall int: 0 s 200 ns
+Round trip time to send small message: 0 s 343001 ns
+ *** TESTING DOUBLE *** 
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 341200 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 323101 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 323501 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 322600 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 342601 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 327501 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 325600 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 325900 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 325601 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 356801 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 339700 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 333901 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 325001 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 325300 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 325001 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 338501 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 406701 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 326200 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 338501 ns
+Time to marshall double: 0 s 400 ns
+Round trip time to send small message: 0 s 569601 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 376201 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 372101 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 341400 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 366601 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 321301 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 339601 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 358700 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 368701 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 358101 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 358201 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 335800 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 320401 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 320601 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 320400 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 320201 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 319701 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 320000 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 337601 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 328001 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 342900 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 338501 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 323501 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 321000 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 320301 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 320901 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 332800 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 328401 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 444101 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 342801 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 326700 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 322901 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 337501 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 317100 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 317900 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 316501 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 316800 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 331801 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 336101 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 326001 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 342400 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 378501 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 318101 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 315100 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 315801 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 323301 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 314700 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 313701 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 315501 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 314400 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 319701 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 314101 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 314100 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 331901 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 349101 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 353500 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 315001 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 441801 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 368001 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 353600 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 349901 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 385901 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 313101 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 312000 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 323901 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 314201 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 326100 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 334701 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 314101 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 311400 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 311501 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 310701 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 311400 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 318601 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 311401 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 319500 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 310701 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 321501 ns
+Time to marshall double: 0 s 300 ns
+Round trip time to send small message: 0 s 316400 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 311801 ns
+Time to marshall double: 0 s 200 ns
+Round trip time to send small message: 0 s 310801 ns
+ *** TESTING STRING OF LEN = 512 *** 
+Time to marshall string: 0 s 2900 ns
+Round trip time to send small message: 0 s 347300 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 352401 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 355501 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 334200 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 329301 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 439601 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 393301 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 344001 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 374400 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 357201 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 376301 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 318900 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 326500 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 326701 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 331601 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 350200 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 318601 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 325801 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 376900 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 365801 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 354001 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 354901 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 371000 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 342801 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 345401 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 318600 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 329000 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 326401 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 319901 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 353900 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 344901 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 343301 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 445801 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 567901 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 953902 ns
+Time to marshall string: 0 s 2100 ns
+Round trip time to send small message: 1 s -998786798 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 621601 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 401801 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 544401 ns
+Time to marshall string: 0 s 2200 ns
+Round trip time to send small message: 0 s 396001 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 372901 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 398401 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 374001 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 374100 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 372401 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 340201 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 324201 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 322700 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 361501 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 350101 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 360600 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 357001 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 327201 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 337301 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 355400 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 992102 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 1088402 ns
+Time to marshall string: 0 s 2100 ns
+Round trip time to send small message: 0 s 402601 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 371801 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 373601 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 339501 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 327700 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 319601 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 336501 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 322100 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 372101 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 525301 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 320401 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 325000 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 323001 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 328101 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 344401 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 320600 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 321001 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 333901 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 325000 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 321001 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 313601 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 321900 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 727302 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 464201 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 372900 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 340801 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 321901 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 335800 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 313000 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 318901 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 353701 ns
+Time to marshall string: 0 s 1700 ns
+Round trip time to send small message: 0 s 356000 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 327101 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 318701 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 319300 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 310501 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 320801 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 378700 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 323601 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 333901 ns
+Time to marshall string: 0 s 1600 ns
+Round trip time to send small message: 0 s 365601 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 316000 ns
+Time to marshall string: 0 s 1500 ns
+Round trip time to send small message: 0 s 315301 ns
+ *** TESTING STRING OF LEN = 1024 *** 
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 340401 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 338900 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 326401 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 313001 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 319400 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 320101 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 319901 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 441200 ns
+Time to marshall string: 0 s 2200 ns
+Round trip time to send small message: 0 s 377201 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 327701 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 317501 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 323100 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 323701 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 358701 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 363300 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 323801 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 336401 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 363401 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 339600 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 346701 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 335801 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 610401 ns
+Time to marshall string: 0 s 2200 ns
+Round trip time to send small message: 0 s 419601 ns
+Time to marshall string: 0 s 2100 ns
+Round trip time to send small message: 0 s 969502 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 427701 ns
+Time to marshall string: 0 s 2200 ns
+Round trip time to send small message: 0 s 378200 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 359501 ns
+Time to marshall string: 0 s 2100 ns
+Round trip time to send small message: 0 s 368601 ns
+Time to marshall string: 0 s 2100 ns
+Round trip time to send small message: 0 s 401201 ns
+Time to marshall string: 0 s 2100 ns
+Round trip time to send small message: 0 s 384901 ns
+Time to marshall string: 0 s 2100 ns
+Round trip time to send small message: 0 s 367700 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 338701 ns
+Time to marshall string: 0 s 2100 ns
+Round trip time to send small message: 0 s 8112916 ns
+Time to marshall string: 0 s 2700 ns
+Round trip time to send small message: 0 s 586002 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 351400 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 362201 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 328801 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 441901 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 573801 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 347801 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 329900 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 326601 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 364401 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 347700 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 326501 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 349901 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 372601 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 343300 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 354601 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 322001 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 321600 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 321101 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 321401 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 322000 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 323301 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 348301 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 373201 ns
+Time to marshall string: 0 s 2100 ns
+Round trip time to send small message: 0 s 361300 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 338601 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 349401 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 350000 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 334701 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 315201 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 350900 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 334000 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 446901 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 402501 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 338901 ns
+Time to marshall string: 0 s 2100 ns
+Round trip time to send small message: 0 s 384600 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 328801 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 317501 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 334100 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 316101 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 323101 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 314600 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 352001 ns
+Time to marshall string: 0 s 12800 ns
+Round trip time to send small message: 0 s 331601 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 322301 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 324700 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 343801 ns
+Time to marshall string: 0 s 2100 ns
+Round trip time to send small message: 0 s 329401 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 314300 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 339101 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 316001 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 321800 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 320101 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 347801 ns
+Time to marshall string: 0 s 2100 ns
+Round trip time to send small message: 0 s 361200 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 322401 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 318101 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 323000 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 350801 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 328601 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 328300 ns
+Time to marshall string: 0 s 2000 ns
+Round trip time to send small message: 0 s 437200 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 359301 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 330601 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 317000 ns
+Time to marshall string: 0 s 1900 ns
+Round trip time to send small message: 0 s 323901 ns
+Time to marshall string: 0 s 1800 ns
+Round trip time to send small message: 0 s 321301 ns
+ *** TESTING STRING OF LEN = 2048 *** 
+Time to marshall string: 0 s 2700 ns
+Round trip time to send small message: 0 s 374501 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 380700 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 370101 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 382501 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 362701 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 397201 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 381100 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 376201 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 367401 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 333001 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 328400 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 332601 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 324501 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 347600 ns
+Time to marshall string: 0 s 2200 ns
+Round trip time to send small message: 0 s 325001 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 332101 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 350400 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 329601 ns
+Time to marshall string: 0 s 2200 ns
+Round trip time to send small message: 0 s 343201 ns
+Time to marshall string: 0 s 2200 ns
+Round trip time to send small message: 0 s 325900 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 337201 ns
+Time to marshall string: 0 s 2200 ns
+Round trip time to send small message: 0 s 324301 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 600401 ns
+Time to marshall string: 0 s 2800 ns
+Round trip time to send small message: 0 s 373801 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 341601 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 340400 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 413701 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 358401 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 350901 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 368200 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 362501 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 367301 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 337301 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 333000 ns
+Time to marshall string: 0 s 2200 ns
+Round trip time to send small message: 0 s 331201 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 371001 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 378900 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 368001 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 367801 ns
+Time to marshall string: 0 s 2800 ns
+Round trip time to send small message: 0 s 744001 ns
+Time to marshall string: 0 s 2700 ns
+Round trip time to send small message: 0 s 592501 ns
+Time to marshall string: 0 s 2800 ns
+Round trip time to send small message: 0 s 492601 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 393401 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 402700 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 373701 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 389401 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 459501 ns
+Time to marshall string: 0 s 2800 ns
+Round trip time to send small message: 0 s 355101 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 379700 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 361801 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 387401 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 382101 ns
+Time to marshall string: 0 s 7300 ns
+Round trip time to send small message: 0 s 382901 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 375600 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 343301 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 371701 ns
+Time to marshall string: 0 s 17500 ns
+Round trip time to send small message: 0 s 391601 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 359700 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 380601 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 1142303 ns
+Time to marshall string: 0 s 2800 ns
+Round trip time to send small message: 0 s 417900 ns
+Time to marshall string: 0 s 2800 ns
+Round trip time to send small message: 0 s 395801 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 394601 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 351901 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 338600 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 328101 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 380801 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 362501 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 326300 ns
+Time to marshall string: 0 s 2300 ns
+Round trip time to send small message: 0 s 339301 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 655001 ns
+Time to marshall string: 0 s 2800 ns
+Round trip time to send small message: 0 s 572602 ns
+Time to marshall string: 0 s 3200 ns
+Round trip time to send small message: 0 s 523901 ns
+Time to marshall string: 0 s 2800 ns
+Round trip time to send small message: 0 s 788001 ns
+Time to marshall string: 0 s 2800 ns
+Round trip time to send small message: 0 s 524701 ns
+Time to marshall string: 0 s 2700 ns
+Round trip time to send small message: 0 s 411401 ns
+Time to marshall string: 0 s 2800 ns
+Round trip time to send small message: 0 s 410601 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 376001 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 403901 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 393500 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 368001 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 371301 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 407801 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 367101 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 367300 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 368601 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 420201 ns
+Time to marshall string: 0 s 2700 ns
+Round trip time to send small message: 0 s 376801 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 421901 ns
+Time to marshall string: 0 s 2700 ns
+Round trip time to send small message: 0 s 404200 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 391601 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 448001 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 395301 ns
+Time to marshall string: 0 s 2800 ns
+Round trip time to send small message: 0 s 454201 ns
+Time to marshall string: 0 s 2400 ns
+Round trip time to send small message: 0 s 386301 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 397101 ns
+Time to marshall string: 0 s 2600 ns
+Round trip time to send small message: 0 s 540601 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 361600 ns
+Time to marshall string: 0 s 2500 ns
+Round trip time to send small message: 0 s 1199403 ns
+Time to marshall string: 0 s 3000 ns
+Round trip time to send small message: 0 s 482101 ns
+ *** TESTING COMPLEX DATA STRUCTURE 1 *** 
+ *** CONTENTS: INT, DOUBLE, STRING LEN = 512 *** 
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 391401 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 395500 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 371700 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 332201 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 334801 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 344300 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 331601 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 317201 ns
+Time to marshall complex: 0 s 1700 ns
+Round trip time to send small message: 0 s 314800 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 309101 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 324101 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 363100 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 375801 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 364701 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 307801 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 362300 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 383201 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 596201 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 438901 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 369701 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 386901 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 353801 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 396700 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 324701 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 334101 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 329500 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 359901 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 361901 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 475201 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 869802 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 388100 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 371601 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 372001 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 337101 ns
+Time to marshall complex: 0 s 1700 ns
+Round trip time to send small message: 0 s 312700 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 348401 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 334801 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 313800 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 312901 ns
+Time to marshall complex: 0 s 1700 ns
+Round trip time to send small message: 0 s 332501 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 420301 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 349500 ns
+Time to marshall complex: 0 s 12700 ns
+Round trip time to send small message: 0 s 490301 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 392201 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 361801 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 457601 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 377801 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 411701 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 373400 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 367901 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 443801 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 376301 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 375701 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 329600 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 367301 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 382701 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 311600 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 318301 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 319101 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 310700 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 310001 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 358501 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 329601 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 311000 ns
+Time to marshall complex: 0 s 1700 ns
+Round trip time to send small message: 0 s 325501 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 310500 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 311001 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 318801 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 314100 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 456601 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 374201 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 381301 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 391101 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 339100 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 327801 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 317201 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 325100 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 327101 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 395401 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 362701 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 340800 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 348601 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 371901 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 376001 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 390300 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 342401 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 319801 ns
+Time to marshall complex: 0 s 1700 ns
+Round trip time to send small message: 0 s 368301 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 321500 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 323501 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 326401 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 379300 ns
+Time to marshall complex: 0 s 1901 ns
+Round trip time to send small message: 0 s 371901 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 321101 ns
+Time to marshall complex: 0 s 1800 ns
+Round trip time to send small message: 0 s 334201 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 349100 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 380501 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 431601 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 357701 ns
+Time to marshall complex: 0 s 1900 ns
+Round trip time to send small message: 0 s 327000 ns
+ *** TESTING COMPLEX DATA STRUCTURE 1 *** 
+ *** CONTENTS: INT, DOUBLE, STRING LEN = 1024 *** 
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 327601 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 336701 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 352501 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 343700 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 347301 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 341901 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 380201 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 378500 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 335601 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 322001 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 340400 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 356701 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 362401 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 342201 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 322000 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 322001 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 313701 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 363000 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 371001 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 362101 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 355001 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 315800 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 315801 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 324201 ns
+Time to marshall complex: 0 s 2000 ns
+Round trip time to send small message: 0 s 320300 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 569001 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 369501 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 372401 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 360801 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 335200 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 341901 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 351301 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 436701 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 383800 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 368300 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 351401 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 334601 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 380000 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 375401 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 379001 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 334201 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 347900 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 337701 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 361501 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 621101 ns
+Time to marshall complex: 0 s 2900 ns
+Round trip time to send small message: 0 s 402901 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 500501 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 394401 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 381501 ns
+Time to marshall complex: 0 s 14600 ns
+Round trip time to send small message: 0 s 381300 ns
+Time to marshall complex: 0 s 2401 ns
+Round trip time to send small message: 0 s 446901 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 367501 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 384401 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 335001 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 341700 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 340001 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 382401 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 364701 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 387900 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 383501 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 361001 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 333601 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 385500 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 362901 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 362301 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 1016402 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 487601 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 380301 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 359600 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 392100 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 363901 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 327201 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 317400 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 329101 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 334701 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 541101 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 603701 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 400201 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 360501 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 366401 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 346500 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 318801 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 336901 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 323900 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 350801 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 346301 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 333301 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 361800 ns
+Time to marshall complex: 0 s 2300 ns
+Round trip time to send small message: 0 s 333801 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 322901 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 320100 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 321901 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 322801 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 338500 ns
+Time to marshall complex: 0 s 2200 ns
+Round trip time to send small message: 0 s 342601 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 314001 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 320500 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 326501 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 313901 ns
+Time to marshall complex: 0 s 2100 ns
+Round trip time to send small message: 0 s 341800 ns
+ *** TESTING COMPLEX DATA STRUCTURE 1 *** 
+ *** CONTENTS: INT, DOUBLE, STRING LEN = 2048 *** 
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 337201 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 344501 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 442701 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 430001 ns
+Time to marshall complex: 0 s 2800 ns
+Round trip time to send small message: 0 s 698201 ns
+Time to marshall complex: 0 s 3300 ns
+Round trip time to send small message: 0 s 395101 ns
+Time to marshall complex: 0 s 2800 ns
+Round trip time to send small message: 0 s 571301 ns
+Time to marshall complex: 0 s 3000 ns
+Round trip time to send small message: 0 s 377701 ns
+Time to marshall complex: 0 s 3000 ns
+Round trip time to send small message: 0 s 431801 ns
+Time to marshall complex: 0 s 3000 ns
+Round trip time to send small message: 0 s 387601 ns
+Time to marshall complex: 0 s 2800 ns
+Round trip time to send small message: 0 s 395300 ns
+Time to marshall complex: 0 s 2800 ns
+Round trip time to send small message: 0 s 390201 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 346301 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 336301 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 335600 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 377201 ns
+Time to marshall complex: 0 s 2900 ns
+Round trip time to send small message: 0 s 372601 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 382001 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 400000 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 349101 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 326301 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 334301 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 356000 ns
+Time to marshall complex: 0 s 2800 ns
+Round trip time to send small message: 0 s 367601 ns
+Time to marshall complex: 0 s 14600 ns
+Round trip time to send small message: 0 s 987202 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 597701 ns
+Time to marshall complex: 0 s 3200 ns
+Round trip time to send small message: 0 s 422301 ns
+Time to marshall complex: 0 s 3000 ns
+Round trip time to send small message: 0 s 400801 ns
+Time to marshall complex: 0 s 2800 ns
+Round trip time to send small message: 0 s 350101 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 342700 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 336801 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 327901 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 340101 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 335000 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 347501 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 363301 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 332700 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 367801 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 356601 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 333101 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 486301 ns
+Time to marshall complex: 0 s 14800 ns
+Round trip time to send small message: 0 s 382000 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 328201 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 408101 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 407101 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 386800 ns
+Time to marshall complex: 0 s 2800 ns
+Round trip time to send small message: 0 s 379600 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 357501 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 386101 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 374901 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 373200 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 484201 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 334901 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 342701 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 349101 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 395300 ns
+Time to marshall complex: 0 s 2800 ns
+Round trip time to send small message: 0 s 368501 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 338801 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 351901 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 327700 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 339801 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 352301 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 344500 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 334401 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 338901 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 334200 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 326501 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 338701 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 333700 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 344800 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 336701 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 349301 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 364900 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 350301 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 339201 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 365301 ns
+Time to marshall complex: 0 s 2800 ns
+Round trip time to send small message: 0 s 383800 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 353801 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 339701 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 624801 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 383101 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 338901 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 348300 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 363401 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 365201 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 374701 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 335300 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 333201 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 348801 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 367600 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 355901 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 375401 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 353101 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 334000 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 326101 ns
+Time to marshall complex: 0 s 2400 ns
+Round trip time to send small message: 0 s 354901 ns
+Time to marshall complex: 0 s 2600 ns
+Round trip time to send small message: 0 s 357001 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 370600 ns
+Time to marshall complex: 0 s 2700 ns
+Round trip time to send small message: 0 s 364901 ns
+Time to marshall complex: 0 s 2500 ns
+Round trip time to send small message: 0 s 338701 ns

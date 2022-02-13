@@ -1,0 +1,8 @@
+THREAD_CPUTIME_ID clock invoked
+Iteration 0 
+Iteration 1 
+Iteration 2 
+Iteration 3 
+Iteration 4 
+Simple Loop Execution time: 0 s 20388 ns
+Precision of clock: 0 s 1 ns

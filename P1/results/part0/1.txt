@@ -1,0 +1,8 @@
+MONOTONIC clock invoked
+Iteration 0 
+Iteration 1 
+Iteration 2 
+Iteration 3 
+Iteration 4 
+Simple Loop Execution time: 0 s 26955 ns
+Precision of clock: 0 s 1 ns

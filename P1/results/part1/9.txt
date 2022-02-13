@@ -1,0 +1,201 @@
+Execution time for offset: 0 s 8755446 ns 
+Execution time for offset: 0 s 8754534 ns 
+Execution time for offset: 0 s 8754720 ns 
+Execution time for offset: 0 s 8755010 ns 
+Execution time for offset: 0 s 8754485 ns 
+Execution time for offset: 0 s 8917861 ns 
+Execution time for offset: 0 s 8795294 ns 
+Execution time for offset: 0 s 8755423 ns 
+Execution time for offset: 0 s 8758159 ns 
+Execution time for offset: 0 s 8754247 ns 
+Execution time for offset: 0 s 9013949 ns 
+Execution time for offset: 0 s 8757994 ns 
+Execution time for offset: 0 s 8754689 ns 
+Execution time for offset: 0 s 8754125 ns 
+Execution time for offset: 0 s 8754360 ns 
+Execution time for offset: 0 s 8756120 ns 
+Execution time for offset: 0 s 8754353 ns 
+Execution time for offset: 0 s 8754111 ns 
+Execution time for offset: 0 s 8755056 ns 
+Execution time for offset: 0 s 8754344 ns 
+Execution time for offset: 0 s 8755920 ns 
+Execution time for offset: 0 s 8754583 ns 
+Execution time for offset: 0 s 8772504 ns 
+Execution time for offset: 0 s 8754747 ns 
+Execution time for offset: 0 s 8754422 ns 
+Execution time for offset: 0 s 8761825 ns 
+Execution time for offset: 0 s 8754354 ns 
+Execution time for offset: 0 s 8754327 ns 
+Execution time for offset: 0 s 8777161 ns 
+Execution time for offset: 0 s 8796283 ns 
+Execution time for offset: 0 s 8782850 ns 
+Execution time for offset: 0 s 8754382 ns 
+Execution time for offset: 0 s 8773971 ns 
+Execution time for offset: 0 s 8754403 ns 
+Execution time for offset: 0 s 8774637 ns 
+Execution time for offset: 0 s 8754099 ns 
+Execution time for offset: 0 s 8755946 ns 
+Execution time for offset: 0 s 8754748 ns 
+Execution time for offset: 0 s 8754439 ns 
+Execution time for offset: 0 s 8754143 ns 
+Execution time for offset: 0 s 8779087 ns 
+Execution time for offset: 0 s 8756325 ns 
+Execution time for offset: 0 s 8754842 ns 
+Execution time for offset: 0 s 8754153 ns 
+Execution time for offset: 0 s 8754582 ns 
+Execution time for offset: 0 s 8754493 ns 
+Execution time for offset: 0 s 8756038 ns 
+Execution time for offset: 0 s 8757427 ns 
+Execution time for offset: 0 s 8754713 ns 
+Execution time for offset: 0 s 8754638 ns 
+Execution time for offset: 0 s 8754232 ns 
+Execution time for offset: 0 s 8779099 ns 
+Execution time for offset: 0 s 8774885 ns 
+Execution time for offset: 0 s 8754609 ns 
+Execution time for offset: 0 s 8754219 ns 
+Execution time for offset: 0 s 8777162 ns 
+Execution time for offset: 0 s 8754450 ns 
+Execution time for offset: 0 s 8755840 ns 
+Execution time for offset: 0 s 8754226 ns 
+Execution time for offset: 0 s 8754355 ns 
+Execution time for offset: 0 s 8754316 ns 
+Execution time for offset: 0 s 8754098 ns 
+Execution time for offset: 0 s 8755940 ns 
+Execution time for offset: 0 s 8754311 ns 
+Execution time for offset: 0 s 8780137 ns 
+Execution time for offset: 0 s 9204309 ns 
+Execution time for offset: 0 s 8862120 ns 
+Execution time for offset: 0 s 8863294 ns 
+Execution time for offset: 0 s 9083998 ns 
+Execution time for offset: 0 s 8796901 ns 
+Execution time for offset: 0 s 8754949 ns 
+Execution time for offset: 0 s 8756095 ns 
+Execution time for offset: 0 s 8859411 ns 
+Execution time for offset: 0 s 8754678 ns 
+Execution time for offset: 0 s 8777609 ns 
+Execution time for offset: 0 s 8777560 ns 
+Execution time for offset: 0 s 8808523 ns 
+Execution time for offset: 0 s 8754675 ns 
+Execution time for offset: 0 s 8754753 ns 
+Execution time for offset: 0 s 8754605 ns 
+Execution time for offset: 0 s 8754253 ns 
+Execution time for offset: 0 s 9024919 ns 
+Execution time for offset: 0 s 8869141 ns 
+Execution time for offset: 0 s 8754570 ns 
+Execution time for offset: 0 s 8754365 ns 
+Execution time for offset: 0 s 8754483 ns 
+Execution time for offset: 0 s 8779763 ns 
+Execution time for offset: 0 s 8774761 ns 
+Execution time for offset: 0 s 8783893 ns 
+Execution time for offset: 0 s 8798094 ns 
+Execution time for offset: 0 s 8775306 ns 
+Execution time for offset: 0 s 8776365 ns 
+Execution time for offset: 0 s 8754259 ns 
+Execution time for offset: 0 s 8754553 ns 
+Execution time for offset: 0 s 8794918 ns 
+Execution time for offset: 0 s 8754202 ns 
+Execution time for offset: 0 s 8953721 ns 
+Execution time for offset: 0 s 8797347 ns 
+Execution time for offset: 0 s 9345332 ns 
+Execution time for offset: 0 s 9512353 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9516710 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9307437 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9176917 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9309474 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9169242 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9156269 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9143198 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9142590 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9120578 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9406566 ns 
+Execution time for Read 1 MB sequentially from memory: 1 s -990761779 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9135105 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9111597 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9222186 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9299409 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9278026 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9188467 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9119036 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9135884 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9192786 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9126418 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9128285 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9120728 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9124479 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9147494 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9115767 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9123211 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9126806 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9124186 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9114220 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9124773 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9138481 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9120596 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9159397 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9142835 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9120049 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9151953 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9118136 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9119548 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9115412 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9149638 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9147709 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9125034 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9121890 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9122185 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9125047 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9125705 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9114916 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9124747 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9122622 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9142927 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9147861 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9121959 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9112027 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9129580 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9248069 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9146006 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9117398 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9125200 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9123106 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9243986 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9116548 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9173847 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9137657 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9127383 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9341455 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9110598 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9113220 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9115591 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9128138 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9120642 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9115928 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9123643 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9131782 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9122786 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9158408 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9183367 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9114073 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9117005 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9121657 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9122662 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9127265 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9124578 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9125745 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9140774 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9140095 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9164734 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9143750 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9114008 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9127332 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9130605 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9380193 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9167666 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9124312 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9148062 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9116451 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9112529 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9126325 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9120841 ns 
+Execution time for Read 1 MB sequentially from memory: 0 s 9122537 ns 
+

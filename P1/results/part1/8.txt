@@ -1,0 +1,200 @@
+seekLocation: 428116622
+Execution time for Read 4K randomly from SSD: 0 s 22341 ns 
+seekLocation: 713381994
+Execution time for Read 4K randomly from SSD: 0 s 16383 ns 
+seekLocation: 2086967194
+Execution time for Read 4K randomly from SSD: 0 s 12154 ns 
+seekLocation: 679912955
+Execution time for Read 4K randomly from SSD: 0 s 11071 ns 
+seekLocation: 563000343
+Execution time for Read 4K randomly from SSD: 0 s 23976 ns 
+seekLocation: 31182553
+Execution time for Read 4K randomly from SSD: 0 s 13887 ns 
+seekLocation: 292728952
+Execution time for Read 4K randomly from SSD: 0 s 11542 ns 
+seekLocation: 279466717
+Execution time for Read 4K randomly from SSD: 0 s 16769 ns 
+seekLocation: 264383230
+Execution time for Read 4K randomly from SSD: 0 s 11577 ns 
+seekLocation: 1114478351
+Execution time for Read 4K randomly from SSD: 0 s 17977 ns 
+seekLocation: 1221656544
+Execution time for Read 4K randomly from SSD: 0 s 11512 ns 
+seekLocation: 1252789146
+Execution time for Read 4K randomly from SSD: 0 s 11191 ns 
+seekLocation: 218155653
+Execution time for Read 4K randomly from SSD: 0 s 11491 ns 
+seekLocation: 1676768936
+Execution time for Read 4K randomly from SSD: 0 s 16007 ns 
+seekLocation: 969253430
+Execution time for Read 4K randomly from SSD: 0 s 11697 ns 
+seekLocation: 153215466
+Execution time for Read 4K randomly from SSD: 0 s 11938 ns 
+seekLocation: 701574745
+Execution time for Read 4K randomly from SSD: 0 s 12104 ns 
+seekLocation: 925569374
+Execution time for Read 4K randomly from SSD: 0 s 24778 ns 
+seekLocation: 1714555485
+Execution time for Read 4K randomly from SSD: 0 s 11422 ns 
+seekLocation: 6158243
+Execution time for Read 4K randomly from SSD: 0 s 11462 ns 
+seekLocation: 1286025917
+Execution time for Read 4K randomly from SSD: 0 s 11977 ns 
+seekLocation: 1878341076
+Execution time for Read 4K randomly from SSD: 0 s 11261 ns 
+seekLocation: 1854689761
+Execution time for Read 4K randomly from SSD: 0 s 16503 ns 
+seekLocation: 370981766
+Execution time for Read 4K randomly from SSD: 0 s 11176 ns 
+seekLocation: 223339953
+Execution time for Read 4K randomly from SSD: 0 s 10980 ns 
+seekLocation: 1407365117
+Execution time for Read 4K randomly from SSD: 0 s 11337 ns 
+seekLocation: 1188001471
+Execution time for Read 4K randomly from SSD: 0 s 11096 ns 
+seekLocation: 1534306745
+Execution time for Read 4K randomly from SSD: 0 s 11502 ns 
+seekLocation: 883969768
+Execution time for Read 4K randomly from SSD: 0 s 11126 ns 
+seekLocation: 913121306
+Execution time for Read 4K randomly from SSD: 0 s 12174 ns 
+seekLocation: 1821857955
+Execution time for Read 4K randomly from SSD: 0 s 10961 ns 
+seekLocation: 1312086391
+Execution time for Read 4K randomly from SSD: 0 s 10775 ns 
+seekLocation: 1626503300
+Execution time for Read 4K randomly from SSD: 0 s 10866 ns 
+seekLocation: 1761341501
+Execution time for Read 4K randomly from SSD: 0 s 10905 ns 
+seekLocation: 1991999346
+Execution time for Read 4K randomly from SSD: 0 s 11016 ns 
+seekLocation: 42019995
+Execution time for Read 4K randomly from SSD: 0 s 11106 ns 
+seekLocation: 1792524054
+Execution time for Read 4K randomly from SSD: 0 s 11126 ns 
+seekLocation: 137244650
+Execution time for Read 4K randomly from SSD: 0 s 26767 ns 
+seekLocation: 321486713
+Execution time for Read 4K randomly from SSD: 0 s 11386 ns 
+seekLocation: 2056907284
+Execution time for Read 4K randomly from SSD: 0 s 11326 ns 
+seekLocation: 1251723001
+Execution time for Read 4K randomly from SSD: 0 s 11066 ns 
+seekLocation: 1543143257
+Execution time for Read 4K randomly from SSD: 0 s 10975 ns 
+seekLocation: 1162212783
+Execution time for Read 4K randomly from SSD: 0 s 3132 ns 
+seekLocation: 1469878655
+Execution time for Read 4K randomly from SSD: 0 s 3149 ns 
+seekLocation: 1072428545
+Execution time for Read 4K randomly from SSD: 0 s 4540 ns 
+seekLocation: 2131466213
+Execution time for Read 4K randomly from SSD: 0 s 3684 ns 
+seekLocation: 1623094121
+Execution time for Read 4K randomly from SSD: 0 s 3116 ns 
+seekLocation: 1774003291
+Execution time for Read 4K randomly from SSD: 0 s 3184 ns 
+seekLocation: 909551939
+Execution time for Read 4K randomly from SSD: 0 s 3102 ns 
+seekLocation: 1190165959
+Execution time for Read 4K randomly from SSD: 0 s 3506 ns 
+seekLocation: 1780161534
+Execution time for Read 4K randomly from SSD: 0 s 3066 ns 
+seekLocation: 48094209
+Execution time for Read 4K randomly from SSD: 0 s 4593 ns 
+seekLocation: 921023387
+Execution time for Read 4K randomly from SSD: 0 s 3133 ns 
+seekLocation: 1487367647
+Execution time for Read 4K randomly from SSD: 0 s 3265 ns 
+seekLocation: 419075975
+Execution time for Read 4K randomly from SSD: 0 s 3282 ns 
+seekLocation: 1144363341
+Execution time for Read 4K randomly from SSD: 0 s 5688 ns 
+seekLocation: 747249116
+Execution time for Read 4K randomly from SSD: 0 s 4663 ns 
+seekLocation: 1607077446
+Execution time for Read 4K randomly from SSD: 0 s 5066 ns 
+seekLocation: 531186438
+Execution time for Read 4K randomly from SSD: 0 s 3919 ns 
+seekLocation: 1631218884
+Execution time for Read 4K randomly from SSD: 0 s 3337 ns 
+seekLocation: 372715104
+Execution time for Read 4K randomly from SSD: 0 s 6321 ns 
+seekLocation: 205560745
+Execution time for Read 4K randomly from SSD: 0 s 3309 ns 
+seekLocation: 795821627
+Execution time for Read 4K randomly from SSD: 0 s 6774 ns 
+seekLocation: 1999218405
+Execution time for Read 4K randomly from SSD: 0 s 3335 ns 
+seekLocation: 1966902246
+Execution time for Read 4K randomly from SSD: 0 s 5679 ns 
+seekLocation: 640337325
+Execution time for Read 4K randomly from SSD: 0 s 5898 ns 
+seekLocation: 2041238400
+Execution time for Read 4K randomly from SSD: 0 s 6216 ns 
+seekLocation: 1611942653
+Execution time for Read 4K randomly from SSD: 0 s 3120 ns 
+seekLocation: 777581976
+Execution time for Read 4K randomly from SSD: 0 s 3079 ns 
+seekLocation: 215241465
+Execution time for Read 4K randomly from SSD: 0 s 2939 ns 
+seekLocation: 1521366289
+Execution time for Read 4K randomly from SSD: 0 s 2961 ns 
+seekLocation: 2029304977
+Execution time for Read 4K randomly from SSD: 0 s 2908 ns 
+seekLocation: 1758384723
+Execution time for Read 4K randomly from SSD: 0 s 2871 ns 
+seekLocation: 536095424
+Execution time for Read 4K randomly from SSD: 0 s 2761 ns 
+seekLocation: 1351699984
+Execution time for Read 4K randomly from SSD: 0 s 2759 ns 
+seekLocation: 683329620
+Execution time for Read 4K randomly from SSD: 0 s 2933 ns 
+seekLocation: 520077989
+Execution time for Read 4K randomly from SSD: 0 s 2730 ns 
+seekLocation: 827310458
+Execution time for Read 4K randomly from SSD: 0 s 2743 ns 
+seekLocation: 309849263
+Execution time for Read 4K randomly from SSD: 0 s 2680 ns 
+seekLocation: 1429629929
+Execution time for Read 4K randomly from SSD: 0 s 2659 ns 
+seekLocation: 2017476417
+Execution time for Read 4K randomly from SSD: 0 s 2604 ns 
+seekLocation: 2090010797
+Execution time for Read 4K randomly from SSD: 0 s 6664 ns 
+seekLocation: 1477724138
+Execution time for Read 4K randomly from SSD: 0 s 2738 ns 
+seekLocation: 791016156
+Execution time for Read 4K randomly from SSD: 0 s 2678 ns 
+seekLocation: 1429894796
+Execution time for Read 4K randomly from SSD: 0 s 2537 ns 
+seekLocation: 1896800113
+Execution time for Read 4K randomly from SSD: 0 s 2697 ns 
+seekLocation: 1935379497
+Execution time for Read 4K randomly from SSD: 0 s 2689 ns 
+seekLocation: 29660264
+Execution time for Read 4K randomly from SSD: 0 s 2604 ns 
+seekLocation: 1356393912
+Execution time for Read 4K randomly from SSD: 0 s 2523 ns 
+seekLocation: 319082288
+Execution time for Read 4K randomly from SSD: 0 s 2548 ns 
+seekLocation: 1660879149
+Execution time for Read 4K randomly from SSD: 0 s 2632 ns 
+seekLocation: 1729109016
+Execution time for Read 4K randomly from SSD: 0 s 2702 ns 
+seekLocation: 524643033
+Execution time for Read 4K randomly from SSD: 0 s 2677 ns 
+seekLocation: 309217128
+Execution time for Read 4K randomly from SSD: 0 s 2538 ns 
+seekLocation: 1580843773
+Execution time for Read 4K randomly from SSD: 0 s 2735 ns 
+seekLocation: 344061632
+Execution time for Read 4K randomly from SSD: 0 s 2623 ns 
+seekLocation: 949554454
+Execution time for Read 4K randomly from SSD: 0 s 3854 ns 
+seekLocation: 1474598526
+Execution time for Read 4K randomly from SSD: 0 s 2606 ns 
+seekLocation: 1956004285
+Execution time for Read 4K randomly from SSD: 0 s 2837 ns 
+seekLocation: 1727136430
+Execution time for Read 4K randomly from SSD: 0 s 2593 ns 

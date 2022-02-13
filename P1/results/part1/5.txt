@@ -1,0 +1,200 @@
+8000000
+Execution time for Main Memory Access: 0 s 230 ns 
+9000000
+Execution time for Main Memory Access: 0 s 152 ns 
+10000000
+Execution time for Main Memory Access: 0 s 153 ns 
+11000000
+Execution time for Main Memory Access: 0 s 170 ns 
+12000000
+Execution time for Main Memory Access: 0 s 230 ns 
+13000000
+Execution time for Main Memory Access: 0 s 261 ns 
+14000000
+Execution time for Main Memory Access: 0 s 161 ns 
+15000000
+Execution time for Main Memory Access: 0 s 155 ns 
+16000000
+Execution time for Main Memory Access: 0 s 169 ns 
+17000000
+Execution time for Main Memory Access: 0 s 157 ns 
+18000000
+Execution time for Main Memory Access: 0 s 159 ns 
+19000000
+Execution time for Main Memory Access: 0 s 154 ns 
+20000000
+Execution time for Main Memory Access: 0 s 155 ns 
+21000000
+Execution time for Main Memory Access: 0 s 165 ns 
+22000000
+Execution time for Main Memory Access: 0 s 159 ns 
+23000000
+Execution time for Main Memory Access: 0 s 165 ns 
+24000000
+Execution time for Main Memory Access: 0 s 217 ns 
+25000000
+Execution time for Main Memory Access: 0 s 143 ns 
+26000000
+Execution time for Main Memory Access: 0 s 157 ns 
+27000000
+Execution time for Main Memory Access: 0 s 424 ns 
+28000000
+Execution time for Main Memory Access: 0 s 157 ns 
+29000000
+Execution time for Main Memory Access: 0 s 157 ns 
+30000000
+Execution time for Main Memory Access: 0 s 171 ns 
+31000000
+Execution time for Main Memory Access: 0 s 315 ns 
+32000000
+Execution time for Main Memory Access: 0 s 172 ns 
+33000000
+Execution time for Main Memory Access: 0 s 153 ns 
+34000000
+Execution time for Main Memory Access: 0 s 171 ns 
+35000000
+Execution time for Main Memory Access: 0 s 169 ns 
+36000000
+Execution time for Main Memory Access: 0 s 167 ns 
+37000000
+Execution time for Main Memory Access: 0 s 174 ns 
+38000000
+Execution time for Main Memory Access: 0 s 168 ns 
+39000000
+Execution time for Main Memory Access: 0 s 168 ns 
+40000000
+Execution time for Main Memory Access: 0 s 143 ns 
+41000000
+Execution time for Main Memory Access: 0 s 221 ns 
+42000000
+Execution time for Main Memory Access: 0 s 140 ns 
+43000000
+Execution time for Main Memory Access: 0 s 146 ns 
+44000000
+Execution time for Main Memory Access: 0 s 141 ns 
+45000000
+Execution time for Main Memory Access: 0 s 145 ns 
+46000000
+Execution time for Main Memory Access: 0 s 167 ns 
+47000000
+Execution time for Main Memory Access: 0 s 157 ns 
+48000000
+Execution time for Main Memory Access: 0 s 152 ns 
+49000000
+Execution time for Main Memory Access: 0 s 149 ns 
+50000000
+Execution time for Main Memory Access: 0 s 175 ns 
+51000000
+Execution time for Main Memory Access: 0 s 142 ns 
+52000000
+Execution time for Main Memory Access: 0 s 141 ns 
+53000000
+Execution time for Main Memory Access: 0 s 168 ns 
+54000000
+Execution time for Main Memory Access: 0 s 141 ns 
+55000000
+Execution time for Main Memory Access: 0 s 169 ns 
+56000000
+Execution time for Main Memory Access: 0 s 141 ns 
+57000000
+Execution time for Main Memory Access: 0 s 162 ns 
+58000000
+Execution time for Main Memory Access: 0 s 216 ns 
+59000000
+Execution time for Main Memory Access: 0 s 156 ns 
+60000000
+Execution time for Main Memory Access: 0 s 158 ns 
+61000000
+Execution time for Main Memory Access: 0 s 170 ns 
+62000000
+Execution time for Main Memory Access: 0 s 169 ns 
+63000000
+Execution time for Main Memory Access: 0 s 167 ns 
+64000000
+Execution time for Main Memory Access: 0 s 157 ns 
+65000000
+Execution time for Main Memory Access: 0 s 154 ns 
+66000000
+Execution time for Main Memory Access: 0 s 171 ns 
+67000000
+Execution time for Main Memory Access: 0 s 153 ns 
+68000000
+Execution time for Main Memory Access: 0 s 456 ns 
+69000000
+Execution time for Main Memory Access: 0 s 199 ns 
+70000000
+Execution time for Main Memory Access: 0 s 156 ns 
+71000000
+Execution time for Main Memory Access: 0 s 155 ns 
+72000000
+Execution time for Main Memory Access: 0 s 158 ns 
+73000000
+Execution time for Main Memory Access: 0 s 153 ns 
+74000000
+Execution time for Main Memory Access: 0 s 216 ns 
+75000000
+Execution time for Main Memory Access: 0 s 164 ns 
+76000000
+Execution time for Main Memory Access: 0 s 169 ns 
+77000000
+Execution time for Main Memory Access: 0 s 172 ns 
+78000000
+Execution time for Main Memory Access: 0 s 435 ns 
+79000000
+Execution time for Main Memory Access: 0 s 171 ns 
+80000000
+Execution time for Main Memory Access: 0 s 9881 ns 
+81000000
+Execution time for Main Memory Access: 0 s 168 ns 
+82000000
+Execution time for Main Memory Access: 0 s 166 ns 
+83000000
+Execution time for Main Memory Access: 0 s 171 ns 
+84000000
+Execution time for Main Memory Access: 0 s 169 ns 
+85000000
+Execution time for Main Memory Access: 0 s 158 ns 
+86000000
+Execution time for Main Memory Access: 0 s 149 ns 
+87000000
+Execution time for Main Memory Access: 0 s 141 ns 
+88000000
+Execution time for Main Memory Access: 0 s 149 ns 
+89000000
+Execution time for Main Memory Access: 0 s 155 ns 
+90000000
+Execution time for Main Memory Access: 0 s 141 ns 
+91000000
+Execution time for Main Memory Access: 0 s 246 ns 
+92000000
+Execution time for Main Memory Access: 0 s 236 ns 
+93000000
+Execution time for Main Memory Access: 0 s 149 ns 
+94000000
+Execution time for Main Memory Access: 0 s 167 ns 
+95000000
+Execution time for Main Memory Access: 0 s 189 ns 
+96000000
+Execution time for Main Memory Access: 0 s 148 ns 
+97000000
+Execution time for Main Memory Access: 0 s 182 ns 
+98000000
+Execution time for Main Memory Access: 0 s 157 ns 
+99000000
+Execution time for Main Memory Access: 0 s 204 ns 
+100000000
+Execution time for Main Memory Access: 0 s 145 ns 
+101000000
+Execution time for Main Memory Access: 0 s 295 ns 
+102000000
+Execution time for Main Memory Access: 0 s 163 ns 
+103000000
+Execution time for Main Memory Access: 0 s 153 ns 
+104000000
+Execution time for Main Memory Access: 0 s 201 ns 
+105000000
+Execution time for Main Memory Access: 0 s 193 ns 
+106000000
+Execution time for Main Memory Access: 0 s 150 ns 
+107000000
+Execution time for Main Memory Access: 0 s 149 ns 

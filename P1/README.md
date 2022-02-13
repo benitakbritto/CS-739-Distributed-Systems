@@ -22,6 +22,12 @@ TODO: Add description of command line args
 ```
 
 # part 2
+## Run
+...
+make
+./serverbasic ${port_num} ${drop_%}
+./client ${client_port} ${server_hostname} ${server_port}
+...
 
 # part 3 - grpc:
 ## SETUP

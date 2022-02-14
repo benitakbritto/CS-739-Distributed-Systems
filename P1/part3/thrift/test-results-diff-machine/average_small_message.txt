@@ -1,0 +1,819 @@
+ *** TESTING INT *** 
+Round trip time to send integer: 0 s 51746120 ns
+Round trip time to send integer: 0 s 51896794 ns
+Round trip time to send integer: 0 s 51871861 ns
+Round trip time to send integer: 0 s 51901998 ns
+Round trip time to send integer: 0 s 51859940 ns
+Round trip time to send integer: 0 s 52098979 ns
+Round trip time to send integer: 0 s 51927631 ns
+Round trip time to send integer: 0 s 51890108 ns
+Round trip time to send integer: 0 s 52022039 ns
+Round trip time to send integer: 0 s 52014001 ns
+Round trip time to send integer: 0 s 51933581 ns
+Round trip time to send integer: 0 s 51913059 ns
+Round trip time to send integer: 0 s 51935539 ns
+Round trip time to send integer: 1 s -947778198 ns
+Round trip time to send integer: 0 s 52336744 ns
+Round trip time to send integer: 0 s 52059460 ns
+Round trip time to send integer: 0 s 51886570 ns
+Round trip time to send integer: 0 s 52720918 ns
+Round trip time to send integer: 0 s 52137638 ns
+Round trip time to send integer: 0 s 51931626 ns
+Round trip time to send integer: 0 s 51911908 ns
+Round trip time to send integer: 0 s 52090095 ns
+Round trip time to send integer: 0 s 51975944 ns
+Round trip time to send integer: 0 s 51900070 ns
+Round trip time to send integer: 0 s 52032055 ns
+Round trip time to send integer: 0 s 52309451 ns
+Round trip time to send integer: 0 s 51993222 ns
+Round trip time to send integer: 0 s 55385623 ns
+Round trip time to send integer: 0 s 52541263 ns
+Round trip time to send integer: 0 s 52308564 ns
+Round trip time to send integer: 0 s 51979495 ns
+Round trip time to send integer: 0 s 52467890 ns
+Round trip time to send integer: 0 s 51984348 ns
+Round trip time to send integer: 1 s -947402621 ns
+Round trip time to send integer: 0 s 52070671 ns
+Round trip time to send integer: 0 s 51982263 ns
+Round trip time to send integer: 0 s 52284149 ns
+Round trip time to send integer: 0 s 52086983 ns
+Round trip time to send integer: 0 s 52114850 ns
+Round trip time to send integer: 0 s 51951310 ns
+Round trip time to send integer: 0 s 52070922 ns
+Round trip time to send integer: 0 s 52291424 ns
+Round trip time to send integer: 0 s 52030191 ns
+Round trip time to send integer: 0 s 51978730 ns
+Round trip time to send integer: 0 s 51924801 ns
+Round trip time to send integer: 0 s 51997580 ns
+Round trip time to send integer: 0 s 51888812 ns
+Round trip time to send integer: 0 s 52038244 ns
+Round trip time to send integer: 0 s 52093739 ns
+Round trip time to send integer: 0 s 52091856 ns
+Round trip time to send integer: 0 s 52338238 ns
+Round trip time to send integer: 0 s 52142067 ns
+Round trip time to send integer: 1 s -947840348 ns
+Round trip time to send integer: 0 s 52056547 ns
+Round trip time to send integer: 0 s 52246622 ns
+Round trip time to send integer: 0 s 52219095 ns
+Round trip time to send integer: 0 s 52098541 ns
+Round trip time to send integer: 0 s 52177544 ns
+Round trip time to send integer: 0 s 51957784 ns
+Round trip time to send integer: 0 s 53563133 ns
+Round trip time to send integer: 0 s 51975407 ns
+Round trip time to send integer: 0 s 52043420 ns
+Round trip time to send integer: 0 s 52064247 ns
+Round trip time to send integer: 0 s 51829532 ns
+Round trip time to send integer: 0 s 51975451 ns
+Round trip time to send integer: 0 s 52076511 ns
+Round trip time to send integer: 0 s 51923907 ns
+Round trip time to send integer: 0 s 52049857 ns
+Round trip time to send integer: 0 s 52092668 ns
+Round trip time to send integer: 0 s 51944544 ns
+Round trip time to send integer: 0 s 52048199 ns
+Round trip time to send integer: 1 s -948020435 ns
+Round trip time to send integer: 0 s 51918904 ns
+Round trip time to send integer: 0 s 51986575 ns
+Round trip time to send integer: 0 s 52449519 ns
+Round trip time to send integer: 0 s 51930202 ns
+Round trip time to send integer: 0 s 52224093 ns
+Round trip time to send integer: 0 s 51935680 ns
+Round trip time to send integer: 0 s 51917938 ns
+Round trip time to send integer: 0 s 51963271 ns
+Round trip time to send integer: 0 s 51849806 ns
+Round trip time to send integer: 0 s 52096201 ns
+Round trip time to send integer: 0 s 51844534 ns
+Round trip time to send integer: 0 s 51851900 ns
+Round trip time to send integer: 0 s 52095714 ns
+Round trip time to send integer: 0 s 51958386 ns
+Round trip time to send integer: 0 s 51932332 ns
+Round trip time to send integer: 0 s 52071100 ns
+Round trip time to send integer: 0 s 51912262 ns
+Round trip time to send integer: 0 s 52306244 ns
+Round trip time to send integer: 1 s -947944027 ns
+Round trip time to send integer: 0 s 52193241 ns
+Round trip time to send integer: 0 s 51882231 ns
+Round trip time to send integer: 0 s 52002593 ns
+Round trip time to send integer: 0 s 52049200 ns
+Round trip time to send integer: 0 s 51909834 ns
+Round trip time to send integer: 0 s 51994823 ns
+Round trip time to send integer: 0 s 52034530 ns
+Round trip time to send integer: 0 s 52210302 ns
+Round trip time to send integer: 0 s 52045887 ns
+Average time for int: 2.10266e+06
+ *** TESTING DOUBLE *** 
+Round trip time to send double : 0 s 51954084 ns
+Round trip time to send double : 0 s 52215673 ns
+Round trip time to send double : 0 s 52012907 ns
+Round trip time to send double : 0 s 51920626 ns
+Round trip time to send double : 0 s 52128344 ns
+Round trip time to send double : 0 s 51884590 ns
+Round trip time to send double : 0 s 52011970 ns
+Round trip time to send double : 0 s 51954714 ns
+Round trip time to send double : 0 s 52141452 ns
+Round trip time to send double : 1 s -948097597 ns
+Round trip time to send double : 0 s 52084656 ns
+Round trip time to send double : 0 s 52415541 ns
+Round trip time to send double : 0 s 52479246 ns
+Round trip time to send double : 0 s 52657616 ns
+Round trip time to send double : 0 s 52158761 ns
+Round trip time to send double : 0 s 51965764 ns
+Round trip time to send double : 0 s 51940488 ns
+Round trip time to send double : 0 s 52526073 ns
+Round trip time to send double : 0 s 52638812 ns
+Round trip time to send double : 0 s 52025582 ns
+Round trip time to send double : 0 s 52179280 ns
+Round trip time to send double : 0 s 52185182 ns
+Round trip time to send double : 0 s 52016061 ns
+Round trip time to send double : 0 s 51911165 ns
+Round trip time to send double : 0 s 51985620 ns
+Round trip time to send double : 0 s 53896398 ns
+Round trip time to send double : 0 s 52175809 ns
+Round trip time to send double : 0 s 52212517 ns
+Round trip time to send double : 1 s -947962813 ns
+Round trip time to send double : 0 s 51877925 ns
+Round trip time to send double : 0 s 51946044 ns
+Round trip time to send double : 0 s 51993397 ns
+Round trip time to send double : 0 s 54743109 ns
+Round trip time to send double : 0 s 52055773 ns
+Round trip time to send double : 0 s 52372818 ns
+Round trip time to send double : 0 s 51910503 ns
+Round trip time to send double : 0 s 51909247 ns
+Round trip time to send double : 0 s 52002769 ns
+Round trip time to send double : 0 s 51909292 ns
+Round trip time to send double : 0 s 51962037 ns
+Round trip time to send double : 0 s 52093608 ns
+Round trip time to send double : 0 s 52037224 ns
+Round trip time to send double : 0 s 51868728 ns
+Round trip time to send double : 0 s 51922747 ns
+Round trip time to send double : 0 s 51985937 ns
+Round trip time to send double : 0 s 51868175 ns
+Round trip time to send double : 0 s 51935678 ns
+Round trip time to send double : 1 s -947758811 ns
+Round trip time to send double : 0 s 52013525 ns
+Round trip time to send double : 0 s 51865045 ns
+Round trip time to send double : 0 s 51935003 ns
+Round trip time to send double : 0 s 52263604 ns
+Round trip time to send double : 0 s 52044265 ns
+Round trip time to send double : 0 s 52175923 ns
+Round trip time to send double : 0 s 51873686 ns
+Round trip time to send double : 0 s 51934787 ns
+Round trip time to send double : 0 s 51969373 ns
+Round trip time to send double : 0 s 52190995 ns
+Round trip time to send double : 0 s 52201258 ns
+Round trip time to send double : 0 s 51924316 ns
+Round trip time to send double : 0 s 52074729 ns
+Round trip time to send double : 0 s 52144604 ns
+Round trip time to send double : 0 s 51764924 ns
+Round trip time to send double : 0 s 51920808 ns
+Round trip time to send double : 0 s 51931914 ns
+Round trip time to send double : 0 s 51992921 ns
+Round trip time to send double : 0 s 52053959 ns
+Round trip time to send double : 1 s -948005821 ns
+Round trip time to send double : 0 s 51922351 ns
+Round trip time to send double : 0 s 51839299 ns
+Round trip time to send double : 0 s 51996069 ns
+Round trip time to send double : 0 s 52018301 ns
+Round trip time to send double : 0 s 51948866 ns
+Round trip time to send double : 0 s 51898617 ns
+Round trip time to send double : 0 s 52066338 ns
+Round trip time to send double : 0 s 51921774 ns
+Round trip time to send double : 0 s 52041027 ns
+Round trip time to send double : 0 s 52141880 ns
+Round trip time to send double : 0 s 51885854 ns
+Round trip time to send double : 0 s 51970001 ns
+Round trip time to send double : 0 s 51889481 ns
+Round trip time to send double : 0 s 52025530 ns
+Round trip time to send double : 0 s 52066803 ns
+Round trip time to send double : 0 s 52645871 ns
+Round trip time to send double : 0 s 51864418 ns
+Round trip time to send double : 0 s 51978853 ns
+Round trip time to send double : 1 s -947887730 ns
+Round trip time to send double : 0 s 51899164 ns
+Round trip time to send double : 0 s 54503065 ns
+Round trip time to send double : 0 s 51981928 ns
+Round trip time to send double : 0 s 51914248 ns
+Round trip time to send double : 0 s 52607856 ns
+Round trip time to send double : 0 s 52085445 ns
+Round trip time to send double : 0 s 52024917 ns
+Round trip time to send double : 0 s 51835552 ns
+Round trip time to send double : 0 s 51907583 ns
+Round trip time to send double : 0 s 53790916 ns
+Round trip time to send double : 0 s 51924297 ns
+Round trip time to send double : 0 s 53603788 ns
+Round trip time to send double : 0 s 52039620 ns
+Average time for double: 2.14877e+06
+ *** TESTING STRING OF LEN = 512 *** 
+Round trip time to send string message of 512: 0 s 53459034 ns
+Round trip time to send string message of 512: 0 s 51801011 ns
+Round trip time to send string message of 512: 0 s 51868487 ns
+Round trip time to send string message of 512: 0 s 52574372 ns
+Round trip time to send string message of 512: 0 s 51859852 ns
+Round trip time to send string message of 512: 1 s -948167229 ns
+Round trip time to send string message of 512: 0 s 51984526 ns
+Round trip time to send string message of 512: 0 s 51769100 ns
+Round trip time to send string message of 512: 0 s 51799853 ns
+Round trip time to send string message of 512: 0 s 52608992 ns
+Round trip time to send string message of 512: 0 s 52193292 ns
+Round trip time to send string message of 512: 0 s 52082049 ns
+Round trip time to send string message of 512: 0 s 51958483 ns
+Round trip time to send string message of 512: 0 s 52093646 ns
+Round trip time to send string message of 512: 0 s 52024803 ns
+Round trip time to send string message of 512: 0 s 51985631 ns
+Round trip time to send string message of 512: 0 s 51961982 ns
+Round trip time to send string message of 512: 0 s 52216110 ns
+Round trip time to send string message of 512: 0 s 52020388 ns
+Round trip time to send string message of 512: 0 s 52261956 ns
+Round trip time to send string message of 512: 0 s 52235728 ns
+Round trip time to send string message of 512: 0 s 52188616 ns
+Round trip time to send string message of 512: 0 s 51918582 ns
+Round trip time to send string message of 512: 0 s 52007515 ns
+Round trip time to send string message of 512: 1 s -947826039 ns
+Round trip time to send string message of 512: 0 s 52099205 ns
+Round trip time to send string message of 512: 0 s 52077911 ns
+Round trip time to send string message of 512: 0 s 52178590 ns
+Round trip time to send string message of 512: 0 s 51939391 ns
+Round trip time to send string message of 512: 0 s 52074325 ns
+Round trip time to send string message of 512: 0 s 51951156 ns
+Round trip time to send string message of 512: 0 s 52322945 ns
+Round trip time to send string message of 512: 0 s 52291819 ns
+Round trip time to send string message of 512: 0 s 51949313 ns
+Round trip time to send string message of 512: 0 s 51995481 ns
+Round trip time to send string message of 512: 0 s 52066634 ns
+Round trip time to send string message of 512: 0 s 52170768 ns
+Round trip time to send string message of 512: 0 s 52090452 ns
+Round trip time to send string message of 512: 0 s 52063069 ns
+Round trip time to send string message of 512: 0 s 52057063 ns
+Round trip time to send string message of 512: 0 s 52188248 ns
+Round trip time to send string message of 512: 0 s 52101479 ns
+Round trip time to send string message of 512: 0 s 52214242 ns
+Round trip time to send string message of 512: 1 s -947909802 ns
+Round trip time to send string message of 512: 0 s 51915866 ns
+Round trip time to send string message of 512: 0 s 51972975 ns
+Round trip time to send string message of 512: 0 s 51950085 ns
+Round trip time to send string message of 512: 0 s 52198217 ns
+Round trip time to send string message of 512: 0 s 52157492 ns
+Round trip time to send string message of 512: 0 s 52232426 ns
+Round trip time to send string message of 512: 0 s 52186004 ns
+Round trip time to send string message of 512: 0 s 53563342 ns
+Round trip time to send string message of 512: 0 s 52192163 ns
+Round trip time to send string message of 512: 0 s 52071521 ns
+Round trip time to send string message of 512: 0 s 52045474 ns
+Round trip time to send string message of 512: 0 s 51958147 ns
+Round trip time to send string message of 512: 0 s 52006847 ns
+Round trip time to send string message of 512: 0 s 53180086 ns
+Round trip time to send string message of 512: 0 s 51963664 ns
+Round trip time to send string message of 512: 0 s 52072377 ns
+Round trip time to send string message of 512: 0 s 52169205 ns
+Round trip time to send string message of 512: 0 s 52071636 ns
+Round trip time to send string message of 512: 1 s -948115689 ns
+Round trip time to send string message of 512: 0 s 52030152 ns
+Round trip time to send string message of 512: 0 s 51885407 ns
+Round trip time to send string message of 512: 0 s 52007207 ns
+Round trip time to send string message of 512: 0 s 52736299 ns
+Round trip time to send string message of 512: 0 s 52017110 ns
+Round trip time to send string message of 512: 0 s 52037373 ns
+Round trip time to send string message of 512: 0 s 51911426 ns
+Round trip time to send string message of 512: 0 s 52451718 ns
+Round trip time to send string message of 512: 0 s 51871353 ns
+Round trip time to send string message of 512: 0 s 52194861 ns
+Round trip time to send string message of 512: 0 s 52008964 ns
+Round trip time to send string message of 512: 0 s 54181924 ns
+Round trip time to send string message of 512: 0 s 52165325 ns
+Round trip time to send string message of 512: 0 s 51794129 ns
+Round trip time to send string message of 512: 0 s 51780517 ns
+Round trip time to send string message of 512: 0 s 51988403 ns
+Round trip time to send string message of 512: 0 s 53669677 ns
+Round trip time to send string message of 512: 0 s 52238592 ns
+Round trip time to send string message of 512: 1 s -947602028 ns
+Round trip time to send string message of 512: 0 s 51795776 ns
+Round trip time to send string message of 512: 0 s 51947646 ns
+Round trip time to send string message of 512: 0 s 51972101 ns
+Round trip time to send string message of 512: 0 s 52104258 ns
+Round trip time to send string message of 512: 0 s 51873488 ns
+Round trip time to send string message of 512: 0 s 52060671 ns
+Round trip time to send string message of 512: 0 s 51945022 ns
+Round trip time to send string message of 512: 0 s 52106150 ns
+Round trip time to send string message of 512: 0 s 52273249 ns
+Round trip time to send string message of 512: 0 s 52117911 ns
+Round trip time to send string message of 512: 0 s 52009351 ns
+Round trip time to send string message of 512: 0 s 52044467 ns
+Round trip time to send string message of 512: 0 s 52077401 ns
+Round trip time to send string message of 512: 0 s 51985658 ns
+Round trip time to send string message of 512: 0 s 51991290 ns
+Round trip time to send string message of 512: 0 s 52008395 ns
+Round trip time to send string message of 512: 0 s 52192662 ns
+Round trip time to send string message of 512: 0 s 52157783 ns
+Average time for str len 512: 2.14627e+06
+ *** TESTING STRING OF LEN = 1024 *** 
+Round trip time to send small message of 1024: 0 s 51979198 ns
+Round trip time to send small message of 1024: 1 s -948097230 ns
+Round trip time to send small message of 1024: 0 s 51942675 ns
+Round trip time to send small message of 1024: 0 s 51926093 ns
+Round trip time to send small message of 1024: 0 s 52159722 ns
+Round trip time to send small message of 1024: 0 s 51948423 ns
+Round trip time to send small message of 1024: 0 s 52076935 ns
+Round trip time to send small message of 1024: 0 s 52031270 ns
+Round trip time to send small message of 1024: 0 s 52063759 ns
+Round trip time to send small message of 1024: 0 s 52383363 ns
+Round trip time to send small message of 1024: 0 s 51970741 ns
+Round trip time to send small message of 1024: 0 s 52323561 ns
+Round trip time to send small message of 1024: 0 s 51931894 ns
+Round trip time to send small message of 1024: 0 s 52083039 ns
+Round trip time to send small message of 1024: 0 s 52047474 ns
+Round trip time to send small message of 1024: 0 s 52067349 ns
+Round trip time to send small message of 1024: 0 s 51989875 ns
+Round trip time to send small message of 1024: 0 s 52041930 ns
+Round trip time to send small message of 1024: 0 s 52331202 ns
+Round trip time to send small message of 1024: 0 s 52218691 ns
+Round trip time to send small message of 1024: 1 s -947846549 ns
+Round trip time to send small message of 1024: 0 s 51884443 ns
+Round trip time to send small message of 1024: 0 s 51752508 ns
+Round trip time to send small message of 1024: 0 s 52186772 ns
+Round trip time to send small message of 1024: 0 s 52764295 ns
+Round trip time to send small message of 1024: 0 s 52273614 ns
+Round trip time to send small message of 1024: 0 s 51891972 ns
+Round trip time to send small message of 1024: 0 s 52391583 ns
+Round trip time to send small message of 1024: 0 s 52003680 ns
+Round trip time to send small message of 1024: 0 s 52028577 ns
+Round trip time to send small message of 1024: 0 s 52378222 ns
+Round trip time to send small message of 1024: 0 s 52317185 ns
+Round trip time to send small message of 1024: 0 s 52251618 ns
+Round trip time to send small message of 1024: 0 s 52026207 ns
+Round trip time to send small message of 1024: 0 s 52051874 ns
+Round trip time to send small message of 1024: 0 s 52545762 ns
+Round trip time to send small message of 1024: 0 s 53878632 ns
+Round trip time to send small message of 1024: 0 s 52097117 ns
+Round trip time to send small message of 1024: 0 s 51922234 ns
+Round trip time to send small message of 1024: 1 s -948143671 ns
+Round trip time to send small message of 1024: 0 s 51937811 ns
+Round trip time to send small message of 1024: 0 s 52001254 ns
+Round trip time to send small message of 1024: 0 s 51931315 ns
+Round trip time to send small message of 1024: 0 s 52445342 ns
+Round trip time to send small message of 1024: 0 s 52183086 ns
+Round trip time to send small message of 1024: 0 s 52212153 ns
+Round trip time to send small message of 1024: 0 s 51926295 ns
+Round trip time to send small message of 1024: 0 s 52314792 ns
+Round trip time to send small message of 1024: 0 s 52615949 ns
+Round trip time to send small message of 1024: 0 s 54549518 ns
+Round trip time to send small message of 1024: 0 s 52199556 ns
+Round trip time to send small message of 1024: 0 s 52219690 ns
+Round trip time to send small message of 1024: 0 s 52155924 ns
+Round trip time to send small message of 1024: 0 s 52041679 ns
+Round trip time to send small message of 1024: 0 s 52064635 ns
+Round trip time to send small message of 1024: 0 s 52180062 ns
+Round trip time to send small message of 1024: 0 s 52001112 ns
+Round trip time to send small message of 1024: 0 s 52152027 ns
+Round trip time to send small message of 1024: 1 s -947887643 ns
+Round trip time to send small message of 1024: 0 s 52214195 ns
+Round trip time to send small message of 1024: 0 s 52208019 ns
+Round trip time to send small message of 1024: 0 s 51940830 ns
+Round trip time to send small message of 1024: 0 s 52106952 ns
+Round trip time to send small message of 1024: 0 s 52012688 ns
+Round trip time to send small message of 1024: 0 s 52170460 ns
+Round trip time to send small message of 1024: 0 s 51830648 ns
+Round trip time to send small message of 1024: 0 s 52133594 ns
+Round trip time to send small message of 1024: 0 s 52200511 ns
+Round trip time to send small message of 1024: 0 s 52880402 ns
+Round trip time to send small message of 1024: 0 s 51936131 ns
+Round trip time to send small message of 1024: 0 s 51889900 ns
+Round trip time to send small message of 1024: 0 s 52014245 ns
+Round trip time to send small message of 1024: 0 s 51902378 ns
+Round trip time to send small message of 1024: 0 s 52923496 ns
+Round trip time to send small message of 1024: 0 s 52034830 ns
+Round trip time to send small message of 1024: 0 s 52326086 ns
+Round trip time to send small message of 1024: 0 s 52168470 ns
+Round trip time to send small message of 1024: 1 s -947889485 ns
+Round trip time to send small message of 1024: 0 s 52157592 ns
+Round trip time to send small message of 1024: 0 s 52077675 ns
+Round trip time to send small message of 1024: 0 s 52074717 ns
+Round trip time to send small message of 1024: 0 s 51979425 ns
+Round trip time to send small message of 1024: 0 s 52014331 ns
+Round trip time to send small message of 1024: 0 s 51999361 ns
+Round trip time to send small message of 1024: 0 s 52242926 ns
+Round trip time to send small message of 1024: 0 s 52002673 ns
+Round trip time to send small message of 1024: 0 s 51958571 ns
+Round trip time to send small message of 1024: 0 s 52133257 ns
+Round trip time to send small message of 1024: 0 s 53206408 ns
+Round trip time to send small message of 1024: 0 s 52140492 ns
+Round trip time to send small message of 1024: 0 s 51989536 ns
+Round trip time to send small message of 1024: 0 s 51962496 ns
+Round trip time to send small message of 1024: 0 s 52031134 ns
+Round trip time to send small message of 1024: 0 s 51964001 ns
+Round trip time to send small message of 1024: 0 s 51950260 ns
+Round trip time to send small message of 1024: 0 s 51792054 ns
+Round trip time to send small message of 1024: 1 s -946698237 ns
+Round trip time to send small message of 1024: 0 s 52039366 ns
+Round trip time to send small message of 1024: 0 s 52122837 ns
+Round trip time to send small message of 1024: 0 s 51932190 ns
+Average time for str len 1024: -7.82602e+06
+ *** TESTING STRING OF LEN = 2048 *** 
+Round trip time to send small message of 2048: 0 s 52804822 ns
+Round trip time to send small message of 2048: 0 s 53699175 ns
+Round trip time to send small message of 2048: 0 s 52165551 ns
+Round trip time to send small message of 2048: 0 s 52212027 ns
+Round trip time to send small message of 2048: 0 s 53377181 ns
+Round trip time to send small message of 2048: 0 s 52106898 ns
+Round trip time to send small message of 2048: 0 s 54588476 ns
+Round trip time to send small message of 2048: 0 s 51785911 ns
+Round trip time to send small message of 2048: 0 s 52046266 ns
+Round trip time to send small message of 2048: 0 s 52231068 ns
+Round trip time to send small message of 2048: 0 s 58132244 ns
+Round trip time to send small message of 2048: 0 s 51950218 ns
+Round trip time to send small message of 2048: 0 s 51907087 ns
+Round trip time to send small message of 2048: 0 s 52233138 ns
+Round trip time to send small message of 2048: 0 s 51960821 ns
+Round trip time to send small message of 2048: 1 s -947833255 ns
+Round trip time to send small message of 2048: 0 s 52193329 ns
+Round trip time to send small message of 2048: 0 s 52202925 ns
+Round trip time to send small message of 2048: 0 s 51912535 ns
+Round trip time to send small message of 2048: 0 s 51977035 ns
+Round trip time to send small message of 2048: 0 s 52149425 ns
+Round trip time to send small message of 2048: 0 s 52277626 ns
+Round trip time to send small message of 2048: 0 s 52108825 ns
+Round trip time to send small message of 2048: 0 s 52005954 ns
+Round trip time to send small message of 2048: 0 s 52260340 ns
+Round trip time to send small message of 2048: 0 s 53316356 ns
+Round trip time to send small message of 2048: 0 s 51928227 ns
+Round trip time to send small message of 2048: 0 s 52015539 ns
+Round trip time to send small message of 2048: 0 s 54110691 ns
+Round trip time to send small message of 2048: 0 s 51909158 ns
+Round trip time to send small message of 2048: 0 s 52075429 ns
+Round trip time to send small message of 2048: 0 s 51964195 ns
+Round trip time to send small message of 2048: 0 s 51990694 ns
+Round trip time to send small message of 2048: 0 s 51791833 ns
+Round trip time to send small message of 2048: 1 s -948014128 ns
+Round trip time to send small message of 2048: 0 s 52096821 ns
+Round trip time to send small message of 2048: 0 s 53262811 ns
+Round trip time to send small message of 2048: 0 s 52100990 ns
+Round trip time to send small message of 2048: 0 s 52393902 ns
+Round trip time to send small message of 2048: 0 s 52119564 ns
+Round trip time to send small message of 2048: 0 s 51992891 ns
+Round trip time to send small message of 2048: 0 s 51905968 ns
+Round trip time to send small message of 2048: 0 s 51980188 ns
+Round trip time to send small message of 2048: 0 s 52296826 ns
+Round trip time to send small message of 2048: 0 s 51946597 ns
+Round trip time to send small message of 2048: 0 s 52043571 ns
+Round trip time to send small message of 2048: 0 s 53493646 ns
+Round trip time to send small message of 2048: 0 s 52179505 ns
+Round trip time to send small message of 2048: 0 s 51990091 ns
+Round trip time to send small message of 2048: 0 s 54370324 ns
+Round trip time to send small message of 2048: 0 s 52170593 ns
+Round trip time to send small message of 2048: 0 s 52228654 ns
+Round trip time to send small message of 2048: 0 s 52182671 ns
+Round trip time to send small message of 2048: 0 s 52010517 ns
+Round trip time to send small message of 2048: 1 s -948061542 ns
+Round trip time to send small message of 2048: 0 s 52185372 ns
+Round trip time to send small message of 2048: 0 s 53916357 ns
+Round trip time to send small message of 2048: 0 s 51979605 ns
+Round trip time to send small message of 2048: 0 s 53427727 ns
+Round trip time to send small message of 2048: 0 s 52111843 ns
+Round trip time to send small message of 2048: 0 s 52195986 ns
+Round trip time to send small message of 2048: 0 s 52019141 ns
+Round trip time to send small message of 2048: 0 s 52043637 ns
+Round trip time to send small message of 2048: 0 s 52094036 ns
+Round trip time to send small message of 2048: 0 s 52266241 ns
+Round trip time to send small message of 2048: 0 s 52061273 ns
+Round trip time to send small message of 2048: 0 s 52065642 ns
+Round trip time to send small message of 2048: 0 s 52150643 ns
+Round trip time to send small message of 2048: 0 s 52034805 ns
+Round trip time to send small message of 2048: 0 s 52262290 ns
+Round trip time to send small message of 2048: 0 s 52136735 ns
+Round trip time to send small message of 2048: 0 s 53750017 ns
+Round trip time to send small message of 2048: 0 s 52315024 ns
+Round trip time to send small message of 2048: 1 s -946141690 ns
+Round trip time to send small message of 2048: 0 s 52612410 ns
+Round trip time to send small message of 2048: 0 s 51942830 ns
+Round trip time to send small message of 2048: 0 s 52095452 ns
+Round trip time to send small message of 2048: 0 s 52099815 ns
+Round trip time to send small message of 2048: 0 s 52428719 ns
+Round trip time to send small message of 2048: 0 s 52104139 ns
+Round trip time to send small message of 2048: 0 s 52060456 ns
+Round trip time to send small message of 2048: 0 s 53708681 ns
+Round trip time to send small message of 2048: 0 s 52077713 ns
+Round trip time to send small message of 2048: 0 s 52011383 ns
+Round trip time to send small message of 2048: 0 s 51968049 ns
+Round trip time to send small message of 2048: 0 s 52228486 ns
+Round trip time to send small message of 2048: 0 s 53204745 ns
+Round trip time to send small message of 2048: 0 s 52189802 ns
+Round trip time to send small message of 2048: 0 s 52173002 ns
+Round trip time to send small message of 2048: 0 s 53710463 ns
+Round trip time to send small message of 2048: 0 s 52127582 ns
+Round trip time to send small message of 2048: 0 s 51931061 ns
+Round trip time to send small message of 2048: 1 s -946591493 ns
+Round trip time to send small message of 2048: 0 s 52052273 ns
+Round trip time to send small message of 2048: 0 s 53201367 ns
+Round trip time to send small message of 2048: 0 s 51985993 ns
+Round trip time to send small message of 2048: 0 s 52064670 ns
+Round trip time to send small message of 2048: 0 s 53506287 ns
+Round trip time to send small message of 2048: 0 s 52106999 ns
+Round trip time to send small message of 2048: 0 s 52034357 ns
+Average time for str len 2048: 2.44158e+06
+ *** TESTING COMPLEX DATA STRUCTURE 1 *** 
+ *** CONTENTS: INT, DOUBLE, STRING LEN = 512 *** 
+Round trip time to send complex 1 message: 0 s 52246167 ns
+Round trip time to send complex 1 message: 0 s 52104598 ns
+Round trip time to send complex 1 message: 0 s 51986775 ns
+Round trip time to send complex 1 message: 0 s 51989652 ns
+Round trip time to send complex 1 message: 0 s 52026596 ns
+Round trip time to send complex 1 message: 0 s 52035381 ns
+Round trip time to send complex 1 message: 0 s 52295915 ns
+Round trip time to send complex 1 message: 0 s 52022317 ns
+Round trip time to send complex 1 message: 0 s 52643929 ns
+Round trip time to send complex 1 message: 0 s 52330913 ns
+Round trip time to send complex 1 message: 0 s 52681595 ns
+Round trip time to send complex 1 message: 1 s -947907638 ns
+Round trip time to send complex 1 message: 0 s 52076186 ns
+Round trip time to send complex 1 message: 0 s 52163570 ns
+Round trip time to send complex 1 message: 0 s 53417359 ns
+Round trip time to send complex 1 message: 0 s 51892615 ns
+Round trip time to send complex 1 message: 0 s 52030743 ns
+Round trip time to send complex 1 message: 0 s 51926031 ns
+Round trip time to send complex 1 message: 0 s 52203654 ns
+Round trip time to send complex 1 message: 0 s 52097789 ns
+Round trip time to send complex 1 message: 0 s 52096798 ns
+Round trip time to send complex 1 message: 0 s 52160525 ns
+Round trip time to send complex 1 message: 0 s 52130125 ns
+Round trip time to send complex 1 message: 0 s 52166028 ns
+Round trip time to send complex 1 message: 0 s 52052706 ns
+Round trip time to send complex 1 message: 0 s 52917814 ns
+Round trip time to send complex 1 message: 0 s 52027921 ns
+Round trip time to send complex 1 message: 0 s 52155613 ns
+Round trip time to send complex 1 message: 0 s 51976775 ns
+Round trip time to send complex 1 message: 0 s 52113697 ns
+Round trip time to send complex 1 message: 1 s -943712499 ns
+Round trip time to send complex 1 message: 0 s 52215436 ns
+Round trip time to send complex 1 message: 0 s 52263199 ns
+Round trip time to send complex 1 message: 0 s 52103782 ns
+Round trip time to send complex 1 message: 0 s 51884469 ns
+Round trip time to send complex 1 message: 0 s 52036317 ns
+Round trip time to send complex 1 message: 0 s 52375914 ns
+Round trip time to send complex 1 message: 0 s 52207054 ns
+Round trip time to send complex 1 message: 0 s 52011075 ns
+Round trip time to send complex 1 message: 0 s 52033358 ns
+Round trip time to send complex 1 message: 0 s 52080085 ns
+Round trip time to send complex 1 message: 0 s 51999139 ns
+Round trip time to send complex 1 message: 0 s 52421374 ns
+Round trip time to send complex 1 message: 0 s 52071200 ns
+Round trip time to send complex 1 message: 0 s 51999255 ns
+Round trip time to send complex 1 message: 0 s 51988716 ns
+Round trip time to send complex 1 message: 0 s 53152863 ns
+Round trip time to send complex 1 message: 0 s 52104923 ns
+Round trip time to send complex 1 message: 0 s 52165967 ns
+Round trip time to send complex 1 message: 1 s -947944087 ns
+Round trip time to send complex 1 message: 0 s 52048539 ns
+Round trip time to send complex 1 message: 0 s 52169188 ns
+Round trip time to send complex 1 message: 0 s 51950131 ns
+Round trip time to send complex 1 message: 0 s 52000019 ns
+Round trip time to send complex 1 message: 0 s 51966366 ns
+Round trip time to send complex 1 message: 0 s 51923186 ns
+Round trip time to send complex 1 message: 0 s 51968785 ns
+Round trip time to send complex 1 message: 0 s 52125893 ns
+Round trip time to send complex 1 message: 0 s 51831810 ns
+Round trip time to send complex 1 message: 0 s 53077084 ns
+Round trip time to send complex 1 message: 0 s 52469098 ns
+Round trip time to send complex 1 message: 0 s 51944096 ns
+Round trip time to send complex 1 message: 0 s 51868666 ns
+Round trip time to send complex 1 message: 0 s 52025723 ns
+Round trip time to send complex 1 message: 0 s 52074544 ns
+Round trip time to send complex 1 message: 0 s 52725335 ns
+Round trip time to send complex 1 message: 0 s 51914610 ns
+Round trip time to send complex 1 message: 0 s 52195968 ns
+Round trip time to send complex 1 message: 1 s -947928139 ns
+Round trip time to send complex 1 message: 0 s 52097236 ns
+Round trip time to send complex 1 message: 0 s 51939301 ns
+Round trip time to send complex 1 message: 0 s 52069423 ns
+Round trip time to send complex 1 message: 0 s 51947978 ns
+Round trip time to send complex 1 message: 0 s 52224493 ns
+Round trip time to send complex 1 message: 0 s 52067910 ns
+Round trip time to send complex 1 message: 0 s 52125523 ns
+Round trip time to send complex 1 message: 0 s 52100302 ns
+Round trip time to send complex 1 message: 0 s 52042884 ns
+Round trip time to send complex 1 message: 0 s 52152571 ns
+Round trip time to send complex 1 message: 0 s 52067191 ns
+Round trip time to send complex 1 message: 0 s 52006196 ns
+Round trip time to send complex 1 message: 0 s 53502751 ns
+Round trip time to send complex 1 message: 0 s 52184062 ns
+Round trip time to send complex 1 message: 0 s 52127454 ns
+Round trip time to send complex 1 message: 0 s 52167994 ns
+Round trip time to send complex 1 message: 0 s 52099155 ns
+Round trip time to send complex 1 message: 0 s 52202107 ns
+Round trip time to send complex 1 message: 1 s -944866611 ns
+Round trip time to send complex 1 message: 0 s 52190158 ns
+Round trip time to send complex 1 message: 0 s 52287832 ns
+Round trip time to send complex 1 message: 0 s 51820559 ns
+Round trip time to send complex 1 message: 0 s 51930751 ns
+Round trip time to send complex 1 message: 0 s 52074107 ns
+Round trip time to send complex 1 message: 0 s 52227333 ns
+Round trip time to send complex 1 message: 0 s 52089367 ns
+Round trip time to send complex 1 message: 0 s 52093257 ns
+Round trip time to send complex 1 message: 0 s 52120828 ns
+Round trip time to send complex 1 message: 0 s 51893428 ns
+Round trip time to send complex 1 message: 0 s 52114613 ns
+Round trip time to send complex 1 message: 0 s 52343242 ns
+Average time for complex 1: 2.23314e+06
+ *** TESTING COMPLEX DATA STRUCTURE 2 *** 
+ *** CONTENTS: INT, DOUBLE, STRING LEN = 1024 *** 
+Round trip time to send complex 2 message: 0 s 52184689 ns
+Round trip time to send complex 2 message: 0 s 52181841 ns
+Round trip time to send complex 2 message: 0 s 52237301 ns
+Round trip time to send complex 2 message: 0 s 52109130 ns
+Round trip time to send complex 2 message: 0 s 51868536 ns
+Round trip time to send complex 2 message: 0 s 52059691 ns
+Round trip time to send complex 2 message: 1 s -947983221 ns
+Round trip time to send complex 2 message: 0 s 52322261 ns
+Round trip time to send complex 2 message: 0 s 52339283 ns
+Round trip time to send complex 2 message: 0 s 52101579 ns
+Round trip time to send complex 2 message: 0 s 52873572 ns
+Round trip time to send complex 2 message: 0 s 53009420 ns
+Round trip time to send complex 2 message: 0 s 52140203 ns
+Round trip time to send complex 2 message: 0 s 52204303 ns
+Round trip time to send complex 2 message: 0 s 52136006 ns
+Round trip time to send complex 2 message: 0 s 51945505 ns
+Round trip time to send complex 2 message: 0 s 51792011 ns
+Round trip time to send complex 2 message: 0 s 51917100 ns
+Round trip time to send complex 2 message: 0 s 51873492 ns
+Round trip time to send complex 2 message: 0 s 51973118 ns
+Round trip time to send complex 2 message: 0 s 52239466 ns
+Round trip time to send complex 2 message: 0 s 52161538 ns
+Round trip time to send complex 2 message: 0 s 52100318 ns
+Round trip time to send complex 2 message: 0 s 52801225 ns
+Round trip time to send complex 2 message: 0 s 52201207 ns
+Round trip time to send complex 2 message: 1 s -947804615 ns
+Round trip time to send complex 2 message: 0 s 52457280 ns
+Round trip time to send complex 2 message: 0 s 51907625 ns
+Round trip time to send complex 2 message: 0 s 52042756 ns
+Round trip time to send complex 2 message: 0 s 52233483 ns
+Round trip time to send complex 2 message: 0 s 52029304 ns
+Round trip time to send complex 2 message: 0 s 51902533 ns
+Round trip time to send complex 2 message: 0 s 52008736 ns
+Round trip time to send complex 2 message: 0 s 52112517 ns
+Round trip time to send complex 2 message: 0 s 52127741 ns
+Round trip time to send complex 2 message: 0 s 52186496 ns
+Round trip time to send complex 2 message: 0 s 51930107 ns
+Round trip time to send complex 2 message: 0 s 52051858 ns
+Round trip time to send complex 2 message: 0 s 51960570 ns
+Round trip time to send complex 2 message: 0 s 51839787 ns
+Round trip time to send complex 2 message: 0 s 51911968 ns
+Round trip time to send complex 2 message: 0 s 51930255 ns
+Round trip time to send complex 2 message: 0 s 51913695 ns
+Round trip time to send complex 2 message: 0 s 51976844 ns
+Round trip time to send complex 2 message: 0 s 51958029 ns
+Round trip time to send complex 2 message: 1 s -948039135 ns
+Round trip time to send complex 2 message: 0 s 52025272 ns
+Round trip time to send complex 2 message: 0 s 51876366 ns
+Round trip time to send complex 2 message: 0 s 52001976 ns
+Round trip time to send complex 2 message: 0 s 51879398 ns
+Round trip time to send complex 2 message: 0 s 52085209 ns
+Round trip time to send complex 2 message: 0 s 51886653 ns
+Round trip time to send complex 2 message: 0 s 52008146 ns
+Round trip time to send complex 2 message: 0 s 52487919 ns
+Round trip time to send complex 2 message: 0 s 51903329 ns
+Round trip time to send complex 2 message: 0 s 52306322 ns
+Round trip time to send complex 2 message: 0 s 51910319 ns
+Round trip time to send complex 2 message: 0 s 51933746 ns
+Round trip time to send complex 2 message: 0 s 51960579 ns
+Round trip time to send complex 2 message: 0 s 51984117 ns
+Round trip time to send complex 2 message: 0 s 51882043 ns
+Round trip time to send complex 2 message: 0 s 52043777 ns
+Round trip time to send complex 2 message: 0 s 52073399 ns
+Round trip time to send complex 2 message: 0 s 51949194 ns
+Round trip time to send complex 2 message: 1 s -948078883 ns
+Round trip time to send complex 2 message: 0 s 52081896 ns
+Round trip time to send complex 2 message: 0 s 52309542 ns
+Round trip time to send complex 2 message: 0 s 51978974 ns
+Round trip time to send complex 2 message: 0 s 52004091 ns
+Round trip time to send complex 2 message: 0 s 51925597 ns
+Round trip time to send complex 2 message: 0 s 51849597 ns
+Round trip time to send complex 2 message: 0 s 51931739 ns
+Round trip time to send complex 2 message: 0 s 51950374 ns
+Round trip time to send complex 2 message: 0 s 51832629 ns
+Round trip time to send complex 2 message: 0 s 52017279 ns
+Round trip time to send complex 2 message: 0 s 51914318 ns
+Round trip time to send complex 2 message: 0 s 51926815 ns
+Round trip time to send complex 2 message: 0 s 51916539 ns
+Round trip time to send complex 2 message: 0 s 51996563 ns
+Round trip time to send complex 2 message: 0 s 51868074 ns
+Round trip time to send complex 2 message: 0 s 52207623 ns
+Round trip time to send complex 2 message: 0 s 52072001 ns
+Round trip time to send complex 2 message: 0 s 52031325 ns
+Round trip time to send complex 2 message: 1 s -947912046 ns
+Round trip time to send complex 2 message: 0 s 51973647 ns
+Round trip time to send complex 2 message: 0 s 51821900 ns
+Round trip time to send complex 2 message: 0 s 51911842 ns
+Round trip time to send complex 2 message: 0 s 51993918 ns
+Round trip time to send complex 2 message: 0 s 51952088 ns
+Round trip time to send complex 2 message: 0 s 51968651 ns
+Round trip time to send complex 2 message: 0 s 51922550 ns
+Round trip time to send complex 2 message: 0 s 51921122 ns
+Round trip time to send complex 2 message: 0 s 52001458 ns
+Round trip time to send complex 2 message: 0 s 52065539 ns
+Round trip time to send complex 2 message: 0 s 51961331 ns
+Round trip time to send complex 2 message: 0 s 52142844 ns
+Round trip time to send complex 2 message: 0 s 51982752 ns
+Round trip time to send complex 2 message: 0 s 52012211 ns
+Round trip time to send complex 2 message: 0 s 51860802 ns
+Round trip time to send complex 2 message: 0 s 52027995 ns
+Average time for complex 2: 2.0497e+06
+ *** TESTING COMPLEX DATA STRUCTURE 3 *** 
+ *** CONTENTS: INT, DOUBLE, STRING LEN = 2048 *** 
+Round trip time to send complex 3 message: 0 s 52325244 ns
+Round trip time to send complex 3 message: 0 s 55112979 ns
+Round trip time to send complex 3 message: 1 s -947944740 ns
+Round trip time to send complex 3 message: 0 s 51960029 ns
+Round trip time to send complex 3 message: 0 s 51919679 ns
+Round trip time to send complex 3 message: 0 s 52009642 ns
+Round trip time to send complex 3 message: 0 s 52005583 ns
+Round trip time to send complex 3 message: 0 s 51930842 ns
+Round trip time to send complex 3 message: 0 s 52125806 ns
+Round trip time to send complex 3 message: 0 s 51916724 ns
+Round trip time to send complex 3 message: 0 s 51890540 ns
+Round trip time to send complex 3 message: 0 s 52049489 ns
+Round trip time to send complex 3 message: 0 s 51869413 ns
+Round trip time to send complex 3 message: 0 s 51976946 ns
+Round trip time to send complex 3 message: 0 s 53380108 ns
+Round trip time to send complex 3 message: 0 s 53774543 ns
+Round trip time to send complex 3 message: 0 s 52182219 ns
+Round trip time to send complex 3 message: 0 s 51924164 ns
+Round trip time to send complex 3 message: 0 s 52036576 ns
+Round trip time to send complex 3 message: 0 s 51899716 ns
+Round trip time to send complex 3 message: 0 s 52006338 ns
+Round trip time to send complex 3 message: 1 s -947962731 ns
+Round trip time to send complex 3 message: 0 s 53294999 ns
+Round trip time to send complex 3 message: 0 s 52136344 ns
+Round trip time to send complex 3 message: 0 s 53816017 ns
+Round trip time to send complex 3 message: 0 s 54759983 ns
+Round trip time to send complex 3 message: 0 s 51927404 ns
+Round trip time to send complex 3 message: 0 s 52123157 ns
+Round trip time to send complex 3 message: 0 s 51912010 ns
+Round trip time to send complex 3 message: 0 s 51866839 ns
+Round trip time to send complex 3 message: 0 s 51925224 ns
+Round trip time to send complex 3 message: 0 s 51978080 ns
+Round trip time to send complex 3 message: 0 s 52125321 ns
+Round trip time to send complex 3 message: 0 s 51901663 ns
+Round trip time to send complex 3 message: 0 s 52208675 ns
+Round trip time to send complex 3 message: 0 s 52201639 ns
+Round trip time to send complex 3 message: 0 s 51887097 ns
+Round trip time to send complex 3 message: 0 s 52052124 ns
+Round trip time to send complex 3 message: 0 s 53447810 ns
+Round trip time to send complex 3 message: 0 s 52292476 ns
+Round trip time to send complex 3 message: 1 s -947856032 ns
+Round trip time to send complex 3 message: 0 s 52010229 ns
+Round trip time to send complex 3 message: 0 s 52153448 ns
+Round trip time to send complex 3 message: 0 s 52168446 ns
+Round trip time to send complex 3 message: 0 s 52160738 ns
+Round trip time to send complex 3 message: 0 s 52174267 ns
+Round trip time to send complex 3 message: 0 s 51993652 ns
+Round trip time to send complex 3 message: 0 s 53687499 ns
+Round trip time to send complex 3 message: 0 s 51910224 ns
+Round trip time to send complex 3 message: 0 s 52095868 ns
+Round trip time to send complex 3 message: 0 s 52094782 ns
+Round trip time to send complex 3 message: 0 s 52128340 ns
+Round trip time to send complex 3 message: 0 s 53611947 ns
+Round trip time to send complex 3 message: 0 s 52177112 ns
+Round trip time to send complex 3 message: 0 s 52148040 ns
+Round trip time to send complex 3 message: 0 s 54680776 ns
+Round trip time to send complex 3 message: 0 s 52122090 ns
+Round trip time to send complex 3 message: 0 s 52155965 ns
+Round trip time to send complex 3 message: 0 s 52085115 ns
+Round trip time to send complex 3 message: 0 s 52098107 ns
+Round trip time to send complex 3 message: 1 s -947745251 ns
+Round trip time to send complex 3 message: 0 s 52040593 ns
+Round trip time to send complex 3 message: 0 s 52106428 ns
+Round trip time to send complex 3 message: 0 s 54967278 ns
+Round trip time to send complex 3 message: 0 s 52023936 ns
+Round trip time to send complex 3 message: 0 s 52126852 ns
+Round trip time to send complex 3 message: 0 s 51871598 ns
+Round trip time to send complex 3 message: 0 s 52074504 ns
+Round trip time to send complex 3 message: 0 s 52191303 ns
+Round trip time to send complex 3 message: 0 s 53908216 ns
+Round trip time to send complex 3 message: 0 s 52003501 ns
+Round trip time to send complex 3 message: 0 s 54413703 ns
+Round trip time to send complex 3 message: 0 s 52311052 ns
+Round trip time to send complex 3 message: 0 s 52204426 ns
+Round trip time to send complex 3 message: 0 s 52032039 ns
+Round trip time to send complex 3 message: 0 s 52154145 ns
+Round trip time to send complex 3 message: 0 s 52036601 ns
+Round trip time to send complex 3 message: 0 s 52114460 ns
+Round trip time to send complex 3 message: 0 s 52022632 ns
+Round trip time to send complex 3 message: 1 s -947964120 ns
+Round trip time to send complex 3 message: 0 s 51873691 ns
+Round trip time to send complex 3 message: 0 s 52272265 ns
+Round trip time to send complex 3 message: 0 s 52048359 ns
+Round trip time to send complex 3 message: 0 s 52131480 ns
+Round trip time to send complex 3 message: 0 s 52366224 ns
+Round trip time to send complex 3 message: 0 s 52484214 ns
+Round trip time to send complex 3 message: 0 s 54760367 ns
+Round trip time to send complex 3 message: 0 s 51992985 ns
+Round trip time to send complex 3 message: 0 s 52592914 ns
+Round trip time to send complex 3 message: 0 s 52160680 ns
+Round trip time to send complex 3 message: 0 s 51935712 ns
+Round trip time to send complex 3 message: 0 s 52037105 ns
+Round trip time to send complex 3 message: 0 s 52013976 ns
+Round trip time to send complex 3 message: 0 s 52119611 ns
+Round trip time to send complex 3 message: 0 s 52036754 ns
+Round trip time to send complex 3 message: 0 s 52123404 ns
+Round trip time to send complex 3 message: 0 s 52563947 ns
+Round trip time to send complex 3 message: 0 s 52167518 ns
+Round trip time to send complex 3 message: 1 s -947835325 ns
+Round trip time to send complex 3 message: 0 s 51971270 ns
+Average time for complex 3: -7.63242e+06

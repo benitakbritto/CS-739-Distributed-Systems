@@ -1,0 +1,603 @@
+ *** TESTING INT *** 
+Time to marshall integer with TBinaryProtocol: 0 s 355 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 2039 ns
+Time to marshall integer with TCompactProtocol: 0 s 123 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 686 ns
+Time to marshall integer with TBinaryProtocol: 0 s 60 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 382 ns
+Time to marshall integer with TCompactProtocol: 0 s 102 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 109 ns
+Time to marshall integer with TBinaryProtocol: 0 s 76 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 130 ns
+Time to marshall integer with TCompactProtocol: 0 s 68 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 85 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 76 ns
+Time to marshall integer with TCompactProtocol: 0 s 58 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 66 ns
+Time to marshall integer with TBinaryProtocol: 0 s 67 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 76 ns
+Time to marshall integer with TCompactProtocol: 0 s 59 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 66 ns
+Time to marshall integer with TBinaryProtocol: 0 s 53 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 105 ns
+Time to marshall integer with TCompactProtocol: 0 s 57 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 70 ns
+Time to marshall integer with TBinaryProtocol: 0 s 75 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 66 ns
+Time to marshall integer with TCompactProtocol: 0 s 57 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 71 ns
+Time to marshall integer with TBinaryProtocol: 0 s 75 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 81 ns
+Time to marshall integer with TCompactProtocol: 0 s 55 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 75 ns
+Time to marshall integer with TBinaryProtocol: 0 s 71 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 78 ns
+Time to marshall integer with TCompactProtocol: 0 s 59 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 70 ns
+Time to marshall integer with TBinaryProtocol: 0 s 63 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 103 ns
+Time to marshall integer with TCompactProtocol: 0 s 55 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 66 ns
+Time to marshall integer with TBinaryProtocol: 0 s 73 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 107 ns
+Time to marshall integer with TCompactProtocol: 0 s 59 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 63 ns
+Time to marshall integer with TBinaryProtocol: 0 s 77 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 107 ns
+Time to marshall integer with TCompactProtocol: 0 s 56 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 68 ns
+Time to marshall integer with TBinaryProtocol: 0 s 74 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 100 ns
+Time to marshall integer with TCompactProtocol: 0 s 50 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 268 ns
+Time to marshall integer with TBinaryProtocol: 0 s 56 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 104 ns
+Time to marshall integer with TCompactProtocol: 0 s 63 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 72 ns
+Time to marshall integer with TBinaryProtocol: 0 s 64 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 91 ns
+Time to marshall integer with TCompactProtocol: 0 s 65 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 69 ns
+Time to marshall integer with TBinaryProtocol: 0 s 47 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 115 ns
+Time to marshall integer with TCompactProtocol: 0 s 63 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 79 ns
+Time to marshall integer with TBinaryProtocol: 0 s 55 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 110 ns
+Time to marshall integer with TCompactProtocol: 0 s 65 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 78 ns
+Time to marshall integer with TBinaryProtocol: 0 s 58 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 78 ns
+Time to marshall integer with TCompactProtocol: 0 s 54 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 73 ns
+Time to marshall integer with TBinaryProtocol: 0 s 54 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TCompactProtocol: 0 s 60 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 71 ns
+Time to marshall integer with TBinaryProtocol: 0 s 54 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TCompactProtocol: 0 s 65 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 75 ns
+Time to marshall integer with TBinaryProtocol: 0 s 59 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 72 ns
+Time to marshall integer with TCompactProtocol: 0 s 66 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 68 ns
+Time to marshall integer with TBinaryProtocol: 0 s 57 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TCompactProtocol: 0 s 65 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 67 ns
+Time to marshall integer with TBinaryProtocol: 0 s 51 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 76 ns
+Time to marshall integer with TCompactProtocol: 0 s 51 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 63 ns
+Time to marshall integer with TBinaryProtocol: 0 s 56 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 73 ns
+Time to marshall integer with TCompactProtocol: 0 s 57 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 60 ns
+Time to marshall integer with TBinaryProtocol: 0 s 54 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 72 ns
+Time to marshall integer with TCompactProtocol: 0 s 55 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 60 ns
+Time to marshall integer with TBinaryProtocol: 0 s 57 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 95 ns
+Time to marshall integer with TCompactProtocol: 0 s 67 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 68 ns
+Time to marshall integer with TBinaryProtocol: 0 s 55 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 102 ns
+Time to marshall integer with TCompactProtocol: 0 s 60 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 64 ns
+Time to marshall integer with TBinaryProtocol: 0 s 53 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 100 ns
+Time to marshall integer with TCompactProtocol: 0 s 60 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 52 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 87 ns
+Time to marshall integer with TCompactProtocol: 0 s 65 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 80 ns
+Time to marshall integer with TBinaryProtocol: 0 s 81 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 104 ns
+Time to marshall integer with TCompactProtocol: 0 s 66 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 287 ns
+Time to marshall integer with TBinaryProtocol: 0 s 54 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 72 ns
+Time to marshall integer with TCompactProtocol: 0 s 65 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 72 ns
+Time to marshall integer with TBinaryProtocol: 0 s 55 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 104 ns
+Time to marshall integer with TCompactProtocol: 0 s 54 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 80 ns
+Time to marshall integer with TBinaryProtocol: 0 s 60 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 101 ns
+Time to marshall integer with TCompactProtocol: 0 s 66 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 78 ns
+Time to marshall integer with TBinaryProtocol: 0 s 55 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 75 ns
+Time to marshall integer with TCompactProtocol: 0 s 62 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 75 ns
+Time to marshall integer with TBinaryProtocol: 0 s 49 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 110 ns
+Time to marshall integer with TCompactProtocol: 0 s 56 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 71 ns
+Time to marshall integer with TBinaryProtocol: 0 s 58 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 73 ns
+Time to marshall integer with TCompactProtocol: 0 s 63 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 76 ns
+Time to marshall integer with TBinaryProtocol: 0 s 54 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 77 ns
+Time to marshall integer with TCompactProtocol: 0 s 64 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 67 ns
+Time to marshall integer with TBinaryProtocol: 0 s 56 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 68 ns
+Time to marshall integer with TCompactProtocol: 0 s 57 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 58 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 298 ns
+Time to marshall integer with TCompactProtocol: 0 s 61 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 75 ns
+Time to marshall integer with TBinaryProtocol: 0 s 55 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 66 ns
+Time to marshall integer with TCompactProtocol: 0 s 63 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 75 ns
+Time to marshall integer with TBinaryProtocol: 0 s 51 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 98 ns
+Time to marshall integer with TCompactProtocol: 0 s 62 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 75 ns
+Time to marshall integer with TBinaryProtocol: 0 s 53 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 100 ns
+Time to marshall integer with TCompactProtocol: 0 s 60 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 102 ns
+Time to marshall integer with TBinaryProtocol: 0 s 52 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 85 ns
+Time to marshall integer with TCompactProtocol: 0 s 74 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 76 ns
+Time to marshall integer with TBinaryProtocol: 0 s 79 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 113 ns
+Time to marshall integer with TCompactProtocol: 0 s 81 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 66 ns
+Time to marshall integer with TBinaryProtocol: 0 s 54 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 99 ns
+Time to marshall integer with TCompactProtocol: 0 s 57 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 56 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 79 ns
+Time to marshall integer with TCompactProtocol: 0 s 58 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 55 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 105 ns
+Time to marshall integer with TCompactProtocol: 0 s 57 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 73 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 72 ns
+Time to marshall integer with TCompactProtocol: 0 s 59 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 62 ns
+Time to marshall integer with TBinaryProtocol: 0 s 71 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 71 ns
+Time to marshall integer with TCompactProtocol: 0 s 60 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 68 ns
+Time to marshall integer with TBinaryProtocol: 0 s 71 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 290 ns
+Time to marshall integer with TCompactProtocol: 0 s 58 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 58 ns
+Time to marshall integer with TBinaryProtocol: 0 s 74 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 109 ns
+Time to marshall integer with TCompactProtocol: 0 s 61 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 67 ns
+Time to marshall integer with TBinaryProtocol: 0 s 54 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 68 ns
+Time to marshall integer with TCompactProtocol: 0 s 60 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 64 ns
+Time to marshall integer with TBinaryProtocol: 0 s 75 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 100 ns
+Time to marshall integer with TCompactProtocol: 0 s 52 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 79 ns
+Time to marshall integer with TBinaryProtocol: 0 s 75 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 111 ns
+Time to marshall integer with TCompactProtocol: 0 s 52 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 70 ns
+Time to marshall integer with TBinaryProtocol: 0 s 71 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 110 ns
+Time to marshall integer with TCompactProtocol: 0 s 56 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 54 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 75 ns
+Time to marshall integer with TCompactProtocol: 0 s 58 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 69 ns
+Time to marshall integer with TBinaryProtocol: 0 s 46 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 107 ns
+Time to marshall integer with TCompactProtocol: 0 s 64 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 73 ns
+Time to marshall integer with TBinaryProtocol: 0 s 76 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 108 ns
+Time to marshall integer with TCompactProtocol: 0 s 55 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 64 ns
+Time to marshall integer with TBinaryProtocol: 0 s 49 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 70 ns
+Time to marshall integer with TCompactProtocol: 0 s 59 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 67 ns
+Time to marshall integer with TBinaryProtocol: 0 s 53 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 75 ns
+Time to marshall integer with TCompactProtocol: 0 s 59 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 58 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 100 ns
+Time to marshall integer with TCompactProtocol: 0 s 60 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 70 ns
+Time to marshall integer with TBinaryProtocol: 0 s 54 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 105 ns
+Time to marshall integer with TCompactProtocol: 0 s 56 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 69 ns
+Time to marshall integer with TBinaryProtocol: 0 s 60 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 103 ns
+Time to marshall integer with TCompactProtocol: 0 s 57 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 49 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 71 ns
+Time to marshall integer with TCompactProtocol: 0 s 55 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 57 ns
+Time to marshall integer with TBinaryProtocol: 0 s 286 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 69 ns
+Time to marshall integer with TCompactProtocol: 0 s 77 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 67 ns
+Time to marshall integer with TBinaryProtocol: 0 s 50 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 107 ns
+Time to marshall integer with TCompactProtocol: 0 s 60 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 70 ns
+Time to marshall integer with TBinaryProtocol: 0 s 57 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 98 ns
+Time to marshall integer with TCompactProtocol: 0 s 52 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 82 ns
+Time to marshall integer with TBinaryProtocol: 0 s 56 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 103 ns
+Time to marshall integer with TCompactProtocol: 0 s 67 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 69 ns
+Time to marshall integer with TBinaryProtocol: 0 s 53 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 99 ns
+Time to marshall integer with TCompactProtocol: 0 s 54 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 73 ns
+Time to marshall integer with TBinaryProtocol: 0 s 56 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 68 ns
+Time to marshall integer with TCompactProtocol: 0 s 56 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 62 ns
+Time to marshall integer with TBinaryProtocol: 0 s 48 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 113 ns
+Time to marshall integer with TCompactProtocol: 0 s 54 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 74 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 98 ns
+Time to marshall integer with TCompactProtocol: 0 s 57 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 64 ns
+Time to marshall integer with TBinaryProtocol: 0 s 51 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 107 ns
+Time to marshall integer with TCompactProtocol: 0 s 60 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 54 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 75 ns
+Time to marshall integer with TCompactProtocol: 0 s 56 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 66 ns
+Time to marshall integer with TBinaryProtocol: 0 s 58 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 102 ns
+Time to marshall integer with TCompactProtocol: 0 s 64 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 66 ns
+Time to marshall integer with TBinaryProtocol: 0 s 56 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 103 ns
+Time to marshall integer with TCompactProtocol: 0 s 55 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 60 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 101 ns
+Time to marshall integer with TCompactProtocol: 0 s 52 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 66 ns
+Time to marshall integer with TBinaryProtocol: 0 s 55 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 106 ns
+Time to marshall integer with TCompactProtocol: 0 s 55 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 51 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 69 ns
+Time to marshall integer with TCompactProtocol: 0 s 58 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 60 ns
+Time to marshall integer with TBinaryProtocol: 0 s 52 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 107 ns
+Time to marshall integer with TCompactProtocol: 0 s 62 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 50 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TCompactProtocol: 0 s 60 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 67 ns
+Time to marshall integer with TBinaryProtocol: 0 s 52 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 74 ns
+Time to marshall integer with TCompactProtocol: 0 s 61 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 66 ns
+Time to marshall integer with TBinaryProtocol: 0 s 54 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 71 ns
+Time to marshall integer with TCompactProtocol: 0 s 55 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 64 ns
+Time to marshall integer with TBinaryProtocol: 0 s 55 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 297 ns
+Time to marshall integer with TCompactProtocol: 0 s 55 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 63 ns
+Time to marshall integer with TBinaryProtocol: 0 s 55 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 89 ns
+Time to marshall integer with TCompactProtocol: 0 s 73 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 73 ns
+Time to marshall integer with TBinaryProtocol: 0 s 75 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 105 ns
+Time to marshall integer with TCompactProtocol: 0 s 69 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 71 ns
+Time to marshall integer with TBinaryProtocol: 0 s 51 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 104 ns
+Time to marshall integer with TCompactProtocol: 0 s 55 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 55 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 108 ns
+Time to marshall integer with TCompactProtocol: 0 s 61 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 65 ns
+Time to marshall integer with TBinaryProtocol: 0 s 55 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 2121 ns
+Time to marshall integer with TCompactProtocol: 0 s 250 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 792 ns
+Time to marshall integer with TBinaryProtocol: 0 s 117 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 228 ns
+Time to marshall integer with TCompactProtocol: 0 s 83 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 90 ns
+Time to marshall integer with TBinaryProtocol: 0 s 84 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 131 ns
+Time to marshall integer with TCompactProtocol: 0 s 56 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 81 ns
+Time to marshall integer with TBinaryProtocol: 0 s 54 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 82 ns
+Time to marshall integer with TCompactProtocol: 0 s 63 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 88 ns
+Time to marshall integer with TBinaryProtocol: 0 s 58 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 125 ns
+Time to marshall integer with TCompactProtocol: 0 s 68 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 69 ns
+Time to marshall integer with TBinaryProtocol: 0 s 56 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 72 ns
+Time to marshall integer with TCompactProtocol: 0 s 57 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 70 ns
+Time to marshall integer with TBinaryProtocol: 0 s 73 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 69 ns
+Time to marshall integer with TCompactProtocol: 0 s 60 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 70 ns
+Time to marshall integer with TBinaryProtocol: 0 s 72 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 104 ns
+Time to marshall integer with TCompactProtocol: 0 s 58 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 78 ns
+Time to marshall integer with TBinaryProtocol: 0 s 88 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 111 ns
+Time to marshall integer with TCompactProtocol: 0 s 67 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 71 ns
+Time to marshall integer with TBinaryProtocol: 0 s 73 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 180 ns
+Time to marshall integer with TCompactProtocol: 0 s 62 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 296 ns
+Time to marshall integer with TBinaryProtocol: 0 s 65 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 109 ns
+Time to marshall integer with TCompactProtocol: 0 s 72 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 128 ns
+Time to marshall integer with TBinaryProtocol: 0 s 56 ns
+Wrote 4bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 78 ns
+Time to marshall integer with TCompactProtocol: 0 s 54 ns
+Wrote 1bytes to TMemoryBuffer
+Time to umarshall integer with TBinaryProtocol: 0 s 140 ns
+Average Marshall Int time: Binary-> 65.99 Compact-> 63.24
+Average Umarshall Int time: binary-> 142.4 Compact -> 90.99

@@ -1,0 +1,1812 @@
+ *** TESTING COMPLEX DATA STRUCTURE 1 *** 
+ *** CONTENTS: INT, DOUBLE, STRING LEN = 512 *** 
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 863 ns
+Wrote -1535666222bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 1054 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 74509 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 402 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 608 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 17842 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 514 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 365 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16511 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 292 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 417 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16762 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 261 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 355 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16049 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 317 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 407 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16945 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 467 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 290 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16220 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 254 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 283 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16066 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 300 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 395 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16654 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 242 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 496 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 14927 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 249 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 337 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16357 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 226 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 469 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16189 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 231 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 294 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15866 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 249 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 421 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16480 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 222 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 473 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16474 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 416 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 455 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15952 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 236 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 269 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16164 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 206 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 271 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15771 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 218 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 268 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15989 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 226 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 292 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15759 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 224 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 322 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16301 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 231 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 308 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15897 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 211 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 245 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15649 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 231 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 448 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15874 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 217 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 245 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15907 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 227 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 294 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15659 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 209 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 287 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15766 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 223 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 276 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15958 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 253 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 456 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 17514 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 227 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 390 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16687 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 203 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 325 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15535 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 220 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 514 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16167 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 228 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 272 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15942 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 235 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 426 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16928 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 235 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 363 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15961 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 235 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 287 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15744 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 238 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 411 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16625 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 255 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 428 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16355 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 217 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 242 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15756 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 222 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 247 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15980 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 232 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 288 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15971 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 235 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 449 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16475 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 246 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 403 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16545 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 240 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 428 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 17065 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 250 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 402 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16343 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 445 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 258 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15793 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 229 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 283 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15798 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 252 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 413 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16510 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 498 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 315 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16338 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 278 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 392 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16490 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 231 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 290 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15294 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 260 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 323 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23218 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 231 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 332 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16697 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 210 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 317 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16770 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 220 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 337 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16188 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 240 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 548 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 17911 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 505 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 537 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 17103 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 238 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 379 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 17154 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 265 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 352 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16623 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 213 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 268 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15923 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 258 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 610 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 17168 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 466 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 315 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16305 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 232 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 273 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15857 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 231 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 362 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16603 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 261 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 342 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16749 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 219 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 248 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16188 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 243 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 269 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15825 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 255 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 282 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16270 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 242 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 286 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15896 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 223 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 355 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16973 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 233 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 403 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16801 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 233 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 339 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16686 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 219 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 350 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 17246 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 209 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 306 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16228 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 450 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 296 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16178 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 206 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 278 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15865 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 230 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 283 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16064 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 226 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 274 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15773 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 276 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 342 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16324 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 235 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 266 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15967 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 247 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 358 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16074 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 236 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 321 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15996 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 237 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 258 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15938 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 254 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 333 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16357 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 273 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 343 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16502 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 254 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 288 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15922 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 238 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 285 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15960 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 275 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 297 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16575 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 477 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 255 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15905 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 240 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 290 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15302 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 224 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 278 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 14989 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 255 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 274 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15869 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 233 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 281 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16190 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 458 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 243 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15733 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 230 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 272 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15921 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 265 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 318 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16839 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 251 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 278 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15887 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 257 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 326 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16333 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 292 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 329 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 16260 ns
+Wrote 556bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 494 ns
+Wrote 1094bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 286 ns
+Wrote 527bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 15808 ns
+Wrote 556bytes to TMemoryBuffer
+Average Marshall complex len1: Binary-> 272.87 Compact-> 347.11
+Average Umarshall complex len1: binary-> 272.87 Compact -> 347.11
+ *** TESTING COMPLEX DATA STRUCTURE 2 *** 
+ *** CONTENTS: INT, DOUBLE, STRING LEN = 1024 *** 
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 768 ns
+Wrote -1535665742bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 572 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 24637 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 410 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 487 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 24202 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 335 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 567 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23303 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 334 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 408 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23497 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 299 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 335 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23557 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 279 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 326 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23777 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 259 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 336 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23348 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 263 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 313 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22965 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 234 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 300 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23397 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 232 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 491 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23048 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 256 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 266 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22897 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 240 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 290 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23057 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 263 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 282 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22701 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 260 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 268 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22863 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 230 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 294 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23353 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 223 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 272 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22578 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 259 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 346 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22568 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 239 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 308 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22781 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 266 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 328 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22666 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 271 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 370 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22601 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 246 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 310 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22426 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 236 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 319 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23018 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 261 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 276 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22692 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 268 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 313 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22983 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 250 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 336 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22736 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 234 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 331 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22657 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 234 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 507 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22687 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 299 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 384 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23959 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 296 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 354 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 24573 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 299 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 376 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23623 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 270 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 304 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 32168 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 251 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 334 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23597 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 265 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 295 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23246 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 295 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 285 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22628 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 264 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 315 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22772 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 249 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 285 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22867 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 254 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 278 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22707 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 236 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 517 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23285 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 261 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 305 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22596 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 275 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 297 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22849 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 260 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 284 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22774 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 235 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 273 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22603 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 258 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 302 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22835 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 256 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 281 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22697 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 251 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 287 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23016 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 276 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 297 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22674 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 266 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 273 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23231 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 235 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 337 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22479 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 262 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 344 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22544 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 261 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 273 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22406 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 266 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 481 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22736 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 284 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 286 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22328 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 261 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 285 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22561 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 243 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 281 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22662 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 256 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 459 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23262 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 251 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 296 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22786 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 251 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 282 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22438 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 460 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 296 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23565 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 268 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 271 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22469 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 254 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 282 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22687 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 256 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 278 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23164 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 234 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 280 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22883 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 255 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 361 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23174 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 272 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 309 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23056 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 251 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 308 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22954 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 234 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 516 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23432 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 248 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 271 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22465 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 247 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 284 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23271 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 253 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 274 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23178 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 251 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 254 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22660 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 249 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 311 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22588 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 462 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 319 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 44187 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 298 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 327 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23597 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 251 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 261 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23239 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 257 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 283 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23135 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 231 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 276 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23005 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 246 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 275 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22383 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 259 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 282 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 27554 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 259 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 260 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22676 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 257 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 302 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22765 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 239 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 274 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23047 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 242 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 264 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23070 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 253 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 272 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22555 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 256 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 288 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23000 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 248 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 292 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23261 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 266 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 315 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22474 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 250 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 299 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23187 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 245 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 272 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22475 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 450 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 514 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22945 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 242 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 437 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 24579 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 257 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 284 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22818 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 301 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 316 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 33133 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 286 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 319 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23478 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 274 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 308 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23113 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 258 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 311 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23076 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 249 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 308 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23086 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 254 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 304 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23162 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 238 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 304 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22861 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 236 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 311 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 23057 ns
+Wrote 1068bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 256 ns
+Wrote 2118bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 277 ns
+Wrote 1039bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 22824 ns
+Wrote 1068bytes to TMemoryBuffer
+Average Marshall String len2: Binary-> 270.87 Compact-> 323.5
+Average Umarshall string len2: binary-> 0 Compact -> 0
+ *** TESTING COMPLEX DATA STRUCTURE 3 *** 
+ *** CONTENTS: INT, DOUBLE, STRING LEN = 2048 *** 
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 730 ns
+Wrote -1100894934bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 49302 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 37052 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 363 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 1104 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35372 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 545 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 717 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35135 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 335 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 695 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35458 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 317 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 721 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35493 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 323 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 700 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 44904 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 304 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 733 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35439 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 292 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 696 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35322 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 270 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 694 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35210 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 316 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 656 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35338 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 305 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 674 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35386 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 281 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 621 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35720 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 479 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 663 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35009 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 279 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 620 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 36909 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 313 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 660 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35335 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 542 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 694 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35137 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 312 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 616 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35116 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 293 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 669 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35920 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 304 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 620 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35180 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 297 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 632 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35161 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 304 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 650 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35191 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 295 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 638 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35771 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 308 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 606 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 34916 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 300 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 599 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35142 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 499 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 620 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35083 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 293 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 624 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35064 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 304 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 679 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35390 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 304 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 755 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35156 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 510 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 645 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35279 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 322 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 639 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35232 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 303 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 666 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35436 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 278 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 654 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35370 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 483 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 630 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 34873 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 292 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 725 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 34263 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 317 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 628 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 34995 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 276 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 1459 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 36103 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 336 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 674 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 34790 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 285 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 841 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35318 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 288 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 875 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35314 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 262 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 621 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35261 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 321 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 617 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35655 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 288 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 817 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35426 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 289 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 632 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35430 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 293 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 637 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 34736 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 254 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 878 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 30254 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 238 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 580 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 460311 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 580 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 4105 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 50747 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 388 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 1298 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 36320 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 350 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 827 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35692 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 323 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 736 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 36466 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 272 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 742 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 42440 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 353 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 765 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 36004 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 532 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 724 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35638 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 320 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 705 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35315 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 536 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 725 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35120 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 508 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 708 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35285 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 340 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 734 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35829 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 280 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 817 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35527 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 262 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 712 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35573 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 482 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 719 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 34929 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 485 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 619 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35689 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 246 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 691 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35026 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 317 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 669 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 34852 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 279 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 635 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 36118 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 488 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 659 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35487 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 281 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 649 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35416 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 267 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 689 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35622 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 281 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 601 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 41007 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 279 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 755 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 34853 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 281 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 618 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 36603 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 494 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 632 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35034 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 285 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 683 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35638 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 253 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 679 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35445 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 395 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 649 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35569 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 493 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 648 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35113 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 259 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 633 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35586 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 305 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 1021 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 36166 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 301 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 629 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35270 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 299 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 594 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 40392 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 275 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 631 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35671 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 273 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 642 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35316 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 294 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 615 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35178 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 284 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 597 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 183569 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 434 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 2469 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 36763 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 318 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 809 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35374 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 306 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 902 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35627 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 291 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 614 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35738 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 295 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 626 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35500 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 294 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 810 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35626 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 313 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 930 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35226 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 299 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 680 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35282 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 318 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 691 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35180 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 281 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 609 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 34928 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 275 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 889 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35416 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 281 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 657 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35391 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 298 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 602 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35628 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 282 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 650 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35056 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 280 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 699 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35103 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 275 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 664 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35254 ns
+Wrote 2092bytes to TMemoryBuffer
+Time to marshall string of 512 chars with TBinaryProtocol: 0 s 293 ns
+Wrote 4166bytes to TMemoryBuffer
+Time to marshall integer with TCompactProtocol: 0 s 688 ns
+Wrote 2063bytes to TMemoryBuffer
+Time to marshall integer with TJsonProtocol: 0 s 35846 ns
+Wrote 2092bytes to TMemoryBuffer
+Average Marshall String len3: Binary-> 335.15 Compact-> 1244.2
+Average Umarshall string len3: binary-> 0 Compact -> 0

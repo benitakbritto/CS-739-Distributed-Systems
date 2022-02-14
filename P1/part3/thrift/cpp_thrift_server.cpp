@@ -42,7 +42,7 @@ public:
 
     virtual void AcceptString(std::string& _return, const string& string_message){
         // cout<< "Received string: " << string_message << endl;
-        cout<< "Received string" << endl;
+        //cout<< "Received string" << endl;
         _return = "Received string";
     }
 

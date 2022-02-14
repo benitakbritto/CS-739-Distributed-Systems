@@ -35,6 +35,7 @@ void readMemorySeq();
 void readOneMBSeq(); 
 void readSSDRandom();
 void showFlagUsage();
+void calculateL1Cache();
 
 int main(int argc, char **argv)
 {
@@ -52,6 +53,7 @@ int main(int argc, char **argv)
         case 1:
         {
 
+            calculateL1Cache();
             break;
         }
         // TODO: Branch mispredict
@@ -197,6 +199,52 @@ void readSSDRandom()
     close(fd);
 }
 
+void calculateL1Cache()
+{
+	struct timespec start;
+	struct timespec stop;
+	int arraySize = 30000; // L1 size is 128 Kib
+	int loops = 10000;
+        int *array = (int *)malloc(sizeof(int) * arraySize);
+        // initialize array
+	for(int i=0; i<arraySize; i++)
+	  array[i] = i+1;
+        int x=0;
+	// calculate base time
+	clock_gettime(CLOCK_TYPE, &start);
+	for(int i=0; i<loops; i++){
+          x=0;
+	  for(int j=0; j<arraySize; j++){
+            x++;
+	  }
+	}
+        clock_gettime(CLOCK_TYPE, &stop);
+        long long int baseNsecond = (stop.tv_sec - start.tv_sec) * 1000000000L +                                       (stop.tv_nsec - start.tv_nsec);
+        printf("base time %d\n",baseNsecond);
+
+	// bring the array into L1 cache
+	for(int i=0; i<loops; i++){
+          for(int j=0; j<arraySize; j++){
+            x = array[j];
+	  }
+	}
+        int var;
+        //calculate L1 access + loop time
+	clock_gettime(CLOCK_TYPE, &start);
+	for(int i=0; i<loops; i++){
+          x=0;
+	  for(int j=0; j<arraySize; j++){
+            x++;
+	    var = array[j];
+	  }
+	}
+        clock_gettime(CLOCK_TYPE, &stop);
+        long long int finalNsecond = (stop.tv_sec - start.tv_sec) * 1000000000L                                         + (stop.tv_nsec - start.tv_nsec);
+        printf("final time %d\n",finalNsecond);
+	printf("time for L1 Cache %f nsec\n", ((finalNsecond - baseNsecond)*1.0)/
+				            (loops*arraySize*1.0));
+
+}
 void readOneMBSeq()
 {
     struct timespec start;

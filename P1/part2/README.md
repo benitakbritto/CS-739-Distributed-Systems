@@ -31,6 +31,11 @@ Message drops in serverbasic.c (line 22-24)
 Measure round-trip time for various drop percentages while sending a stream of packets.
 RTT calculation in client.c (line 154, 165, 169)
 
+Inference:
+- We observe that with the increase in server drop percentage, the probability of packet being dropped increases which increases the average Round Trip Time
+- Since the probability of drop increases, there are more chances of one packet being dropped multiple times before being accepted by server
+- We send 1k packets from client to server and keep on retrying untill they are acknowledged. We set the timeout to be 1sec for easy differentiation of multiple dropped packets
+
 C. Compiler Optimization:
 For the above experiments, what’s the observation you made for compiler optimization’s influence on performance? 
 changes made to Makefile compilation command with optimization flags O1, O2, O3, Os, Ofast

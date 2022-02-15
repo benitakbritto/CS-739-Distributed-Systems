@@ -52,13 +52,13 @@ int main(int argc, char **argv)
             calculateL1Cache();
             break;
         }
-        // TODO: Branch mispredict
+        // Branch mispredict
         case 2:
         {
             branchMispredict();
             break;
         }
-        // TODO: L2 cache reference
+        // L2 cache reference
         case 3:
         {
             calculateL2Cache();

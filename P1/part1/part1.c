@@ -1,9 +1,3 @@
-/*
-References:
-- Mutex lock: https://docs.oracle.com/cd/E19455-01/806-5257/sync-12/index.html
-*/
-
-
 #include <pthread.h>
 #include <stdio.h>
 #include <time.h>
@@ -49,7 +43,7 @@ int main(int argc, char **argv)
 
     switch(atoi(argv[1]))
     {
-        // TODO: L1 cache reference  
+        // L1 cache reference  
         case 1:
         {
 
@@ -81,19 +75,19 @@ int main(int argc, char **argv)
             accessMainMemory();
             break;
         }
-        // TODO: Compress 1K bytes with Zippy 
+        // Compress 1K bytes with Zippy 
         case 6:
         {
-
+	    printf("Check README.md for directions\n");
             break;
         }
-        // TODO: Send 1K bytes over 1 Gbps network
+        // Send 1K bytes over 1 Gbps network
         case 7:
         {
-
+	    printf("Check README.md. Executed using a command\n");
             break;
         }
-        // TODO: Read 4K randomly from SSD*
+        // Read 4K randomly from SSD*
         case 8:
         {
             for (int i = 0; i < ITERATIONS; i++)
@@ -101,17 +95,16 @@ int main(int argc, char **argv)
 
             break;
         }
-        // UNSURE: Read 1 MB sequentially from memory
+        // Read 1 MB sequentially from memory
         case 9:
         {
-            
             readMemorySeq();
             break;
         }
-        // TODO: Round trip within same datacenter
+        // Round trip within same datacenter
         case 10:
         {
-
+	    printf("Check README.md. Executed using a command\n");
             break;
         }       
         // Read 1 MB sequentially from SSD*
@@ -121,7 +114,7 @@ int main(int argc, char **argv)
                 readOneMBSeq();
             break;
         }
-        // UNSURE: Disk seek
+        // Disk seek
         case 12:
         {
             for (int i = 0; i < ITERATIONS; i++)
@@ -135,10 +128,10 @@ int main(int argc, char **argv)
                 readOneMBSeq();
             break;
         }
-        // TODO: Send packet CA->Netherlands->CA
+        // Send packet CA->Netherlands->CA
         case 14:
         {
-
+            printf("Check README.md. Executed using a command\n");
             break;
         }
         default:
@@ -245,6 +238,7 @@ void calculateL1Cache()
 				            (loops*arraySize*1.0));
 
 }
+
 void readOneMBSeq()
 {
     struct timespec start;

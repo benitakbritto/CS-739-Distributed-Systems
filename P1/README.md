@@ -20,7 +20,7 @@ Note: pwd is P1/part0
 ```
 ./part0 <num>
 ```
-<num> lies in the [0,3]
+num lies in the [0,3]
 * ./part0 0: Uses CLOCK_REALTIME to measure the execution time of simpleLoop()
 * ./part0 1: Uses CLOCK_MONOTONIC to measure the execution time of simpleLoop()
 * ./part0 2: Uses CLOCK_PROCESS_CPUTIME_ID to measure the execution time of simpleLoop()
@@ -59,7 +59,7 @@ Note: pwd is P1/part0
 	* Random file: 629,614.43 ns
 
 ### Send 1K bytes over 1 Gbps network
-* Command: <TODO>
+* Command: TODO
 * Measurement: 40,000 ns
 
 ### Read 4K randomly from SSD*
@@ -71,7 +71,7 @@ Note: pwd is P1/part0
 * Measurement: 357,071.7049 ns
 
 ### Round trip within same datacenter
-* Command: <TODO>
+* Command: TODO
 * Measurement: 180,000 ns
 
 ### Read 1 MB sequentially from SSD*
@@ -91,7 +91,7 @@ Note: pwd is P1/part0
       * Median: 79,950.0 ns
 
 ###  Send packet CA->Netherlands->CA
-* Command: <TODO>
+* Command: TODO
 * Measurement: 114,000,000 ns
 
 ### Compile
@@ -232,7 +232,7 @@ Invokes the test case
 ```
 ./greeter_client -t <num>
 ```
-<num> lies in [1-8]
+num lies in [1-8]
 * ./greeter_client -t 1: Marshal & Unmarshall Int
 * ./greeter_client -t 2: Marshal & Unmarshall Double
 * ./greeter_client -t 3: Marshal & Unmarshall Strings

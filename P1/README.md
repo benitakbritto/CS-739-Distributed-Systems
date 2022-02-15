@@ -294,6 +294,27 @@ num lies in [1-8]
 
 # part 3 - thrift 
 
+
+### Marshaling and unmarshaling measurements of int, double, string (of varying size) and a complex structure on both the platforms. * Code Location: P1/part3/thrift/
+	* Marshaling: <Message Protocol>::writeString or writeInt or writeDouble 
+	* Unmarshaling: <Message Protocol>::readString or readInt or readDouble 
+	Message protocol can be either Binary or Compact or Json. We are testing for Binary and Compact protocol
+
+### Round trip time for a small message. Compare it against subsequent latencies. Divide the latency to request and response times. Do this on both single and two machines. Compare both the platforms against Part 2 A.
+* Code Location for client: P1/part3/thrift/cpp_thrift_with_marshalling.cpp
+* Code Location for server: P1/part3/thrift/cpp_thrift_server.cpp
+
+### Total bandwidth achieved for large amounts of data on Thrift. Using server streaming and client streaming. How large do messages have to be to reach max bandwidth. How does this compare against Part 2 B.
+* Code Location for client: P1/part3/thrift/cpp_thrift_with_marshalling.cpp
+* Code Location for server: P1/part3/thrift/cpp_thrift_server.cpp
+
+
+### Compare against compiler optimizations. Highlight differences if any.
+* Code Location: MakeFile in thrift installation and provide appropriate flags while running ./configure 
+
+
+
+
 ## SETUP
 ```
 $ mkdir -p thrift

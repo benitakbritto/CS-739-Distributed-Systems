@@ -30,6 +30,8 @@ void readOneMBSeq();
 void readSSDRandom();
 void showFlagUsage();
 void calculateL1Cache();
+void branchMistpredict();
+void calculateL2Cache();
 
 int main(int argc, char **argv)
 {
@@ -53,13 +55,13 @@ int main(int argc, char **argv)
         // TODO: Branch mispredict
         case 2:
         {
-
+            branchMispredict();
             break;
         }
         // TODO: L2 cache reference
         case 3:
         {
-
+            calculateL2Cache();
             break;
         }
         // Mutex lock/unlock
@@ -236,6 +238,97 @@ void calculateL1Cache()
         printf("final time %d\n",finalNsecond);
 	printf("time for L1 Cache %f nsec\n", ((finalNsecond - baseNsecond)*1.0)/
 				            (loops*arraySize*1.0));
+
+}
+
+void calculateL2Cache()
+{
+	struct timespec start;
+	struct timespec stop;
+	int arraySize = 250000;   // L2 size on CSL is 1 Mib = 250,000 integers
+	int l1Size = 34000;       // size more than L1 size ie 128Kib = 32000 integers
+	int loops = 1000;        // number of iterations
+        int *array = (int *)malloc(sizeof(int) * arraySize);
+        for(int i=0; i<arraySize; i++)
+	  array[i] = i+1;
+        int x=0;
+        int itr;
+	clock_gettime(CLOCK_TYPE, &start);
+	for(int i=0; i<loops; i++){
+	  x=0;
+	  for(int j=0; j<arraySize; j+=16){      // increment by 16 to avoid cache line prefetch
+            x++;
+	  }
+	}
+        clock_gettime(CLOCK_TYPE, &stop);
+        long long int baseNsecond = (stop.tv_sec - start.tv_sec) * 1000000000L + 
+		                     (stop.tv_nsec - start.tv_nsec);
+        printf("base time %d\n",baseNsecond);
+
+	// bring the array into L2 cache
+	for(int i=0; i<loops; i++){
+          for(int j=0; j<arraySize; j++){
+            x = array[j];
+	  }
+	}
+        int var;
+        x = 0;
+
+	clock_gettime(CLOCK_TYPE, &start);
+	for(int i=0; i<loops; i++){
+	  x=0;
+	  for(int j=0; j<arraySize; j+=16){
+	    x++;
+            var = array[j];
+	  }
+	}
+        clock_gettime(CLOCK_TYPE, &stop);
+        long long int finalNsecond = (stop.tv_sec - start.tv_sec) * 1000000000L + 
+		                     (stop.tv_nsec - start.tv_nsec);
+        printf("final time %d\n",finalNsecond);
+	printf("time for L2 Cache %f \n", ((finalNsecond - baseNsecond)*16.0)/
+				            (loops*1.0*arraySize));
+
+}
+
+void branchMispredict()
+{
+	struct timespec start;
+	struct timespec stop;
+
+
+        int counter = 0;
+	int checker = 10;
+        int loops = 10000000;
+        int *num = (int *)malloc(sizeof(int) * loops);
+	for(int i=0; i<loops; i++){
+          num[i] = rand()%100;
+	}
+
+	clock_gettime(CLOCK_TYPE, &start);
+	for(int i=0; i<loops; i++){
+          counter++;
+	}
+        clock_gettime(CLOCK_TYPE, &stop);
+        long long int baseNsecond = (stop.tv_sec - start.tv_sec) * 1000000000L + 
+		                     (stop.tv_nsec - start.tv_nsec);
+        printf("base time %d\n",baseNsecond); 
+        checker++;
+	counter = 0;
+
+	clock_gettime(CLOCK_TYPE, &start);
+	for(int i=0; i<loops; i++){
+          counter++;
+	  if(num[i] > 100){
+	      i++;
+              printf("Entered branch \n");
+	  }
+	}
+        clock_gettime(CLOCK_TYPE, &stop);
+        long long int finalNsecond = (stop.tv_sec - start.tv_sec) * 1000000000L + 
+		                      (stop.tv_nsec - start.tv_nsec);
+        printf("final time %d\n",finalNsecond);
+	printf("time for branch mispredict %f \n", ((finalNsecond - baseNsecond)*1.0)/loops*1.0);
 
 }
 

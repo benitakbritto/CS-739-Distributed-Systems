@@ -147,7 +147,7 @@ int main(int argc, char **argv)
 
 void showFlagUsage()
 {
-    printf("Usage: -t <num>\n");
+    printf("Usage: ./part1 <num>\n");
     printf("\t where num is:\n");
     printf("\t 1 = L1 cache reference\n");
     printf("\t 2 = Branch mispredict\n");

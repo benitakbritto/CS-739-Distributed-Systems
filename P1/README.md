@@ -223,12 +223,12 @@ pwd: P1/grpc/grpc/examples/cpp/helloworld/cmake/build
 ```
 	
 * Run the client:
-	* This shows the how to invoke the test cases
+This shows the how to invoke the test cases
 ```
 ./greeter_client -h 
 ```
 
-	* Invokes the test case
+Invokes the test case
 ```
 ./greeter_client -t <num>
 ```

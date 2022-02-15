@@ -147,6 +147,63 @@ make
 ./client ${client_port} ${server_hostname} ${server_port}
 ...
 
+Reliable Communication
+Reason about the following,
+
+A. Performance:
+
+Overhead of sending a message.
+File - client.c (line 50-54) time taken by sendto() call 
+
+Total round trip time of sending a message and receiving an ack
+File - client.c (line 50-61) time taken before sending mssg and after receiving ack
+Calculated by method timespec_diff (line 17-25)
+
+Bandwidth achieved when sending a large number of max-sized packets between sender and receiver.
+File - client.c (line 176) avg rtt is calculated in (line 164-170) 
+
+Above three running on a single machine vs two.
+We have all readings in 1 machine vs 2.
+
+Explain what limits your bandwidth and how this can be done better.
+Explained in presentation
+
+B. Reliability:
+
+Demonstrate your library works by controlled message drops.
+Timeout set by setsockopt() and checked by err code (line 66) 
+Retries are implemented in client.c (line 146-153)
+
+The receiver code must be equipped to drop a percentage of packets randomly.
+Message drops in serverbasic.c (line 22-24)
+
+Measure round-trip time for various drop percentages while sending a stream of packets.
+RTT calculation in client.c (line 154, 165, 169)
+
+C. Compiler Optimization:
+For the above experiments, what’s the observation you made for compiler optimization’s influence on performance? 
+changes made to Makefile compilation command with optimization flags O1, O2, O3, Os, Ofast
+results mentioned in presentation
+
+Inferences:
+
+Overhead:
+We measure overhead by taking timing for sento() call. This method sends data on socket and returns. Non- blocking call.
+Overhead increases with increase in packet size as a fraction of rtt too because large packets require more time in buffer management, message copies, checksumming, as well as for controlling the network interface.
+On a single machine, one way processing overhead is ~20%-30% of round trip time. Similar overhead would be seen at server side. This overhead causes high end-to-end latencies and thus limits our bandwidth. For 2 machines, the network latency increases, hence overheads are not a very significant factor. They contribute by ~5-8% to rtt. For small messages, reducing the overhead would help us achieve more bandwidth.
+We observe a dip close in overhead around 1500-2k packet size (MTU)
+
+Bandwidth:
+The communication bandwidth of a system is often measured by sending a virtually infinite stream from one node to another. We are sending a packet and waiting for acknowledgement from server.
+
+For VMs located at California and Iowa, we observed packets> 1500 bytes timing out even when server drop % was set to 0. The network congestion and distance between the machines also impacts the throughput since UDP is connectionless.
+Our bandwidth is limited by packet _size and non streaming fashion.
+We can improve bandwidth by sending packets in streaming fashion and by reducing processing overhead.
+
+Compiler Optimization:
+We experimented with optimizations -O1, -O2, -O3, -Os and -Ofast. The size of the binary decreased and there was a slight improvement in rtt and bandwidth measurements but not too significant.
+
+
 # part 3
 ### General 
 * For marshaling and unmarshaling we test on int, double, strings of lengths 512, 1024 and 2048, and complex data types 1 (int, double, string len = 512), 2 (int, double, string len = 1024), 3 (int, double, string len = 2048)

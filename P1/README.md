@@ -240,3 +240,12 @@ where num is
 $ ./cpp_client_with_marshalling_opt -t <option_number>
 ```
 
+# Miscellaneous 
+### Machines Used
+* CSL Machines
+* Azure VM located in West US 2 (w HDD and w/o HDD)
+* GCP VM located in Iowa
+	
+### Presentation
+* Slide Deck: https://docs.google.com/presentation/d/1i-TvAvCnARsqQ6crZJyns8QpA7r1x_XLwjUb07Pxmxc/edit?usp=sharing
+* Google Sheets (Results): https://docs.google.com/spreadsheets/d/1AiyX7XGcEiT_zEjRezv1x7HMzUYx2vdVW5pHhvUbOe4/edit?usp=sharing

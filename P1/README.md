@@ -10,12 +10,13 @@ We use clock_gettime() instead of gettimeofday() because it gives us precision i
 We use CLOCK_MONOTONIC because it is used for elapsed time calculation (a perfect use case for our project) and it is not affected by changes in system time-of-day clock.
 
 ### Compile
+Note: pwd is P1/part0
 ```
-cd part0
 gcc -o part0 part0.c -Wall
 ```
 
 ### Run
+Note: pwd is P1/part0
 ```
 ./part0 <num>
 ```
@@ -27,78 +28,124 @@ gcc -o part0 part0.c -Wall
       
 
 # part 1
+### L1 cache reference
+* Code Location: part1/part1.c
+* Measurement: 0.515 ns
+
+### Branch mispredict
+* Code Location: part1/part1.c
+* Measurement: 9 ns
+
+### L2 cache reference
+* Code Location: part1/part1.c
+* Measurement: 0.58 ns
+
+### Mutex lock/unlock
+* Code Location: part1/part1.c
+* Measurement: 
+	* Lock: 36.36 ns, Unlock: 18.34 ns (On considering all 100 iter)
+	* Lock: 18.494949494949495 ns, Unlock: 18.0 ns (On ignoring first run)
+
+### Main memory reference
+* Code Location: part1/part1.c
+* Measurement: 
+	* Avg: 275.28 ns
+      * Median: 163.5 ns
+
+### Compress 1K bytes with Zippy
+* Code Location: snappy_test_tool.cc
+* Measurement: 
+	* File with a's: 537,424.09 ns
+	* Random file: 629,614.43 ns
+
+### Send 1K bytes over 1 Gbps network
+* Command: <TODO>
+* Measurement: 40,000 ns
+
+### Read 4K randomly from SSD*
+* Code Location: part1/part1.c
+* Measurement: 7,588.65 ns
+
+### Read 1 MB sequentially from memory
+* Code Location: part1/part1.c
+* Measurement: 357,071.7049 ns
+
+### Round trip within same datacenter
+* Command: <TODO>
+* Measurement: 180,000 ns
+
+### Read 1 MB sequentially from SSD*
+* Code Location: part1/part1.c
+* Measurement: 803,255.65 ns
+
+### Disk seek
+* Code Location: part1/part1.c
+* Measurement: 
+	* Avg: 833.0 ns
+      * Median: 600.0 ns
+
+### Read 1 MB sequentially from disk
+* Code Location: part1/part1.c
+* Measurement: 
+	* Avg: 93,334.36 ns
+      * Median: 79,950.0 ns
+
+###  Send packet CA->Netherlands->CA
+* Command: <TODO>
+* Measurement: 114,000,000 ns
+
+### Compile
+* For part1.c:
+Note: pwd is P1/part1
 ```
 gcc -o part1 part1.c -Wall
 ```
 
-TODO: Add description of command line args
-## Run
+* For snappy_test_tool.cc
+Note: pwd is P1/part1
 ```
-./part1 <command line arg>
+git clone https://github.com/google/snappy.git
+cd snappy
+mv ../snappy_test_tool.cc .
+cd build
+make
 ```
 
-L1 cache reference   			File :  
-Branch mispredict			File : branch_mispredict.c
-L2 cache reference			File :
-Mutex lock/unlock			File :
-Main memory reference			File :
-Compress 1K bytes with Zippy 		File :
-Send 1K bytes over CSL machines		File : used client.c of part 2
-Read 4K randomly from SSD*		File :
-Read 1 MB sequentially from memory	File :
-Round trip within same datacenter		ping 2 rockhopper machines
-Read 1 MB sequentially from SSD*		File :
-Disk seek				File :
-Read 1 MB sequentially from disk		File :
-Send packet CA->Netherlands->CA		File : ping Netherlands public IP
+### Run
+* For part1.c:
+Note: pwd is P1/part1
+```
+./part1 <num>
+```
+where num lies in [1-14]
+* ./part1 1: Runs L1 cache reference
+* ./part1 2: Runs Branch mispredict
+* ./part1 3: Runs L2 cache reference
+* ./part1 4: Runs Mutex lock/unlock
+* ./part1 5: Runs Main memory reference
+* ./part1 6: Runs Compress 1K bytes with Zippy
+* ./part1 7: Runs Send 1K bytes over 1 Gbps network
+* ./part1 8: Runs Read 4K randomly from SSD
+* ./part1 9: Runs Read 1 MB sequentially from memory
+* ./part1 10: Runs Round trip within same datacenter
+* ./part1 11: Runs Read 1 MB sequentially from SSD
+* ./part1 12: Runs Disk seek
+* ./part1 13: Runs Read 1 MB sequentially from disk
+* ./part1 14: Runs Send packet CA->Netherlands->CA
 
+* For snappy_test_tool.cc
+Note: pwd is P1/part1/snappy/build
+```
+snappy_test_tool <path of file to be compressed>
+```
 
 # part 2
-## Run
+### Run
 ...
 make
 ./serverbasic ${port_num} ${drop_%}
 ./client ${client_port} ${server_hostname} ${server_port}
 ...
-
-
-Reliable Communication:
-
-A. Performance:
-
-Overhead of sending a message.
-File - client.c (line 50-54) time taken by sendto() call
-
-Total round trip time of sending a message and receiving an ack
-File - client.c (line 50-61) time taken before sending mssg and after receiving ack
-Calculated by method timespec_diff (line 17-25)
-
-Bandwidth achieved when sending a large number of max-sized packets between sender and receiver.
-File - client.c (line 176) avg rtt is calculated in (line 164-170)
-
-Above three running on a single machine vs two.
-We have all readings in 1 machine vs 2.
-
-Explain what limits your bandwidth and how this can be done better.
-Explained in presentation
-
-B. Reliability:
-
-Demonstrate your library works by controlled message drops.
-Timeout set by setsockopt() and checked by err code (line 66)
-Retries are implemented in client.c (line 146-153)
-
-The receiver code must be equipped to drop a percentage of packets randomly.
-Message drops in serverbasic.c (line 22-24)
-
-Measure round-trip time for various drop percentages while sending a stream of packets.
-RTT calculation in client.c (line 154, 165, 169)
-
-C. Compiler Optimization:
-For the above experiments, what’s the observation you made for compiler optimization’s influence on performance?
-changes made to Makefile compilation command with optimization flags O1, O2, O3, Os, Ofast
-results mentioned in presentation
-
 
 # part 3 - grpc:
 ## SETUP

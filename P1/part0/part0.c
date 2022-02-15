@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define ITERATIONS              100
+#define ITERATIONS              500
 #define DEBUG                   0
 #define dbgprintf(...)          if (DEBUG) { printf(__VA_ARGS__); }
 

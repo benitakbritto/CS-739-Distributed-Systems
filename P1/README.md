@@ -20,7 +20,7 @@ Note: pwd is P1/part0
 ```
 ./part0 <num>
 ```
-<num> lies in the [0,3]
+num lies in the [0,3]
 * ./part0 0: Uses CLOCK_REALTIME to measure the execution time of simpleLoop()
 * ./part0 1: Uses CLOCK_MONOTONIC to measure the execution time of simpleLoop()
 * ./part0 2: Uses CLOCK_PROCESS_CPUTIME_ID to measure the execution time of simpleLoop()
@@ -223,16 +223,16 @@ pwd: P1/grpc/grpc/examples/cpp/helloworld/cmake/build
 ```
 	
 * Run the client:
-	* This shows the how to invoke the test cases
+This shows the how to invoke the test cases
 ```
 ./greeter_client -h 
 ```
 
-	* Invokes the test case
+Invokes the test case
 ```
 ./greeter_client -t <num>
 ```
-<num> lies in [1-8]
+num lies in [1-8]
 * ./greeter_client -t 1: Marshal & Unmarshall Int
 * ./greeter_client -t 2: Marshal & Unmarshall Double
 * ./greeter_client -t 3: Marshal & Unmarshall Strings

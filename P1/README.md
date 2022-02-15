@@ -1,14 +1,30 @@
 # part 0
-## Compile
+
+* Code Location: part0/part0.c
+* Results Location: results/part0/{0-3}.txt
+
+### Which clock to we use? 
+We use clock_gettime() instead of gettimeofday() because it gives us precision in nanoseconds. This is beneficial as we need to conduct experiments that require nanosecond precision.
+
+### Which clock type do we use for our experiments?
+We use CLOCK_MONOTONIC because it is used for elapsed time calculation (a perfect use case for our project) and it is not affected by changes in system time-of-day clock.
+
+### Compile
 ```
+cd part0
 gcc -o part0 part0.c -Wall
 ```
 
-TODO: Add description of command line args
-## Run
+### Run
 ```
-./part0 <command line arg>
+./part0 <num>
 ```
+<num> lies in the [0,3]
+./part0 0: Uses CLOCK_REALTIME to measure the execution time of simpleLoop()
+./part0 1: Uses CLOCK_MONOTONIC to measure the execution time of simpleLoop()
+./part0 2: Uses CLOCK_PROCESS_CPUTIME_ID to measure the execution time of simpleLoop()
+./part0 3: Uses CLOCK_THREAD_CPUTIME_ID to measure the execution time of simpleLoop()
+      
 
 # part 1
 ```

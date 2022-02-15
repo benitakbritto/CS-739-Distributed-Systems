@@ -106,7 +106,7 @@ Note: pwd is P1/part1
 ```
 git clone https://github.com/google/snappy.git
 cd snappy
-mv ../snappy_test_tool.cc .
+mv ../snappy_test_tool.cc snappy_test_tool.cc
 cd build
 make
 ```
@@ -147,47 +147,100 @@ make
 ./client ${client_port} ${server_hostname} ${server_port}
 ...
 
-# part 3 - grpc:
-## SETUP
-```
-$ export MY_INSTALL_DIR=$HOME/.local
-$ mkdir -p $MY_INSTALL_DIR
-$ export PATH="$MY_INSTALL_DIR/bin:$PATH"
-```
+# part 3
+### General 
+* For marshaling and unmarshaling we test on int, double, strings of lengths 512, 1024 and 2048, and complex data types 1 (int, double, string len = 512), 2 (int, double, string len = 1024), 3 (int, double, string len = 2048)
+* For small messages, we test on the same message types as above.
+* We test on string of varying lengths (128 to 30 MB) for large messages.
+* We approximately calculate Request and Response times as follows:
+	* Request Time = Time to marshal request message + Network Time + Time to marshal request message
+	* Response Time = Time to marshal response message + Network Time + Time to marshal response message
+	* We obtain the (2 * Network Time) on getting the RTT of small messages and the Marshal & Unmarshal times from Part3-1 and Part3-2 sections as RTT = Request Time + Response Time.
+* For streaming, we implement client side streaming as we need to experiment with sending large messages from the client. We implement 2 types of chunking mechanisms for streaming. Client Streaming 1 divides the string into 128 byte streams while Client Streaming 2 always divides a string into 8 parts. 
+* We use optimization -O0 and -O3.
+	
+### Analysis
+* We notice that Thrift performs better than gRPC for marshaling and unmarhaling.
+* For complex data types, we observe that gRPC does better than the expected time while Thrift does not (Expected time for complex type = actual time taken to marshal int + actual to time taken to marshal double + actual time taken to marshal string. Actual time for complex type = Time measure by our experiment). 
+* Unmarshaling takes longer than marshaling, for gRPC and Thrift. 
+* Thrift performs better than gRPC for smaller messages (giving better RTT). Possible reason: gRPC’s multiplexing, application-level protocol.
+* gRPC performs bettern than Thrift for larger messages (giving better bandwidth). Possible reason: gRPC’s multiplexing.
+* gRPC bandwidth saturates at ~60KB without streaming. Client streaming for gRPC and Thrift seem to saturate around ~10 MB.
+* UDP outforms gRPC and Thrift. Possible reason: Less overhead due to connection-less protocol. 
+* Compiler optimization provides better results. 
 
-## BUILD FOR GRPC AND PROTOBUF
+# part 3 - gRPC
+### Marshaling and unmarshaling measurements of int, double, string (of varying size) and a complex structure on both the platforms. * Code Location: P1/part3/grpc/helloworld.pb.cc
+	* Marshaling: <Message Type>::_InternalSerialize()
+	* Unmarshaling: <Message Type>::_InternalParse()
+
+### Round trip time for a small message. Compare it against subsequent latencies. Divide the latency to request and response times. Do this on both single and two machines. Compare both the platforms against Part 2 A.
+* Code Location: P1/part3/grpc/greeter_{client,server}.cc
+
+### Total bandwidth achieved for large amounts of data on Thrift and grpc. Using server streaming and client streaming. How large do messages have to be to reach max bandwidth. How does this compare against Part 2 B.
+* Code Location: P1/part3/grpc/greeter_{client,server}.cc
+
+
+### Compare against compiler optimizations. Highlight differences if any.
+* Code Location: CMakeLists.txt
+* Code Change: set add_compile_options(-O3)
+
+
+### Setup
+pwd: P1/part3/grpc
 ```
-$ cd part3/grpc
-$ mkdir -p cmake/build
-$ pushd cmake/build
-$ cmake -DgRPC_INSTALL=ON \
+export MY_INSTALL_DIR=$HOME/.local
+mkdir -p $MY_INSTALL_DIR
+export PATH="$MY_INSTALL_DIR/bin:$PATH"
+git clone --recurse-submodules -b v1.43.0 https://github.com/grpc/grpc
+cd grpc
+mkdir -p cmake/build
+pushd cmake/build
+cmake -DgRPC_INSTALL=ON \
       -DgRPC_BUILD_TESTS=OFF \
       -DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR \
       ../..
-$ make -j 4
-$ make install
-$ popd
+make -j 4
+make install
+popd
+mv ../helloworld.proto examples/protos/helloworld.proto
+mv../greeter_client.cc examples/cpp/helloworld/greeter_client.cc
+mv ../greeter_server.cc examples/cpp/helloworld/greeter_server.cc
+cd examples/cpp/helloworld
+mkdir -p cmake/build
+pushd cmake/build
+cmake -DCMAKE_PREFIX_PATH=$MY_INSTALL_DIR ../..
+make -j 4
+mv ../../../../../../helloworld.pb.cc helloworld.pb.cc
+make -j 4
 ```
 
-## BUILD THE PROJECT CODE
+### Run
+pwd: P1/grpc/grpc/examples/cpp/helloworld/cmake/build
+* Run the server:
 ```
-$ cd examples/cpp/helloworld
-$ mkdir -p cmake/build
-$ pushd cmake/build
-$ cmake -DCMAKE_PREFIX_PATH=$MY_INSTALL_DIR ../..
-$ make -j 4
+./greeter_server
+```
+	
+* Run the client:
+	* This shows the how to invoke the test cases
+```
+./greeter_client -h 
 ```
 
-## RUN THE SERVER
+	* Invokes the test case
 ```
-$ ./greeter_server
+./greeter_client -t <num>
 ```
-
-TODO: Add description of command line args
-## RUN THE CLIENT (ON ANOTHER TERMINAL)
-```
-$ ./greeter_client <command line args>
-```
+<num> lies in [1-8]
+* ./greeter_client -t 1: Marshal & Unmarshall Int
+* ./greeter_client -t 2: Marshal & Unmarshall Double
+* ./greeter_client -t 3: Marshal & Unmarshall Strings
+* ./greeter_client -t 4: Marshal & Unmarshall Complex Data Structures
+* ./greeter_client -t 5: Round trip time of small messages
+* ./greeter_client -t 6: Round trip time of large messages (without streaming)
+* ./greeter_client -t 7: Round trip time of large messages (with client side streaming 1)
+* ./greeter_client -t 8: Round trip time of large messages (with client side streaming 2)
 
 # part 3 - thrift 
 

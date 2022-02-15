@@ -59,7 +59,7 @@ Note: pwd is P1/part0
 	* Random file: 629,614.43 ns
 
 ### Send 1K bytes over 1 Gbps network
-* Command: <TODO>
+* Code Location: part2/client.c
 * Measurement: 40,000 ns
 
 ### Read 4K randomly from SSD*
@@ -71,7 +71,7 @@ Note: pwd is P1/part0
 * Measurement: 357,071.7049 ns
 
 ### Round trip within same datacenter
-* Command: <TODO>
+* Command: ping ${ip_address_of_machine_in_same_datacentre}
 * Measurement: 180,000 ns
 
 ### Read 1 MB sequentially from SSD*
@@ -91,7 +91,7 @@ Note: pwd is P1/part0
       * Median: 79,950.0 ns
 
 ###  Send packet CA->Netherlands->CA
-* Command: <TODO>
+* Command: ping ${public_ip_address_of_netherland:wq}
 * Measurement: 114,000,000 ns
 
 ### Compile

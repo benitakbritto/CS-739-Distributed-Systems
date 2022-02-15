@@ -30,7 +30,7 @@ void readOneMBSeq();
 void readSSDRandom();
 void showFlagUsage();
 void calculateL1Cache();
-void branchMistpredict();
+void branchMispredict();
 void calculateL2Cache();
 
 int main(int argc, char **argv)
@@ -291,45 +291,51 @@ void calculateL2Cache()
 
 }
 
+static inline void timespec_diff(struct timespec *a, struct timespec *b,
+  struct timespec *result) {
+  result->tv_sec  = a->tv_sec  - b->tv_sec;
+  result->tv_nsec = a->tv_nsec - b->tv_nsec;
+  if (result->tv_nsec < 0) {
+      --result->tv_sec;
+      result->tv_nsec += 1000000000L;
+  }
+}
+
+double timespec_to_double(struct timespec *a){
+  return a->tv_sec*1e6 + a->tv_nsec/1000.0;
+}
+
 void branchMispredict()
 {
-	struct timespec start;
-	struct timespec stop;
+    struct timespec ts1, ts2, ts3, ts5;
+    int j = 0;
+    // measuring correct branch prediction times
+    clock_gettime(CLOCK_MONOTONIC, &ts1);
+    for(int i = 0; i<1000000;i++){
+        if(j==i){
+            j++;
+        } else{
+            j--;
+        }
+    }
 
+    // measuring 50% correct prediction +50% misprediction time
+    clock_gettime(CLOCK_MONOTONIC, &ts2);
+    for(int i = 0; i < 1000000; i++){
+        if(rand()%1000000 <500000){
+            j++;
+        }else{
+            j--;
+        }
+    }
+    clock_gettime(CLOCK_MONOTONIC, &ts3);
 
-        int counter = 0;
-	int checker = 10;
-        int loops = 10000000;
-        int *num = (int *)malloc(sizeof(int) * loops);
-	for(int i=0; i<loops; i++){
-          num[i] = rand()%100;
-	}
-
-	clock_gettime(CLOCK_TYPE, &start);
-	for(int i=0; i<loops; i++){
-          counter++;
-	}
-        clock_gettime(CLOCK_TYPE, &stop);
-        long long int baseNsecond = (stop.tv_sec - start.tv_sec) * 1000000000L + 
-		                     (stop.tv_nsec - start.tv_nsec);
-        printf("base time %d\n",baseNsecond); 
-        checker++;
-	counter = 0;
-
-	clock_gettime(CLOCK_TYPE, &start);
-	for(int i=0; i<loops; i++){
-          counter++;
-	  if(num[i] > 100){
-	      i++;
-              printf("Entered branch \n");
-	  }
-	}
-        clock_gettime(CLOCK_TYPE, &stop);
-        long long int finalNsecond = (stop.tv_sec - start.tv_sec) * 1000000000L + 
-		                      (stop.tv_nsec - start.tv_nsec);
-        printf("final time %d\n",finalNsecond);
-	printf("time for branch mispredict %f \n", ((finalNsecond - baseNsecond)*1.0)/loops*1.0);
-
+    timespec_diff(&ts2, &ts1, &ts5);
+    long int a = ts5.tv_nsec;
+    timespec_diff(&ts3, &ts2, &ts5);
+    long int b = ts5.tv_nsec;
+    // subtracting both to get only misprediction time and averaging
+    printf("time for branch mispredict %ld\n ns", (b-a)/500000);
 }
 
 void readOneMBSeq()

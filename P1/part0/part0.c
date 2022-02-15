@@ -1,24 +1,8 @@
-/*
-
-References:
-1) https://linux.die.net/man/3/clock_gettime
-2) https://gist.github.com/pfigue/9ce8a2c0b14a2542acd7
-3) https://users.pja.edu.pl/~jms/qnx/help/watcom/clibref/qnx/clock_gettime.html\\
-
-Which timing function? -- clock_gettime()
-    Use clock_gettime() since more precise (nanoseconds) than
-    gettimeofday() (microseconds)
-
-Which clock in in clock_gettime()? -- Monotonic
-    Ref: https://www.gnu.org/software/libc/manual/html_node/Getting-the-Time.html
-
-*/
-
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 
-#define ITERATIONS              5
+#define ITERATIONS              100
 #define DEBUG                   0
 #define dbgprintf(...)          if (DEBUG) { printf(__VA_ARGS__); }
 

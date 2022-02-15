@@ -20,10 +20,10 @@ gcc -o part0 part0.c -Wall
 ./part0 <num>
 ```
 <num> lies in the [0,3]
-./part0 0: Uses CLOCK_REALTIME to measure the execution time of simpleLoop()
-./part0 1: Uses CLOCK_MONOTONIC to measure the execution time of simpleLoop()
-./part0 2: Uses CLOCK_PROCESS_CPUTIME_ID to measure the execution time of simpleLoop()
-./part0 3: Uses CLOCK_THREAD_CPUTIME_ID to measure the execution time of simpleLoop()
+* ./part0 0: Uses CLOCK_REALTIME to measure the execution time of simpleLoop()
+* ./part0 1: Uses CLOCK_MONOTONIC to measure the execution time of simpleLoop()
+* ./part0 2: Uses CLOCK_PROCESS_CPUTIME_ID to measure the execution time of simpleLoop()
+* ./part0 3: Uses CLOCK_THREAD_CPUTIME_ID to measure the execution time of simpleLoop()
       
 
 # part 1

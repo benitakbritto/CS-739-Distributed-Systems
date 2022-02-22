@@ -1,4 +1,4 @@
-# Installing grpc 
+# Installing gRPC
 ```
 export MY_INSTALL_DIR=$HOME/.local
 mkdir -p $MY_INSTALL_DIR

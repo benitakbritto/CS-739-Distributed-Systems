@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DCARES_STATICLIB
 
-CXX_INCLUDES = -I/home/benitakbritto/P2/src/cmake/build -isystem /home/benitakbritto/.local/include
+CXX_INCLUDES = -I/home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build -isystem /home/benitakbritto/.local/include
 
 CXX_FLAGS = 
 

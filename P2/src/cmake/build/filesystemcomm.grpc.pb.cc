@@ -22,7 +22,16 @@
 namespace filesystemcomm {
 
 static const char* FileSystemService_method_names[] = {
-  "/filesystemcomm.FileSystemService/SendRequest",
+  "/filesystemcomm.FileSystemService/OpenFile",
+  "/filesystemcomm.FileSystemService/CloseFile",
+  "/filesystemcomm.FileSystemService/ReadFile",
+  "/filesystemcomm.FileSystemService/WriteFile",
+  "/filesystemcomm.FileSystemService/CreateFile",
+  "/filesystemcomm.FileSystemService/DeleteFile",
+  "/filesystemcomm.FileSystemService/GetFileStat",
+  "/filesystemcomm.FileSystemService/MakeDir",
+  "/filesystemcomm.FileSystemService/DeleteDir",
+  "/filesystemcomm.FileSystemService/ListDir",
 };
 
 std::unique_ptr< FileSystemService::Stub> FileSystemService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -32,28 +41,244 @@ std::unique_ptr< FileSystemService::Stub> FileSystemService::NewStub(const std::
 }
 
 FileSystemService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_SendRequest_(FileSystemService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_OpenFile_(FileSystemService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CloseFile_(FileSystemService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ReadFile_(FileSystemService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_WriteFile_(FileSystemService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateFile_(FileSystemService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteFile_(FileSystemService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFileStat_(FileSystemService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MakeDir_(FileSystemService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteDir_(FileSystemService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListDir_(FileSystemService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status FileSystemService::Stub::SendRequest(::grpc::ClientContext* context, const ::filesystemcomm::StringRequest& request, ::filesystemcomm::StringReply* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::filesystemcomm::StringRequest, ::filesystemcomm::StringReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SendRequest_, context, request, response);
+::grpc::Status FileSystemService::Stub::OpenFile(::grpc::ClientContext* context, const ::filesystemcomm::OpenFileRequest& request, ::filesystemcomm::OpenFileResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::filesystemcomm::OpenFileRequest, ::filesystemcomm::OpenFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_OpenFile_, context, request, response);
 }
 
-void FileSystemService::Stub::async::SendRequest(::grpc::ClientContext* context, const ::filesystemcomm::StringRequest* request, ::filesystemcomm::StringReply* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::filesystemcomm::StringRequest, ::filesystemcomm::StringReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendRequest_, context, request, response, std::move(f));
+void FileSystemService::Stub::async::OpenFile(::grpc::ClientContext* context, const ::filesystemcomm::OpenFileRequest* request, ::filesystemcomm::OpenFileResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::filesystemcomm::OpenFileRequest, ::filesystemcomm::OpenFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_OpenFile_, context, request, response, std::move(f));
 }
 
-void FileSystemService::Stub::async::SendRequest(::grpc::ClientContext* context, const ::filesystemcomm::StringRequest* request, ::filesystemcomm::StringReply* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendRequest_, context, request, response, reactor);
+void FileSystemService::Stub::async::OpenFile(::grpc::ClientContext* context, const ::filesystemcomm::OpenFileRequest* request, ::filesystemcomm::OpenFileResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_OpenFile_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::filesystemcomm::StringReply>* FileSystemService::Stub::PrepareAsyncSendRequestRaw(::grpc::ClientContext* context, const ::filesystemcomm::StringRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::filesystemcomm::StringReply, ::filesystemcomm::StringRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SendRequest_, context, request);
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::OpenFileResponse>* FileSystemService::Stub::PrepareAsyncOpenFileRaw(::grpc::ClientContext* context, const ::filesystemcomm::OpenFileRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::filesystemcomm::OpenFileResponse, ::filesystemcomm::OpenFileRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_OpenFile_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::filesystemcomm::StringReply>* FileSystemService::Stub::AsyncSendRequestRaw(::grpc::ClientContext* context, const ::filesystemcomm::StringRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::OpenFileResponse>* FileSystemService::Stub::AsyncOpenFileRaw(::grpc::ClientContext* context, const ::filesystemcomm::OpenFileRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncSendRequestRaw(context, request, cq);
+    this->PrepareAsyncOpenFileRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status FileSystemService::Stub::CloseFile(::grpc::ClientContext* context, const ::filesystemcomm::CloseFileRequest& request, ::filesystemcomm::CloseFileResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::filesystemcomm::CloseFileRequest, ::filesystemcomm::CloseFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CloseFile_, context, request, response);
+}
+
+void FileSystemService::Stub::async::CloseFile(::grpc::ClientContext* context, const ::filesystemcomm::CloseFileRequest* request, ::filesystemcomm::CloseFileResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::filesystemcomm::CloseFileRequest, ::filesystemcomm::CloseFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CloseFile_, context, request, response, std::move(f));
+}
+
+void FileSystemService::Stub::async::CloseFile(::grpc::ClientContext* context, const ::filesystemcomm::CloseFileRequest* request, ::filesystemcomm::CloseFileResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CloseFile_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::CloseFileResponse>* FileSystemService::Stub::PrepareAsyncCloseFileRaw(::grpc::ClientContext* context, const ::filesystemcomm::CloseFileRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::filesystemcomm::CloseFileResponse, ::filesystemcomm::CloseFileRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CloseFile_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::CloseFileResponse>* FileSystemService::Stub::AsyncCloseFileRaw(::grpc::ClientContext* context, const ::filesystemcomm::CloseFileRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCloseFileRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status FileSystemService::Stub::ReadFile(::grpc::ClientContext* context, const ::filesystemcomm::ReadFileRequest& request, ::filesystemcomm::ReadFileResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::filesystemcomm::ReadFileRequest, ::filesystemcomm::ReadFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ReadFile_, context, request, response);
+}
+
+void FileSystemService::Stub::async::ReadFile(::grpc::ClientContext* context, const ::filesystemcomm::ReadFileRequest* request, ::filesystemcomm::ReadFileResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::filesystemcomm::ReadFileRequest, ::filesystemcomm::ReadFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ReadFile_, context, request, response, std::move(f));
+}
+
+void FileSystemService::Stub::async::ReadFile(::grpc::ClientContext* context, const ::filesystemcomm::ReadFileRequest* request, ::filesystemcomm::ReadFileResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ReadFile_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::ReadFileResponse>* FileSystemService::Stub::PrepareAsyncReadFileRaw(::grpc::ClientContext* context, const ::filesystemcomm::ReadFileRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::filesystemcomm::ReadFileResponse, ::filesystemcomm::ReadFileRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ReadFile_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::ReadFileResponse>* FileSystemService::Stub::AsyncReadFileRaw(::grpc::ClientContext* context, const ::filesystemcomm::ReadFileRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncReadFileRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status FileSystemService::Stub::WriteFile(::grpc::ClientContext* context, const ::filesystemcomm::WriteFileRequest& request, ::filesystemcomm::WriteFileResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::filesystemcomm::WriteFileRequest, ::filesystemcomm::WriteFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_WriteFile_, context, request, response);
+}
+
+void FileSystemService::Stub::async::WriteFile(::grpc::ClientContext* context, const ::filesystemcomm::WriteFileRequest* request, ::filesystemcomm::WriteFileResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::filesystemcomm::WriteFileRequest, ::filesystemcomm::WriteFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_WriteFile_, context, request, response, std::move(f));
+}
+
+void FileSystemService::Stub::async::WriteFile(::grpc::ClientContext* context, const ::filesystemcomm::WriteFileRequest* request, ::filesystemcomm::WriteFileResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_WriteFile_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::WriteFileResponse>* FileSystemService::Stub::PrepareAsyncWriteFileRaw(::grpc::ClientContext* context, const ::filesystemcomm::WriteFileRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::filesystemcomm::WriteFileResponse, ::filesystemcomm::WriteFileRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_WriteFile_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::WriteFileResponse>* FileSystemService::Stub::AsyncWriteFileRaw(::grpc::ClientContext* context, const ::filesystemcomm::WriteFileRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncWriteFileRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status FileSystemService::Stub::CreateFile(::grpc::ClientContext* context, const ::filesystemcomm::CreateFileRequest& request, ::filesystemcomm::CreateFileResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::filesystemcomm::CreateFileRequest, ::filesystemcomm::CreateFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateFile_, context, request, response);
+}
+
+void FileSystemService::Stub::async::CreateFile(::grpc::ClientContext* context, const ::filesystemcomm::CreateFileRequest* request, ::filesystemcomm::CreateFileResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::filesystemcomm::CreateFileRequest, ::filesystemcomm::CreateFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateFile_, context, request, response, std::move(f));
+}
+
+void FileSystemService::Stub::async::CreateFile(::grpc::ClientContext* context, const ::filesystemcomm::CreateFileRequest* request, ::filesystemcomm::CreateFileResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateFile_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::CreateFileResponse>* FileSystemService::Stub::PrepareAsyncCreateFileRaw(::grpc::ClientContext* context, const ::filesystemcomm::CreateFileRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::filesystemcomm::CreateFileResponse, ::filesystemcomm::CreateFileRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateFile_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::CreateFileResponse>* FileSystemService::Stub::AsyncCreateFileRaw(::grpc::ClientContext* context, const ::filesystemcomm::CreateFileRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateFileRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status FileSystemService::Stub::DeleteFile(::grpc::ClientContext* context, const ::filesystemcomm::DeleteFileRequest& request, ::filesystemcomm::DeleteFileResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::filesystemcomm::DeleteFileRequest, ::filesystemcomm::DeleteFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteFile_, context, request, response);
+}
+
+void FileSystemService::Stub::async::DeleteFile(::grpc::ClientContext* context, const ::filesystemcomm::DeleteFileRequest* request, ::filesystemcomm::DeleteFileResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::filesystemcomm::DeleteFileRequest, ::filesystemcomm::DeleteFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteFile_, context, request, response, std::move(f));
+}
+
+void FileSystemService::Stub::async::DeleteFile(::grpc::ClientContext* context, const ::filesystemcomm::DeleteFileRequest* request, ::filesystemcomm::DeleteFileResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteFile_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::DeleteFileResponse>* FileSystemService::Stub::PrepareAsyncDeleteFileRaw(::grpc::ClientContext* context, const ::filesystemcomm::DeleteFileRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::filesystemcomm::DeleteFileResponse, ::filesystemcomm::DeleteFileRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteFile_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::DeleteFileResponse>* FileSystemService::Stub::AsyncDeleteFileRaw(::grpc::ClientContext* context, const ::filesystemcomm::DeleteFileRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteFileRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status FileSystemService::Stub::GetFileStat(::grpc::ClientContext* context, const ::filesystemcomm::GetFileStatRequest& request, ::filesystemcomm::GetFileStatResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::filesystemcomm::GetFileStatRequest, ::filesystemcomm::GetFileStatResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetFileStat_, context, request, response);
+}
+
+void FileSystemService::Stub::async::GetFileStat(::grpc::ClientContext* context, const ::filesystemcomm::GetFileStatRequest* request, ::filesystemcomm::GetFileStatResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::filesystemcomm::GetFileStatRequest, ::filesystemcomm::GetFileStatResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFileStat_, context, request, response, std::move(f));
+}
+
+void FileSystemService::Stub::async::GetFileStat(::grpc::ClientContext* context, const ::filesystemcomm::GetFileStatRequest* request, ::filesystemcomm::GetFileStatResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFileStat_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::GetFileStatResponse>* FileSystemService::Stub::PrepareAsyncGetFileStatRaw(::grpc::ClientContext* context, const ::filesystemcomm::GetFileStatRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::filesystemcomm::GetFileStatResponse, ::filesystemcomm::GetFileStatRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetFileStat_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::GetFileStatResponse>* FileSystemService::Stub::AsyncGetFileStatRaw(::grpc::ClientContext* context, const ::filesystemcomm::GetFileStatRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetFileStatRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status FileSystemService::Stub::MakeDir(::grpc::ClientContext* context, const ::filesystemcomm::MakeDirRequest& request, ::filesystemcomm::MakeDirResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::filesystemcomm::MakeDirRequest, ::filesystemcomm::MakeDirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MakeDir_, context, request, response);
+}
+
+void FileSystemService::Stub::async::MakeDir(::grpc::ClientContext* context, const ::filesystemcomm::MakeDirRequest* request, ::filesystemcomm::MakeDirResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::filesystemcomm::MakeDirRequest, ::filesystemcomm::MakeDirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MakeDir_, context, request, response, std::move(f));
+}
+
+void FileSystemService::Stub::async::MakeDir(::grpc::ClientContext* context, const ::filesystemcomm::MakeDirRequest* request, ::filesystemcomm::MakeDirResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MakeDir_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::MakeDirResponse>* FileSystemService::Stub::PrepareAsyncMakeDirRaw(::grpc::ClientContext* context, const ::filesystemcomm::MakeDirRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::filesystemcomm::MakeDirResponse, ::filesystemcomm::MakeDirRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MakeDir_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::MakeDirResponse>* FileSystemService::Stub::AsyncMakeDirRaw(::grpc::ClientContext* context, const ::filesystemcomm::MakeDirRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncMakeDirRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status FileSystemService::Stub::DeleteDir(::grpc::ClientContext* context, const ::filesystemcomm::DeleteDirRequest& request, ::filesystemcomm::DeleteDirResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::filesystemcomm::DeleteDirRequest, ::filesystemcomm::DeleteDirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteDir_, context, request, response);
+}
+
+void FileSystemService::Stub::async::DeleteDir(::grpc::ClientContext* context, const ::filesystemcomm::DeleteDirRequest* request, ::filesystemcomm::DeleteDirResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::filesystemcomm::DeleteDirRequest, ::filesystemcomm::DeleteDirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteDir_, context, request, response, std::move(f));
+}
+
+void FileSystemService::Stub::async::DeleteDir(::grpc::ClientContext* context, const ::filesystemcomm::DeleteDirRequest* request, ::filesystemcomm::DeleteDirResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteDir_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::DeleteDirResponse>* FileSystemService::Stub::PrepareAsyncDeleteDirRaw(::grpc::ClientContext* context, const ::filesystemcomm::DeleteDirRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::filesystemcomm::DeleteDirResponse, ::filesystemcomm::DeleteDirRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteDir_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::DeleteDirResponse>* FileSystemService::Stub::AsyncDeleteDirRaw(::grpc::ClientContext* context, const ::filesystemcomm::DeleteDirRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteDirRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status FileSystemService::Stub::ListDir(::grpc::ClientContext* context, const ::filesystemcomm::ListDirRequest& request, ::filesystemcomm::ListDirResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::filesystemcomm::ListDirRequest, ::filesystemcomm::ListDirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListDir_, context, request, response);
+}
+
+void FileSystemService::Stub::async::ListDir(::grpc::ClientContext* context, const ::filesystemcomm::ListDirRequest* request, ::filesystemcomm::ListDirResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::filesystemcomm::ListDirRequest, ::filesystemcomm::ListDirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListDir_, context, request, response, std::move(f));
+}
+
+void FileSystemService::Stub::async::ListDir(::grpc::ClientContext* context, const ::filesystemcomm::ListDirRequest* request, ::filesystemcomm::ListDirResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListDir_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::ListDirResponse>* FileSystemService::Stub::PrepareAsyncListDirRaw(::grpc::ClientContext* context, const ::filesystemcomm::ListDirRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::filesystemcomm::ListDirResponse, ::filesystemcomm::ListDirRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListDir_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystemcomm::ListDirResponse>* FileSystemService::Stub::AsyncListDirRaw(::grpc::ClientContext* context, const ::filesystemcomm::ListDirRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListDirRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -62,19 +287,172 @@ FileSystemService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       FileSystemService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< FileSystemService::Service, ::filesystemcomm::StringRequest, ::filesystemcomm::StringReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< FileSystemService::Service, ::filesystemcomm::OpenFileRequest, ::filesystemcomm::OpenFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](FileSystemService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::filesystemcomm::StringRequest* req,
-             ::filesystemcomm::StringReply* resp) {
-               return service->SendRequest(ctx, req, resp);
+             const ::filesystemcomm::OpenFileRequest* req,
+             ::filesystemcomm::OpenFileResponse* resp) {
+               return service->OpenFile(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileSystemService_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileSystemService::Service, ::filesystemcomm::CloseFileRequest, ::filesystemcomm::CloseFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileSystemService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::filesystemcomm::CloseFileRequest* req,
+             ::filesystemcomm::CloseFileResponse* resp) {
+               return service->CloseFile(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileSystemService_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileSystemService::Service, ::filesystemcomm::ReadFileRequest, ::filesystemcomm::ReadFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileSystemService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::filesystemcomm::ReadFileRequest* req,
+             ::filesystemcomm::ReadFileResponse* resp) {
+               return service->ReadFile(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileSystemService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileSystemService::Service, ::filesystemcomm::WriteFileRequest, ::filesystemcomm::WriteFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileSystemService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::filesystemcomm::WriteFileRequest* req,
+             ::filesystemcomm::WriteFileResponse* resp) {
+               return service->WriteFile(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileSystemService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileSystemService::Service, ::filesystemcomm::CreateFileRequest, ::filesystemcomm::CreateFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileSystemService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::filesystemcomm::CreateFileRequest* req,
+             ::filesystemcomm::CreateFileResponse* resp) {
+               return service->CreateFile(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileSystemService_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileSystemService::Service, ::filesystemcomm::DeleteFileRequest, ::filesystemcomm::DeleteFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileSystemService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::filesystemcomm::DeleteFileRequest* req,
+             ::filesystemcomm::DeleteFileResponse* resp) {
+               return service->DeleteFile(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileSystemService_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileSystemService::Service, ::filesystemcomm::GetFileStatRequest, ::filesystemcomm::GetFileStatResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileSystemService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::filesystemcomm::GetFileStatRequest* req,
+             ::filesystemcomm::GetFileStatResponse* resp) {
+               return service->GetFileStat(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileSystemService_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileSystemService::Service, ::filesystemcomm::MakeDirRequest, ::filesystemcomm::MakeDirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileSystemService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::filesystemcomm::MakeDirRequest* req,
+             ::filesystemcomm::MakeDirResponse* resp) {
+               return service->MakeDir(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileSystemService_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileSystemService::Service, ::filesystemcomm::DeleteDirRequest, ::filesystemcomm::DeleteDirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileSystemService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::filesystemcomm::DeleteDirRequest* req,
+             ::filesystemcomm::DeleteDirResponse* resp) {
+               return service->DeleteDir(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileSystemService_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileSystemService::Service, ::filesystemcomm::ListDirRequest, ::filesystemcomm::ListDirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileSystemService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::filesystemcomm::ListDirRequest* req,
+             ::filesystemcomm::ListDirResponse* resp) {
+               return service->ListDir(ctx, req, resp);
              }, this)));
 }
 
 FileSystemService::Service::~Service() {
 }
 
-::grpc::Status FileSystemService::Service::SendRequest(::grpc::ServerContext* context, const ::filesystemcomm::StringRequest* request, ::filesystemcomm::StringReply* response) {
+::grpc::Status FileSystemService::Service::OpenFile(::grpc::ServerContext* context, const ::filesystemcomm::OpenFileRequest* request, ::filesystemcomm::OpenFileResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FileSystemService::Service::CloseFile(::grpc::ServerContext* context, const ::filesystemcomm::CloseFileRequest* request, ::filesystemcomm::CloseFileResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FileSystemService::Service::ReadFile(::grpc::ServerContext* context, const ::filesystemcomm::ReadFileRequest* request, ::filesystemcomm::ReadFileResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FileSystemService::Service::WriteFile(::grpc::ServerContext* context, const ::filesystemcomm::WriteFileRequest* request, ::filesystemcomm::WriteFileResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FileSystemService::Service::CreateFile(::grpc::ServerContext* context, const ::filesystemcomm::CreateFileRequest* request, ::filesystemcomm::CreateFileResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FileSystemService::Service::DeleteFile(::grpc::ServerContext* context, const ::filesystemcomm::DeleteFileRequest* request, ::filesystemcomm::DeleteFileResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FileSystemService::Service::GetFileStat(::grpc::ServerContext* context, const ::filesystemcomm::GetFileStatRequest* request, ::filesystemcomm::GetFileStatResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FileSystemService::Service::MakeDir(::grpc::ServerContext* context, const ::filesystemcomm::MakeDirRequest* request, ::filesystemcomm::MakeDirResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FileSystemService::Service::DeleteDir(::grpc::ServerContext* context, const ::filesystemcomm::DeleteDirRequest* request, ::filesystemcomm::DeleteDirResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FileSystemService::Service::ListDir(::grpc::ServerContext* context, const ::filesystemcomm::ListDirRequest* request, ::filesystemcomm::ListDirResponse* response) {
   (void) context;
   (void) request;
   (void) response;

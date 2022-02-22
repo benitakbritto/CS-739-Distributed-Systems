@@ -6,9 +6,27 @@ using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
 
-using filesystemcomm::StringReply;
-using filesystemcomm::StringRequest;
 using filesystemcomm::FileSystemService;
+using filesystemcomm::OpenFileRequest;
+using filesystemcomm::OpenFileResponse;
+using filesystemcomm::CloseFileRequest;
+using filesystemcomm::CloseFileResponse;
+using filesystemcomm::ReadFileRequest;
+using filesystemcomm::ReadFileResponse;
+using filesystemcomm::WriteFileRequest;
+using filesystemcomm::WriteFileResponse;
+using filesystemcomm::CreateFileRequest;
+using filesystemcomm::CreateFileResponse;
+using filesystemcomm::DeleteFileRequest;
+using filesystemcomm::DeleteFileResponse;
+using filesystemcomm::GetFileStatRequest;
+using filesystemcomm::GetFileStatResponse;
+using filesystemcomm::MakeDirRequest;
+using filesystemcomm::MakeDirResponse;
+using filesystemcomm::DeleteDirRequest;
+using filesystemcomm::DeleteDirResponse;
+using filesystemcomm::ListDirRequest;
+using filesystemcomm::ListDirResponse;
 
 class ClientImplementation 
 {
@@ -16,23 +34,240 @@ class ClientImplementation
   ClientImplementation(std::shared_ptr<Channel> channel)
       : stub_(FileSystemService::NewStub(channel)) {}
 
-  // Assembles client payload, sends it to the server, and returns its response
-  std::string SendRequest(std::string a) 
+  // TODO: Use FUSE
+  std::string OpenFile(std::string req) 
   {
-    // Data to be sent to server
-    StringRequest request;
-    request.set_val(a);
-
-    // Container for server response
-    StringReply reply;
-
-    // Context can be used to send meta data to server or modify RPC behaviour
+    OpenFileRequest request;
+    OpenFileResponse reply;
     ClientContext context;
+    request.set_val(req);
 
-    // Actual Remote Procedure Call
-    Status status = stub_->SendRequest(&context, request, &reply);
 
-    // Returns results based on RPC status
+    // Make RPC
+    Status status = stub_->OpenFile(&context, request, &reply);
+
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      return reply.val();
+    } 
+    else 
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      return "RPC Failed";
+    }
+  }
+
+  // TODO: Use FUSE
+  std::string CloseFile(std::string req) 
+  {
+    CloseFileRequest request;
+    CloseFileResponse reply;
+    ClientContext context;
+    request.set_val(req);
+
+
+    // Make RPC
+    Status status = stub_->CloseFile(&context, request, &reply);
+
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      return reply.val();
+    } 
+    else 
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      return "RPC Failed";
+    }
+  }
+
+  // TODO: Use FUSE
+  std::string ReadFile(std::string req) 
+  {
+    ReadFileRequest request;
+    ReadFileResponse reply;
+    ClientContext context;
+    request.set_val(req);
+
+    // Make RPC
+    Status status = stub_->ReadFile(&context, request, &reply);
+
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      return reply.val();
+    } 
+    else 
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      return "RPC Failed";
+    }
+  }
+
+  // TODO: Use FUSE
+  std::string WriteFile(std::string req) 
+  {
+    WriteFileRequest request;
+    WriteFileResponse reply;
+    ClientContext context;
+    request.set_val(req);
+
+    // Make RPC
+    Status status = stub_->WriteFile(&context, request, &reply);
+
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      return reply.val();
+    } 
+    else 
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      return "RPC Failed";
+    }
+  }
+
+  // TODO: Use FUSE
+  std::string CreateFile(std::string req) 
+  {
+    CreateFileRequest request;
+    CreateFileResponse reply;
+    ClientContext context;
+    request.set_val(req);
+
+    // Make RPC
+    Status status = stub_->CreateFile(&context, request, &reply);
+
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      return reply.val();
+    } 
+    else 
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      return "RPC Failed";
+    }
+  }
+
+  // TODO: Use FUSE
+  std::string DeleteFile(std::string req) 
+  {
+    DeleteFileRequest request;
+    DeleteFileResponse reply;
+    ClientContext context;
+    request.set_val(req);
+
+    // Make RPC
+    Status status = stub_->DeleteFile(&context, request, &reply);
+
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      return reply.val();
+    } 
+    else 
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      return "RPC Failed";
+    }
+  }
+
+  // TODO: Use FUSE
+  std::string GetFileStat(std::string req) 
+  {
+    GetFileStatRequest request;
+    GetFileStatResponse reply;
+    ClientContext context;
+    request.set_val(req);
+
+
+    // Make RPC
+    Status status = stub_->GetFileStat(&context, request, &reply);
+
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      return reply.val();
+    } 
+    else 
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      return "RPC Failed";
+    }
+  }
+
+  // TODO: Use FUSE
+  std::string MakeDir(std::string req) 
+  {
+    MakeDirRequest request;
+    MakeDirResponse reply;
+    ClientContext context;
+    request.set_val(req);
+
+
+    // Make RPC
+    Status status = stub_->MakeDir(&context, request, &reply);
+
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      return reply.val();
+    } 
+    else 
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      return "RPC Failed";
+    }
+  }
+
+  // TODO: Use FUSE
+  std::string DeleteDir(std::string req) 
+  {
+    DeleteDirRequest request;
+    DeleteDirResponse reply;
+    ClientContext context;
+    request.set_val(req);
+
+
+    // Make RPC
+    Status status = stub_->DeleteDir(&context, request, &reply);
+
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      return reply.val();
+    } 
+    else 
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      return "RPC Failed";
+    }
+  }
+
+  // TODO: Use FUSE
+  std::string ListDir(std::string req) 
+  {
+    ListDirRequest request;
+    ListDirResponse reply;
+    ClientContext context;
+    request.set_val(req);
+
+
+    // Make RPC
+    Status status = stub_->ListDir(&context, request, &reply);
+
+    // Checking RPC Status
     if (status.ok()) 
     {
       return reply.val();
@@ -60,14 +295,68 @@ void RunClient()
                           grpc::InsecureChannelCredentials()));
 
   std::string response;
-  std::string a = "grpc is cool!";
+  std::string request;
 
-  // RPC is created and response is stored
-  response = client.SendRequest(a);
+  // Client RPC invokation
+  std::cout << "OpenFile()" << std::endl;
+  request = "Testing OpenFile";
+  response = client.OpenFile(request);
+  std::cout << "Request string: " << request << std::endl;
+  std::cout << "Response string: " << response << std::endl;
 
-  // Prints results
-  std::cout << "Original string: " << a << std::endl;
-  std::cout << "Reversed string: " << response << std::endl;
+  std::cout << "CloseFile()" << std::endl;
+  request = "Testing CloseFile";
+  response = client.CloseFile(request);
+  std::cout << "Request string: " << request << std::endl;
+  std::cout << "Response string: " << response << std::endl;
+
+  std::cout << "ReadFile()" << std::endl;
+  request = "Testing ReadFile";
+  response = client.ReadFile(request);
+  std::cout << "Request string: " << request << std::endl;
+  std::cout << "Response string: " << response << std::endl;
+
+  std::cout << "WriteFile()" << std::endl;
+  request = "Testing WriteFile";
+  response = client.WriteFile(request);
+  std::cout << "Request string: " << request << std::endl;
+  std::cout << "Response string: " << response << std::endl;
+
+  std::cout << "CreateFile()" << std::endl;
+  request = "Testing CreateFile";
+  response = client.CreateFile(request);
+  std::cout << "Request string: " << request << std::endl;
+  std::cout << "Response string: " << response << std::endl;
+
+  std::cout << "DeleteFile()" << std::endl;
+  request = "Testing DeleteFile";
+  response = client.DeleteFile(request);
+  std::cout << "Request string: " << request << std::endl;
+  std::cout << "Response string: " << response << std::endl;
+
+  std::cout << "GetFileStat()" << std::endl;
+  request = "Testing GetFileStat";
+  response = client.GetFileStat(request);
+  std::cout << "Request string: " << request << std::endl;
+  std::cout << "Response string: " << response << std::endl;
+
+  std::cout << "MakeDir()" << std::endl;
+  request = "Testing MakeDir";
+  response = client.MakeDir(request);
+  std::cout << "Request string: " << request << std::endl;
+  std::cout << "Response string: " << response << std::endl;
+
+  std::cout << "DeleteDir()" << std::endl;
+  request = "Testing DeleteDir";
+  response = client.DeleteDir(request);
+  std::cout << "Request string: " << request << std::endl;
+  std::cout << "Response string: " << response << std::endl;
+
+  std::cout << "ListDir()" << std::endl;
+  request = "Testing ListDir";
+  response = client.ListDir(request);
+  std::cout << "Request string: " << request << std::endl;
+  std::cout << "Response string: " << response << std::endl;
 }
 
 int main(int argc, char* argv[]) 

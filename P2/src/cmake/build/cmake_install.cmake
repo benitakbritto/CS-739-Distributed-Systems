@@ -1,4 +1,4 @@
-# Install script for directory: /home/benitakbritto/P2/src
+# Install script for directory: /home/benitakbritto/CS-739-Distributed-Systems/P2/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/benitakbritto/P2/src/cmake/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -2,19 +2,119 @@ syntax = "proto3";
 
 package filesystemcomm;
 
-// The string reversal service definition.
 service FileSystemService 
 {
-    // Function invoked to send the request
-    rpc SendRequest (StringRequest) returns (StringReply) {}
+    // File Operations
+    rpc OpenFile (OpenFileRequest) returns (OpenFileResponse) {}
+    rpc CloseFile (CloseFileRequest) returns (CloseFileResponse) {}
+    rpc ReadFile (ReadFileRequest) returns (ReadFileResponse) {}
+    rpc WriteFile (WriteFileRequest) returns (WriteFileResponse) {}
+    rpc CreateFile (CreateFileRequest) returns (CreateFileResponse) {}
+    rpc DeleteFile (DeleteFileRequest) returns (DeleteFileResponse) {}
+    rpc GetFileStat (GetFileStatRequest) returns (GetFileStatResponse) {}
+
+    // Dir Operations
+    rpc MakeDir (MakeDirRequest) returns (MakeDirResponse) {}
+    rpc DeleteDir (DeleteDirRequest) returns (DeleteDirResponse) {}
+    rpc ListDir (ListDirRequest) returns (ListDirResponse) {}
 }
 
-message StringRequest 
+message OpenFileRequest
 {
     string val = 1;
 }
 
-message StringReply 
+message OpenFileResponse
+{
+    string val = 1;
+}
+
+message CloseFileRequest
+{
+    string val = 1;
+}
+
+message CloseFileResponse
+{
+    string val = 1;
+}
+
+message ReadFileRequest
+{
+    string val = 1;
+}
+
+message ReadFileResponse
+{
+    string val = 1;
+}
+
+message WriteFileRequest
+{
+    string val = 1;
+}
+
+message WriteFileResponse
+{
+    string val = 1;
+}
+
+message CreateFileRequest
+{
+    string val = 1;
+}
+
+message CreateFileResponse
+{
+    string val = 1;
+}
+
+message DeleteFileRequest
+{
+    string val = 1;
+}
+
+message DeleteFileResponse
+{
+    string val = 1;
+}
+
+message GetFileStatRequest
+{
+    string val = 1;
+}
+
+message GetFileStatResponse
+{
+    string val = 1;
+}
+
+message MakeDirRequest
+{
+    string val = 1;
+}
+
+message MakeDirResponse
+{
+    string val = 1;
+}
+
+message DeleteDirRequest
+{
+    string val = 1;
+}
+
+message DeleteDirResponse
+{
+    string val = 1;
+}
+
+message ListDirRequest
+{
+    string val = 1;
+}
+
+message ListDirResponse
 {
     string val = 1;
 }

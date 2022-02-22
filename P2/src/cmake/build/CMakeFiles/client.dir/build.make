@@ -62,10 +62,10 @@ RM = /home/benitakbritto/.local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/benitakbritto/P2/src
+CMAKE_SOURCE_DIR = /home/benitakbritto/CS-739-Distributed-Systems/P2/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/benitakbritto/P2/src/cmake/build
+CMAKE_BINARY_DIR = /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/client.dir/depend.make
@@ -77,8 +77,8 @@ include CMakeFiles/client.dir/progress.make
 include CMakeFiles/client.dir/flags.make
 
 filesystemcomm.pb.cc: ../../filesystemcomm.proto
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/benitakbritto/P2/src/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating filesystemcomm.pb.cc, filesystemcomm.pb.h, filesystemcomm.grpc.pb.cc, filesystemcomm.grpc.pb.h"
-	/home/benitakbritto/.local/bin/protoc-3.18.1.0 --grpc_out /home/benitakbritto/P2/src/cmake/build --cpp_out /home/benitakbritto/P2/src/cmake/build -I /home/benitakbritto/P2/src --plugin=protoc-gen-grpc="/home/benitakbritto/.local/bin/grpc_cpp_plugin" /home/benitakbritto/P2/src/filesystemcomm.proto
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating filesystemcomm.pb.cc, filesystemcomm.pb.h, filesystemcomm.grpc.pb.cc, filesystemcomm.grpc.pb.h"
+	/home/benitakbritto/.local/bin/protoc-3.18.1.0 --grpc_out /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build --cpp_out /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build -I /home/benitakbritto/CS-739-Distributed-Systems/P2/src --plugin=protoc-gen-grpc="/home/benitakbritto/.local/bin/grpc_cpp_plugin" /home/benitakbritto/CS-739-Distributed-Systems/P2/src/filesystemcomm.proto
 
 filesystemcomm.pb.h: filesystemcomm.pb.cc
 	@$(CMAKE_COMMAND) -E touch_nocreate filesystemcomm.pb.h
@@ -91,42 +91,42 @@ filesystemcomm.grpc.pb.h: filesystemcomm.pb.cc
 
 CMakeFiles/client.dir/client.cc.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client.cc.o: ../../client.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/benitakbritto/P2/src/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/client.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/client.cc.o -c /home/benitakbritto/P2/src/client.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/client.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/client.cc.o -c /home/benitakbritto/CS-739-Distributed-Systems/P2/src/client.cc
 
 CMakeFiles/client.dir/client.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/benitakbritto/P2/src/client.cc > CMakeFiles/client.dir/client.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/benitakbritto/CS-739-Distributed-Systems/P2/src/client.cc > CMakeFiles/client.dir/client.cc.i
 
 CMakeFiles/client.dir/client.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/benitakbritto/P2/src/client.cc -o CMakeFiles/client.dir/client.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/benitakbritto/CS-739-Distributed-Systems/P2/src/client.cc -o CMakeFiles/client.dir/client.cc.s
 
 CMakeFiles/client.dir/filesystemcomm.pb.cc.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/filesystemcomm.pb.cc.o: filesystemcomm.pb.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/benitakbritto/P2/src/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client.dir/filesystemcomm.pb.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/filesystemcomm.pb.cc.o -c /home/benitakbritto/P2/src/cmake/build/filesystemcomm.pb.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client.dir/filesystemcomm.pb.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/filesystemcomm.pb.cc.o -c /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/filesystemcomm.pb.cc
 
 CMakeFiles/client.dir/filesystemcomm.pb.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/filesystemcomm.pb.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/benitakbritto/P2/src/cmake/build/filesystemcomm.pb.cc > CMakeFiles/client.dir/filesystemcomm.pb.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/filesystemcomm.pb.cc > CMakeFiles/client.dir/filesystemcomm.pb.cc.i
 
 CMakeFiles/client.dir/filesystemcomm.pb.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/filesystemcomm.pb.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/benitakbritto/P2/src/cmake/build/filesystemcomm.pb.cc -o CMakeFiles/client.dir/filesystemcomm.pb.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/filesystemcomm.pb.cc -o CMakeFiles/client.dir/filesystemcomm.pb.cc.s
 
 CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.o: filesystemcomm.grpc.pb.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/benitakbritto/P2/src/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.o -c /home/benitakbritto/P2/src/cmake/build/filesystemcomm.grpc.pb.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.o -c /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/filesystemcomm.grpc.pb.cc
 
 CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/benitakbritto/P2/src/cmake/build/filesystemcomm.grpc.pb.cc > CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/filesystemcomm.grpc.pb.cc > CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.i
 
 CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/benitakbritto/P2/src/cmake/build/filesystemcomm.grpc.pb.cc -o CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/filesystemcomm.grpc.pb.cc -o CMakeFiles/client.dir/filesystemcomm.grpc.pb.cc.s
 
 # Object files for target client
 client_OBJECTS = \
@@ -187,7 +187,7 @@ client: /home/benitakbritto/.local/lib/libabsl_time_zone.a
 client: /home/benitakbritto/.local/lib/libssl.a
 client: /home/benitakbritto/.local/lib/libcrypto.a
 client: CMakeFiles/client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/benitakbritto/P2/src/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -203,6 +203,6 @@ CMakeFiles/client.dir/depend: filesystemcomm.grpc.pb.cc
 CMakeFiles/client.dir/depend: filesystemcomm.grpc.pb.h
 CMakeFiles/client.dir/depend: filesystemcomm.pb.cc
 CMakeFiles/client.dir/depend: filesystemcomm.pb.h
-	cd /home/benitakbritto/P2/src/cmake/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/benitakbritto/P2/src /home/benitakbritto/P2/src /home/benitakbritto/P2/src/cmake/build /home/benitakbritto/P2/src/cmake/build /home/benitakbritto/P2/src/cmake/build/CMakeFiles/client.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/benitakbritto/CS-739-Distributed-Systems/P2/src /home/benitakbritto/CS-739-Distributed-Systems/P2/src /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build /home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/CMakeFiles/client.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/client.dir/depend
 

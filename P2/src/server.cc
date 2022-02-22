@@ -2,6 +2,11 @@
 #include <grpcpp/grpcpp.h>
 #include <string>
 #include "filesystemcomm.grpc.pb.h"
+#include <iostream>
+#include <fstream>
+
+using std::cout;
+using std::endl;
 
 using grpc::Server;
 using grpc::ServerBuilder;
@@ -30,13 +35,25 @@ using filesystemcomm::DeleteDirResponse;
 using filesystemcomm::ListDirRequest;
 using filesystemcomm::ListDirResponse;
 
+std::string read_file(std::string filename) {
+  std::ostringstream strm;
+  std::ifstream file(filename,std::ios::binary);
+  strm << file.rdbuf();
+  return strm.str();
+}
+
 // Server Implementation
 class ServiceImplementation final : public FileSystemService::Service 
 {
   Status OpenFile(ServerContext * context, const OpenFileRequest * request,
                      OpenFileResponse * reply) override 
   {
-    reply->set_val(request->val());
+    auto filename = request->path();
+    
+    // In C++, protobuf `bytes` fields are implemented as strings
+    auto content = read_file(filename);    
+    reply->set_data(content);
+    
     return Status::OK;
   }
 

@@ -35,12 +35,12 @@ class ClientImplementation
       : stub_(FileSystemService::NewStub(channel)) {}
 
   // TODO: Use FUSE
-  std::string OpenFile(std::string req) 
+  std::string OpenFile(std::string path) 
   {
     OpenFileRequest request;
     OpenFileResponse reply;
     ClientContext context;
-    request.set_val(req);
+    request.set_path(path);
 
 
     // Make RPC
@@ -49,7 +49,8 @@ class ClientImplementation
     // Checking RPC Status
     if (status.ok()) 
     {
-      return reply.val();
+      // Return file contents
+      return reply.data();
     } 
     else 
     {
@@ -299,10 +300,10 @@ void RunClient()
 
   // Client RPC invokation
   std::cout << "OpenFile()" << std::endl;
-  request = "Testing OpenFile";
+  request = "../../../hello-world.txt";
   response = client.OpenFile(request);
-  std::cout << "Request string: " << request << std::endl;
-  std::cout << "Response string: " << response << std::endl;
+  std::cout << "Requested file: " << request << std::endl;
+  std::cout << "Response content: " << response << std::endl;
 
   std::cout << "CloseFile()" << std::endl;
   request = "Testing CloseFile";

@@ -21,12 +21,12 @@ service FileSystemService
 
 message OpenFileRequest
 {
-    string val = 1;
+    string path = 1;
 }
 
 message OpenFileResponse
 {
-    string val = 1;
+    bytes data = 1;
 }
 
 message CloseFileRequest

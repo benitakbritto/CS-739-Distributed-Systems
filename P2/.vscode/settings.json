@@ -1,0 +1,13 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/src",
+    "cmake.buildDirectory": "${workspaceFolder}/src/cmake/build",
+    "protoc": {
+        "compile_on_save": true,
+        "options": [
+            "--grpc_out=${workspaceRoot}/src/cmake/build",
+            "--cpp_out=${workspaceRoot}/src/cmake/build",
+            "-I=${workspaceRoot}/src",
+            "--plugin=protoc-gen-grpc=/bin/grpc_cpp_plugin"
+        ]
+    }
+}

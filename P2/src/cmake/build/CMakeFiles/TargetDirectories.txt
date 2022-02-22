@@ -1,4 +1,0 @@
-/home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/CMakeFiles/rebuild_cache.dir
-/home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/CMakeFiles/server.dir
-/home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/CMakeFiles/edit_cache.dir
-/home/benitakbritto/CS-739-Distributed-Systems/P2/src/cmake/build/CMakeFiles/client.dir

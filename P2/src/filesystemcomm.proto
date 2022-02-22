@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package filesystemcomm;
+
+// The string reversal service definition.
+service FileSystemService 
+{
+    // Function invoked to send the request
+    rpc SendRequest (StringRequest) returns (StringReply) {}
+}
+
+message StringRequest 
+{
+    string val = 1;
+}
+
+message StringReply 
+{
+    string val = 1;
+}

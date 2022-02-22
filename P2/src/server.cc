@@ -18,10 +18,6 @@ using filesystemcomm::OpenFileRequest;
 using filesystemcomm::OpenFileResponse;
 using filesystemcomm::CloseFileRequest;
 using filesystemcomm::CloseFileResponse;
-using filesystemcomm::ReadFileRequest;
-using filesystemcomm::ReadFileResponse;
-using filesystemcomm::WriteFileRequest;
-using filesystemcomm::WriteFileResponse;
 using filesystemcomm::CreateFileRequest;
 using filesystemcomm::CreateFileResponse;
 using filesystemcomm::DeleteFileRequest;
@@ -59,20 +55,6 @@ class ServiceImplementation final : public FileSystemService::Service
 
   Status CloseFile(ServerContext * context, const CloseFileRequest * request,
                      CloseFileResponse * reply) override 
-  {
-    reply->set_val(request->val());
-    return Status::OK;
-  }
-
-  Status ReadFile(ServerContext * context, const ReadFileRequest * request,
-                     ReadFileResponse * reply) override 
-  {
-    reply->set_val(request->val());
-    return Status::OK;
-  }
-
-  Status WriteFile(ServerContext * context, const WriteFileRequest * request,
-                     WriteFileResponse * reply) override 
   {
     reply->set_val(request->val());
     return Status::OK;

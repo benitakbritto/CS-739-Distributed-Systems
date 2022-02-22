@@ -11,10 +11,6 @@ using filesystemcomm::OpenFileRequest;
 using filesystemcomm::OpenFileResponse;
 using filesystemcomm::CloseFileRequest;
 using filesystemcomm::CloseFileResponse;
-using filesystemcomm::ReadFileRequest;
-using filesystemcomm::ReadFileResponse;
-using filesystemcomm::WriteFileRequest;
-using filesystemcomm::WriteFileResponse;
 using filesystemcomm::CreateFileRequest;
 using filesystemcomm::CreateFileResponse;
 using filesystemcomm::DeleteFileRequest;
@@ -71,54 +67,6 @@ class ClientImplementation
 
     // Make RPC
     Status status = stub_->CloseFile(&context, request, &reply);
-
-    // Checking RPC Status
-    if (status.ok()) 
-    {
-      return reply.val();
-    } 
-    else 
-    {
-      std::cout << status.error_code() << ": " << status.error_message()
-                << std::endl;
-      return "RPC Failed";
-    }
-  }
-
-  // TODO: Use FUSE
-  std::string ReadFile(std::string req) 
-  {
-    ReadFileRequest request;
-    ReadFileResponse reply;
-    ClientContext context;
-    request.set_val(req);
-
-    // Make RPC
-    Status status = stub_->ReadFile(&context, request, &reply);
-
-    // Checking RPC Status
-    if (status.ok()) 
-    {
-      return reply.val();
-    } 
-    else 
-    {
-      std::cout << status.error_code() << ": " << status.error_message()
-                << std::endl;
-      return "RPC Failed";
-    }
-  }
-
-  // TODO: Use FUSE
-  std::string WriteFile(std::string req) 
-  {
-    WriteFileRequest request;
-    WriteFileResponse reply;
-    ClientContext context;
-    request.set_val(req);
-
-    // Make RPC
-    Status status = stub_->WriteFile(&context, request, &reply);
 
     // Checking RPC Status
     if (status.ok()) 
@@ -308,18 +256,6 @@ void RunClient()
   std::cout << "CloseFile()" << std::endl;
   request = "Testing CloseFile";
   response = client.CloseFile(request);
-  std::cout << "Request string: " << request << std::endl;
-  std::cout << "Response string: " << response << std::endl;
-
-  std::cout << "ReadFile()" << std::endl;
-  request = "Testing ReadFile";
-  response = client.ReadFile(request);
-  std::cout << "Request string: " << request << std::endl;
-  std::cout << "Response string: " << response << std::endl;
-
-  std::cout << "WriteFile()" << std::endl;
-  request = "Testing WriteFile";
-  response = client.WriteFile(request);
   std::cout << "Request string: " << request << std::endl;
   std::cout << "Response string: " << response << std::endl;
 

@@ -13,8 +13,6 @@ using filesystemcomm::OpenFileRequest;
 using filesystemcomm::OpenFileResponse;
 using filesystemcomm::CloseFileRequest;
 using filesystemcomm::CloseFileResponse;
-using filesystemcomm::CreateFileRequest;
-using filesystemcomm::CreateFileResponse;
 using filesystemcomm::DeleteFileRequest;
 using filesystemcomm::DeleteFileResponse;
 using filesystemcomm::GetFileStatRequest;
@@ -70,30 +68,6 @@ class ClientImplementation
 
     // Make RPC
     Status status = stub_->CloseFile(&context, request, &reply);
-
-    // Checking RPC Status
-    if (status.ok()) 
-    {
-      return reply.val();
-    } 
-    else 
-    {
-      std::cout << status.error_code() << ": " << status.error_message()
-                << std::endl;
-      return "RPC Failed";
-    }
-  }
-
-  // TODO: Use FUSE
-  std::string CreateFile(std::string req) 
-  {
-    CreateFileRequest request;
-    CreateFileResponse reply;
-    ClientContext context;
-    request.set_val(req);
-
-    // Make RPC
-    Status status = stub_->CreateFile(&context, request, &reply);
 
     // Checking RPC Status
     if (status.ok()) 
@@ -263,13 +237,7 @@ void RunClient()
   response = client.CloseFile("example/hello-world.txt",std::ctime(&t_now));
   std::cout << "Requested file close: " << request << std::endl;
   std::cout << "Response string: " << response << std::endl;
-
-  std::cout << "CreateFile()" << std::endl;
-  request = "Testing CreateFile";
-  response = client.CreateFile(request);
-  std::cout << "Request string: " << request << std::endl;
-  std::cout << "Response string: " << response << std::endl;
-
+  
   std::cout << "DeleteFile()" << std::endl;
   request = "Testing DeleteFile";
   response = client.DeleteFile(request);

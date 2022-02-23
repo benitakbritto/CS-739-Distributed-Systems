@@ -21,8 +21,6 @@ using filesystemcomm::OpenFileRequest;
 using filesystemcomm::OpenFileResponse;
 using filesystemcomm::CloseFileRequest;
 using filesystemcomm::CloseFileResponse;
-using filesystemcomm::CreateFileRequest;
-using filesystemcomm::CreateFileResponse;
 using filesystemcomm::DeleteFileRequest;
 using filesystemcomm::DeleteFileResponse;
 using filesystemcomm::GetFileStatRequest;
@@ -97,14 +95,7 @@ class ServiceImplementation final : public FileSystemService::Service
     
     return Status::OK;
   }
-
-  Status CreateFile(ServerContext * context, const CreateFileRequest * request,
-                     CreateFileResponse * reply) override 
-  {
-    reply->set_val(request->val());
-    return Status::OK;
-  }
-
+  
   Status DeleteFile(ServerContext * context, const DeleteFileRequest * request,
                      DeleteFileResponse * reply) override 
   {

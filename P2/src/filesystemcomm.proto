@@ -7,7 +7,6 @@ service FileSystemService
     // File Operations
     rpc OpenFile (OpenFileRequest) returns (OpenFileResponse) {}
     rpc CloseFile (CloseFileRequest) returns (CloseFileResponse) {}
-    rpc CreateFile (CreateFileRequest) returns (CreateFileResponse) {}
     rpc DeleteFile (DeleteFileRequest) returns (DeleteFileResponse) {}
     rpc GetFileStat (GetFileStatRequest) returns (GetFileStatResponse) {}
 
@@ -34,16 +33,6 @@ message CloseFileRequest
 }
 
 message CloseFileResponse
-{
-    string val = 1;
-}
-
-message CreateFileRequest
-{
-    string val = 1;
-}
-
-message CreateFileResponse
 {
     string val = 1;
 }

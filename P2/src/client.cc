@@ -1,5 +1,7 @@
 #include <grpcpp/grpcpp.h>
 #include <string>
+#include <chrono>
+#include <ctime>
 #include "filesystemcomm.grpc.pb.h"
 
 using grpc::Channel;
@@ -57,12 +59,13 @@ class ClientImplementation
   }
 
   // TODO: Use FUSE
-  std::string CloseFile(std::string req) 
+  std::string CloseFile(std::string path, std::string data) 
   {
     CloseFileRequest request;
     CloseFileResponse reply;
     ClientContext context;
-    request.set_val(req);
+    request.set_path(path);
+    request.set_data(data);
 
 
     // Make RPC
@@ -248,15 +251,17 @@ void RunClient()
 
   // Client RPC invokation
   std::cout << "OpenFile()" << std::endl;
-  request = "../../../hello-world.txt";
-  response = client.OpenFile(request);
-  std::cout << "Requested file: " << request << std::endl;
+  response = client.OpenFile("example/hello-world.txt");
+  std::cout << "Requested file open: " << request << std::endl;
   std::cout << "Response content: " << response << std::endl;
 
   std::cout << "CloseFile()" << std::endl;
   request = "Testing CloseFile";
-  response = client.CloseFile(request);
-  std::cout << "Request string: " << request << std::endl;
+  
+  auto t_now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+  
+  response = client.CloseFile("example/hello-world.txt",std::ctime(&t_now));
+  std::cout << "Requested file close: " << request << std::endl;
   std::cout << "Response string: " << response << std::endl;
 
   std::cout << "CreateFile()" << std::endl;

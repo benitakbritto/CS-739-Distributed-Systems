@@ -29,7 +29,8 @@ message OpenFileResponse
 
 message CloseFileRequest
 {
-    string val = 1;
+    string path = 1;
+    bytes data = 2;
 }
 
 message CloseFileResponse

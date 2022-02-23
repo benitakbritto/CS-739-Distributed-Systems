@@ -4,14 +4,17 @@
 #include "filesystemcomm.grpc.pb.h"
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 
 using std::cout;
 using std::endl;
+using std::string;
 
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
+using grpc::StatusCode;
 
 using filesystemcomm::FileSystemService;
 using filesystemcomm::OpenFileRequest;
@@ -31,23 +34,49 @@ using filesystemcomm::DeleteDirResponse;
 using filesystemcomm::ListDirRequest;
 using filesystemcomm::ListDirResponse;
 
-std::string read_file(std::string filename) {
+string read_file(std::filesystem::path filepath) {
   std::ostringstream strm;
-  std::ifstream file(filename,std::ios::binary);
+  std::ifstream file(filepath,std::ios::binary);
   strm << file.rdbuf();
   return strm.str();
+}
+
+void write_file(std::filesystem::path filepath, string content) {
+  std::ofstream file;
+  file.open(filepath,std::ios::binary);
+  file << content;
+  file.close();
 }
 
 // Server Implementation
 class ServiceImplementation final : public FileSystemService::Service 
 {
+  std::filesystem::path root;
+  
+  public:
+    ServiceImplementation(std::filesystem::path root) : root(root){}
+  
+  
+  bool check_path(string relative, std::filesystem::path & normalized) {
+    normalized = (root / relative).lexically_normal();
+    auto [a,b] = std::mismatch(root.begin(),root.end(),normalized.begin());
+    return a == root.end();
+  }
+  
   Status OpenFile(ServerContext * context, const OpenFileRequest * request,
                      OpenFileResponse * reply) override 
   {
-    auto filename = request->path();
+    std::filesystem::path filepath;
+    if(!check_path(request->path(), filepath)) {
+      auto errc = "Failed to validate path " + request->path() + " -> " + filepath.string();
+      cout << errc << endl;
+      return Status(StatusCode::INVALID_ARGUMENT, errc);
+    }
+    
+    cout << "Reading file at " << filepath << endl;
     
     // In C++, protobuf `bytes` fields are implemented as strings
-    auto content = read_file(filename);    
+    auto content = read_file(filepath);    
     reply->set_data(content);
     
     return Status::OK;
@@ -56,7 +85,16 @@ class ServiceImplementation final : public FileSystemService::Service
   Status CloseFile(ServerContext * context, const CloseFileRequest * request,
                      CloseFileResponse * reply) override 
   {
-    reply->set_val(request->val());
+    std::filesystem::path filepath;
+    if(!check_path(request->path(), filepath)) {
+      auto errc = "Failed to validate path " + request->path() + " -> " + filepath.string();
+      cout << errc << endl;
+      return Status(StatusCode::INVALID_ARGUMENT, errc);
+    }
+    
+    write_file(filepath,request->data());
+    reply->set_val("Wrote file!");
+    
     return Status::OK;
   }
 
@@ -103,22 +141,32 @@ class ServiceImplementation final : public FileSystemService::Service
   }
 };
 
-void RunServer() 
+void RunServer(std::filesystem::path root) 
 {
-  ServiceImplementation service;
+  ServiceImplementation service(root);
   ServerBuilder builder;
 
-  std::string server_address("0.0.0.0:50051");
+  string server_address("0.0.0.0:50051");
   builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
   builder.RegisterService(&service);
   std::unique_ptr<Server> server(builder.BuildAndStart());
-  std::cout << "Server listening on port: " << server_address << std::endl;
+  cout << "Server listening on port: " << server_address << endl;
 
   server->Wait();
 }
 
 int main(int argc, char** argv) 
 {
-  RunServer();
+  if(argc != 2) {
+    cout << "Usage: " << argv[0] << " root_folder" << endl;
+    return 1;
+  }
+  
+  auto root = std::filesystem::canonical(argv[1]);
+  
+  cout << "Serving files from " << root << endl;
+  
+  
+  RunServer(root);
   return 0;
 }

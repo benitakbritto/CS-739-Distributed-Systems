@@ -1,0 +1,8 @@
+To build:
+gcc -Wall fuse_test.c `pkg-config fuse3 --cflags --libs` -o fuse_test
+
+To run and mount FUSE (mirrors contents of dir_2 onto dir_1):
+./fuse_test dir_1 dir_2
+
+To unmount FUSE:
+fusermount -u dir_1

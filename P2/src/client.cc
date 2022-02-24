@@ -31,8 +31,16 @@ class ClientImplementation
       : stub_(FileSystemService::NewStub(channel)) {}
 
   // TODO: Use FUSE
+  // TODO: Check cache with TestAuth/something else
   std::string OpenFile(std::string path) 
   {
+  
+    /* if (testAuth)
+    {
+      
+    } // End cache case
+    else
+    }*/
     OpenFileRequest request;
     OpenFileResponse reply;
     ClientContext context;
@@ -54,6 +62,7 @@ class ClientImplementation
                 << std::endl;
       return "RPC Failed";
     }
+    //} //End fetch from server case
   }
 
   // TODO: Use FUSE

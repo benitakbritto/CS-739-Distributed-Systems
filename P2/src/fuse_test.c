@@ -32,7 +32,6 @@
 #endif
 
 static int fill_dir_plus = 0;
-
 char *mount;
 
 static void fs_fullpath(char fpath[PATH_MAX], const char *path)
@@ -47,14 +46,13 @@ static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
 {
 
 	char fpath[PATH_MAX];
-        fs_fullpath(fpath, path);
-
 	DIR *dp;
 	struct dirent *de;
-
 	(void) offset;
 	(void) fi;
 	(void) flags;
+
+	fs_fullpath(fpath, path);
 
 	dp = opendir(fpath);
 	if (dp == NULL)
@@ -77,10 +75,10 @@ static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 		    struct fuse_file_info *fi)
 {
 	char fpath[PATH_MAX];
-        fs_fullpath(fpath, path);
-        
 	int fd;
 	int res;
+
+	fs_fullpath(fpath, path);
 
 	if(fi == NULL)
 		fd = open(fpath, O_RDONLY);
@@ -102,10 +100,10 @@ static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 static int fs_open(const char *path, struct fuse_file_info *fi)
 {
 	char fpath[PATH_MAX];
-        fs_fullpath(fpath, path);
-        
 	int res;
-
+    
+	fs_fullpath(fpath, path);
+        
 	res = open(fpath, fi->flags);
 	if (res == -1)
 		return -errno;
@@ -118,7 +116,7 @@ static int fs_getattr(const char *path, struct stat *stbuf,
 		       struct fuse_file_info *fi)
 {
 	char fpath[PATH_MAX];
-        fs_fullpath(fpath, path);
+    fs_fullpath(fpath, path);
 
 	(void) fi;
 	int res;
@@ -130,11 +128,27 @@ static int fs_getattr(const char *path, struct stat *stbuf,
 	return 0;
 }
 
+static int fs_unlink(const char *path)
+{
+	int res;
+	char fpath[PATH_MAX];
+    
+	fs_fullpath(fpath, path);
+
+	res = unlink(fpath);
+	if (res == -1)
+		return -errno;
+
+	return 0;
+}
+
+
 struct fuse_operations fsops = {
 	.readdir = fs_readdir,
 	.read = fs_read,
 	.open = fs_open,
 	.getattr = fs_getattr,
+	.unlink	= fs_unlink,
 };
 
 int

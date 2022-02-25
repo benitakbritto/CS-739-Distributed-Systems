@@ -116,12 +116,31 @@ static int fs_getattr(const char *path, struct stat *stbuf,
 		       struct fuse_file_info *fi)
 {
 	char fpath[PATH_MAX];
-    fs_fullpath(fpath, path);
-
 	(void) fi;
 	int res;
+
+	fs_fullpath(fpath, path);
 	
 	res = lstat(fpath, stbuf);
+	if (res == -1)
+		return -errno;
+
+	return 0;
+}
+
+static int fs_rename(const char *from, const char *to, unsigned int flags)
+{
+	int res;
+	char fpath_from[PATH_MAX];
+	char fpath_to[PATH_MAX];
+
+	fs_fullpath(fpath_from, from);
+	fs_fullpath(fpath_to, to);
+
+	if (flags)
+		return -EINVAL;
+
+	res = rename(fpath_from, fpath_to);
 	if (res == -1)
 		return -errno;
 
@@ -149,6 +168,7 @@ struct fuse_operations fsops = {
 	.open = fs_open,
 	.getattr = fs_getattr,
 	.unlink	= fs_unlink,
+	.rename = fs_rename,
 };
 
 int

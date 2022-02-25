@@ -207,6 +207,50 @@ static int fs_write(const char *path, const char *buf, size_t size,
 	return res;
 }
 
+static int fs_fsync(const char *path, int isdatasync,
+		     struct fuse_file_info *fi)
+{
+	/* Just a stub.	 This method is optional and can safely be left
+	   unimplemented */
+
+
+
+	(void) path;
+	(void) isdatasync;
+	(void) fi;
+	return 0;
+}
+
+static int fs_create(const char *path, mode_t mode,
+		      struct fuse_file_info *fi)
+{
+	int res;
+	char fpath[PATH_MAX];
+
+	fs_fullpath(fpath, path);
+	
+	res = open(fpath, fi->flags, mode);
+	if (res == -1)
+		return -errno;
+
+	fi->fh = res;
+	return 0;
+}
+
+static int fs_statfs(const char *path, struct statvfs *stbuf)
+{
+	int res;
+	char fpath[PATH_MAX];
+
+	fs_fullpath(fpath, path);
+	
+	res = statvfs(fpath, stbuf);
+	if (res == -1)
+		return -errno;
+
+	return 0;
+}
+
 struct fuse_operations fsops = {
 	.readdir = fs_readdir,
 	.read = fs_read,
@@ -216,6 +260,9 @@ struct fuse_operations fsops = {
 	.rename = fs_rename,
 	.truncate = fs_truncate,
 	.write = fs_write,
+	.statfs = fs_statfs,
+	.create = fs_create,
+	.fsync = fs_fsync,
 };
 
 int

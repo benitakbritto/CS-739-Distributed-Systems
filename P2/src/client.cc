@@ -30,8 +30,8 @@ class ClientImplementation
   ClientImplementation(std::shared_ptr<Channel> channel)
       : stub_(FileSystemService::NewStub(channel)) {}
 
-  // TODO: Use FUSE
-  // TODO: Check cache with TestAuth/something else
+  // TODO: Check cache with TestAuth/GetFileStat
+  // TODO: must handle open() and creat()
   std::string OpenFile(std::string path) 
   {
   
@@ -60,12 +60,12 @@ class ClientImplementation
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      return "RPC Failed";
+      return "OpenFile RPC Failed";
     }
     //} //End fetch from server case
   }
 
-  // TODO: Use FUSE
+  // TODO: Check cache with TestAuth/GetFileStat and invoke RPC
   std::string CloseFile(std::string path, std::string data) 
   {
     CloseFileRequest request;
@@ -87,11 +87,30 @@ class ClientImplementation
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      return "RPC Failed";
+      return "CloseFile RPC Failed";
     }
   }
 
-  // TODO: Use FUSE
+
+  // TODO -- local 
+  // TODO: handle read() and pread()
+  std::string ReadFile()
+  {
+    return "TODO";
+  }
+
+  // TODO -- local
+  // TODO: handle write() and pwrite()
+  std::string WriteFile()
+  {
+    return "TODO";
+  }
+
+  /*
+  * Invokes an RPC 
+  * If RPC fails, it just prints that out to stdout
+  * else prints <TODO>
+  */
   std::string DeleteFile(std::string req) 
   {
     DeleteFileRequest request;
@@ -102,27 +121,31 @@ class ClientImplementation
     // Make RPC
     Status status = stub_->DeleteFile(&context, request, &reply);
 
-    // Checking RPC Status
+    // Checking RPC Status 
     if (status.ok()) 
     {
       return reply.val();
     } 
-    else 
+    else
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      return "RPC Failed";
+      return "DeleteFile RPC Failed";
     }
   }
 
-  // TODO: Use FUSE
+  // TODO Get the right response type
+  /*
+  * Invokes an RPC 
+  * If RPC fails, it just prints that out to stdout
+  * Else returns file details
+  */
   std::string GetFileStat(std::string req) 
   {
     GetFileStatRequest request;
     GetFileStatResponse reply;
     ClientContext context;
     request.set_val(req);
-
 
     // Make RPC
     Status status = stub_->GetFileStat(&context, request, &reply);
@@ -136,18 +159,21 @@ class ClientImplementation
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      return "RPC Failed";
+      return "GetFileStat RPC Failed";
     }
   }
 
-  // TODO: Use FUSE
+  /*
+  * Invokes an RPC 
+  * If RPC fails, it just prints that out to stdout
+  * else prints <TODO>
+  */
   std::string MakeDir(std::string req) 
   {
     MakeDirRequest request;
     MakeDirResponse reply;
     ClientContext context;
     request.set_val(req);
-
 
     // Make RPC
     Status status = stub_->MakeDir(&context, request, &reply);
@@ -156,16 +182,20 @@ class ClientImplementation
     if (status.ok()) 
     {
       return reply.val();
-    } 
-    else 
+    }
+    else
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      return "RPC Failed";
+      return "MakeDir RPC Failed";
     }
   }
 
-  // TODO: Use FUSE
+  /*
+  * Invokes an RPC 
+  * If RPC fails, it just prints that out to stdout
+  * else prints <TODO>
+  */
   std::string DeleteDir(std::string req) 
   {
     DeleteDirRequest request;
@@ -186,11 +216,11 @@ class ClientImplementation
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      return "RPC Failed";
+      return "DeleteDir RPC Failed";
     }
   }
 
-  // TODO: Use FUSE
+  // TODO: Get the right response type
   std::string ListDir(std::string req) 
   {
     ListDirRequest request;
@@ -211,7 +241,7 @@ class ClientImplementation
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      return "RPC Failed";
+      return "ListDir RPC Failed";
     }
   }
 

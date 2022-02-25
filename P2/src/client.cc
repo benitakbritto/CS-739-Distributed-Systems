@@ -24,6 +24,13 @@ using filesystemcomm::DeleteDirResponse;
 using filesystemcomm::ListDirRequest;
 using filesystemcomm::ListDirResponse;
 
+// TODO: Add more attributes as required
+struct FileUpdateMetadata
+{
+  time_t accessTime; 
+  time_t modifyTime;
+};
+
 class ClientImplementation 
 {
  public:
@@ -243,6 +250,12 @@ class ClientImplementation
                 << std::endl;
       return "ListDir RPC Failed";
     }
+  }
+
+  // TODO: Wrapper Around GetFileStat
+  bool TestAuth()
+  {
+    return true;
   }
 
  private:

@@ -161,6 +161,24 @@ static int fs_unlink(const char *path)
 	return 0;
 }
 
+static int fs_truncate(const char *path, off_t size,
+			struct fuse_file_info *fi)
+{
+	int res;
+	char fpath[PATH_MAX];
+
+	fs_fullpath(fpath, path);
+
+	if (fi != NULL)
+		res = ftruncate(fi->fh, size);
+	else
+		res = truncate(fpath, size);
+	if (res == -1)
+		return -errno;
+
+	return 0;
+}
+
 
 struct fuse_operations fsops = {
 	.readdir = fs_readdir,
@@ -169,6 +187,7 @@ struct fuse_operations fsops = {
 	.getattr = fs_getattr,
 	.unlink	= fs_unlink,
 	.rename = fs_rename,
+	.truncate = fs_truncate,
 };
 
 int

@@ -179,6 +179,33 @@ static int fs_truncate(const char *path, off_t size,
 	return 0;
 }
 
+static int fs_write(const char *path, const char *buf, size_t size,
+		     off_t offset, struct fuse_file_info *fi)
+{
+	printf("fs_write invoked\n");
+	int fd;
+	int res;
+	(void) fi;
+	char fpath[PATH_MAX];
+
+	fs_fullpath(fpath, path);
+
+	if(fi == NULL)
+		fd = open(fpath, O_WRONLY);
+	else
+		fd = fi->fh;
+	
+	if (fd == -1)
+		return -errno;
+
+	res = pwrite(fd, buf, size, offset);
+	if (res == -1)
+		res = -errno;
+
+	if(fi == NULL)
+		close(fd);
+	return res;
+}
 
 struct fuse_operations fsops = {
 	.readdir = fs_readdir,
@@ -188,6 +215,7 @@ struct fuse_operations fsops = {
 	.unlink	= fs_unlink,
 	.rename = fs_rename,
 	.truncate = fs_truncate,
+	.write = fs_write,
 };
 
 int

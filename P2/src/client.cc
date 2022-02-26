@@ -4,6 +4,10 @@
 #include <ctime>
 #include "filesystemcomm.grpc.pb.h"
 
+#include <fcntl.h>
+#include <unistd.h>
+
+
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
@@ -24,11 +28,20 @@ using filesystemcomm::DeleteDirResponse;
 using filesystemcomm::ListDirRequest;
 using filesystemcomm::ListDirResponse;
 
+
+
 // TODO: Add more attributes as required
 struct FileUpdateMetadata
 {
   time_t accessTime; 
   time_t modifyTime;
+};
+
+struct FileDescriptor
+{
+  int file;
+  std::string path;
+  FileDescriptor(int file, std::string path) : path(path), file(file) {}
 };
 
 class ClientImplementation 
@@ -39,46 +52,53 @@ class ClientImplementation
 
   // TODO: Check cache with TestAuth/GetFileStat
   // TODO: must handle open() and creat()
-  std::string OpenFile(std::string path) 
+  FileDescriptor OpenFile(std::string path) 
   {
-  
-    /* if (testAuth)
+    int file;
+    if (!TestAuth())
     {
-      
-    } // End cache case
-    else
-    }*/
-    OpenFileRequest request;
-    OpenFileResponse reply;
-    ClientContext context;
-    request.set_path(path);
+      OpenFileRequest request;
+      OpenFileResponse reply;
+      ClientContext context;
+      request.set_path(path);
 
+      // Make RPC
+      Status status = stub_->OpenFile(&context, request, &reply);
 
-    // Make RPC
-    Status status = stub_->OpenFile(&context, request, &reply);
-
-    // Checking RPC Status
-    if (status.ok()) 
-    {
-      // Return file contents
-      return reply.data();
-    } 
-    else 
-    {
-      std::cout << status.error_code() << ": " << status.error_message()
-                << std::endl;
-      return "OpenFile RPC Failed";
-    }
-    //} //End fetch from server case
+      // Checking RPC Status
+      if (status.ok()) 
+      {
+        file = open(path.c_str(), O_RDWR | O_TRUNC | O_CREAT, 0666);
+        write(file, reply.data().c_str(), reply.data().length());
+        close(file);
+      } 
+      else 
+      {
+        std::cout << status.error_code() << ": " << status.error_message()
+                  << std::endl;
+        std::cout << "OpenFile RPC Failed" << std::endl;
+      }
+    } //End fetch from server case
+    
+    // Return file descriptor
+    file = open(path.c_str(), O_RDWR);
+    return FileDescriptor(file, path);
   }
 
   // TODO: Check cache with TestAuth/GetFileStat and invoke RPC
-  std::string CloseFile(std::string path, std::string data) 
+  std::string CloseFile(FileDescriptor fd, std::string data) 
   {
+  
+    close(fd.file);
+    
+    // No RPC necessary if file wasn't modified
+    if (TestAuth())
+      return "Close success";
+  
     CloseFileRequest request;
     CloseFileResponse reply;
     ClientContext context;
-    request.set_path(path);
+    request.set_path(fd.path);
     request.set_data(data);
 
 
@@ -101,16 +121,36 @@ class ClientImplementation
 
   // TODO -- local 
   // TODO: handle read() and pread()
-  std::string ReadFile()
+  int ReadFile(FileDescriptor fd, char* buf, int length)
   {
-    return "TODO";
+    int read_in = read(fd.file, buf, length);
+    return read_in;
   }
 
   // TODO -- local
   // TODO: handle write() and pwrite()
-  std::string WriteFile()
+  int WriteFile(FileDescriptor fd, char* buf, int length)
   {
-    return "TODO";
+    int written_out = write(fd.file, buf, length);
+    std::cout << buf << std::endl;
+    return written_out;
+  }
+  
+  // TODO -- local 
+  // TODO: handle read() and pread()
+  int ReadFile(FileDescriptor fd, char* buf, int length, int offset)
+  {
+    int read_in = pread(fd.file, buf, length, offset);
+    return read_in;
+  }
+
+  // TODO -- local
+  // TODO: handle write() and pwrite()
+  int WriteFile(FileDescriptor fd, char* buf, int length, int offset)
+  {
+    int written_out = pwrite(fd.file, buf, length, offset);
+    std::cout << buf << std::endl;
+    return written_out;
   }
 
   /*
@@ -277,16 +317,22 @@ void RunClient()
 
   // Client RPC invokation
   std::cout << "OpenFile()" << std::endl;
-  response = client.OpenFile("example/hello-world.txt");
+  FileDescriptor fd = client.OpenFile("example/hello-world.txt");
   std::cout << "Requested file open: " << request << std::endl;
-  std::cout << "Response content: " << response << std::endl;
+  std::cout << "Response content: " << fd.file << std::endl;
+
+  client.WriteFile(fd, "hello", 5);
+  char c[10];
+  int read = client.ReadFile(fd, c, 5, 0);
+  for (int i = 0; i < 5; i++)
+    std::cout << c[i] << std::endl;
 
   std::cout << "CloseFile()" << std::endl;
   request = "Testing CloseFile";
   
   auto t_now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
   
-  response = client.CloseFile("example/hello-world.txt",std::ctime(&t_now));
+  response = client.CloseFile(fd,std::ctime(&t_now));
   std::cout << "Requested file close: " << request << std::endl;
   std::cout << "Response string: " << response << std::endl;
   

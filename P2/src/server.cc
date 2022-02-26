@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 #include <grpcpp/grpcpp.h>
+#include <sys/stat.h>
 
+#include <exception>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -18,118 +20,370 @@ using grpc::ServerContext;
 using grpc::Status;
 using grpc::StatusCode;
 
-using filesystemcomm::CloseFileRequest;
-using filesystemcomm::CloseFileResponse;
-using filesystemcomm::DeleteDirRequest;
-using filesystemcomm::DeleteDirResponse;
-using filesystemcomm::DeleteFileRequest;
-using filesystemcomm::DeleteFileResponse;
+using std::filesystem::path;
+
 using filesystemcomm::FileSystemService;
+
+using filesystemcomm::FileStat;
+using filesystemcomm::FileMode;
+using filesystemcomm::Timestamp;
+using filesystemcomm::DirectoryEntry;
+
+using filesystemcomm::FetchRequest;
+using filesystemcomm::FetchResponse;
 using filesystemcomm::GetFileStatRequest;
 using filesystemcomm::GetFileStatResponse;
 using filesystemcomm::ListDirRequest;
 using filesystemcomm::ListDirResponse;
 using filesystemcomm::MakeDirRequest;
 using filesystemcomm::MakeDirResponse;
-using filesystemcomm::OpenFileRequest;
-using filesystemcomm::OpenFileResponse;
+using filesystemcomm::RemoveDirRequest;
+using filesystemcomm::RemoveDirResponse;
+using filesystemcomm::RemoveRequest;
+using filesystemcomm::RemoveResponse;
+using filesystemcomm::RenameRequest;
+using filesystemcomm::RenameResponse;
+using filesystemcomm::StoreRequest;
+using filesystemcomm::StoreResponse;
+using filesystemcomm::TestAuthRequest;
+using filesystemcomm::TestAuthResponse;
 
-string read_file(std::filesystem::path filepath) {
+class ServiceException : public std::runtime_error {
+    StatusCode code;
+
+   public:
+    ServiceException(const char* msg, StatusCode code) : std::runtime_error(msg), code(code) {}
+
+    StatusCode get_code() const {
+        return code;
+    }
+};
+
+string read_file(path filepath) {
     std::ostringstream strm;
+    // TODO throw if not file or DNE
     std::ifstream file(filepath, std::ios::binary);
     strm << file.rdbuf();
     return strm.str();
 }
 
-void write_file(std::filesystem::path filepath, string content) {
+void write_file(path filepath, string content) {
     std::ofstream file;
+
+    // TODO throw if parent dir DNE
+    // TODO throw if exists and not file
+
     file.open(filepath, std::ios::binary);
     file << content;
     file.close();
 }
 
+void delete_file(path filepath) {
+    if (unlink(filepath.c_str()) == -1) {
+        switch (errno) {
+            case EISDIR:
+            case EPERM:
+                throw new ServiceException("Called Remove on directory", StatusCode::PERMISSION_DENIED);
+            case ENOENT:
+                throw new ServiceException("File not found", StatusCode::NOT_FOUND);
+            default:
+                throw new ServiceException("Error in call to unlink", StatusCode::UNKNOWN);
+        }
+    }
+}
+
+void make_dir(path filepath) {
+    if (mkdir(filepath.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == -1) {
+        switch (errno) {
+            case EEXIST:
+                throw new ServiceException("Path already exists", StatusCode::ALREADY_EXISTS);
+            case ENOENT:
+                throw new ServiceException("Missing directory in path prefix", StatusCode::NOT_FOUND);
+            case ENOTDIR:
+                throw new ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+            default:
+                throw new ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
+        }
+    }
+}
+
+void remove_dir(path filepath) {
+    if (rmdir(filepath.c_str()) == -1) {
+        switch (errno) {
+            case EEXIST:
+            case ENOTEMPTY:
+                throw new ServiceException("Attempting to remove non-empty directory", StatusCode::FAILED_PRECONDITION);
+            case EINVAL:
+                throw new ServiceException("Invalid directory name", StatusCode::INVALID_ARGUMENT);
+            case ENOENT:
+                throw new ServiceException("Missing directory in path", StatusCode::NOT_FOUND);
+            case ENOTDIR:
+                throw new ServiceException("Non-directory in path", StatusCode::FAILED_PRECONDITION);
+            default:
+                throw new ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
+        }
+    }
+}
+
+void list_dir(path filepath, ListDirResponse * reply) {
+    // TODO catch errors from directory_iterator
+    for (const auto& entry : std::filesystem::directory_iterator(filepath)) {
+        DirectoryEntry* msg = reply->add_entries();
+        msg->set_file_name(entry.path().filename());
+        msg->set_mode(entry.is_regular_file() ? FileMode::REG : entry.is_directory() ? FileMode::DIR : FileMode::UNSUPPORTED);
+        msg->set_size(entry.file_size());
+    }
+}
+
+FileStat read_stat(path filepath) {
+    struct stat sb;
+
+    if (stat(filepath.c_str(), &sb) == -1) {
+        // TODO transform error codes
+        throw ServiceException("Stat failed", StatusCode::UNKNOWN);
+    }
+
+    FileStat ret;
+
+    ret.set_file_name(filepath.filename());
+    ret.set_mode(convert_filemode(sb.st_mode));
+    ret.set_size(sb.st_size);
+
+    Timestamp t_access = convert_timestamp(sb.st_atim);
+    Timestamp t_change = convert_timestamp(sb.st_mtim);
+    Timestamp t_modify = convert_timestamp(sb.st_ctim);
+
+    ret.set_allocated_time_access(&t_access);
+    ret.set_allocated_time_change(&t_change);
+    ret.set_allocated_time_modify(&t_modify);
+
+    return ret;
+}
+
+timespec read_modify_time(path filepath) {
+    struct stat sb;
+    if (stat(filepath.c_str(), &sb) == -1) {
+        // TODO transform error codes
+        throw ServiceException("Stat failed", StatusCode::UNKNOWN);
+    }
+    return sb.st_ctim;
+}
+
+mode_t read_file_mode(path filepath) {
+    struct stat sb;
+    if (stat(filepath.c_str(), &sb) == -1) {
+        // TODO transform error codes
+        throw ServiceException("Stat failed", StatusCode::UNKNOWN);
+    }
+    return sb.st_mode;
+}
+
+FileMode convert_filemode(mode_t raw) {
+    switch (raw) {
+        case S_IFDIR:
+            return FileMode::DIR;
+        case S_IFREG:
+            return FileMode::REG;
+        default:
+            return FileMode::UNSUPPORTED;
+    }
+}
+
+Timestamp convert_timestamp(timespec raw) {
+    Timestamp a;
+    a.set_sec(raw.tv_sec);
+    a.set_nsec(raw.tv_nsec);
+    return a;
+}
+
+static const string TEMP_FILE_EXT = ".afs_tmp";
+
 // Server Implementation
 class ServiceImplementation final : public FileSystemService::Service {
-    std::filesystem::path root;
+    path root;
+
+    path to_storage_path(string relative) {
+        path normalized = (root / relative).lexically_normal();
+
+        // Check that this path is under our storage root
+        auto [a, b] = std::mismatch(root.begin(), root.end(), normalized.begin());
+        if (a != root.end()) {
+            throw ServiceException("Normalized path is outside storage root", StatusCode::INVALID_ARGUMENT);
+        }
+
+        if (normalized.extension() == TEMP_FILE_EXT) {
+            throw ServiceException("Attempting to access file with a reserved extension", StatusCode::INVALID_ARGUMENT);
+        }
+
+        return normalized;
+    }
 
    public:
-    ServiceImplementation(std::filesystem::path root) : root(root) {}
+    ServiceImplementation(path root) : root(root) {}
 
-    bool check_path(string relative, std::filesystem::path& normalized) {
-        normalized = (root / relative).lexically_normal();
-        auto [a, b] =
-            std::mismatch(root.begin(), root.end(), normalized.begin());
-        return a == root.end();
-    }
+    Status Fetch(ServerContext* context, const FetchRequest* request, FetchResponse* reply) override {
+        try {
+            path filepath = to_storage_path(request->pathname());
+            cout << "Reading file at " << filepath << endl;
 
-    Status OpenFile(ServerContext* context, const OpenFileRequest* request,
-                    OpenFileResponse* reply) override {
-        std::filesystem::path filepath;
-        if (!check_path(request->path(), filepath)) {
-            auto errc = "Failed to validate path " + request->path() + " -> " +
-                        filepath.string();
-            cout << errc << endl;
-            return Status(StatusCode::INVALID_ARGUMENT, errc);
+            // TODO wait for read/write lock
+
+            // In C++, protobuf `bytes` fields are implemented as strings
+            auto content = read_file(filepath);
+            reply->set_file_contents(content);
+
+            return Status::OK;
+        } catch (const ServiceException& e) {
+            cout << e.what() << endl;
+            return Status(e.get_code(), e.what());
+        } catch (const std::exception& e) {
+            cout << e.what() << endl;
+            return Status(StatusCode::UNKNOWN, e.what());
         }
-
-        cout << "Reading file at " << filepath << endl;
-
-        // In C++, protobuf `bytes` fields are implemented as strings
-        auto content = read_file(filepath);
-        reply->set_data(content);
-
-        return Status::OK;
     }
 
-    Status CloseFile(ServerContext* context, const CloseFileRequest* request,
-                     CloseFileResponse* reply) override {
-        std::filesystem::path filepath;
-        if (!check_path(request->path(), filepath)) {
-            auto errc = "Failed to validate path " + request->path() + " -> " +
-                        filepath.string();
-            cout << errc << endl;
-            return Status(StatusCode::INVALID_ARGUMENT, errc);
+    Status Store(ServerContext* context, const StoreRequest* request, StoreResponse* reply) override {
+        try {
+            path filepath = to_storage_path(request->pathname());
+
+            // TODO wait for read/write lock
+
+            write_file(filepath, request->file_contents());
+
+            reply->set_allocated_time_modify(&convert_timestamp(read_modify_time(filepath)));
+
+            return Status::OK;
+
+        } catch (const ServiceException& e) {
+            cout << e.what() << endl;
+            return Status(e.get_code(), e.what());
+        } catch (const std::exception& e) {
+            cout << e.what() << endl;
+            return Status(StatusCode::UNKNOWN, e.what());
         }
+    }
 
-        write_file(filepath, request->data());
-        reply->set_val("Wrote file!");
+    Status Remove(ServerContext* context, const RemoveRequest* request, RemoveResponse* reply) override {
+        try {
+            path filepath = to_storage_path(request->pathname());
+
+            // TODO wait for read/write lock
+
+            delete_file(filepath);
+
+            return Status::OK;
+        } catch (const ServiceException& e) {
+            cout << e.what() << endl;
+            return Status(e.get_code(), e.what());
+        } catch (const std::exception& e) {
+            cout << e.what() << endl;
+            return Status(StatusCode::UNKNOWN, e.what());
+        }
+    }
+
+    Status Rename(ServerContext* context, const RenameRequest* request, RenameResponse* reply) override {
+        // TODO err if path not file or DNE
+        // TODO err if new name exists
+
+        // TODO wait for read/write lock
 
         return Status::OK;
     }
 
-    Status DeleteFile(ServerContext* context, const DeleteFileRequest* request,
-                      DeleteFileResponse* reply) override {
-        reply->set_val(request->val());
-        return Status::OK;
+    Status GetFileStat(ServerContext* context, const GetFileStatRequest* request, GetFileStatResponse* reply) override {
+        try {
+            path filepath = to_storage_path(request->pathname());
+
+            // TODO wait for read/write lock
+            auto status = read_stat(filepath);
+            reply->set_allocated_status(&status);
+            return Status::OK;
+        } catch (const ServiceException& e) {
+            cout << e.what() << endl;
+            return Status(e.get_code(), e.what());
+        } catch (const std::exception& e) {
+            cout << e.what() << endl;
+            return Status(StatusCode::UNKNOWN, e.what());
+        }
     }
 
-    Status GetFileStat(ServerContext* context,
-                       const GetFileStatRequest* request,
-                       GetFileStatResponse* reply) override {
-        reply->set_val(request->val());
-        return Status::OK;
+    Status TestAuth(ServerContext* context, const TestAuthRequest* request, TestAuthResponse* reply) override {
+        try {
+            path filepath = to_storage_path(request->pathname());
+
+            // todo wait for write to finish??
+
+            auto ts0 = read_modify_time(filepath);
+
+            auto ts1 = request->time_modify();
+
+            bool changed = (ts0.tv_sec != ts1.sec()) || (ts0.tv_nsec != ts1.nsec());
+
+            reply->set_has_changed(changed);
+
+            return Status::OK;
+        } catch (const ServiceException& e) {
+            cout << e.what() << endl;
+            return Status(e.get_code(), e.what());
+        } catch (const std::exception& e) {
+            cout << e.what() << endl;
+            return Status(StatusCode::UNKNOWN, e.what());
+        }
     }
 
-    Status MakeDir(ServerContext* context, const MakeDirRequest* request,
-                   MakeDirResponse* reply) override {
-        reply->set_val(request->val());
-        return Status::OK;
+    Status MakeDir(ServerContext* context, const MakeDirRequest* request, MakeDirResponse* reply) override {
+        try {
+            path filepath = to_storage_path(request->pathname());
+
+            // todo wait for write to finish??
+            make_dir(filepath);
+            
+            return Status::OK;
+        } catch (const ServiceException& e) {
+            cout << e.what() << endl;
+            return Status(e.get_code(), e.what());
+        } catch (const std::exception& e) {
+            cout << e.what() << endl;
+            return Status(StatusCode::UNKNOWN, e.what());
+        }
     }
 
-    Status DeleteDir(ServerContext* context, const DeleteDirRequest* request,
-                     DeleteDirResponse* reply) override {
-        reply->set_val(request->val());
-        return Status::OK;
+    Status RemoveDir(ServerContext* context, const RemoveDirRequest* request, RemoveDirResponse* reply) override {
+        try {
+            path filepath = to_storage_path(request->pathname());
+
+            // todo wait for write to finish??
+            remove_dir(filepath);
+            
+            return Status::OK;
+        } catch (const ServiceException& e) {
+            cout << e.what() << endl;
+            return Status(e.get_code(), e.what());
+        } catch (const std::exception& e) {
+            cout << e.what() << endl;
+            return Status(StatusCode::UNKNOWN, e.what());
+        }
     }
 
-    Status ListDir(ServerContext* context, const ListDirRequest* request,
-                   ListDirResponse* reply) override {
-        reply->set_val(request->val());
-        return Status::OK;
+    Status ListDir(ServerContext* context, const ListDirRequest* request, ListDirResponse* reply) override {
+        try {
+            path filepath = to_storage_path(request->pathname());
+
+            // todo wait for write to finish??
+            list_dir(filepath,reply);
+            
+            return Status::OK;
+        } catch (const ServiceException& e) {
+            cout << e.what() << endl;
+            return Status(e.get_code(), e.what());
+        } catch (const std::exception& e) {
+            cout << e.what() << endl;
+            return Status(StatusCode::UNKNOWN, e.what());
+        }
     }
 };
 
-void RunServer(std::filesystem::path root) {
+void RunServer(path root) {
     ServiceImplementation service(root);
     ServerBuilder builder;
 

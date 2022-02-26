@@ -12,7 +12,6 @@ service FileSystemService
     
     // Metadata operations
     rpc GetFileStat (GetFileStatRequest) returns (GetFileStatResponse) {}
-    rpc SetFileStat (SetFileStatRequest) returns (SetFileStatResponse) {}
     rpc TestAuth (TestAuthRequest) returns (TestAuthResponse) {}
     
     // Directory operations
@@ -30,15 +29,15 @@ message Timestamp
     uint32 nsec = 2;
 }
 
+enum FileMode {
+    UNSUPPORTED = 0;
+    REG = 1;
+    DIR = 2;
+}
+
 // See https://linux.die.net/man/2/fstat
 message FileStat
 {
-    enum FileMode {
-        UNSUPPORTED = 0;
-        REG = 1;
-        DIR = 2;
-    }
-    
     string file_name = 1;
     FileMode mode = 2;
     uint64 size = 3; // in bytes
@@ -47,6 +46,11 @@ message FileStat
     Timestamp time_change = 6;
 }
 
+message DirectoryEntry {
+    string file_name = 1;
+    FileMode mode = 2;
+    uint64 size = 3; // in bytes
+}
 
 
 message FetchRequest
@@ -93,15 +97,6 @@ message GetFileStatResponse
 
 
 
-message SetFileStatRequest
-{
-    string pathname = 1;
-    FileStat status = 2;
-}
-message SetFileStatResponse { } // empty ack
-
-
-
 message TestAuthRequest
 {
     string pathname = 1;
@@ -136,7 +131,7 @@ message ListDirRequest
 }
 message ListDirResponse
 {
-    repeated string filenames = 1; // names (not paths)
+    repeated DirectoryEntry entries = 1;
 }
 
 

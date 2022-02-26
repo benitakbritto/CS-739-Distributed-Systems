@@ -1,34 +1,33 @@
 #include <bits/stdc++.h>
 #include <grpcpp/grpcpp.h>
 #include <sys/stat.h>
-
 #include <exception>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <string>
-
 #include "filesystemcomm.grpc.pb.h"
+
+/****************************************************************************** 
+* Macros
+*****************************************************************************/
+#define DEBUG               1
+#define dbgprintf(...)      if (DEBUG) { printf(__VA_ARGS__); }
 
 using std::cout;
 using std::endl;
 using std::string;
-
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
 using grpc::StatusCode;
-
 using std::filesystem::path;
-
 using filesystemcomm::FileSystemService;
-
 using filesystemcomm::FileStat;
 using filesystemcomm::FileMode;
 using filesystemcomm::Timestamp;
 using filesystemcomm::DirectoryEntry;
-
 using filesystemcomm::FetchRequest;
 using filesystemcomm::FetchResponse;
 using filesystemcomm::GetFileStatRequest;
@@ -59,143 +58,6 @@ class ServiceException : public std::runtime_error {
     }
 };
 
-string read_file(path filepath) {
-    std::ostringstream strm;
-    // TODO throw if not file or DNE
-    std::ifstream file(filepath, std::ios::binary);
-    strm << file.rdbuf();
-    return strm.str();
-}
-
-void write_file(path filepath, string content) {
-    std::ofstream file;
-
-    // TODO throw if parent dir DNE
-    // TODO throw if exists and not file
-
-    file.open(filepath, std::ios::binary);
-    file << content;
-    file.close();
-}
-
-void delete_file(path filepath) {
-    if (unlink(filepath.c_str()) == -1) {
-        switch (errno) {
-            case EISDIR:
-            case EPERM:
-                throw new ServiceException("Called Remove on directory", StatusCode::PERMISSION_DENIED);
-            case ENOENT:
-                throw new ServiceException("File not found", StatusCode::NOT_FOUND);
-            default:
-                throw new ServiceException("Error in call to unlink", StatusCode::UNKNOWN);
-        }
-    }
-}
-
-void make_dir(path filepath) {
-    if (mkdir(filepath.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == -1) {
-        switch (errno) {
-            case EEXIST:
-                throw new ServiceException("Path already exists", StatusCode::ALREADY_EXISTS);
-            case ENOENT:
-                throw new ServiceException("Missing directory in path prefix", StatusCode::NOT_FOUND);
-            case ENOTDIR:
-                throw new ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
-            default:
-                throw new ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
-        }
-    }
-}
-
-void remove_dir(path filepath) {
-    if (rmdir(filepath.c_str()) == -1) {
-        switch (errno) {
-            case EEXIST:
-            case ENOTEMPTY:
-                throw new ServiceException("Attempting to remove non-empty directory", StatusCode::FAILED_PRECONDITION);
-            case EINVAL:
-                throw new ServiceException("Invalid directory name", StatusCode::INVALID_ARGUMENT);
-            case ENOENT:
-                throw new ServiceException("Missing directory in path", StatusCode::NOT_FOUND);
-            case ENOTDIR:
-                throw new ServiceException("Non-directory in path", StatusCode::FAILED_PRECONDITION);
-            default:
-                throw new ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
-        }
-    }
-}
-
-void list_dir(path filepath, ListDirResponse * reply) {
-    // TODO catch errors from directory_iterator
-    for (const auto& entry : std::filesystem::directory_iterator(filepath)) {
-        DirectoryEntry* msg = reply->add_entries();
-        msg->set_file_name(entry.path().filename());
-        msg->set_mode(entry.is_regular_file() ? FileMode::REG : entry.is_directory() ? FileMode::DIR : FileMode::UNSUPPORTED);
-        msg->set_size(entry.file_size());
-    }
-}
-
-FileStat read_stat(path filepath) {
-    struct stat sb;
-
-    if (stat(filepath.c_str(), &sb) == -1) {
-        // TODO transform error codes
-        throw ServiceException("Stat failed", StatusCode::UNKNOWN);
-    }
-
-    FileStat ret;
-
-    ret.set_file_name(filepath.filename());
-    ret.set_mode(convert_filemode(sb.st_mode));
-    ret.set_size(sb.st_size);
-
-    Timestamp t_access = convert_timestamp(sb.st_atim);
-    Timestamp t_change = convert_timestamp(sb.st_mtim);
-    Timestamp t_modify = convert_timestamp(sb.st_ctim);
-
-    ret.set_allocated_time_access(&t_access);
-    ret.set_allocated_time_change(&t_change);
-    ret.set_allocated_time_modify(&t_modify);
-
-    return ret;
-}
-
-timespec read_modify_time(path filepath) {
-    struct stat sb;
-    if (stat(filepath.c_str(), &sb) == -1) {
-        // TODO transform error codes
-        throw ServiceException("Stat failed", StatusCode::UNKNOWN);
-    }
-    return sb.st_ctim;
-}
-
-mode_t read_file_mode(path filepath) {
-    struct stat sb;
-    if (stat(filepath.c_str(), &sb) == -1) {
-        // TODO transform error codes
-        throw ServiceException("Stat failed", StatusCode::UNKNOWN);
-    }
-    return sb.st_mode;
-}
-
-FileMode convert_filemode(mode_t raw) {
-    switch (raw) {
-        case S_IFDIR:
-            return FileMode::DIR;
-        case S_IFREG:
-            return FileMode::REG;
-        default:
-            return FileMode::UNSUPPORTED;
-    }
-}
-
-Timestamp convert_timestamp(timespec raw) {
-    Timestamp a;
-    a.set_sec(raw.tv_sec);
-    a.set_nsec(raw.tv_nsec);
-    return a;
-}
-
 static const string TEMP_FILE_EXT = ".afs_tmp";
 
 // Server Implementation
@@ -216,6 +78,143 @@ class ServiceImplementation final : public FileSystemService::Service {
         }
 
         return normalized;
+    }
+
+    string read_file(path filepath) {
+        std::ostringstream strm;
+        // TODO throw if not file or DNE
+        std::ifstream file(filepath, std::ios::binary);
+        strm << file.rdbuf();
+        return strm.str();
+    }
+
+    void write_file(path filepath, string content) {
+        std::ofstream file;
+
+        // TODO throw if parent dir DNE
+        // TODO throw if exists and not file
+
+        file.open(filepath, std::ios::binary);
+        file << content;
+        file.close();
+    }
+
+    void delete_file(path filepath) {
+        if (unlink(filepath.c_str()) == -1) {
+            switch (errno) {
+                case EISDIR:
+                case EPERM:
+                    throw new ServiceException("Called Remove on directory", StatusCode::PERMISSION_DENIED);
+                case ENOENT:
+                    throw new ServiceException("File not found", StatusCode::NOT_FOUND);
+                default:
+                    throw new ServiceException("Error in call to unlink", StatusCode::UNKNOWN);
+            }
+        }
+    }
+
+    void make_dir(path filepath) {
+        if (mkdir(filepath.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == -1) {
+            switch (errno) {
+                case EEXIST:
+                    throw new ServiceException("Path already exists", StatusCode::ALREADY_EXISTS);
+                case ENOENT:
+                    throw new ServiceException("Missing directory in path prefix", StatusCode::NOT_FOUND);
+                case ENOTDIR:
+                    throw new ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+                default:
+                    throw new ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
+            }
+        }
+    }
+
+    void remove_dir(path filepath) {
+        if (rmdir(filepath.c_str()) == -1) {
+            switch (errno) {
+                case EEXIST:
+                case ENOTEMPTY:
+                    throw new ServiceException("Attempting to remove non-empty directory", StatusCode::FAILED_PRECONDITION);
+                case EINVAL:
+                    throw new ServiceException("Invalid directory name", StatusCode::INVALID_ARGUMENT);
+                case ENOENT:
+                    throw new ServiceException("Missing directory in path", StatusCode::NOT_FOUND);
+                case ENOTDIR:
+                    throw new ServiceException("Non-directory in path", StatusCode::FAILED_PRECONDITION);
+                default:
+                    throw new ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
+            }
+        }
+    }
+
+    void list_dir(path filepath, ListDirResponse * reply) {
+        // TODO catch errors from directory_iterator
+        for (const auto& entry : std::filesystem::directory_iterator(filepath)) {
+            DirectoryEntry* msg = reply->add_entries();
+            msg->set_file_name(entry.path().filename());
+            msg->set_mode(entry.is_regular_file() ? FileMode::REG : entry.is_directory() ? FileMode::DIR : FileMode::UNSUPPORTED);
+            msg->set_size(entry.file_size());
+        }
+    }
+
+    FileStat read_stat(path filepath) {
+        struct stat sb;
+
+        if (stat(filepath.c_str(), &sb) == -1) {
+            // TODO transform error codes
+            throw ServiceException("Stat failed", StatusCode::UNKNOWN);
+        }
+
+        FileStat ret;
+
+        ret.set_file_name(filepath.filename());
+        ret.set_mode(convert_filemode(sb.st_mode));
+        ret.set_size(sb.st_size);
+
+        Timestamp t_access = convert_timestamp(sb.st_atim);
+        Timestamp t_change = convert_timestamp(sb.st_mtim);
+        Timestamp t_modify = convert_timestamp(sb.st_ctim);
+
+        ret.set_allocated_time_access(&t_access);
+        ret.set_allocated_time_change(&t_change);
+        ret.set_allocated_time_modify(&t_modify);
+
+        return ret;
+    }
+
+    timespec read_modify_time(path filepath) {
+        struct stat sb;
+        if (stat(filepath.c_str(), &sb) == -1) {
+            // TODO transform error codes
+            throw ServiceException("Stat failed", StatusCode::UNKNOWN);
+        }
+        return sb.st_ctim;
+    }
+
+    mode_t read_file_mode(path filepath) {
+        struct stat sb;
+        if (stat(filepath.c_str(), &sb) == -1) {
+            // TODO transform error codes
+            throw ServiceException("Stat failed", StatusCode::UNKNOWN);
+        }
+        return sb.st_mode;
+    }
+
+    FileMode convert_filemode(mode_t raw) {
+        switch (raw) {
+            case S_IFDIR:
+                return FileMode::DIR;
+            case S_IFREG:
+                return FileMode::REG;
+            default:
+                return FileMode::UNSUPPORTED;
+        }
+    }
+
+    Timestamp convert_timestamp(timespec raw) {
+        Timestamp a;
+        a.set_sec(raw.tv_sec);
+        a.set_nsec(raw.tv_nsec);
+        return a;
     }
 
    public:
@@ -250,7 +249,8 @@ class ServiceImplementation final : public FileSystemService::Service {
 
             write_file(filepath, request->file_contents());
 
-            reply->set_allocated_time_modify(&convert_timestamp(read_modify_time(filepath)));
+            auto time = convert_timestamp(read_modify_time(filepath));
+            reply->set_allocated_time_modify(&time);
 
             return Status::OK;
 

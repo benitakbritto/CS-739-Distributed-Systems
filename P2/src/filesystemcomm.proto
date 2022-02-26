@@ -4,85 +4,146 @@ package filesystemcomm;
 
 service FileSystemService 
 {
-    // File Operations
-    rpc OpenFile (OpenFileRequest) returns (OpenFileResponse) {}
-    rpc CloseFile (CloseFileRequest) returns (CloseFileResponse) {}
-    rpc DeleteFile (DeleteFileRequest) returns (DeleteFileResponse) {}
+    // File operations
+    rpc Fetch (FetchRequest) returns (FetchResponse) {}
+    rpc Store (StoreRequest) returns (StoreResponse) {}
+    rpc Remove (RemoveRequest) returns (RemoveResponse) {}
+    rpc Rename (RenameRequest) returns (RenameResponse) {}
+    
+    // Metadata operations
     rpc GetFileStat (GetFileStatRequest) returns (GetFileStatResponse) {}
-
-    // Dir Operations
+    rpc SetFileStat (SetFileStatRequest) returns (SetFileStatResponse) {}
+    rpc TestAuth (TestAuthRequest) returns (TestAuthResponse) {}
+    
+    // Directory operations
     rpc MakeDir (MakeDirRequest) returns (MakeDirResponse) {}
-    rpc DeleteDir (DeleteDirRequest) returns (DeleteDirResponse) {}
+    rpc RemoveDir (RemoveDirRequest) returns (RemoveDirResponse) {}
     rpc ListDir (ListDirRequest) returns (ListDirResponse) {}
 }
 
-message OpenFileRequest
+
+// Modeled on chrono::timespec
+// see https://en.cppreference.com/w/c/chrono/timespec
+message Timestamp
 {
-    string path = 1;
+    int64 sec = 1;
+    uint32 nsec = 2;
 }
 
-message OpenFileResponse
+// See https://linux.die.net/man/2/fstat
+message FileStat
 {
-    bytes data = 1;
+    enum FileMode {
+        UNSUPPORTED = 0;
+        REG = 1;
+        DIR = 2;
+    }
+    
+    string file_name = 1;
+    FileMode mode = 2;
+    uint64 size = 3; // in bytes
+    Timestamp time_access = 4;
+    Timestamp time_modify = 5;
+    Timestamp time_change = 6;
 }
 
-message CloseFileRequest
+
+
+message FetchRequest
 {
-    string path = 1;
-    bytes data = 2;
+    string pathname = 1;
+}
+message FetchResponse
+{
+    bytes file_contents = 1;
+    Timestamp time_modify = 2;
 }
 
-message CloseFileResponse
+
+
+message StoreRequest
 {
-    string val = 1;
+    string pathname = 1;
+    bytes file_contents = 2;
+}
+message StoreResponse
+{
+    Timestamp time_modify = 1; // this isn't in ITC DFS protocol, but is included for use in TestAuth
 }
 
-message DeleteFileRequest
-{
-    string val = 1;
-}
 
-message DeleteFileResponse
+
+message RemoveRequest 
 {
-    string val = 1;
+    string pathname = 1;
 }
+message RemoveResponse { } // empty ack
+
+
 
 message GetFileStatRequest
 {
-    string val = 1;
+    string pathname = 1;
+    // ITC DFS protocol includes a LINK parameter, but we do not support links
 }
-
 message GetFileStatResponse
 {
-    string val = 1;
+    FileStat status = 1;
 }
+
+
+
+message SetFileStatRequest
+{
+    string pathname = 1;
+    FileStat status = 2;
+}
+message SetFileStatResponse { } // empty ack
+
+
+
+message TestAuthRequest
+{
+    string pathname = 1;
+    Timestamp time_modify = 2;
+}
+message TestAuthResponse
+{
+    bool has_changed = 1;
+}
+
+
 
 message MakeDirRequest
 {
-    string val = 1;
+    string pathname = 1;
 }
+message MakeDirResponse { } // empty ack
 
-message MakeDirResponse
-{
-    string val = 1;
-}
 
-message DeleteDirRequest
-{
-    string val = 1;
-}
 
-message DeleteDirResponse
+message RemoveDirRequest
 {
-    string val = 1;
+    string pathname = 1;
 }
+message RemoveDirResponse { } // empty ack
+
+
 
 message ListDirRequest
 {
-    string val = 1;
+    string pathname = 1;
 }
-
 message ListDirResponse
 {
-    string val = 1;
+    repeated string filenames = 1; // names (not paths)
 }
+
+
+
+message RenameRequest
+{
+    string pathname = 1;      // old file path, e.g. `/home/guest/data/first.txt`
+    string componentname = 2; // new file name, e.g. `second.txt` (within same directory)
+}
+message RenameResponse { } // empty ack

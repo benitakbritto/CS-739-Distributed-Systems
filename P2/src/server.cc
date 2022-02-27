@@ -1,35 +1,32 @@
 #include <bits/stdc++.h>
 #include <grpcpp/grpcpp.h>
 #include <sys/stat.h>
+
 #include <exception>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <string>
+
 #include "filesystemcomm.grpc.pb.h"
 
-/****************************************************************************** 
-* Macros
-*****************************************************************************/
-#define DEBUG               1
-#define dbgprintf(...)      if (DEBUG) { printf(__VA_ARGS__); }
+/******************************************************************************
+ * Macros
+ *****************************************************************************/
+#define DEBUG 1
+#define dbgprintf(...)       \
+    if (DEBUG) {             \
+        printf(__VA_ARGS__); \
+    }
+#define errprintf(...) \
+    { printf(__VA_ARGS__); }
 
-using std::cout;
-using std::endl;
-using std::string;
-using grpc::Server;
-using grpc::ServerBuilder;
-using grpc::ServerContext;
-using grpc::Status;
-using grpc::StatusCode;
-using std::filesystem::path;
-using filesystemcomm::FileSystemService;
-using filesystemcomm::FileStat;
-using filesystemcomm::FileMode;
-using filesystemcomm::Timestamp;
 using filesystemcomm::DirectoryEntry;
 using filesystemcomm::FetchRequest;
 using filesystemcomm::FetchResponse;
+using filesystemcomm::FileMode;
+using filesystemcomm::FileStat;
+using filesystemcomm::FileSystemService;
 using filesystemcomm::GetFileStatRequest;
 using filesystemcomm::GetFileStatResponse;
 using filesystemcomm::ListDirRequest;
@@ -46,6 +43,16 @@ using filesystemcomm::StoreRequest;
 using filesystemcomm::StoreResponse;
 using filesystemcomm::TestAuthRequest;
 using filesystemcomm::TestAuthResponse;
+using filesystemcomm::Timestamp;
+using grpc::Server;
+using grpc::ServerBuilder;
+using grpc::ServerContext;
+using grpc::Status;
+using grpc::StatusCode;
+using std::cout;
+using std::endl;
+using std::string;
+using std::filesystem::path;
 
 class ServiceException : public std::runtime_error {
     StatusCode code;
@@ -101,8 +108,37 @@ class ServiceImplementation final : public FileSystemService::Service {
         dbgprintf("write_file: Exiting function\n");
     }
 
+    void move_file(path srcpath, path dstpath) {
+        dbgprintf("move_file: Entering function\n");
+
+        if (std::filesystem::exists(dstpath)) {
+            throw new ServiceException("Attempting to rename item to existing item", StatusCode::FAILED_PRECONDITION);
+        }
+
+        if (rename(srcpath.c_str(), dstpath.c_str()) == -1) {
+            dbgprintf("move_file: Exiting function\n");
+            switch (errno) {
+                /* These cases shouldn't happen due to our exists() check
+                case EISDIR:
+                    throw new ServiceException("Attempting to rename file to existing directory", StatusCode::FAILED_PRECONDITION);
+                case ENOTDIR:
+                    throw new ServiceException("Attempting to rename directory to existing file", StatusCode::FAILED_PRECONDITION);
+                */
+                case ENOENT:
+                    throw new ServiceException("File not found", StatusCode::NOT_FOUND);
+                case EINVAL:
+                    throw new ServiceException("Attempting to rename directory to child of itself", StatusCode::INVALID_ARGUMENT);
+                default:
+                    throw new ServiceException("Error in call to rename", StatusCode::UNKNOWN);
+            }
+        }
+        dbgprintf("move_file: Exiting function\n");
+    }
+
     void delete_file(path filepath) {
+        dbgprintf("delete_file: Entering function\n");
         if (unlink(filepath.c_str()) == -1) {
+            dbgprintf("delete_file: Exiting function\n");
             switch (errno) {
                 case EISDIR:
                 case EPERM:
@@ -113,6 +149,7 @@ class ServiceImplementation final : public FileSystemService::Service {
                     throw new ServiceException("Error in call to unlink", StatusCode::UNKNOWN);
             }
         }
+        dbgprintf("delete_file: Exiting function\n");
     }
 
     void make_dir(path filepath) {
@@ -131,7 +168,6 @@ class ServiceImplementation final : public FileSystemService::Service {
             }
         }
         dbgprintf("make_dir: Exiting function\n");
-
     }
 
     void remove_dir(path filepath) {
@@ -152,13 +188,14 @@ class ServiceImplementation final : public FileSystemService::Service {
         }
     }
 
-    void list_dir(path filepath, ListDirResponse * reply) {
+    void list_dir(path filepath, ListDirResponse* reply) {
         dbgprintf("list_dir: Entered function\n");
         // TODO catch errors from directory_iterator
         for (const auto& entry : std::filesystem::directory_iterator(filepath)) {
             DirectoryEntry* msg = reply->add_entries();
             msg->set_file_name(entry.path().filename());
-            msg->set_mode(entry.is_regular_file() ? FileMode::REG : entry.is_directory() ? FileMode::DIR : FileMode::UNSUPPORTED);
+            msg->set_mode(entry.is_regular_file() ? FileMode::REG : entry.is_directory() ? FileMode::DIR
+                                                                                         : FileMode::UNSUPPORTED);
             msg->set_size(entry.file_size());
         }
         dbgprintf("list_dir: Exiting function\n");
@@ -231,7 +268,7 @@ class ServiceImplementation final : public FileSystemService::Service {
     Status Fetch(ServerContext* context, const FetchRequest* request, FetchResponse* reply) override {
         try {
             path filepath = to_storage_path(request->pathname());
-            cout << "Fetch: filepath = " << filepath << endl;
+            dbgprintf("Fetch: filepath = %s\n", filepath);
 
             // TODO wait for read/write lock
 
@@ -241,10 +278,10 @@ class ServiceImplementation final : public FileSystemService::Service {
 
             return Status::OK;
         } catch (const ServiceException& e) {
-            cout << e.what() << endl;
+            dbgprintf("[Service Exception: %s] %s\n", e.get_code(), e.what());
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
-            cout << e.what() << endl;
+            errprintf("[Unexpected Exception] %s\n", e.what());
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }
@@ -254,10 +291,9 @@ class ServiceImplementation final : public FileSystemService::Service {
         dbgprintf("Store: Entering function\n");
         try {
             path filepath = to_storage_path(request->pathname());
-            cout << "Store: filepath = " << filepath << endl;
+            dbgprintf("Store: filepath = %s\n", filepath);
 
             // TODO wait for read/write lock
-            cout << "File contents: " << request->file_contents() << endl;
             write_file(filepath, request->file_contents());
 
             auto time = convert_timestamp(read_modify_time(filepath));
@@ -266,11 +302,11 @@ class ServiceImplementation final : public FileSystemService::Service {
             return Status::OK;
 
         } catch (const ServiceException& e) {
-            cout << e.what() << endl;
+            dbgprintf("[Service Exception: %s] %s\n", e.get_code(), e.what());
             dbgprintf("Store: Exiting function on ServiceException path\n");
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
-            cout << e.what() << endl;
+            errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("Store: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
@@ -285,27 +321,42 @@ class ServiceImplementation final : public FileSystemService::Service {
             // TODO wait for read/write lock
 
             delete_file(filepath);
-            dbgprintf("Remove: Exiting function on Sucess path\n");
+            dbgprintf("Remove: Exiting function on Success path\n");
             return Status::OK;
         } catch (const ServiceException& e) {
-            cout << e.what() << endl;
+            dbgprintf("[Service Exception: %s] %s\n", e.get_code(), e.what());
             dbgprintf("Remove: Exiting function on ServiceException path\n");
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
-            cout << e.what() << endl;
+            errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("Remove: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }
 
     Status Rename(ServerContext* context, const RenameRequest* request, RenameResponse* reply) override {
-        dbgprintf("Rename: Entered function\n");
-        // TODO err if path not file or DNE
-        // TODO err if new name exists
+        dbgprintf("Rename: Entering function\n");
+        try {
+            path srcpath = to_storage_path(request->pathname());
+            path dstpath = to_storage_path(srcpath.parent_path() / request->componentname());
 
-        // TODO wait for read/write lock
-        dbgprintf("Rename: Exiting function\n");
-        return Status::OK;
+            // TODO: check that dst is in same dir as src
+            dbgprintf("Rename: srcpath = %s, dstpath = %s\n", srcpath, dstpath);
+
+            // TODO wait for read/write lock
+            move_file(srcpath, dstpath);
+
+            dbgprintf("Rename: Exiting function on Success path\n");
+            return Status::OK;
+        } catch (const ServiceException& e) {
+            dbgprintf("[Service Exception: %s] %s\n", e.get_code(), e.what());
+            dbgprintf("Rename: Exiting function on ServiceException path\n");
+            return Status(e.get_code(), e.what());
+        } catch (const std::exception& e) {
+            errprintf("[Unexpected Exception] %s\n", e.what());
+            dbgprintf("Rename: Exiting function on Exception path\n");
+            return Status(StatusCode::UNKNOWN, e.what());
+        }
     }
 
     Status GetFileStat(ServerContext* context, const GetFileStatRequest* request, GetFileStatResponse* reply) override {
@@ -318,10 +369,10 @@ class ServiceImplementation final : public FileSystemService::Service {
             reply->mutable_status()->CopyFrom(status);
             return Status::OK;
         } catch (const ServiceException& e) {
-            cout << e.what() << endl;
+            dbgprintf("[Service Exception: %s] %s\n", e.get_code(), e.what());
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
-            cout << e.what() << endl;
+            errprintf("[Unexpected Exception] %s\n", e.what());
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }
@@ -343,11 +394,11 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("TestAuth: Exiting function on Success path\n");
             return Status::OK;
         } catch (const ServiceException& e) {
-            cout << e.what() << endl;
+            dbgprintf("[Service Exception: %s] %s\n", e.get_code(), e.what());
             dbgprintf("TestAuth: Exiting function on ServiceException path\n");
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
-            cout << e.what() << endl;
+            errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("TestAuth: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
@@ -364,11 +415,11 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("MakeDir: Exiting function on Success path\n");
             return Status::OK;
         } catch (const ServiceException& e) {
-            cout << e.what() << endl;
+            dbgprintf("[Service Exception: %s] %s\n", e.get_code(), e.what());
             dbgprintf("MakeDir: Exiting function on ServiceException path\n");
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
-            cout << e.what() << endl;
+            errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("MakeDir: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
@@ -378,17 +429,17 @@ class ServiceImplementation final : public FileSystemService::Service {
         dbgprintf("RemoveDir: Entering function\n");
         try {
             path filepath = to_storage_path(request->pathname());
-            cout << "filepath: " << filepath << endl; 
+            cout << "filepath: " << filepath << endl;
             // todo wait for write to finish??
             remove_dir(filepath);
             dbgprintf("RemoveDir: Exiting function on Success path\n");
             return Status::OK;
         } catch (const ServiceException& e) {
-            cout << e.what() << endl;
+            dbgprintf("[Service Exception: %s] %s\n", e.get_code(), e.what());
             dbgprintf("RemoveDir: Exiting function on ServiceException path\n");
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
-            cout << e.what() << endl;
+            errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("RemoveDir: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
@@ -401,15 +452,15 @@ class ServiceImplementation final : public FileSystemService::Service {
             cout << "filepath = " << filepath << endl;
 
             // todo wait for write to finish??
-            list_dir(filepath,reply);
-            dbgprintf("ListDir: Exiting function on Sucess path\n");
+            list_dir(filepath, reply);
+            dbgprintf("ListDir: Exiting function on Success path\n");
             return Status::OK;
         } catch (const ServiceException& e) {
-            cout << e.what() << endl;
+            dbgprintf("[Service Exception: %s] %s\n", e.get_code(), e.what());
             dbgprintf("ListDir: Exiting function on ServiceException path\n");
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
-            cout << e.what() << endl;
+            errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("ListDir: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }

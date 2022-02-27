@@ -98,6 +98,17 @@ struct OpenFileReturnType
                     {}
 };
 
+struct CloseFileReturnType
+{
+  Status status;
+  StoreResponse response;
+  CloseFileReturnType(Status status,
+                      StoreResponse response) :
+                      status(status),
+                      response(response)
+                      {}
+};
+
 class ClientImplementation 
 {
  public:
@@ -148,46 +159,47 @@ class ClientImplementation
                               FileDescriptor(file, path));
   }
 
-  void CloseFile(FileDescriptor fd, std::string data) 
+  CloseFileReturnType CloseFile(FileDescriptor fd, std::string data) 
   {
     dbgprintf("CloseFile: Entered function\n");
     std::cout << "CloseFile: data = " << data << std::endl;
     close(fd.file);
-    
+    StoreRequest request;
+    StoreResponse reply;
+    ClientContext context;
+    Status status;
+
     // No RPC necessary if file wasn't modified
     if (!TestAuth(fd.path, STORE))
     {
       dbgprintf("CloseFile: No server interaction needed\n");
       dbgprintf("CloseFile: Exiting function\n");
-      return;
+      return CloseFileReturnType(status,
+                              reply);
     }
   
-    StoreRequest request;
-    StoreResponse reply;
-    ClientContext context;
     request.set_pathname(fd.path);
     std::cout << "CloseFile: fd.path = " << fd.path << std::endl;
     request.set_file_contents(data);
 
     // Make RPC
-    Status status = stub_->Store(&context, request, &reply);
+    status = stub_->Store(&context, request, &reply);
     dbgprintf("CloseFile: RPC returned\n");
 
-    // TODO: What to do with response
     // Checking RPC Status
     if (status.ok()) 
     {
-      dbgprintf("CloseFile: Exiting function\n");
-      return;
+       dbgprintf("CloseFile: RPC Success\n");
     } 
     else 
     {
       dbgprintf("CloseFile: RPC Failure\n");
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      dbgprintf("CloseFile: Exiting function\n");
-      return;
     }
+    dbgprintf("CloseFile: Exiting function\n");
+    return CloseFileReturnType(status,
+                              reply);
   }
 
   int ReadFile(FileDescriptor fd, char* buf, int length)
@@ -520,14 +532,17 @@ void RunClient()
             << " filepath: " << openFileReturn.fd.path
             << std::endl;
 
-  // client.WriteFile(fd, "hello", 5);
-  // char c[10];
-  // int read = client.ReadFile(fd, c, 5, 0);
-  // for (int i = 0; i < 5; i++)
-  //   std::cout << c[i] << std::endl;
-  // std::cout << "Calling CloseFile()" << std::endl;
-  // client.CloseFile(fd, "new data");
-  
+  client.WriteFile(openFileReturn.fd, "hello", 5);
+  char c[10];
+  int read = client.ReadFile(openFileReturn.fd, c, 5, 0);
+  for (int i = 0; i < 5; i++)
+    std::cout << c[i] << std::endl;
+  std::cout << "Calling CloseFile()" << std::endl;
+  CloseFileReturnType closeFileReturn = client.CloseFile(openFileReturn.fd, "new data");
+  std::cout << "Status Code: " << closeFileReturn.status.error_code()
+            << " Error Message: " <<  closeFileReturn.status.error_message()
+            << " time_modify: " << closeFileReturn.response.time_modify().sec()
+            << std::endl;
   // Uncomment to Test DeleteFile
   // std::cout << "Calling DeleteFile()" << std::endl;
   // std::string removePath = "try.txt";

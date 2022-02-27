@@ -90,7 +90,6 @@ class ClientImplementation
         dbgprintf("Fetch: RPC Failure\n");
         std::cout << status.error_code() << ": " << status.error_message()
                   << std::endl;
-        std::cout << "Fetch RPC Failed" << std::endl;
       }
     } //End fetch from server case
     
@@ -100,73 +99,74 @@ class ClientImplementation
     return FileDescriptor(file, path);
   }
 
-  // TODO: Check cache with TestAuth/GetFileStat and invoke RPC
-  // std::string CloseFile(FileDescriptor fd, std::string data) 
-  // {
-  
-  //   close(fd.file);
+  void Store(FileDescriptor fd, std::string data) 
+  {
+    dbgprintf("Store: Entered function\n");
+    std::cout << "Store: data = " << data << std::endl;
+    close(fd.file);
     
-  //   // No RPC necessary if file wasn't modified
-  //   if (TestAuth())
-  //     return "Close success";
+    // TODO: Update TestAuth
+    // No RPC necessary if file wasn't modified
+    if (TestAuth())
+    {
+      dbgprintf("Store: No server interaction needed\n");
+      dbgprintf("Store: Exiting function\n");
+      return;
+    }
   
-  //   CloseFileRequest request;
-  //   CloseFileResponse reply;
-  //   ClientContext context;
-  //   request.set_path(fd.path);
-  //   request.set_data(data);
+    StoreRequest request;
+    StoreResponse reply;
+    ClientContext context;
+    request.set_pathname(fd.path);
+    std::cout << "Store: fd.path = " << fd.path << std::endl;
+    request.set_file_contents(data);
 
+    // Make RPC
+    Status status = stub_->Store(&context, request, &reply);
+    dbgprintf("Store: RPC returned\n");
 
-  //   // Make RPC
-  //   Status status = stub_->CloseFile(&context, request, &reply);
+    // TODO: What to do with response
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      dbgprintf("Store: Exiting function\n");
+      return;
+    } 
+    else 
+    {
+      dbgprintf("Store: RPC Failure\n");
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      dbgprintf("Store: Exiting function\n");
+      return;
+    }
+  }
 
-  //   // Checking RPC Status
-  //   if (status.ok()) 
-  //   {
-  //     return reply.val();
-  //   } 
-  //   else 
-  //   {
-  //     std::cout << status.error_code() << ": " << status.error_message()
-  //               << std::endl;
-  //     return "CloseFile RPC Failed";
-  //   }
-  // }
+  int ReadFile(FileDescriptor fd, char* buf, int length)
+  {
+    int read_in = read(fd.file, buf, length);
+    return read_in;
+  }
 
-
-  // TODO -- local 
-  // TODO: handle read() and pread()
-  // int ReadFile(FileDescriptor fd, char* buf, int length)
-  // {
-  //   int read_in = read(fd.file, buf, length);
-  //   return read_in;
-  // }
-
-  // TODO -- local
-  // TODO: handle write() and pwrite()
-  // int WriteFile(FileDescriptor fd, char* buf, int length)
-  // {
-  //   int written_out = write(fd.file, buf, length);
-  //   std::cout << buf << std::endl;
-  //   return written_out;
-  // }
+  int WriteFile(FileDescriptor fd, char* buf, int length)
+  {
+    int written_out = write(fd.file, buf, length);
+    std::cout << buf << std::endl;
+    return written_out;
+  }
   
-  // TODO -- local 
-  // TODO: handle read() and pread()
-  // int ReadFile(FileDescriptor fd, char* buf, int length, int offset)
-  // {
-  //   int read_in = pread(fd.file, buf, length, offset);
-  //   return read_in;
-  // }
+  int ReadFile(FileDescriptor fd, char* buf, int length, int offset)
+  {
+    int read_in = pread(fd.file, buf, length, offset);
+    return read_in;
+  }
 
-  // TODO -- local
-  // TODO: handle write() and pwrite()
-  // int WriteFile(FileDescriptor fd, char* buf, int length, int offset)
-  // {
-  //   int written_out = pwrite(fd.file, buf, length, offset);
-  //   std::cout << buf << std::endl;
-  //   return written_out;
-  // }
+  int WriteFile(FileDescriptor fd, char* buf, int length, int offset)
+  {
+    int written_out = pwrite(fd.file, buf, length, offset);
+    std::cout << buf << std::endl;
+    return written_out;
+  }
 
   /*
   * Invokes an RPC 
@@ -337,20 +337,14 @@ void RunClient()
   std::cout << "Request (file path): " << fetchPath << std::endl;
   std::cout << "Response (file descriptor): " << fd.file << std::endl;
 
-  // client.WriteFile(fd, "hello", 5);
-  // char c[10];
-  // int read = client.ReadFile(fd, c, 5, 0);
-  // for (int i = 0; i < 5; i++)
-  //   std::cout << c[i] << std::endl;
+  client.WriteFile(fd, "hello", 5);
+  char c[10];
+  int read = client.ReadFile(fd, c, 5, 0);
+  for (int i = 0; i < 5; i++)
+    std::cout << c[i] << std::endl;
 
-  // std::cout << "CloseFile()" << std::endl;
-  // request = "Testing CloseFile";
-  
-  // auto t_now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-  
-  // response = client.CloseFile(fd,std::ctime(&t_now));
-  // std::cout << "Requested file close: " << request << std::endl;
-  // std::cout << "Response string: " << response << std::endl;
+  std::cout << "Calling Store()" << std::endl;
+  client.Store(fd, "new data");
   
   // std::cout << "DeleteFile()" << std::endl;
   // request = "Testing DeleteFile";

@@ -7,10 +7,6 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
-
-/****************************************************************************** 
-* Macros
-*****************************************************************************/
 #define DEBUG               1
 #define dbgprintf(...)      if (DEBUG) { printf(__VA_ARGS__); }
 
@@ -108,6 +104,64 @@ struct CloseFileReturnType
                       response(response)
                       {}
 };
+
+struct DeletFileReturnType
+{
+  Status status;
+  DeletFileReturnType(Status status) : status(status) {}
+};
+
+struct RenameReturnType
+{
+  Status status;
+  RenameReturnType(Status status) : status(status) {}
+};
+
+struct FileStatReturnType
+{
+  Status status;
+  GetFileStatResponse response;
+  FileStatReturnType(Status status,
+                    GetFileStatResponse response) :
+                    status(status),
+                    response(response)
+                    {}
+};
+
+struct TestAuthReturnType
+{
+  Status status;
+  TestAuthResponse response;
+  TestAuthReturnType(Status status,
+                    TestAuthResponse response) :
+                    status(status),
+                    response(response)
+                    {}
+};  
+
+struct MakeDirReturnType
+{
+  Status status;
+  MakeDirReturnType(Status status) : status(status) {}
+};
+
+struct RemoveDirReturnType
+{
+  Status status;
+  RemoveDirReturnType(Status status) : status(status) {}
+};
+
+struct ListDirReturnType
+{
+  Status status;
+  ListDirResponse response;
+  ListDirReturnType(Status status,
+                    ListDirResponse response) :
+                    status(status),
+                    response(response)
+                    {}
+};
+
 
 class ClientImplementation 
 {
@@ -230,34 +284,33 @@ class ClientImplementation
     return written_out;
   }
 
-  /*
-  * Invokes an RPC 
-  * If RPC fails, it just prints that out to stdout
-  * else prints <TODO>
-  */
-  void DeleteFile(std::string path) 
+  DeletFileReturnType DeleteFile(std::string path) 
   {
     dbgprintf("DeleteFile: Entered function\n");
     RemoveRequest request;
     RemoveResponse reply;
     ClientContext context;
+    Status status;
+    
     request.set_pathname(path);
-
+    
     // Make RPC
-    Status status = stub_->Remove(&context, request, &reply);
+    status = stub_->Remove(&context, request, &reply);
 
     // Checking RPC Status 
     if (status.ok()) 
     {
-      dbgprintf("DeleteFile: Exiting function\n");
-      return;
+      dbgprintf("DeleteFile: RPC success\n");
     } 
     else
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      dbgprintf("DeleteFile: Exiting function\n");
+      dbgprintf("DeleteFile: RPC failure\n");
     }
+
+    dbgprintf("DeleteFile: Exiting function\n");
+    return DeletFileReturnType(status);
   }
 
   /*
@@ -522,27 +575,28 @@ void RunClient()
 
   // Client RPC invokation
   // Uncomment to Test Open-Read-Write-Close
-  std::cout << "Calling OpenFile()" << std::endl;
-  std::string fetchPath =  "hello-world.txt";
-  OpenFileReturnType openFileReturn = client.OpenFile(fetchPath);
-  std::cout << "Status Code: " << openFileReturn.status.error_code()
-            << " Error Message: " <<  openFileReturn.status.error_message()
-            << " time_modify: " << openFileReturn.response.time_modify().sec()
-            << " fd: " << openFileReturn.fd.file
-            << " filepath: " << openFileReturn.fd.path
-            << std::endl;
+  // std::cout << "Calling OpenFile()" << std::endl;
+  // std::string fetchPath =  "hello-world.txt";
+  // OpenFileReturnType openFileReturn = client.OpenFile(fetchPath);
+  // std::cout << "Status Code: " << openFileReturn.status.error_code()
+  //           << " Error Message: " <<  openFileReturn.status.error_message()
+  //           << " time_modify: " << openFileReturn.response.time_modify().sec()
+  //           << " fd: " << openFileReturn.fd.file
+  //           << " filepath: " << openFileReturn.fd.path
+  //           << std::endl;
 
-  client.WriteFile(openFileReturn.fd, "hello", 5);
-  char c[10];
-  int read = client.ReadFile(openFileReturn.fd, c, 5, 0);
-  for (int i = 0; i < 5; i++)
-    std::cout << c[i] << std::endl;
-  std::cout << "Calling CloseFile()" << std::endl;
-  CloseFileReturnType closeFileReturn = client.CloseFile(openFileReturn.fd, "new data");
-  std::cout << "Status Code: " << closeFileReturn.status.error_code()
-            << " Error Message: " <<  closeFileReturn.status.error_message()
-            << " time_modify: " << closeFileReturn.response.time_modify().sec()
-            << std::endl;
+  // client.WriteFile(openFileReturn.fd, "hello", 5);
+  // char c[10];
+  // int read = client.ReadFile(openFileReturn.fd, c, 5, 0);
+  // for (int i = 0; i < 5; i++)
+  //   std::cout << c[i] << std::endl;
+  // std::cout << "Calling CloseFile()" << std::endl;
+  // CloseFileReturnType closeFileReturn = client.CloseFile(openFileReturn.fd, "new data");
+  // std::cout << "Status Code: " << closeFileReturn.status.error_code()
+  //           << " Error Message: " <<  closeFileReturn.status.error_message()
+  //           << " time_modify: " << closeFileReturn.response.time_modify().sec()
+  //           << std::endl;
+
   // Uncomment to Test DeleteFile
   // std::cout << "Calling DeleteFile()" << std::endl;
   // std::string removePath = "try.txt";

@@ -118,8 +118,8 @@ class ServiceImplementation final : public FileSystemService::Service {
     void make_dir(path filepath) {
         dbgprintf("make_dir: Entering function\n");
         if (mkdir(filepath.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == -1) {
+            dbgprintf("make_dir: Exiting function\n");
             switch (errno) {
-                dbgprintf("make_dir: Exiting function\n");
                 case EEXIST:
                     throw new ServiceException("Path already exists", StatusCode::ALREADY_EXISTS);
                 case ENOENT:
@@ -153,6 +153,7 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     void list_dir(path filepath, ListDirResponse * reply) {
+        dbgprintf("list_dir: Entered function\n");
         // TODO catch errors from directory_iterator
         for (const auto& entry : std::filesystem::directory_iterator(filepath)) {
             DirectoryEntry* msg = reply->add_entries();
@@ -160,6 +161,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             msg->set_mode(entry.is_regular_file() ? FileMode::REG : entry.is_directory() ? FileMode::DIR : FileMode::UNSUPPORTED);
             msg->set_size(entry.file_size());
         }
+        dbgprintf("list_dir: Exiting function\n");
     }
 
     FileStat read_stat(path filepath) {
@@ -325,6 +327,7 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     Status TestAuth(ServerContext* context, const TestAuthRequest* request, TestAuthResponse* reply) override {
+        dbgprintf("TestAuth: Entering function\n");
         try {
             path filepath = to_storage_path(request->pathname());
 
@@ -390,18 +393,22 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     Status ListDir(ServerContext* context, const ListDirRequest* request, ListDirResponse* reply) override {
+        dbgprintf("ListDir: Entering function\n");
         try {
             path filepath = to_storage_path(request->pathname());
+            cout << "filepath = " << filepath << endl;
 
             // todo wait for write to finish??
             list_dir(filepath,reply);
-            
+            dbgprintf("ListDir: Exiting function on Sucess path\n");
             return Status::OK;
         } catch (const ServiceException& e) {
             cout << e.what() << endl;
+            dbgprintf("ListDir: Exiting function on ServiceException path\n");
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
             cout << e.what() << endl;
+            dbgprintf("ListDir: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }

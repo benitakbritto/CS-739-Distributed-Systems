@@ -34,6 +34,7 @@ using filesystemcomm::StoreRequest;
 using filesystemcomm::StoreResponse;
 using filesystemcomm::TestAuthRequest;
 using filesystemcomm::TestAuthResponse;
+using filesystemcomm::DirectoryEntry;
 
 enum FileMode 
 {
@@ -354,35 +355,43 @@ class ClientImplementation
     }
   }
 
-  // TODO
-  // std::string ListDir(std::string path) 
-  // {
-  //   dbgprintf("ListDir: Entering function\n");
-  //   ListDirRequest request;
-  //   ListDirResponse reply;
-  //   ClientContext context;
-  //   request.set_pathname(path);
-
-
-  //   // Make RPC
-  //   Status status = stub_->ListDir(&context, request, &reply);
-
-  //   // Checking RPC Status
-  //   if (status.ok()) 
-  //   {
-  //     return reply.val();
-  //   } 
-  //   else 
-  //   {
-  //     std::cout << status.error_code() << ": " << status.error_message()
-  //               << std::endl;
-  //     return "ListDir RPC Failed";
-  //   }
-  // }
-
-  // TODO
-  bool TestAuth()
+  ListDirResponse ListDir(std::string path) 
   {
+    dbgprintf("ListDir: Entering function\n");
+    ListDirRequest request;
+    ListDirResponse reply;
+    ClientContext context;
+    request.set_pathname(path);
+
+    // Make RPC
+    Status status = stub_->ListDir(&context, request, &reply);
+    dbgprintf("ListDir: RPC Returned\n");
+
+    std::cout << "count = " << reply.entries().size() << std::endl;
+
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      dbgprintf("ListDir: Exiting function\n");
+      return reply;
+    } 
+    else 
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      dbgprintf("ListDir: Exiting function\n");
+      return reply;
+    }
+  }
+
+  // TODO
+  bool TestAuth(std::string path)
+  {
+    TestAuthRequest request;
+    TestAuthResponse response;
+
+    request.set_pathname(path)
+
     return false;
   }
 
@@ -429,14 +438,15 @@ void RunClient()
   // std::string newFileName = "hello-world-renamed.txt";
   // client.Rename(oldPath, newFileName);
 
-  std::cout << "Caling GetFileStat()" << std::endl;
-  FileStatMetadata metadata = client.GetFileStat("hello-world.txt");
-  std::cout << metadata.file_name << "\t"
-            << metadata.mode << "\t" 
-            << metadata.size << "\t"
-            << metadata.time_access_sec << "\t"
-            << metadata.time_modify_sec << "\t"
-            << metadata.time_change_sec << "\t" << std::endl;
+  // Uncomment to Test GetFileStat
+  // std::cout << "Caling GetFileStat()" << std::endl;
+  // FileStatMetadata metadata = client.GetFileStat("hello-world.txt");
+  // std::cout << metadata.file_name << "\t"
+  //           << metadata.mode << "\t" 
+  //           << metadata.size << "\t"
+  //           << metadata.time_access_sec << "\t"
+  //           << metadata.time_modify_sec << "\t"
+  //           << metadata.time_change_sec << "\t" << std::endl;
 
   // Uncomment to Test MakeDir
   // std::cout << "Calling MakeDir()" << std::endl;
@@ -445,12 +455,18 @@ void RunClient()
   // Uncomment to Test RemoveDir
   // std::cout << "Calling RemoveDir()" << std::endl;
   // client.RemoveDir("newDir");
-
-  // std::cout << "ListDir()" << std::endl;
-  // request = "Testing ListDir";
-  // response = client.ListDir(request);
-  // std::cout << "Request string: " << request << std::endl;
-  // std::cout << "Response string: " << response << std::endl;
+  
+  // Uncomment to Test ListDir
+  std::cout << "Calling ListDir()" << std::endl;
+  ListDirResponse listDirResponse;
+  listDirResponse = client.ListDir("newDir");
+  for (auto itr = listDirResponse.entries().begin(); itr != listDirResponse.entries().end(); itr++)
+    {
+      std::cout << "file_name: " << itr->file_name() << std::endl;
+      std::cout << "mode: " << itr->mode() << std::endl;
+      std::cout << "size: " << itr->size() << std::endl;
+      std::cout << std::endl;
+    }
 }
 
 int main(int argc, char* argv[]) 

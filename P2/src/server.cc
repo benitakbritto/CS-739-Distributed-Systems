@@ -195,7 +195,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             // TODO transform error codes
             throw ServiceException("Stat failed", StatusCode::UNKNOWN);
         }
-        return sb.st_ctim;
+        return sb.st_mtim;
     }
 
     mode_t read_file_mode(path filepath) {
@@ -340,13 +340,15 @@ class ServiceImplementation final : public FileSystemService::Service {
             bool changed = (ts0.tv_sec != ts1.sec()) || (ts0.tv_nsec != ts1.nsec());
 
             reply->set_has_changed(changed);
-
+            dbgprintf("TestAuth: Exiting function on Success path\n");
             return Status::OK;
         } catch (const ServiceException& e) {
             cout << e.what() << endl;
+            dbgprintf("TestAuth: Exiting function on ServiceException path\n");
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
             cout << e.what() << endl;
+            dbgprintf("TestAuth: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }

@@ -5,6 +5,8 @@
 #include "filesystemcomm.grpc.pb.h"
 #include <fcntl.h>
 #include <unistd.h>
+#include <sys/stat.h>
+
 
 /****************************************************************************** 
 * Macros
@@ -35,12 +37,19 @@ using filesystemcomm::StoreResponse;
 using filesystemcomm::TestAuthRequest;
 using filesystemcomm::TestAuthResponse;
 using filesystemcomm::DirectoryEntry;
+using filesystemcomm::Timestamp;
 
 enum FileMode 
 {
   UNSUPPORTED = 0,
   REG = 1,
   DIR = 2,
+};
+
+enum TestAuthMode
+{
+  FETCH = 0,
+  STORE = 1
 };
 
 struct FileStatMetadata
@@ -85,9 +94,8 @@ class ClientImplementation
   {
     dbgprintf("Fetch: Inside function\n");
     int file;
-    // TODO: Change TestAuth signature
-    // TODO: Check if local file exists
-    if (!TestAuth())
+    
+    if (TestAuth(path, FETCH))
     {
       FetchRequest request;
       FetchResponse reply;
@@ -115,7 +123,7 @@ class ClientImplementation
         std::cout << status.error_code() << ": " << status.error_message()
                   << std::endl;
       }
-    } //End fetch from server case
+    } 
     
     // Return file descriptor
     file = open(path.c_str(), O_RDWR);
@@ -129,9 +137,8 @@ class ClientImplementation
     std::cout << "Store: data = " << data << std::endl;
     close(fd.file);
     
-    // TODO: Update TestAuth
     // No RPC necessary if file wasn't modified
-    if (TestAuth())
+    if (!TestAuth(fd.path, STORE))
     {
       dbgprintf("Store: No server interaction needed\n");
       dbgprintf("Store: Exiting function\n");
@@ -384,19 +391,89 @@ class ClientImplementation
     }
   }
 
-  // TODO
-  bool TestAuth(std::string path)
+  /*
+  * When called on Fetch,
+  * TestAuth first checks if local file exits
+  * if it does not exist, TestAuth returns true
+  * 
+  * For Fetch and Store,
+  * TestAuth gets the modify time of the local file
+  * and invokes the TestAuth RPC
+  * if the modify times of the local and server file
+  * do not match, TestAuth returns true, else false
+  *
+  * Error handling for GetModifyTime:
+  * For eg. on Store, if the file does not exist
+  * TestAuth returns false
+  */
+  bool TestAuth(std::string path, enum TestAuthMode mode)
   {
+    // check if local file exists
+    if (mode == FETCH)
+    {
+      if (!FileExists(path))
+      {
+        dbgprintf("TestAuth: Local file does not exist\n");
+        return true;
+      }
+    }
+
     TestAuthRequest request;
-    TestAuthResponse response;
+    TestAuthResponse reply;
+    ClientContext context;
+    Timestamp t;
+    timespec modifyTime;
+    
+    if (GetModifyTime(path, &modifyTime) != 0)
+    {
+      dbgprintf("TestAuth: Exiting function\n");
+      return false;
+    }
 
-    request.set_pathname(path)
+    t.set_sec(modifyTime.tv_sec);
+    t.set_nsec(modifyTime.tv_nsec);
 
-    return false;
+    request.set_pathname(path);
+    request.mutable_time_modify()->CopyFrom(t);
+
+    // Make RPC
+    Status status = stub_->TestAuth(&context, request, &reply);
+    dbgprintf("TestAuth: RPC Returned\n");
+    if (status.ok()) 
+    {
+      dbgprintf("TestAuth: Exiting function\n");
+    }
+    else
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      dbgprintf("TestAuth: Exiting function\n");
+    }
+
+    return reply.has_changed();
   }
 
  private:
   std::unique_ptr<FileSystemService::Stub> stub_;
+
+  uint32_t GetModifyTime(std::string filepath, timespec * t) 
+  {
+    dbgprintf("GetModifyTime: Entering function\n");
+    struct stat sb;
+    if (stat(filepath.c_str(), &sb) == -1) {
+      dbgprintf("GetModifyTime: Failed\n");
+      return -1;
+    }
+    dbgprintf("GetModifyTime: Exiting function\n");
+    *t = sb.st_mtim;
+    return 0;
+  }
+
+  bool FileExists(std::string path)
+  {
+    struct stat s;   
+    return (stat(path.c_str(), &s) == 0); 
+  }
 };
 
 void RunClient() 
@@ -457,16 +534,22 @@ void RunClient()
   // client.RemoveDir("newDir");
   
   // Uncomment to Test ListDir
-  std::cout << "Calling ListDir()" << std::endl;
-  ListDirResponse listDirResponse;
-  listDirResponse = client.ListDir("newDir");
-  for (auto itr = listDirResponse.entries().begin(); itr != listDirResponse.entries().end(); itr++)
-    {
-      std::cout << "file_name: " << itr->file_name() << std::endl;
-      std::cout << "mode: " << itr->mode() << std::endl;
-      std::cout << "size: " << itr->size() << std::endl;
-      std::cout << std::endl;
-    }
+  // std::cout << "Calling ListDir()" << std::endl;
+  // ListDirResponse listDirResponse;
+  // listDirResponse = client.ListDir("newDir");
+  // for (auto itr = listDirResponse.entries().begin(); itr != listDirResponse.entries().end(); itr++)
+  // {
+  //   std::cout << "file_name: " << itr->file_name() << std::endl;
+  //   std::cout << "mode: " << itr->mode() << std::endl;
+  //   std::cout << "size: " << itr->size() << std::endl;
+  //   std::cout << std::endl;
+  // }
+
+  // Uncomment to Test TestAuth
+  // std::cout << "Calling TestAuth()" << std::endl;
+  // enum TestAuthMode testAuthMode = FETCH;
+  // bool testAuthRet = client.TestAuth("a.txt", STORE);
+  // std::cout << "testAuthRet = " << testAuthRet << std::endl;
 }
 
 int main(int argc, char* argv[]) 

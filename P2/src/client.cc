@@ -198,6 +198,38 @@ class ClientImplementation
     }
   }
 
+  /*
+  * Invokes an RPC 
+  * If RPC fails, it just prints that out to stdout
+  * else prints <TODO>
+  */
+  void Rename(std::string path, std::string newFileName) 
+  {
+    dbgprintf("Rename: Entered function\n");
+    RenameRequest request;
+    RenameResponse reply;
+    ClientContext context;
+    request.set_pathname(path);
+    request.set_componentname(newFileName);
+
+    // Make RPC
+    Status status = stub_->Rename(&context, request, &reply);
+
+    // Checking RPC Status 
+    if (status.ok()) 
+    {
+      dbgprintf("Rename: Exiting function\n");
+      return;
+    } 
+    else
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      dbgprintf("Rename: Exiting function\n");
+      return;
+    }
+  }
+
   // TODO Get the right response type
   /*
   * Invokes an RPC 
@@ -348,9 +380,14 @@ void RunClient()
   // client.Store(fd, "new data");
   
   // Uncomment to Test Remove
-  std::cout << "Calling Remove()" << std::endl;
-  std::string removePath = "try.txt";
-  client.Remove(removePath);
+  // std::cout << "Calling Remove()" << std::endl;
+  // std::string removePath = "try.txt";
+  // client.Remove(removePath);
+
+  // Uncomment to Test Rename
+  std::string oldPath = "hello-world.txt";
+  std::string newFileName = "hello-world-renamed.txt";
+  client.Rename(oldPath, newFileName);
 
   // std::cout << "GetFileStat()" << std::endl;
   // request = "Testing GetFileStat";

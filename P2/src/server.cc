@@ -293,11 +293,12 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     Status Rename(ServerContext* context, const RenameRequest* request, RenameResponse* reply) override {
+        dbgprintf("Rename: Entered function\n");
         // TODO err if path not file or DNE
         // TODO err if new name exists
 
         // TODO wait for read/write lock
-
+        dbgprintf("Rename: Exiting function\n");
         return Status::OK;
     }
 

@@ -180,9 +180,9 @@ class ServiceImplementation final : public FileSystemService::Service {
         Timestamp t_change = convert_timestamp(sb.st_mtim);
         Timestamp t_modify = convert_timestamp(sb.st_ctim);
 
-        ret.set_allocated_time_access(&t_access);
-        ret.set_allocated_time_change(&t_change);
-        ret.set_allocated_time_modify(&t_modify);
+        ret.mutable_time_access()->CopyFrom(t_access);
+        ret.mutable_time_change()->CopyFrom(t_change);
+        ret.mutable_time_modify()->CopyFrom(t_modify);
 
         return ret;
     }
@@ -307,12 +307,13 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     Status GetFileStat(ServerContext* context, const GetFileStatRequest* request, GetFileStatResponse* reply) override {
+        dbgprintf("GetFileStat: Entering function\n");
         try {
             path filepath = to_storage_path(request->pathname());
-
+            cout << "filepath: " << filepath << endl;
             // TODO wait for read/write lock
             auto status = read_stat(filepath);
-            reply->set_allocated_status(&status);
+            reply->mutable_status()->CopyFrom(status);
             return Status::OK;
         } catch (const ServiceException& e) {
             cout << e.what() << endl;

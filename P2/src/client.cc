@@ -35,11 +35,34 @@ using filesystemcomm::StoreResponse;
 using filesystemcomm::TestAuthRequest;
 using filesystemcomm::TestAuthResponse;
 
-// TODO: Add more attributes as required
-struct FileUpdateMetadata
+enum FileMode 
 {
-  time_t accessTime; 
-  time_t modifyTime;
+  UNSUPPORTED = 0,
+  REG = 1,
+  DIR = 2,
+};
+
+struct FileStatMetadata
+{
+  std::string file_name;
+  uint32_t mode;
+  uint64_t size;
+  uint64_t time_access_sec; // seconds
+  uint64_t time_modify_sec; // seconds
+  uint64_t time_change_sec; // seconds
+  FileStatMetadata(std::string file_name, 
+                    uint32_t mode, 
+                    uint64_t size, 
+                    uint64_t time_access_sec, 
+                    uint64_t time_modify_sec,
+                    uint64_t time_change_sec) :
+                    file_name(file_name),
+                    mode(mode),
+                    size(size),
+                    time_access_sec(time_access_sec),
+                    time_modify_sec(time_modify_sec),
+                    time_change_sec(time_change_sec)
+                    {}
 };
 
 struct FileDescriptor
@@ -230,34 +253,42 @@ class ClientImplementation
     }
   }
 
-  // TODO Get the right response type
   /*
   * Invokes an RPC 
   * If RPC fails, it just prints that out to stdout
   * Else returns file details
   */
-  // std::string GetFileStat(std::string req) 
-  // {
-  //   GetFileStatRequest request;
-  //   GetFileStatResponse reply;
-  //   ClientContext context;
-  //   request.set_val(req);
+  FileStatMetadata GetFileStat(std::string path) 
+  {
+    dbgprintf("GetFileStat: Entering function\n");
+    GetFileStatRequest request;
+    GetFileStatResponse reply;
+    ClientContext context;
+    request.set_pathname(path);
 
-  //   // Make RPC
-  //   Status status = stub_->GetFileStat(&context, request, &reply);
+    // Make RPC
+    Status status = stub_->GetFileStat(&context, request, &reply);
+    dbgprintf("GetFileStat: RPC returned\n");
 
-  //   // Checking RPC Status
-  //   if (status.ok()) 
-  //   {
-  //     return reply.val();
-  //   } 
-  //   else 
-  //   {
-  //     std::cout << status.error_code() << ": " << status.error_message()
-  //               << std::endl;
-  //     return "GetFileStat RPC Failed";
-  //   }
-  // }
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      dbgprintf("GetFileStat: Exiting function\n");
+      return FileStatMetadata(reply.status().file_name(),
+                              reply.status().mode(),
+                              reply.status().size(),
+                              reply.status().time_access().sec(),
+                              reply.status().time_modify().sec(),
+                              reply.status().time_change().sec());
+    } 
+    else 
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      dbgprintf("GetFileStat: Exiting function\n");
+      return FileStatMetadata("", UNSUPPORTED, 0, 0, 0, 0);
+    }
+  }
 
   /*
   * Invokes an RPC 
@@ -323,13 +354,14 @@ class ClientImplementation
     }
   }
 
-  // TODO: Get the right response type
-  // std::string ListDir(std::string req) 
+  // TODO
+  // std::string ListDir(std::string path) 
   // {
+  //   dbgprintf("ListDir: Entering function\n");
   //   ListDirRequest request;
   //   ListDirResponse reply;
   //   ClientContext context;
-  //   request.set_val(req);
+  //   request.set_pathname(path);
 
 
   //   // Make RPC
@@ -397,19 +429,22 @@ void RunClient()
   // std::string newFileName = "hello-world-renamed.txt";
   // client.Rename(oldPath, newFileName);
 
-  // std::cout << "GetFileStat()" << std::endl;
-  // request = "Testing GetFileStat";
-  // response = client.GetFileStat(request);
-  // std::cout << "Request string: " << request << std::endl;
-  // std::cout << "Response string: " << response << std::endl;
+  std::cout << "Caling GetFileStat()" << std::endl;
+  FileStatMetadata metadata = client.GetFileStat("hello-world.txt");
+  std::cout << metadata.file_name << "\t"
+            << metadata.mode << "\t" 
+            << metadata.size << "\t"
+            << metadata.time_access_sec << "\t"
+            << metadata.time_modify_sec << "\t"
+            << metadata.time_change_sec << "\t" << std::endl;
 
   // Uncomment to Test MakeDir
   // std::cout << "Calling MakeDir()" << std::endl;
   // client.MakeDir("newDir");
 
   // Uncomment to Test RemoveDir
-  std::cout << "Calling RemoveDir()" << std::endl;
-  client.RemoveDir("newDir");
+  // std::cout << "Calling RemoveDir()" << std::endl;
+  // client.RemoveDir("newDir");
 
   // std::cout << "ListDir()" << std::endl;
   // request = "Testing ListDir";

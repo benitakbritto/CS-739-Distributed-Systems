@@ -409,36 +409,33 @@ class ClientImplementation
     return MakeDirReturnType(status);
   }
 
-  /*
-  * Invokes an RPC 
-  * If RPC fails, it just prints that out to stdout
-  * else prints <TODO>
-  */
-  void RemoveDir(std::string path) 
+  RemoveDirReturnType RemoveDir(std::string path) 
   {
     dbgprintf("RemoveDir: Entering function\n");
     RemoveDirRequest request;
     RemoveDirResponse reply;
     ClientContext context;
+    Status status;
+
     request.set_pathname(path);
 
     // Make RPC
-    Status status = stub_->RemoveDir(&context, request, &reply);
+    status = stub_->RemoveDir(&context, request, &reply);
     dbgprintf("RemoveDir: RPC Returned\n");
 
     // Checking RPC Status
     if (status.ok()) 
     {
-      dbgprintf("RemoveDir: Exiting function\n");
-      return;
+      dbgprintf("RemoveDir: RPC Success\n");
     } 
     else 
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      dbgprintf("RemoveDir: Exiting function\n");
-      return;
+      dbgprintf("RemoveDir: RPC Failure\n");
     }
+    dbgprintf("RemoveDir: Exiting function\n");
+    return RemoveDirReturnType(status);
   }
 
   ListDirResponse ListDir(std::string path) 
@@ -620,15 +617,18 @@ void RunClient()
   //           << metadata.time_change_sec << "\t" << std::endl;
 
   // Uncomment to Test MakeDir
-  std::cout << "Calling MakeDir()" << std::endl;
-  MakeDirReturnType makeDirReturn = client.MakeDir("newDir1");
-  std::cout << "Status Code: " << makeDirReturn.status.error_code()
-            << " Error Message: " <<  makeDirReturn.status.error_message()
-            << std::endl;
+  // std::cout << "Calling MakeDir()" << std::endl;
+  // MakeDirReturnType makeDirReturn = client.MakeDir("newDir1");
+  // std::cout << "Status Code: " << makeDirReturn.status.error_code()
+  //           << " Error Message: " <<  makeDirReturn.status.error_message()
+  //           << std::endl;
 
   // Uncomment to Test RemoveDir
-  // std::cout << "Calling RemoveDir()" << std::endl;
-  // client.RemoveDir("newDir");
+  std::cout << "Calling RemoveDir()" << std::endl;
+  RemoveDirReturnType removeDirReturn = client.RemoveDir("newDir1");
+  std::cout << "Status Code: " << removeDirReturn.status.error_code()
+            << " Error Message: " <<  removeDirReturn.status.error_message()
+            << std::endl;
   
   // Uncomment to Test ListDir
   // std::cout << "Calling ListDir()" << std::endl;

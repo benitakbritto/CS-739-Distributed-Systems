@@ -438,33 +438,36 @@ class ClientImplementation
     return RemoveDirReturnType(status);
   }
 
-  ListDirResponse ListDir(std::string path) 
+  ListDirReturnType ListDir(std::string path) 
   {
     dbgprintf("ListDir: Entering function\n");
     ListDirRequest request;
     ListDirResponse reply;
     ClientContext context;
+    Status status;
+
     request.set_pathname(path);
 
     // Make RPC
-    Status status = stub_->ListDir(&context, request, &reply);
+    status = stub_->ListDir(&context, request, &reply);
     dbgprintf("ListDir: RPC Returned\n");
 
-    std::cout << "count = " << reply.entries().size() << std::endl;
+    // std::cout << "count = " << reply.entries().size() << std::endl;
 
     // Checking RPC Status
     if (status.ok()) 
     {
-      dbgprintf("ListDir: Exiting function\n");
-      return reply;
+      dbgprintf("ListDir: RPC Success\n");
     } 
     else 
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      dbgprintf("ListDir: Exiting function\n");
-      return reply;
+      dbgprintf("ListDir: RPC Failure\n");
     }
+
+    dbgprintf("ListDir: Exiting function\n");
+    return ListDirReturnType(status, reply);
   }
 
   /*
@@ -624,23 +627,25 @@ void RunClient()
   //           << std::endl;
 
   // Uncomment to Test RemoveDir
-  std::cout << "Calling RemoveDir()" << std::endl;
-  RemoveDirReturnType removeDirReturn = client.RemoveDir("newDir1");
-  std::cout << "Status Code: " << removeDirReturn.status.error_code()
-            << " Error Message: " <<  removeDirReturn.status.error_message()
-            << std::endl;
+  // std::cout << "Calling RemoveDir()" << std::endl;
+  // RemoveDirReturnType removeDirReturn = client.RemoveDir("newDir1");
+  // std::cout << "Status Code: " << removeDirReturn.status.error_code()
+  //           << " Error Message: " <<  removeDirReturn.status.error_message()
+  //           << std::endl;
   
   // Uncomment to Test ListDir
-  // std::cout << "Calling ListDir()" << std::endl;
-  // ListDirResponse listDirResponse;
-  // listDirResponse = client.ListDir("newDir");
-  // for (auto itr = listDirResponse.entries().begin(); itr != listDirResponse.entries().end(); itr++)
-  // {
-  //   std::cout << "file_name: " << itr->file_name() << std::endl;
-  //   std::cout << "mode: " << itr->mode() << std::endl;
-  //   std::cout << "size: " << itr->size() << std::endl;
-  //   std::cout << std::endl;
-  // }
+  std::cout << "Calling ListDir()" << std::endl;
+  ListDirReturnType listDirReturn = client.ListDir("newDir");
+  std::cout << "Status Code: " << listDirReturn.status.error_code()
+            << " Error Message: " <<  listDirReturn.status.error_message()
+            << std::endl;
+  for (auto itr = listDirReturn.response.entries().begin(); itr != listDirReturn.response.entries().end(); itr++)
+  {
+    std::cout << "file_name: " << itr->file_name() << std::endl;
+    std::cout << "mode: " << itr->mode() << std::endl;
+    std::cout << "size: " << itr->size() << std::endl;
+    std::cout << std::endl;
+  }
 
   // Uncomment to Test TestAuth
   // std::cout << "Calling TestAuth()" << std::endl;

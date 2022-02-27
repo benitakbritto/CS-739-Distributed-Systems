@@ -173,28 +173,30 @@ class ClientImplementation
   * If RPC fails, it just prints that out to stdout
   * else prints <TODO>
   */
-  // std::string DeleteFile(std::string req) 
-  // {
-  //   DeleteFileRequest request;
-  //   DeleteFileResponse reply;
-  //   ClientContext context;
-  //   request.set_val(req);
+  void Remove(std::string path) 
+  {
+    dbgprintf("Remove: Entered function\n");
+    RemoveRequest request;
+    RemoveResponse reply;
+    ClientContext context;
+    request.set_pathname(path);
 
-  //   // Make RPC
-  //   Status status = stub_->DeleteFile(&context, request, &reply);
+    // Make RPC
+    Status status = stub_->Remove(&context, request, &reply);
 
-  //   // Checking RPC Status 
-  //   if (status.ok()) 
-  //   {
-  //     return reply.val();
-  //   } 
-  //   else
-  //   {
-  //     std::cout << status.error_code() << ": " << status.error_message()
-  //               << std::endl;
-  //     return "DeleteFile RPC Failed";
-  //   }
-  // }
+    // Checking RPC Status 
+    if (status.ok()) 
+    {
+      dbgprintf("Remove: Exiting function\n");
+      return;
+    } 
+    else
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      dbgprintf("Remove: Exiting function\n");
+    }
+  }
 
   // TODO Get the right response type
   /*
@@ -331,26 +333,24 @@ void RunClient()
   std::string request;
 
   // Client RPC invokation
-  std::cout << "Calling Fetch()" << std::endl;
-  std::string fetchPath =  "hello-world.txt";
-  FileDescriptor fd = client.Fetch(fetchPath);
-  std::cout << "Request (file path): " << fetchPath << std::endl;
-  std::cout << "Response (file descriptor): " << fd.file << std::endl;
-
-  client.WriteFile(fd, "hello", 5);
-  char c[10];
-  int read = client.ReadFile(fd, c, 5, 0);
-  for (int i = 0; i < 5; i++)
-    std::cout << c[i] << std::endl;
-
-  std::cout << "Calling Store()" << std::endl;
-  client.Store(fd, "new data");
+  // Uncomment to Test Open-Read-Write-Close
+  // std::cout << "Calling Fetch()" << std::endl;
+  // std::string fetchPath =  "hello-world.txt";
+  // FileDescriptor fd = client.Fetch(fetchPath);
+  // std::cout << "Request (file path): " << fetchPath << std::endl;
+  // std::cout << "Response (file descriptor): " << fd.file << std::endl;
+  // client.WriteFile(fd, "hello", 5);
+  // char c[10];
+  // int read = client.ReadFile(fd, c, 5, 0);
+  // for (int i = 0; i < 5; i++)
+  //   std::cout << c[i] << std::endl;
+  // std::cout << "Calling Store()" << std::endl;
+  // client.Store(fd, "new data");
   
-  // std::cout << "DeleteFile()" << std::endl;
-  // request = "Testing DeleteFile";
-  // response = client.DeleteFile(request);
-  // std::cout << "Request string: " << request << std::endl;
-  // std::cout << "Response string: " << response << std::endl;
+  // Uncomment to Test Remove
+  std::cout << "Calling Remove()" << std::endl;
+  std::string removePath = "try.txt";
+  client.Remove(removePath);
 
   // std::cout << "GetFileStat()" << std::endl;
   // request = "Testing GetFileStat";

@@ -271,19 +271,23 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     Status Remove(ServerContext* context, const RemoveRequest* request, RemoveResponse* reply) override {
+        dbgprintf("Remove: Entering function\n");
         try {
             path filepath = to_storage_path(request->pathname());
+            cout << "Remove: filepath = " << filepath << endl;
 
             // TODO wait for read/write lock
 
             delete_file(filepath);
-
+            dbgprintf("Remove: Exiting function on Sucess path\n");
             return Status::OK;
         } catch (const ServiceException& e) {
             cout << e.what() << endl;
+            dbgprintf("Remove: Exiting function on ServiceException path\n");
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
             cout << e.what() << endl;
+            dbgprintf("Remove: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }

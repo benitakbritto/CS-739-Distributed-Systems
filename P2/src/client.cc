@@ -379,36 +379,34 @@ class ClientImplementation
     }
   }
 
-  /*
-  * Invokes an RPC 
-  * If RPC fails, it just prints that out to stdout
-  * else prints <TODO>
-  */
-  void MakeDir(std::string path) 
+  MakeDirReturnType MakeDir(std::string path) 
   {
     dbgprintf("MakeDir: Entering function\n");
     MakeDirRequest request;
     MakeDirResponse reply;
     ClientContext context;
+    Status status;
+    
     request.set_pathname(path);
 
     // Make RPC
-    Status status = stub_->MakeDir(&context, request, &reply);
+    status = stub_->MakeDir(&context, request, &reply);
     dbgprintf("MakeDir: RPC returned\n");
 
     // Checking RPC Status
     if (status.ok()) 
     {
-      dbgprintf("MakeDir: Exiting function\n");
-      return;
+      dbgprintf("MakeDir: RPC Success\n");
     }
     else
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      dbgprintf("MakeDir: Exiting function\n");
-      return;
+      dbgprintf("MakeDir: RPC failure\n");
     }
+
+    dbgprintf("MakeDir: Exiting function\n");
+    return MakeDirReturnType(status);
   }
 
   /*
@@ -622,8 +620,11 @@ void RunClient()
   //           << metadata.time_change_sec << "\t" << std::endl;
 
   // Uncomment to Test MakeDir
-  // std::cout << "Calling MakeDir()" << std::endl;
-  // client.MakeDir("newDir");
+  std::cout << "Calling MakeDir()" << std::endl;
+  MakeDirReturnType makeDirReturn = client.MakeDir("newDir1");
+  std::cout << "Status Code: " << makeDirReturn.status.error_code()
+            << " Error Message: " <<  makeDirReturn.status.error_message()
+            << std::endl;
 
   // Uncomment to Test RemoveDir
   // std::cout << "Calling RemoveDir()" << std::endl;

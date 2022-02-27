@@ -116,8 +116,10 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     void make_dir(path filepath) {
+        dbgprintf("make_dir: Entering function\n");
         if (mkdir(filepath.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == -1) {
             switch (errno) {
+                dbgprintf("make_dir: Exiting function\n");
                 case EEXIST:
                     throw new ServiceException("Path already exists", StatusCode::ALREADY_EXISTS);
                 case ENOENT:
@@ -128,6 +130,8 @@ class ServiceImplementation final : public FileSystemService::Service {
                     throw new ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
             }
         }
+        dbgprintf("make_dir: Exiting function\n");
+
     }
 
     void remove_dir(path filepath) {
@@ -344,18 +348,22 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     Status MakeDir(ServerContext* context, const MakeDirRequest* request, MakeDirResponse* reply) override {
+        dbgprintf("MakeDir: Entering function\n");
+
         try {
             path filepath = to_storage_path(request->pathname());
-
+            cout << "filepath: " << filepath << endl;
             // todo wait for write to finish??
             make_dir(filepath);
-            
+            dbgprintf("MakeDir: Exiting function on Success path\n");
             return Status::OK;
         } catch (const ServiceException& e) {
             cout << e.what() << endl;
+            dbgprintf("MakeDir: Exiting function on ServiceException path\n");
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
             cout << e.what() << endl;
+            dbgprintf("MakeDir: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }

@@ -264,28 +264,32 @@ class ClientImplementation
   * If RPC fails, it just prints that out to stdout
   * else prints <TODO>
   */
-  // std::string MakeDir(std::string req) 
-  // {
-  //   MakeDirRequest request;
-  //   MakeDirResponse reply;
-  //   ClientContext context;
-  //   request.set_val(req);
+  void MakeDir(std::string path) 
+  {
+    dbgprintf("MakeDir: Entering function\n");
+    MakeDirRequest request;
+    MakeDirResponse reply;
+    ClientContext context;
+    request.set_pathname(path);
 
-  //   // Make RPC
-  //   Status status = stub_->MakeDir(&context, request, &reply);
+    // Make RPC
+    Status status = stub_->MakeDir(&context, request, &reply);
+    dbgprintf("MakeDir: RPC returned\n");
 
-  //   // Checking RPC Status
-  //   if (status.ok()) 
-  //   {
-  //     return reply.val();
-  //   }
-  //   else
-  //   {
-  //     std::cout << status.error_code() << ": " << status.error_message()
-  //               << std::endl;
-  //     return "MakeDir RPC Failed";
-  //   }
-  // }
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      dbgprintf("MakeDir: Exiting function\n");
+      return;
+    }
+    else
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      dbgprintf("MakeDir: Exiting function\n");
+      return;
+    }
+  }
 
   /*
   * Invokes an RPC 
@@ -385,9 +389,10 @@ void RunClient()
   // client.Remove(removePath);
 
   // Uncomment to Test Rename
-  std::string oldPath = "hello-world.txt";
-  std::string newFileName = "hello-world-renamed.txt";
-  client.Rename(oldPath, newFileName);
+  // std::cout << "Calling Rename()" << std::endl;
+  // std::string oldPath = "hello-world.txt";
+  // std::string newFileName = "hello-world-renamed.txt";
+  // client.Rename(oldPath, newFileName);
 
   // std::cout << "GetFileStat()" << std::endl;
   // request = "Testing GetFileStat";
@@ -395,11 +400,9 @@ void RunClient()
   // std::cout << "Request string: " << request << std::endl;
   // std::cout << "Response string: " << response << std::endl;
 
-  // std::cout << "MakeDir()" << std::endl;
-  // request = "Testing MakeDir";
-  // response = client.MakeDir(request);
-  // std::cout << "Request string: " << request << std::endl;
-  // std::cout << "Response string: " << response << std::endl;
+  // Uncomment to Test MakeDir
+  std::cout << "Calling MakeDir()" << std::endl;
+  client.MakeDir("newDir");
 
   // std::cout << "DeleteDir()" << std::endl;
   // request = "Testing DeleteDir";

@@ -124,7 +124,7 @@ class ClientImplementation
     } 
     
     // Return file descriptor
-    file = open(path.c_str(), O_RDWR);
+    file = open(path.c_str(), O_RDWR | O_CREAT);
     dbgprintf("OpenFile: Exiting function\n");
     return FileDescriptor(file, path);
   }
@@ -180,7 +180,8 @@ class ClientImplementation
   int WriteFile(FileDescriptor fd, char* buf, int length)
   {
     int written_out = write(fd.file, buf, length);
-    std::cout << buf << std::endl;
+    fsync(fd.file);
+    //std::cout << buf << std::endl;
     return written_out;
   }
   
@@ -193,7 +194,8 @@ class ClientImplementation
   int WriteFile(FileDescriptor fd, char* buf, int length, int offset)
   {
     int written_out = pwrite(fd.file, buf, length, offset);
-    std::cout << buf << std::endl;
+    fsync(fd.file);
+    //std::cout << buf << std::endl;
     return written_out;
   }
 

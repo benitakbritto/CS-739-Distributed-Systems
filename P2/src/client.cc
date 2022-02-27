@@ -131,7 +131,7 @@ class ClientImplementation
         write(file, reply.file_contents().c_str(), reply.file_contents().length());
         close(file);
 
-        file = open(path.c_str(), O_RDWR);
+        file = open(path.c_str(), O_RDWR | O_CREAT);
       } 
       else 
       {
@@ -199,7 +199,8 @@ class ClientImplementation
   int WriteFile(FileDescriptor fd, char* buf, int length)
   {
     int written_out = write(fd.file, buf, length);
-    std::cout << buf << std::endl;
+    fsync(fd.file);
+    //std::cout << buf << std::endl;
     return written_out;
   }
   
@@ -212,7 +213,8 @@ class ClientImplementation
   int WriteFile(FileDescriptor fd, char* buf, int length, int offset)
   {
     int written_out = pwrite(fd.file, buf, length, offset);
-    std::cout << buf << std::endl;
+    fsync(fd.file);
+    //std::cout << buf << std::endl;
     return written_out;
   }
 

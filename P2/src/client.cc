@@ -38,6 +38,8 @@ using filesystemcomm::TestAuthRequest;
 using filesystemcomm::TestAuthResponse;
 using filesystemcomm::DirectoryEntry;
 using filesystemcomm::Timestamp;
+using grpc::Status;
+using grpc::StatusCode;
 
 enum FileMode 
 {
@@ -82,31 +84,45 @@ struct FileDescriptor
   FileDescriptor(int file, std::string path) : path(path), file(file) {}
 };
 
+struct OpenFileReturnType
+{
+  Status status;
+  FetchResponse response;
+  FileDescriptor fd;
+  OpenFileReturnType(Status status,
+                    FetchResponse response,
+                    FileDescriptor fd) :
+                    status(status.error_code(), status.error_message()),
+                    response(response),
+                    fd(fd.file, fd.path)
+                    {}
+};
+
 class ClientImplementation 
 {
  public:
   ClientImplementation(std::shared_ptr<Channel> channel)
       : stub_(FileSystemService::NewStub(channel)) {}
 
-  FileDescriptor OpenFile(std::string path) 
+  OpenFileReturnType OpenFile(std::string path) 
   {
     dbgprintf("OpenFile: Inside function\n");
     int file;
+    FetchRequest request;
+    FetchResponse reply;
+    ClientContext context;
+    Status status;
     
     if (TestAuth(path, FETCH))
-    {
-      FetchRequest request;
-      FetchResponse reply;
-      ClientContext context;
+    {  
       request.set_pathname(path);
 
       // Make RPC
       dbgprintf("OpenFile: Invoking Fetch() RPC\n");
-      Status status = stub_->Fetch(&context, request, &reply);
+      status = stub_->Fetch(&context, request, &reply);
       dbgprintf("OpenFile: RPC Returned\n");
 
       // Checking RPC Status
-      // TODO: Do something w reply.time_modify()
       if (status.ok()) 
       {
         dbgprintf("OpenFile: RPC Success\n");
@@ -114,6 +130,8 @@ class ClientImplementation
         dbgprintf("OpenFile: reply.file_contents().length() = %ld\n", reply.file_contents().length());
         write(file, reply.file_contents().c_str(), reply.file_contents().length());
         close(file);
+
+        file = open(path.c_str(), O_RDWR);
       } 
       else 
       {
@@ -123,10 +141,11 @@ class ClientImplementation
       }
     } 
     
-    // Return file descriptor
-    file = open(path.c_str(), O_RDWR);
     dbgprintf("OpenFile: Exiting function\n");
-    return FileDescriptor(file, path);
+
+    return OpenFileReturnType(status,
+                              reply,
+                              FileDescriptor(file, path));
   }
 
   void CloseFile(FileDescriptor fd, std::string data) 
@@ -489,11 +508,16 @@ void RunClient()
 
   // Client RPC invokation
   // Uncomment to Test Open-Read-Write-Close
-  // std::cout << "Calling OpenFile()" << std::endl;
-  // std::string fetchPath =  "hello-world.txt";
-  // FileDescriptor fd = client.OpenFile(fetchPath);
-  // std::cout << "Request (file path): " << fetchPath << std::endl;
-  // std::cout << "Response (file descriptor): " << fd.file << std::endl;
+  std::cout << "Calling OpenFile()" << std::endl;
+  std::string fetchPath =  "hello-world.txt";
+  OpenFileReturnType openFileReturn = client.OpenFile(fetchPath);
+  std::cout << "Status Code: " << openFileReturn.status.error_code()
+            << " Error Message: " <<  openFileReturn.status.error_message()
+            << " time_modify: " << openFileReturn.response.time_modify().sec()
+            << " fd: " << openFileReturn.fd.file
+            << " filepath: " << openFileReturn.fd.path
+            << std::endl;
+
   // client.WriteFile(fd, "hello", 5);
   // char c[10];
   // int read = client.ReadFile(fd, c, 5, 0);

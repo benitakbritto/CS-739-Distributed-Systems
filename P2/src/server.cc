@@ -238,6 +238,8 @@ class ServiceImplementation final : public FileSystemService::Service {
             // In C++, protobuf `bytes` fields are implemented as strings
             auto content = read_file(filepath);
             reply->set_file_contents(content);
+            reply->mutable_time_modify()->CopyFrom(
+                                        convert_timestamp(read_modify_time(filepath)));
 
             return Status::OK;
         } catch (const ServiceException& e) {

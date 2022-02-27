@@ -89,6 +89,7 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     void write_file(path filepath, string content) {
+        dbgprintf("write_file: Entering function\n");
         std::ofstream file;
 
         // TODO throw if parent dir DNE
@@ -97,6 +98,7 @@ class ServiceImplementation final : public FileSystemService::Service {
         file.open(filepath, std::ios::binary);
         file << content;
         file.close();
+        dbgprintf("write_file: Exiting function\n");
     }
 
     void delete_file(path filepath) {
@@ -223,7 +225,7 @@ class ServiceImplementation final : public FileSystemService::Service {
     Status Fetch(ServerContext* context, const FetchRequest* request, FetchResponse* reply) override {
         try {
             path filepath = to_storage_path(request->pathname());
-            cout << "Reading file at " << filepath << endl;
+            cout << "Fetch: filepath = " << filepath << endl;
 
             // TODO wait for read/write lock
 
@@ -241,24 +243,29 @@ class ServiceImplementation final : public FileSystemService::Service {
         }
     }
 
+    // free(): invalid size; Aborted (core dumped)
     Status Store(ServerContext* context, const StoreRequest* request, StoreResponse* reply) override {
+        dbgprintf("Store: Entering function\n");
         try {
             path filepath = to_storage_path(request->pathname());
+            cout << "Store: filepath = " << filepath << endl;
 
             // TODO wait for read/write lock
-
+            cout << "File contents: " << request->file_contents() << endl;
             write_file(filepath, request->file_contents());
 
             auto time = convert_timestamp(read_modify_time(filepath));
-            reply->set_allocated_time_modify(&time);
-
+            reply->mutable_time_modify()->CopyFrom(time);
+            dbgprintf("Store: Exiting function on Success path\n");
             return Status::OK;
 
         } catch (const ServiceException& e) {
             cout << e.what() << endl;
+            dbgprintf("Store: Exiting function on ServiceException path\n");
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
             cout << e.what() << endl;
+            dbgprintf("Store: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }

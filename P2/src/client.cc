@@ -88,11 +88,9 @@ class ClientImplementation
   ClientImplementation(std::shared_ptr<Channel> channel)
       : stub_(FileSystemService::NewStub(channel)) {}
 
-  // Check cache with TestAuth/GetFileStat
-  // must handle open() and creat()
-  FileDescriptor Fetch(std::string path) 
+  FileDescriptor OpenFile(std::string path) 
   {
-    dbgprintf("Fetch: Inside function\n");
+    dbgprintf("OpenFile: Inside function\n");
     int file;
     
     if (TestAuth(path, FETCH))
@@ -103,23 +101,23 @@ class ClientImplementation
       request.set_pathname(path);
 
       // Make RPC
-      dbgprintf("Fetch: Invoking Fetch() RPC\n");
+      dbgprintf("OpenFile: Invoking Fetch() RPC\n");
       Status status = stub_->Fetch(&context, request, &reply);
-      dbgprintf("Fetch: RPC Returned\n");
+      dbgprintf("OpenFile: RPC Returned\n");
 
       // Checking RPC Status
       // TODO: Do something w reply.time_modify()
       if (status.ok()) 
       {
-        dbgprintf("Fetch: RPC Success\n");
+        dbgprintf("OpenFile: RPC Success\n");
         file = open(path.c_str(), O_RDWR | O_TRUNC | O_CREAT, 0666);
-        dbgprintf("Fetch: reply.file_contents().length() = %ld\n", reply.file_contents().length());
+        dbgprintf("OpenFile: reply.file_contents().length() = %ld\n", reply.file_contents().length());
         write(file, reply.file_contents().c_str(), reply.file_contents().length());
         close(file);
       } 
       else 
       {
-        dbgprintf("Fetch: RPC Failure\n");
+        dbgprintf("OpenFile: RPC Failure\n");
         std::cout << status.error_code() << ": " << status.error_message()
                   << std::endl;
       }
@@ -127,21 +125,21 @@ class ClientImplementation
     
     // Return file descriptor
     file = open(path.c_str(), O_RDWR);
-    dbgprintf("Fetch: Exiting function\n");
+    dbgprintf("OpenFile: Exiting function\n");
     return FileDescriptor(file, path);
   }
 
-  void Store(FileDescriptor fd, std::string data) 
+  void CloseFile(FileDescriptor fd, std::string data) 
   {
-    dbgprintf("Store: Entered function\n");
-    std::cout << "Store: data = " << data << std::endl;
+    dbgprintf("CloseFile: Entered function\n");
+    std::cout << "CloseFile: data = " << data << std::endl;
     close(fd.file);
     
     // No RPC necessary if file wasn't modified
     if (!TestAuth(fd.path, STORE))
     {
-      dbgprintf("Store: No server interaction needed\n");
-      dbgprintf("Store: Exiting function\n");
+      dbgprintf("CloseFile: No server interaction needed\n");
+      dbgprintf("CloseFile: Exiting function\n");
       return;
     }
   
@@ -149,26 +147,26 @@ class ClientImplementation
     StoreResponse reply;
     ClientContext context;
     request.set_pathname(fd.path);
-    std::cout << "Store: fd.path = " << fd.path << std::endl;
+    std::cout << "CloseFile: fd.path = " << fd.path << std::endl;
     request.set_file_contents(data);
 
     // Make RPC
     Status status = stub_->Store(&context, request, &reply);
-    dbgprintf("Store: RPC returned\n");
+    dbgprintf("CloseFile: RPC returned\n");
 
     // TODO: What to do with response
     // Checking RPC Status
     if (status.ok()) 
     {
-      dbgprintf("Store: Exiting function\n");
+      dbgprintf("CloseFile: Exiting function\n");
       return;
     } 
     else 
     {
-      dbgprintf("Store: RPC Failure\n");
+      dbgprintf("CloseFile: RPC Failure\n");
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      dbgprintf("Store: Exiting function\n");
+      dbgprintf("CloseFile: Exiting function\n");
       return;
     }
   }
@@ -204,9 +202,9 @@ class ClientImplementation
   * If RPC fails, it just prints that out to stdout
   * else prints <TODO>
   */
-  void Remove(std::string path) 
+  void DeleteFile(std::string path) 
   {
-    dbgprintf("Remove: Entered function\n");
+    dbgprintf("DeleteFile: Entered function\n");
     RemoveRequest request;
     RemoveResponse reply;
     ClientContext context;
@@ -218,14 +216,14 @@ class ClientImplementation
     // Checking RPC Status 
     if (status.ok()) 
     {
-      dbgprintf("Remove: Exiting function\n");
+      dbgprintf("DeleteFile: Exiting function\n");
       return;
     } 
     else
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      dbgprintf("Remove: Exiting function\n");
+      dbgprintf("DeleteFile: Exiting function\n");
     }
   }
 
@@ -491,9 +489,9 @@ void RunClient()
 
   // Client RPC invokation
   // Uncomment to Test Open-Read-Write-Close
-  // std::cout << "Calling Fetch()" << std::endl;
+  // std::cout << "Calling OpenFile()" << std::endl;
   // std::string fetchPath =  "hello-world.txt";
-  // FileDescriptor fd = client.Fetch(fetchPath);
+  // FileDescriptor fd = client.OpenFile(fetchPath);
   // std::cout << "Request (file path): " << fetchPath << std::endl;
   // std::cout << "Response (file descriptor): " << fd.file << std::endl;
   // client.WriteFile(fd, "hello", 5);
@@ -501,13 +499,13 @@ void RunClient()
   // int read = client.ReadFile(fd, c, 5, 0);
   // for (int i = 0; i < 5; i++)
   //   std::cout << c[i] << std::endl;
-  // std::cout << "Calling Store()" << std::endl;
-  // client.Store(fd, "new data");
+  // std::cout << "Calling CloseFile()" << std::endl;
+  // client.CloseFile(fd, "new data");
   
-  // Uncomment to Test Remove
-  // std::cout << "Calling Remove()" << std::endl;
+  // Uncomment to Test DeleteFile
+  // std::cout << "Calling DeleteFile()" << std::endl;
   // std::string removePath = "try.txt";
-  // client.Remove(removePath);
+  // client.DeleteFile(removePath);
 
   // Uncomment to Test Rename
   // std::cout << "Calling Rename()" << std::endl;

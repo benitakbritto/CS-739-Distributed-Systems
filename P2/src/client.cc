@@ -313,36 +313,33 @@ class ClientImplementation
     return DeletFileReturnType(status);
   }
 
-  /*
-  * Invokes an RPC 
-  * If RPC fails, it just prints that out to stdout
-  * else prints <TODO>
-  */
-  void Rename(std::string path, std::string newFileName) 
+  RenameReturnType Rename(std::string path, std::string newFileName) 
   {
     dbgprintf("Rename: Entered function\n");
     RenameRequest request;
     RenameResponse reply;
     ClientContext context;
+    Status status;
+
     request.set_pathname(path);
     request.set_componentname(newFileName);
 
     // Make RPC
-    Status status = stub_->Rename(&context, request, &reply);
+    status = stub_->Rename(&context, request, &reply);
 
     // Checking RPC Status 
     if (status.ok()) 
     {
-      dbgprintf("Rename: Exiting function\n");
-      return;
+      dbgprintf("Rename: RPC Success\n");
     } 
     else
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      dbgprintf("Rename: Exiting function\n");
-      return;
+      dbgprintf("Rename: RPC failure\n");
     }
+     dbgprintf("Rename: Exiting function\n");
+     return RenameReturnType(status);
   }
 
   /*
@@ -600,13 +597,19 @@ void RunClient()
   // Uncomment to Test DeleteFile
   // std::cout << "Calling DeleteFile()" << std::endl;
   // std::string removePath = "try.txt";
-  // client.DeleteFile(removePath);
+  // DeletFileReturnType deleteFileReturn = client.DeleteFile(removePath);
+  // std::cout << "Status Code: " << deleteFileReturn.status.error_code()
+  //           << " Error Message: " <<  deleteFileReturn.status.error_message()
+  //           << std::endl;
 
   // Uncomment to Test Rename
   // std::cout << "Calling Rename()" << std::endl;
   // std::string oldPath = "hello-world.txt";
   // std::string newFileName = "hello-world-renamed.txt";
-  // client.Rename(oldPath, newFileName);
+  // RenameReturnType renameReturn = client.Rename(oldPath, newFileName);
+  // std::cout << "Status Code: " << renameReturn.status.error_code()
+  //           << " Error Message: " <<  renameReturn.status.error_message()
+  //           << std::endl;
 
   // Uncomment to Test GetFileStat
   // std::cout << "Caling GetFileStat()" << std::endl;

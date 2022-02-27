@@ -296,29 +296,32 @@ class ClientImplementation
   * If RPC fails, it just prints that out to stdout
   * else prints <TODO>
   */
-  // std::string DeleteDir(std::string req) 
-  // {
-  //   DeleteDirRequest request;
-  //   DeleteDirResponse reply;
-  //   ClientContext context;
-  //   request.set_val(req);
+  void RemoveDir(std::string path) 
+  {
+    dbgprintf("RemoveDir: Entering function\n");
+    RemoveDirRequest request;
+    RemoveDirResponse reply;
+    ClientContext context;
+    request.set_pathname(path);
 
+    // Make RPC
+    Status status = stub_->RemoveDir(&context, request, &reply);
+    dbgprintf("RemoveDir: RPC Returned\n");
 
-  //   // Make RPC
-  //   Status status = stub_->DeleteDir(&context, request, &reply);
-
-  //   // Checking RPC Status
-  //   if (status.ok()) 
-  //   {
-  //     return reply.val();
-  //   } 
-  //   else 
-  //   {
-  //     std::cout << status.error_code() << ": " << status.error_message()
-  //               << std::endl;
-  //     return "DeleteDir RPC Failed";
-  //   }
-  // }
+    // Checking RPC Status
+    if (status.ok()) 
+    {
+      dbgprintf("RemoveDir: Exiting function\n");
+      return;
+    } 
+    else 
+    {
+      std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+      dbgprintf("RemoveDir: Exiting function\n");
+      return;
+    }
+  }
 
   // TODO: Get the right response type
   // std::string ListDir(std::string req) 
@@ -401,14 +404,12 @@ void RunClient()
   // std::cout << "Response string: " << response << std::endl;
 
   // Uncomment to Test MakeDir
-  std::cout << "Calling MakeDir()" << std::endl;
-  client.MakeDir("newDir");
+  // std::cout << "Calling MakeDir()" << std::endl;
+  // client.MakeDir("newDir");
 
-  // std::cout << "DeleteDir()" << std::endl;
-  // request = "Testing DeleteDir";
-  // response = client.DeleteDir(request);
-  // std::cout << "Request string: " << request << std::endl;
-  // std::cout << "Response string: " << response << std::endl;
+  // Uncomment to Test RemoveDir
+  std::cout << "Calling RemoveDir()" << std::endl;
+  client.RemoveDir("newDir");
 
   // std::cout << "ListDir()" << std::endl;
   // request = "Testing ListDir";

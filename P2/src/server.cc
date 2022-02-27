@@ -369,18 +369,21 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     Status RemoveDir(ServerContext* context, const RemoveDirRequest* request, RemoveDirResponse* reply) override {
+        dbgprintf("RemoveDir: Entering function\n");
         try {
             path filepath = to_storage_path(request->pathname());
-
+            cout << "filepath: " << filepath << endl; 
             // todo wait for write to finish??
             remove_dir(filepath);
-            
+            dbgprintf("RemoveDir: Exiting function on Success path\n");
             return Status::OK;
         } catch (const ServiceException& e) {
             cout << e.what() << endl;
+            dbgprintf("RemoveDir: Exiting function on ServiceException path\n");
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
             cout << e.what() << endl;
+            dbgprintf("RemoveDir: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }

@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <utime.h>
 
 #define DEBUG               1
 #define dbgprintf(...)      if (DEBUG) { printf(__VA_ARGS__); }
@@ -155,6 +156,7 @@ class ClientImplementation
     FetchResponse reply;
     ClientContext context;
     Status status;
+    struct utimbuf ubuf;
     
     if (TestAuth(path, FETCH).response.has_changed())
     {  
@@ -174,6 +176,13 @@ class ClientImplementation
         write(file, reply.file_contents().c_str(), reply.file_contents().length());
         close(file);
 
+        //  Update local file modify time with servers modify time
+        ubuf.modtime = reply.time_modify().sec();
+        if (utime(path.c_str(), &ubuf) != 0)
+        {
+          dbgprintf("OpenFile: utime() failed\n");
+        }
+        
         file = open(path.c_str(), O_RDWR | O_CREAT);
       } 
       else 
@@ -200,6 +209,7 @@ class ClientImplementation
     StoreResponse reply;
     ClientContext context;
     Status status;
+    struct utimbuf ubuf;
 
     // No RPC necessary if file wasn't modified
     if (!TestAuth(fd.path, STORE).response.has_changed())
@@ -222,6 +232,13 @@ class ClientImplementation
     if (status.ok()) 
     {
        dbgprintf("CloseFile: RPC Success\n");
+
+      // Update local file modify time with servers modify time 
+      ubuf.modtime = reply.time_modify().sec();
+      if (utime(fd.path.c_str(), &ubuf) != 0)
+      {
+        dbgprintf("CloseFile: utime() failed\n");
+      }
     } 
     else 
     {
@@ -587,20 +604,20 @@ void RunClient()
   //           << std::endl;
 
   // Uncomment to Test GetFileStat
-  std::cout << "Calling GetFileStat()" << std::endl;
-  FileStatReturnType fileStatReturn = client.GetFileStat("hello-world.txt");
-  std::cout << "Status Code: " << fileStatReturn.status.error_code()
-            << " Error Message: " <<  fileStatReturn.status.error_message()
-            << fileStatReturn.response.status().file_name() << "\t"
-            << fileStatReturn.response.status().mode() << "\t"
-            << fileStatReturn.response.status().size() << "\t"
-            << fileStatReturn.response.status().time_access().sec() << "\t"
-            << fileStatReturn.response.status().time_access().nsec() << "\t"
-            << fileStatReturn.response.status().time_modify().sec() << "\t"
-            << fileStatReturn.response.status().time_modify().nsec() << "\t"
-            << fileStatReturn.response.status().time_change().sec() << "\t"
-            << fileStatReturn.response.status().time_change().nsec()
-            << std::endl;
+  // std::cout << "Calling GetFileStat()" << std::endl;
+  // FileStatReturnType fileStatReturn = client.GetFileStat("hello-world.txt");
+  // std::cout << "Status Code: " << fileStatReturn.status.error_code()
+  //           << " Error Message: " <<  fileStatReturn.status.error_message()
+  //           << fileStatReturn.response.status().file_name() << "\t"
+  //           << fileStatReturn.response.status().mode() << "\t"
+  //           << fileStatReturn.response.status().size() << "\t"
+  //           << fileStatReturn.response.status().time_access().sec() << "\t"
+  //           << fileStatReturn.response.status().time_access().nsec() << "\t"
+  //           << fileStatReturn.response.status().time_modify().sec() << "\t"
+  //           << fileStatReturn.response.status().time_modify().nsec() << "\t"
+  //           << fileStatReturn.response.status().time_change().sec() << "\t"
+  //           << fileStatReturn.response.status().time_change().nsec()
+  //           << std::endl;
 
   // Uncomment to Test MakeDir
   // std::cout << "Calling MakeDir()" << std::endl;

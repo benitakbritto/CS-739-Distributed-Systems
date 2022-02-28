@@ -10,6 +10,7 @@
 
 #define DEBUG               1
 #define dbgprintf(...)      if (DEBUG) { printf(__VA_ARGS__); }
+#define SERVER_ADDR         "20.69.154.6:50051"
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -551,7 +552,7 @@ class ClientImplementation
 
 void RunClient() 
 {
-  std::string target_address("0.0.0.0:50051");
+  std::string target_address(SERVER_ADDR);
   // Instantiates the client
   ClientImplementation client(
       // Channel from which RPCs are made - endpoint is the target_address
@@ -621,7 +622,7 @@ void RunClient()
 
   // Uncomment to Test MakeDir
   // std::cout << "Calling MakeDir()" << std::endl;
-  // MakeDirReturnType makeDirReturn = client.MakeDir("newDir1");
+  // MakeDirReturnType makeDirReturn = client.MakeDir("newDir");
   // std::cout << "Status Code: " << makeDirReturn.status.error_code()
   //           << " Error Message: " <<  makeDirReturn.status.error_message()
   //           << std::endl;

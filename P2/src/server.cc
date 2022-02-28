@@ -159,7 +159,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             DirectoryEntry* msg = reply->add_entries();
             msg->set_file_name(entry.path().filename());
             msg->set_mode(entry.is_regular_file() ? FileMode::REG : entry.is_directory() ? FileMode::DIR : FileMode::UNSUPPORTED);
-            msg->set_size(entry.file_size());
+            msg->set_size(entry.is_regular_file() ? entry.file_size() : 0);
         }
         dbgprintf("list_dir: Exiting function\n");
     }
@@ -251,7 +251,6 @@ class ServiceImplementation final : public FileSystemService::Service {
         }
     }
 
-    // free(): invalid size; Aborted (core dumped)
     Status Store(ServerContext* context, const StoreRequest* request, StoreResponse* reply) override {
         dbgprintf("Store: Entering function\n");
         try {

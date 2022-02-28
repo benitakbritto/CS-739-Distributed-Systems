@@ -178,7 +178,7 @@ class ClientImplementation
     ClientContext context;
     Status status;
     
-    if (TestAuth(path, FETCH))
+    if (TestAuth(path, FETCH).response.has_changed())
     {  
       request.set_pathname(path);
 
@@ -224,7 +224,7 @@ class ClientImplementation
     Status status;
 
     // No RPC necessary if file wasn't modified
-    if (!TestAuth(fd.path, STORE))
+    if (!TestAuth(fd.path, STORE).response.has_changed())
     {
       dbgprintf("CloseFile: No server interaction needed\n");
       dbgprintf("CloseFile: Exiting function\n");
@@ -485,28 +485,32 @@ class ClientImplementation
   * For eg. on Store, if the file does not exist
   * TestAuth returns false
   */
-  bool TestAuth(std::string path, enum TestAuthMode mode)
+  TestAuthReturnType TestAuth(std::string path, enum TestAuthMode mode)
   {
+    dbgprintf("TestAuth: Entering function\n");
+    TestAuthRequest request;
+    TestAuthResponse reply;
+    ClientContext context;
+    Timestamp t;
+    timespec modifyTime;
+    Status status;
+
     // check if local file exists
     if (mode == FETCH)
     {
       if (!FileExists(path))
       {
         dbgprintf("TestAuth: Local file does not exist\n");
-        return true;
+        reply.set_has_changed(true);
+        return TestAuthReturnType(status, reply);
       }
     }
 
-    TestAuthRequest request;
-    TestAuthResponse reply;
-    ClientContext context;
-    Timestamp t;
-    timespec modifyTime;
-    
     if (GetModifyTime(path, &modifyTime) != 0)
     {
       dbgprintf("TestAuth: Exiting function\n");
-      return false;
+      reply.set_has_changed(false);
+      return TestAuthReturnType(status, reply);
     }
 
     t.set_sec(modifyTime.tv_sec);
@@ -516,20 +520,22 @@ class ClientImplementation
     request.mutable_time_modify()->CopyFrom(t);
 
     // Make RPC
-    Status status = stub_->TestAuth(&context, request, &reply);
+    status = stub_->TestAuth(&context, request, &reply);
     dbgprintf("TestAuth: RPC Returned\n");
+
     if (status.ok()) 
     {
-      dbgprintf("TestAuth: Exiting function\n");
+      dbgprintf("TestAuth: RPC Success\n");
     }
     else
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      dbgprintf("TestAuth: Exiting function\n");
+      dbgprintf("TestAuth: RPC Failure\n");
     }
 
-    return reply.has_changed();
+    dbgprintf("TestAuth: Exiting function\n");
+    return TestAuthReturnType(status, reply);
   }
 
  private:
@@ -634,24 +640,27 @@ void RunClient()
   //           << std::endl;
   
   // Uncomment to Test ListDir
-  std::cout << "Calling ListDir()" << std::endl;
-  ListDirReturnType listDirReturn = client.ListDir("newDir");
-  std::cout << "Status Code: " << listDirReturn.status.error_code()
-            << " Error Message: " <<  listDirReturn.status.error_message()
-            << std::endl;
-  for (auto itr = listDirReturn.response.entries().begin(); itr != listDirReturn.response.entries().end(); itr++)
-  {
-    std::cout << "file_name: " << itr->file_name() << std::endl;
-    std::cout << "mode: " << itr->mode() << std::endl;
-    std::cout << "size: " << itr->size() << std::endl;
-    std::cout << std::endl;
-  }
+  // std::cout << "Calling ListDir()" << std::endl;
+  // ListDirReturnType listDirReturn = client.ListDir("newDir");
+  // std::cout << "Status Code: " << listDirReturn.status.error_code()
+  //           << " Error Message: " <<  listDirReturn.status.error_message()
+  //           << std::endl;
+  // for (auto itr = listDirReturn.response.entries().begin(); itr != listDirReturn.response.entries().end(); itr++)
+  // {
+  //   std::cout << "file_name: " << itr->file_name() << std::endl;
+  //   std::cout << "mode: " << itr->mode() << std::endl;
+  //   std::cout << "size: " << itr->size() << std::endl;
+  //   std::cout << std::endl;
+  // }
 
   // Uncomment to Test TestAuth
-  // std::cout << "Calling TestAuth()" << std::endl;
-  // enum TestAuthMode testAuthMode = FETCH;
-  // bool testAuthRet = client.TestAuth("a.txt", STORE);
-  // std::cout << "testAuthRet = " << testAuthRet << std::endl;
+  std::cout << "Calling TestAuth()" << std::endl;
+  enum TestAuthMode testAuthMode = FETCH;
+  TestAuthReturnType testAuthRet = client.TestAuth("hello-world.txt", testAuthMode);
+  std::cout << "Status Code: " << testAuthRet.status.error_code()
+            << " Error Message: " <<  testAuthRet.status.error_message()
+            << " has_changed: " << testAuthRet.response.has_changed()
+            << std::endl;
 }
 
 int main(int argc, char* argv[]) 

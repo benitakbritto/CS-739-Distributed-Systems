@@ -34,6 +34,7 @@ using filesystemcomm::TestAuthRequest;
 using filesystemcomm::TestAuthResponse;
 using filesystemcomm::DirectoryEntry;
 using filesystemcomm::Timestamp;
+using filesystemcomm::FileStat;
 using grpc::Status;
 using grpc::StatusCode;
 
@@ -48,29 +49,6 @@ enum TestAuthMode
 {
   FETCH = 0,
   STORE = 1
-};
-
-struct FileStatMetadata
-{
-  std::string file_name;
-  uint32_t mode;
-  uint64_t size;
-  uint64_t time_access_sec; // seconds
-  uint64_t time_modify_sec; // seconds
-  uint64_t time_change_sec; // seconds
-  FileStatMetadata(std::string file_name, 
-                    uint32_t mode, 
-                    uint64_t size, 
-                    uint64_t time_access_sec, 
-                    uint64_t time_modify_sec,
-                    uint64_t time_change_sec) :
-                    file_name(file_name),
-                    mode(mode),
-                    size(size),
-                    time_access_sec(time_access_sec),
-                    time_modify_sec(time_modify_sec),
-                    time_change_sec(time_change_sec)
-                    {}
 };
 
 struct FileDescriptor
@@ -342,41 +320,34 @@ class ClientImplementation
      return RenameReturnType(status);
   }
 
-  /*
-  * Invokes an RPC 
-  * If RPC fails, it just prints that out to stdout
-  * Else returns file details
-  */
-  FileStatMetadata GetFileStat(std::string path) 
+  FileStatReturnType GetFileStat(std::string path) 
   {
     dbgprintf("GetFileStat: Entering function\n");
     GetFileStatRequest request;
     GetFileStatResponse reply;
     ClientContext context;
+    Status status;
+
     request.set_pathname(path);
 
     // Make RPC
-    Status status = stub_->GetFileStat(&context, request, &reply);
+    status = stub_->GetFileStat(&context, request, &reply);
     dbgprintf("GetFileStat: RPC returned\n");
 
     // Checking RPC Status
     if (status.ok()) 
     {
-      dbgprintf("GetFileStat: Exiting function\n");
-      return FileStatMetadata(reply.status().file_name(),
-                              reply.status().mode(),
-                              reply.status().size(),
-                              reply.status().time_access().sec(),
-                              reply.status().time_modify().sec(),
-                              reply.status().time_change().sec());
+      dbgprintf("GetFileStat: RPC Success\n");
     } 
     else 
     {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
-      dbgprintf("GetFileStat: Exiting function\n");
-      return FileStatMetadata("", UNSUPPORTED, 0, 0, 0, 0);
+      dbgprintf("GetFileStat: RPC Failed\n");
     }
+    
+    dbgprintf("GetFileStat: Exiting function\n");
+    return FileStatReturnType(status, reply);
   }
 
   MakeDirReturnType MakeDir(std::string path) 
@@ -616,14 +587,20 @@ void RunClient()
   //           << std::endl;
 
   // Uncomment to Test GetFileStat
-  // std::cout << "Caling GetFileStat()" << std::endl;
-  // FileStatMetadata metadata = client.GetFileStat("hello-world.txt");
-  // std::cout << metadata.file_name << "\t"
-  //           << metadata.mode << "\t" 
-  //           << metadata.size << "\t"
-  //           << metadata.time_access_sec << "\t"
-  //           << metadata.time_modify_sec << "\t"
-  //           << metadata.time_change_sec << "\t" << std::endl;
+  std::cout << "Calling GetFileStat()" << std::endl;
+  FileStatReturnType fileStatReturn = client.GetFileStat("hello-world.txt");
+  std::cout << "Status Code: " << fileStatReturn.status.error_code()
+            << " Error Message: " <<  fileStatReturn.status.error_message()
+            << fileStatReturn.response.status().file_name() << "\t"
+            << fileStatReturn.response.status().mode() << "\t"
+            << fileStatReturn.response.status().size() << "\t"
+            << fileStatReturn.response.status().time_access().sec() << "\t"
+            << fileStatReturn.response.status().time_access().nsec() << "\t"
+            << fileStatReturn.response.status().time_modify().sec() << "\t"
+            << fileStatReturn.response.status().time_modify().nsec() << "\t"
+            << fileStatReturn.response.status().time_change().sec() << "\t"
+            << fileStatReturn.response.status().time_change().nsec()
+            << std::endl;
 
   // Uncomment to Test MakeDir
   // std::cout << "Calling MakeDir()" << std::endl;
@@ -654,13 +631,13 @@ void RunClient()
   // }
 
   // Uncomment to Test TestAuth
-  std::cout << "Calling TestAuth()" << std::endl;
-  enum TestAuthMode testAuthMode = FETCH;
-  TestAuthReturnType testAuthRet = client.TestAuth("hello-world.txt", testAuthMode);
-  std::cout << "Status Code: " << testAuthRet.status.error_code()
-            << " Error Message: " <<  testAuthRet.status.error_message()
-            << " has_changed: " << testAuthRet.response.has_changed()
-            << std::endl;
+  // std::cout << "Calling TestAuth()" << std::endl;
+  // enum TestAuthMode testAuthMode = FETCH;
+  // TestAuthReturnType testAuthRet = client.TestAuth("hello-world.txt", testAuthMode);
+  // std::cout << "Status Code: " << testAuthRet.status.error_code()
+  //           << " Error Message: " <<  testAuthRet.status.error_message()
+  //           << " has_changed: " << testAuthRet.response.has_changed()
+  //           << std::endl;
 }
 
 int main(int argc, char* argv[]) 

@@ -6,13 +6,17 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <utime.h>
+#include "client.h"
 
+#define DEBUG                 1
+#define dbgprintf(...)        if (DEBUG) { printf(__VA_ARGS__); }
+//#define SERVER_ADDR         "20.69.154.6:50051"
+#define SERVER_ADDR           "0.0.0.0:50051"
+#define MAX_RETRY             5
+#define RETRY_TIME_START      1 // seconds
+#define RETRY_TIME_MULTIPLIER 2
 
-/****************************************************************************** 
-* Macros
-*****************************************************************************/
-#define DEBUG               1
-#define dbgprintf(...)      if (DEBUG) { printf(__VA_ARGS__); }
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -38,449 +42,581 @@ using filesystemcomm::TestAuthRequest;
 using filesystemcomm::TestAuthResponse;
 using filesystemcomm::DirectoryEntry;
 using filesystemcomm::Timestamp;
+using filesystemcomm::FileStat;
+using grpc::Status;
+using grpc::StatusCode;
 
-enum FileMode 
+namespace FileSystemClient
 {
-  UNSUPPORTED = 0,
-  REG = 1,
-  DIR = 2,
-};
-
-enum TestAuthMode
-{
-  FETCH = 0,
-  STORE = 1
-};
-
-struct FileStatMetadata
-{
-  std::string file_name;
-  uint32_t mode;
-  uint64_t size;
-  uint64_t time_access_sec; // seconds
-  uint64_t time_modify_sec; // seconds
-  uint64_t time_change_sec; // seconds
-  FileStatMetadata(std::string file_name, 
-                    uint32_t mode, 
-                    uint64_t size, 
-                    uint64_t time_access_sec, 
-                    uint64_t time_modify_sec,
-                    uint64_t time_change_sec) :
-                    file_name(file_name),
-                    mode(mode),
-                    size(size),
-                    time_access_sec(time_access_sec),
-                    time_modify_sec(time_modify_sec),
-                    time_change_sec(time_change_sec)
-                    {}
-};
-
-struct FileDescriptor
-{
-  int file;
-  std::string path;
-  FileDescriptor(int file, std::string path) : path(path), file(file) {}
-};
-
-class ClientImplementation 
-{
- public:
-  ClientImplementation(std::shared_ptr<Channel> channel)
-      : stub_(FileSystemService::NewStub(channel)) {}
-
-  // Check cache with TestAuth/GetFileStat
-  // must handle open() and creat()
-  FileDescriptor Fetch(std::string path) 
+  class ClientImplementation 
   {
-    dbgprintf("Fetch: Inside function\n");
-    int file;
-    
-    if (TestAuth(path, FETCH))
+  public:
+    ClientImplementation(std::shared_ptr<Channel> channel)
+        : stub_(FileSystemService::NewStub(channel)) {}
+
+    OpenFileReturnType OpenFile(std::string path) 
     {
+      dbgprintf("OpenFile: Inside function\n");
+      int file;
       FetchRequest request;
       FetchResponse reply;
-      ClientContext context;
-      request.set_pathname(path);
+      Status status;
+      struct utimbuf ubuf;
+      uint32_t retryCount = 0;
+      
+      if (TestAuth(path, FETCH).response.has_changed())
+      {  
+        request.set_pathname(path);
+
+        // Make RPC
+        // Retry with backoff
+        do 
+        {
+          ClientContext context;
+          reply.Clear();
+          dbgprintf("OpenFile: Invoking RPC\n");
+          sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+          status = stub_->Fetch(&context, request, &reply);
+          retryCount++;
+        } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE );
+       
+        // Checking RPC Status
+        if (status.ok()) 
+        {
+          dbgprintf("OpenFile: RPC Success\n");
+          file = open(path.c_str(), O_RDWR | O_TRUNC | O_CREAT, 0666);
+          dbgprintf("OpenFile: reply.file_contents().length() = %ld\n", reply.file_contents().length());
+          write(file, reply.file_contents().c_str(), reply.file_contents().length());
+          close(file);
+
+          //  Update local file modify time with servers modify time
+          ubuf.modtime = reply.time_modify().sec();
+          if (utime(path.c_str(), &ubuf) != 0)
+          {
+            dbgprintf("OpenFile: utime() failed\n");
+          }
+          
+          file = open(path.c_str(), O_RDWR | O_CREAT);
+        } 
+        else 
+        {
+          dbgprintf("OpenFile: RPC Failure\n");
+          // std::cout << status.error_code() << ": " << status.error_message()
+          //           << std::endl;
+          PrintErrorMessage(status.error_code(), status.error_message(), "OpenFile");
+        }
+      } 
+      
+      dbgprintf("OpenFile: Exiting function\n");
+
+      return OpenFileReturnType(status,
+                                reply,
+                                FileDescriptor(file, path));
+    }
+
+    CloseFileReturnType CloseFile(FileDescriptor fd, std::string data) 
+    {
+      dbgprintf("CloseFile: Entered function\n");
+      std::cout << "CloseFile: data = " << data << std::endl;
+      close(fd.file);
+      StoreRequest request;
+      StoreResponse reply;
+      Status status;
+      struct utimbuf ubuf;
+      uint32_t retryCount = 0;
+
+      // No RPC necessary if file wasn't modified
+      if (!TestAuth(fd.path, STORE).response.has_changed())
+      {
+        dbgprintf("CloseFile: No server interaction needed\n");
+        dbgprintf("CloseFile: Exiting function\n");
+        return CloseFileReturnType(status,
+                                reply);
+      }
+    
+      request.set_pathname(fd.path);
+      std::cout << "CloseFile: fd.path = " << fd.path << std::endl;
+      request.set_file_contents(data);
 
       // Make RPC
-      dbgprintf("Fetch: Invoking Fetch() RPC\n");
-      Status status = stub_->Fetch(&context, request, &reply);
-      dbgprintf("Fetch: RPC Returned\n");
+      // Retry with backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("CloseFile: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->Store(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
 
       // Checking RPC Status
-      // TODO: Do something w reply.time_modify()
       if (status.ok()) 
       {
-        dbgprintf("Fetch: RPC Success\n");
-        file = open(path.c_str(), O_RDWR | O_TRUNC | O_CREAT, 0666);
-        dbgprintf("Fetch: reply.file_contents().length() = %ld\n", reply.file_contents().length());
-        write(file, reply.file_contents().c_str(), reply.file_contents().length());
-        close(file);
+        dbgprintf("CloseFile: RPC Success\n");
+
+        // Update local file modify time with servers modify time 
+        ubuf.modtime = reply.time_modify().sec();
+        if (utime(fd.path.c_str(), &ubuf) != 0)
+        {
+          dbgprintf("CloseFile: utime() failed\n");
+        }
       } 
       else 
       {
-        dbgprintf("Fetch: RPC Failure\n");
-        std::cout << status.error_code() << ": " << status.error_message()
-                  << std::endl;
+        dbgprintf("CloseFile: RPC Failure\n");
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "CloseFile");
+
       }
-    } 
+      dbgprintf("CloseFile: Exiting function\n");
+      return CloseFileReturnType(status,
+                                reply);
+    }
+
+    int ReadFile(FileDescriptor fd, char* buf, int length)
+    {
+      int read_in = read(fd.file, buf, length);
+      return read_in;
+    }
+
+    int WriteFile(FileDescriptor fd, char* buf, int length)
+    {
+      int written_out = write(fd.file, buf, length);
+      fsync(fd.file);
+      //std::cout << buf << std::endl;
+      return written_out;
+    }
     
-    // Return file descriptor
-    file = open(path.c_str(), O_RDWR);
-    dbgprintf("Fetch: Exiting function\n");
-    return FileDescriptor(file, path);
-  }
+    int ReadFile(FileDescriptor fd, char* buf, int length, int offset)
+    {
+      int read_in = pread(fd.file, buf, length, offset);
+      return read_in;
+    }
 
-  void Store(FileDescriptor fd, std::string data) 
-  {
-    dbgprintf("Store: Entered function\n");
-    std::cout << "Store: data = " << data << std::endl;
-    close(fd.file);
+    int WriteFile(FileDescriptor fd, char* buf, int length, int offset)
+    {
+      int written_out = pwrite(fd.file, buf, length, offset);
+      fsync(fd.file);
+      //std::cout << buf << std::endl;
+      return written_out;
+    }
+
+    DeletFileReturnType DeleteFile(std::string path) 
+    {
+      dbgprintf("DeleteFile: Entered function\n");
+      RemoveRequest request;
+      RemoveResponse reply;
+      Status status;
+      uint32_t retryCount = 0;
     
-    // No RPC necessary if file wasn't modified
-    if (!TestAuth(fd.path, STORE))
-    {
-      dbgprintf("Store: No server interaction needed\n");
-      dbgprintf("Store: Exiting function\n");
-      return;
-    }
-  
-    StoreRequest request;
-    StoreResponse reply;
-    ClientContext context;
-    request.set_pathname(fd.path);
-    std::cout << "Store: fd.path = " << fd.path << std::endl;
-    request.set_file_contents(data);
-
-    // Make RPC
-    Status status = stub_->Store(&context, request, &reply);
-    dbgprintf("Store: RPC returned\n");
-
-    // TODO: What to do with response
-    // Checking RPC Status
-    if (status.ok()) 
-    {
-      dbgprintf("Store: Exiting function\n");
-      return;
-    } 
-    else 
-    {
-      dbgprintf("Store: RPC Failure\n");
-      std::cout << status.error_code() << ": " << status.error_message()
-                << std::endl;
-      dbgprintf("Store: Exiting function\n");
-      return;
-    }
-  }
-
-  int ReadFile(FileDescriptor fd, char* buf, int length)
-  {
-    int read_in = read(fd.file, buf, length);
-    return read_in;
-  }
-
-  int WriteFile(FileDescriptor fd, char* buf, int length)
-  {
-    int written_out = write(fd.file, buf, length);
-    std::cout << buf << std::endl;
-    return written_out;
-  }
-  
-  int ReadFile(FileDescriptor fd, char* buf, int length, int offset)
-  {
-    int read_in = pread(fd.file, buf, length, offset);
-    return read_in;
-  }
-
-  int WriteFile(FileDescriptor fd, char* buf, int length, int offset)
-  {
-    int written_out = pwrite(fd.file, buf, length, offset);
-    std::cout << buf << std::endl;
-    return written_out;
-  }
-
-  /*
-  * Invokes an RPC 
-  * If RPC fails, it just prints that out to stdout
-  * else prints <TODO>
-  */
-  void Remove(std::string path) 
-  {
-    dbgprintf("Remove: Entered function\n");
-    RemoveRequest request;
-    RemoveResponse reply;
-    ClientContext context;
-    request.set_pathname(path);
-
-    // Make RPC
-    Status status = stub_->Remove(&context, request, &reply);
-
-    // Checking RPC Status 
-    if (status.ok()) 
-    {
-      dbgprintf("Remove: Exiting function\n");
-      return;
-    } 
-    else
-    {
-      std::cout << status.error_code() << ": " << status.error_message()
-                << std::endl;
-      dbgprintf("Remove: Exiting function\n");
-    }
-  }
-
-  /*
-  * Invokes an RPC 
-  * If RPC fails, it just prints that out to stdout
-  * else prints <TODO>
-  */
-  void Rename(std::string path, std::string newFileName) 
-  {
-    dbgprintf("Rename: Entered function\n");
-    RenameRequest request;
-    RenameResponse reply;
-    ClientContext context;
-    request.set_pathname(path);
-    request.set_componentname(newFileName);
-
-    // Make RPC
-    Status status = stub_->Rename(&context, request, &reply);
-
-    // Checking RPC Status 
-    if (status.ok()) 
-    {
-      dbgprintf("Rename: Exiting function\n");
-      return;
-    } 
-    else
-    {
-      std::cout << status.error_code() << ": " << status.error_message()
-                << std::endl;
-      dbgprintf("Rename: Exiting function\n");
-      return;
-    }
-  }
-
-  /*
-  * Invokes an RPC 
-  * If RPC fails, it just prints that out to stdout
-  * Else returns file details
-  */
-  FileStatMetadata GetFileStat(std::string path) 
-  {
-    dbgprintf("GetFileStat: Entering function\n");
-    GetFileStatRequest request;
-    GetFileStatResponse reply;
-    ClientContext context;
-    request.set_pathname(path);
-
-    // Make RPC
-    Status status = stub_->GetFileStat(&context, request, &reply);
-    dbgprintf("GetFileStat: RPC returned\n");
-
-    // Checking RPC Status
-    if (status.ok()) 
-    {
-      dbgprintf("GetFileStat: Exiting function\n");
-      return FileStatMetadata(reply.status().file_name(),
-                              reply.status().mode(),
-                              reply.status().size(),
-                              reply.status().time_access().sec(),
-                              reply.status().time_modify().sec(),
-                              reply.status().time_change().sec());
-    } 
-    else 
-    {
-      std::cout << status.error_code() << ": " << status.error_message()
-                << std::endl;
-      dbgprintf("GetFileStat: Exiting function\n");
-      return FileStatMetadata("", UNSUPPORTED, 0, 0, 0, 0);
-    }
-  }
-
-  /*
-  * Invokes an RPC 
-  * If RPC fails, it just prints that out to stdout
-  * else prints <TODO>
-  */
-  void MakeDir(std::string path) 
-  {
-    dbgprintf("MakeDir: Entering function\n");
-    MakeDirRequest request;
-    MakeDirResponse reply;
-    ClientContext context;
-    request.set_pathname(path);
-
-    // Make RPC
-    Status status = stub_->MakeDir(&context, request, &reply);
-    dbgprintf("MakeDir: RPC returned\n");
-
-    // Checking RPC Status
-    if (status.ok()) 
-    {
-      dbgprintf("MakeDir: Exiting function\n");
-      return;
-    }
-    else
-    {
-      std::cout << status.error_code() << ": " << status.error_message()
-                << std::endl;
-      dbgprintf("MakeDir: Exiting function\n");
-      return;
-    }
-  }
-
-  /*
-  * Invokes an RPC 
-  * If RPC fails, it just prints that out to stdout
-  * else prints <TODO>
-  */
-  void RemoveDir(std::string path) 
-  {
-    dbgprintf("RemoveDir: Entering function\n");
-    RemoveDirRequest request;
-    RemoveDirResponse reply;
-    ClientContext context;
-    request.set_pathname(path);
-
-    // Make RPC
-    Status status = stub_->RemoveDir(&context, request, &reply);
-    dbgprintf("RemoveDir: RPC Returned\n");
-
-    // Checking RPC Status
-    if (status.ok()) 
-    {
-      dbgprintf("RemoveDir: Exiting function\n");
-      return;
-    } 
-    else 
-    {
-      std::cout << status.error_code() << ": " << status.error_message()
-                << std::endl;
-      dbgprintf("RemoveDir: Exiting function\n");
-      return;
-    }
-  }
-
-  ListDirResponse ListDir(std::string path) 
-  {
-    dbgprintf("ListDir: Entering function\n");
-    ListDirRequest request;
-    ListDirResponse reply;
-    ClientContext context;
-    request.set_pathname(path);
-
-    // Make RPC
-    Status status = stub_->ListDir(&context, request, &reply);
-    dbgprintf("ListDir: RPC Returned\n");
-
-    std::cout << "count = " << reply.entries().size() << std::endl;
-
-    // Checking RPC Status
-    if (status.ok()) 
-    {
-      dbgprintf("ListDir: Exiting function\n");
-      return reply;
-    } 
-    else 
-    {
-      std::cout << status.error_code() << ": " << status.error_message()
-                << std::endl;
-      dbgprintf("ListDir: Exiting function\n");
-      return reply;
-    }
-  }
-
-  /*
-  * When called on Fetch,
-  * TestAuth first checks if local file exits
-  * if it does not exist, TestAuth returns true
-  * 
-  * For Fetch and Store,
-  * TestAuth gets the modify time of the local file
-  * and invokes the TestAuth RPC
-  * if the modify times of the local and server file
-  * do not match, TestAuth returns true, else false
-  *
-  * Error handling for GetModifyTime:
-  * For eg. on Store, if the file does not exist
-  * TestAuth returns false
-  */
-  bool TestAuth(std::string path, enum TestAuthMode mode)
-  {
-    // check if local file exists
-    if (mode == FETCH)
-    {
-      if (!FileExists(path))
+      request.set_pathname(path);
+      
+      // Make RPC 
+      // Retry with backoff
+      do 
       {
-        dbgprintf("TestAuth: Local file does not exist\n");
-        return true;
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("DeleteFile: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->Remove(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE );
+      
+
+      // Checking RPC Status 
+      if (status.ok()) 
+      {
+        dbgprintf("DeleteFile: RPC success\n");
+      } 
+      else
+      {
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "DeleteFile");
+        dbgprintf("DeleteFile: RPC failure\n");
       }
+
+      dbgprintf("DeleteFile: Exiting function\n");
+      return DeletFileReturnType(status);
     }
 
-    TestAuthRequest request;
-    TestAuthResponse reply;
-    ClientContext context;
-    Timestamp t;
-    timespec modifyTime;
-    
-    if (GetModifyTime(path, &modifyTime) != 0)
+    RenameReturnType Rename(std::string path, std::string newFileName) 
     {
-      dbgprintf("TestAuth: Exiting function\n");
-      return false;
+      dbgprintf("Rename: Entered function\n");
+      RenameRequest request;
+      RenameResponse reply;
+      Status status;
+      uint32_t retryCount = 0;
+
+      request.set_pathname(path);
+      request.set_componentname(newFileName);
+
+      // Make RPC
+      // Retry w backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("Rename: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->Rename(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+      // Checking RPC Status 
+      if (status.ok()) 
+      {
+        dbgprintf("Rename: RPC Success\n");
+      } 
+      else
+      {
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "Rename");
+        dbgprintf("Rename: RPC failure\n");
+      }
+      dbgprintf("Rename: Exiting function\n");
+      return RenameReturnType(status);
     }
 
-    t.set_sec(modifyTime.tv_sec);
-    t.set_nsec(modifyTime.tv_nsec);
-
-    request.set_pathname(path);
-    request.mutable_time_modify()->CopyFrom(t);
-
-    // Make RPC
-    Status status = stub_->TestAuth(&context, request, &reply);
-    dbgprintf("TestAuth: RPC Returned\n");
-    if (status.ok()) 
+    FileStatReturnType GetFileStat(std::string path) 
     {
-      dbgprintf("TestAuth: Exiting function\n");
+      dbgprintf("GetFileStat: Entering function\n");
+      GetFileStatRequest request;
+      GetFileStatResponse reply;
+      Status status;
+      uint32_t retryCount = 0;
+
+      request.set_pathname(path);
+
+      // Make RPC
+      // Retry w backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("GetFileStat: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->GetFileStat(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+      // Checking RPC Status
+      if (status.ok()) 
+      {
+        dbgprintf("GetFileStat: RPC Success\n");
+      } 
+      else 
+      {
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "GetFileStat");
+        dbgprintf("GetFileStat: RPC Failed\n");
+      }
+      
+      dbgprintf("GetFileStat: Exiting function\n");
+      return FileStatReturnType(status, reply);
     }
-    else
+
+    MakeDirReturnType MakeDir(std::string path) 
     {
-      std::cout << status.error_code() << ": " << status.error_message()
-                << std::endl;
+      dbgprintf("MakeDir: Entering function\n");
+      MakeDirRequest request;
+      MakeDirResponse reply;
+      Status status;
+      uint32_t retryCount = 0;
+      
+      request.set_pathname(path);
+
+      // Make RPC
+      // Retry w backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("MakeDir: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->MakeDir(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+      // Checking RPC Status
+      if (status.ok()) 
+      {
+        dbgprintf("MakeDir: RPC Success\n");
+      }
+      else
+      {
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "MakeDir");
+        dbgprintf("MakeDir: RPC failure\n");
+      }
+
+      dbgprintf("MakeDir: Exiting function\n");
+      return MakeDirReturnType(status);
+    }
+
+    RemoveDirReturnType RemoveDir(std::string path) 
+    {
+      dbgprintf("RemoveDir: Entering function\n");
+      RemoveDirRequest request;
+      RemoveDirResponse reply;
+      Status status;
+      uint32_t retryCount = 0;
+
+      request.set_pathname(path);
+
+      // Make RPC
+      // Retry w backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("RemoveDir: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->RemoveDir(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+      // Checking RPC Status
+      if (status.ok()) 
+      {
+        dbgprintf("RemoveDir: RPC Success\n");
+      } 
+      else 
+      {
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "RemoveDir");
+        dbgprintf("RemoveDir: RPC Failure\n");
+      }
+      dbgprintf("RemoveDir: Exiting function\n");
+      return RemoveDirReturnType(status);
+    }
+
+    ListDirReturnType ListDir(std::string path) 
+    {
+      dbgprintf("ListDir: Entering function\n");
+      ListDirRequest request;
+      ListDirResponse reply;
+      Status status;
+      uint32_t retryCount = 0;
+
+      request.set_pathname(path);
+
+      // Make RPC
+      // Retry w backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("ListDir: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->ListDir(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+      // std::cout << "count = " << reply.entries().size() << std::endl;
+
+      // Checking RPC Status
+      if (status.ok()) 
+      {
+        dbgprintf("ListDir: RPC Success\n");
+      } 
+      else 
+      {
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "ListDir");
+        dbgprintf("ListDir: RPC Failure\n");
+      }
+
+      dbgprintf("ListDir: Exiting function\n");
+      return ListDirReturnType(status, reply);
+    }
+
+    /*
+    * When called on Fetch,
+    * TestAuth first checks if local file exits
+    * if it does not exist, TestAuth returns true
+    * 
+    * For Fetch and Store,
+    * TestAuth gets the modify time of the local file
+    * and invokes the TestAuth RPC
+    * if the modify times of the local and server file
+    * do not match, TestAuth returns true, else false
+    *
+    * Error handling for GetModifyTime:
+    * For eg. on Store, if the file does not exist
+    * TestAuth returns false
+    */
+    TestAuthReturnType TestAuth(std::string path, enum TestAuthMode mode)
+    {
+      dbgprintf("TestAuth: Entering function\n");
+      TestAuthRequest request;
+      TestAuthResponse reply;
+      Timestamp t;
+      timespec modifyTime;
+      Status status;
+      uint32_t retryCount = 0;
+
+      // check if local file exists
+      if (mode == FETCH)
+      {
+        if (!FileExists(path))
+        {
+          dbgprintf("TestAuth: Local file does not exist\n");
+          reply.set_has_changed(true);
+          return TestAuthReturnType(status, reply);
+        }
+      }
+
+      if (GetModifyTime(path, &modifyTime) != 0)
+      {
+        dbgprintf("TestAuth: Exiting function\n");
+        reply.set_has_changed(false);
+        return TestAuthReturnType(status, reply);
+      }
+
+      t.set_sec(modifyTime.tv_sec);
+      t.set_nsec(modifyTime.tv_nsec);
+
+      request.set_pathname(path);
+      request.mutable_time_modify()->CopyFrom(t);
+
+      // Make RPC
+      // Retry w backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("TestAuth: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->TestAuth(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+      if (status.ok()) 
+      {
+        dbgprintf("TestAuth: RPC Success\n");
+      }
+      else
+      {
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "TestAuth");
+        dbgprintf("TestAuth: RPC Failure\n");
+      }
+
       dbgprintf("TestAuth: Exiting function\n");
+      return TestAuthReturnType(status, reply);
     }
 
-    return reply.has_changed();
-  }
+  private:
+    std::unique_ptr<FileSystemService::Stub> stub_;
 
- private:
-  std::unique_ptr<FileSystemService::Stub> stub_;
-
-  uint32_t GetModifyTime(std::string filepath, timespec * t) 
-  {
-    dbgprintf("GetModifyTime: Entering function\n");
-    struct stat sb;
-    if (stat(filepath.c_str(), &sb) == -1) {
-      dbgprintf("GetModifyTime: Failed\n");
-      return -1;
+    uint32_t GetModifyTime(std::string filepath, timespec * t) 
+    {
+      dbgprintf("GetModifyTime: Entering function\n");
+      struct stat sb;
+      if (stat(filepath.c_str(), &sb) == -1) {
+        dbgprintf("GetModifyTime: Failed\n");
+        return -1;
+      }
+      dbgprintf("GetModifyTime: Exiting function\n");
+      *t = sb.st_mtim;
+      return 0;
     }
-    dbgprintf("GetModifyTime: Exiting function\n");
-    *t = sb.st_mtim;
-    return 0;
-  }
 
-  bool FileExists(std::string path)
-  {
-    struct stat s;   
-    return (stat(path.c_str(), &s) == 0); 
-  }
-};
+    bool FileExists(std::string path)
+    {
+      struct stat s;   
+      return (stat(path.c_str(), &s) == 0); 
+    }
+
+    void PrintErrorMessage(uint32_t errorCode, std::string errorMessage, std::string operation)
+    {
+      std::string error;
+      std::string helperMessage;
+
+      switch (errorCode)
+      {
+        case 1:
+          error = "CANCELLED";
+          helperMessage = "Retry operation if needed.";
+          break;
+        case 2:
+          error = "UNKNOWN";
+          helperMessage = "Retry operation if needed.";
+          break;
+        case 3:
+          error = "INVALID ARGUMENT";
+          helperMessage = "Retry operation with the correct arguments.";
+          break;
+        case 4:
+          error = "DEADLINE_EXCEEDED";
+          break;
+        case 5: 
+          error = "NOT FOUND";
+          break;
+        case 6:
+          error = "ALREADY EXISTS";
+          break;
+        case 7:
+          error = "PERMISSION DENIED";
+          break;
+        case 8:
+          error = "RESOURCE EXHAUSTED";
+          break;
+        case 9: 
+          error = "FAILED PRECONDITION";
+          helperMessage = "Retry operation if needed.";
+          break;
+        case 10:
+          error = "ABORTED";
+          helperMessage = "Retry operation if needed.";
+          break;
+        case 11:
+          error = "OUT_OF_RANGE";
+          helperMessage = "Retry operation with the right arguments";
+          break;
+        case 12:
+          error = "UNIMPLEMENTED";
+          break;
+        case 13:
+          error = "INTERNAL";
+          break;
+        case 14: 
+          error = "UNAVAILABLE";
+          helperMessage = "Retry operation if needed.";
+          break;
+        case 15:
+          error = "DATA_LOSS";
+          break;
+        case 16: 
+          error = "UNAUTHENTICATED";
+          break;
+        default:
+          error = "UNKNOWN";
+          break;
+      }
+
+      std::cout << operation << " failed due to " << error << " error" 
+                << " with error message " << "\"" << errorMessage << "\""
+                << ". " << helperMessage << std::endl;
+    }
+  };
+}
 
 void RunClient() 
 {
-  std::string target_address("0.0.0.0:50051");
+  std::string target_address(SERVER_ADDR);
   // Instantiates the client
-  ClientImplementation client(
+  FileSystemClient::ClientImplementation client(
       // Channel from which RPCs are made - endpoint is the target_address
       grpc::CreateChannel(target_address,
                           // Indicate when channel is not authenticated
@@ -489,55 +625,86 @@ void RunClient()
   std::string response;
   std::string request;
 
+  dbgprintf("Connection established\n");
+
   // Client RPC invokation
   // Uncomment to Test Open-Read-Write-Close
-  // std::cout << "Calling Fetch()" << std::endl;
-  // std::string fetchPath =  "hello-world.txt";
-  // FileDescriptor fd = client.Fetch(fetchPath);
-  // std::cout << "Request (file path): " << fetchPath << std::endl;
-  // std::cout << "Response (file descriptor): " << fd.file << std::endl;
-  // client.WriteFile(fd, "hello", 5);
+  // std::cout << "Calling OpenFile()" << std::endl;
+  // std::string fetchPath =  "test.txt";
+  // OpenFileReturnType openFileReturn = client.OpenFile(fetchPath);
+  // std::cout << "Status Code: " << openFileReturn.status.error_code()
+  //           << " Error Message: " <<  openFileReturn.status.error_message()
+  //           << " time_modify: " << openFileReturn.response.time_modify().sec()
+  //           << " fd: " << openFileReturn.fd.file
+  //           << " filepath: " << openFileReturn.fd.path
+  //           << std::endl;
+
+  // client.WriteFile(openFileReturn.fd, "hello", 5);
   // char c[10];
-  // int read = client.ReadFile(fd, c, 5, 0);
+  // int read = client.ReadFile(openFileReturn.fd, c, 5, 0);
   // for (int i = 0; i < 5; i++)
   //   std::cout << c[i] << std::endl;
-  // std::cout << "Calling Store()" << std::endl;
-  // client.Store(fd, "new data");
-  
-  // Uncomment to Test Remove
-  // std::cout << "Calling Remove()" << std::endl;
+  // std::cout << "Calling CloseFile()" << std::endl;
+  // CloseFileReturnType closeFileReturn = client.CloseFile(openFileReturn.fd, "new data");
+  // std::cout << "Status Code: " << closeFileReturn.status.error_code()
+  //           << " Error Message: " <<  closeFileReturn.status.error_message()
+  //           << " time_modify: " << closeFileReturn.response.time_modify().sec()
+  //           << std::endl;
+
+  // Uncomment to Test DeleteFile
+  // std::cout << "Calling DeleteFile()" << std::endl;
   // std::string removePath = "try.txt";
-  // client.Remove(removePath);
+  // DeletFileReturnType deleteFileReturn = client.DeleteFile(removePath);
+  // std::cout << "Status Code: " << deleteFileReturn.status.error_code()
+  //           << " Error Message: " <<  deleteFileReturn.status.error_message()
+  //           << std::endl;
 
   // Uncomment to Test Rename
-  // std::cout << "Calling Rename()" << std::endl;
-  // std::string oldPath = "hello-world.txt";
-  // std::string newFileName = "hello-world-renamed.txt";
-  // client.Rename(oldPath, newFileName);
+  std::cout << "Calling Rename()" << std::endl;
+  std::string oldPath = "hello-world.txt";
+  std::string newFileName = "hello-world-renamed.txt";
+  RenameReturnType renameReturn = client.Rename(oldPath, newFileName);
+  std::cout << "Status Code: " << renameReturn.status.error_code()
+            << " Error Message: " <<  renameReturn.status.error_message()
+            << std::endl;
 
   // Uncomment to Test GetFileStat
-  // std::cout << "Caling GetFileStat()" << std::endl;
-  // FileStatMetadata metadata = client.GetFileStat("hello-world.txt");
-  // std::cout << metadata.file_name << "\t"
-  //           << metadata.mode << "\t" 
-  //           << metadata.size << "\t"
-  //           << metadata.time_access_sec << "\t"
-  //           << metadata.time_modify_sec << "\t"
-  //           << metadata.time_change_sec << "\t" << std::endl;
+  // std::cout << "Calling GetFileStat()" << std::endl;
+  // FileStatReturnType fileStatReturn = client.GetFileStat("hello-world.txt");
+  // std::cout << "Status Code: " << fileStatReturn.status.error_code()
+  //           << " Error Message: " <<  fileStatReturn.status.error_message()
+  //           << fileStatReturn.response.status().file_name() << "\t"
+  //           << fileStatReturn.response.status().mode() << "\t"
+  //           << fileStatReturn.response.status().size() << "\t"
+  //           << fileStatReturn.response.status().time_access().sec() << "\t"
+  //           << fileStatReturn.response.status().time_access().nsec() << "\t"
+  //           << fileStatReturn.response.status().time_modify().sec() << "\t"
+  //           << fileStatReturn.response.status().time_modify().nsec() << "\t"
+  //           << fileStatReturn.response.status().time_change().sec() << "\t"
+  //           << fileStatReturn.response.status().time_change().nsec()
+  //           << std::endl;
 
   // Uncomment to Test MakeDir
   // std::cout << "Calling MakeDir()" << std::endl;
-  // client.MakeDir("newDir");
+  // MakeDirReturnType makeDirReturn = client.MakeDir("newDir");
+  // std::cout << "Status Code: " << makeDirReturn.status.error_code()
+  //           << " Error Message: " <<  makeDirReturn.status.error_message()
+  //           << std::endl;
 
   // Uncomment to Test RemoveDir
   // std::cout << "Calling RemoveDir()" << std::endl;
-  // client.RemoveDir("newDir");
+  // RemoveDirReturnType removeDirReturn = client.RemoveDir("newDir1");
+  // std::cout << "Status Code: " << removeDirReturn.status.error_code()
+  //           << " Error Message: " <<  removeDirReturn.status.error_message()
+  //           << std::endl;
   
   // Uncomment to Test ListDir
   // std::cout << "Calling ListDir()" << std::endl;
-  // ListDirResponse listDirResponse;
-  // listDirResponse = client.ListDir("newDir");
-  // for (auto itr = listDirResponse.entries().begin(); itr != listDirResponse.entries().end(); itr++)
+  // ListDirReturnType listDirReturn = client.ListDir("newDir");
+  // std::cout << "Status Code: " << listDirReturn.status.error_code()
+  //           << " Error Message: " <<  listDirReturn.status.error_message()
+  //           << std::endl;
+  // for (auto itr = listDirReturn.response.entries().begin(); itr != listDirReturn.response.entries().end(); itr++)
   // {
   //   std::cout << "file_name: " << itr->file_name() << std::endl;
   //   std::cout << "mode: " << itr->mode() << std::endl;
@@ -548,8 +715,11 @@ void RunClient()
   // Uncomment to Test TestAuth
   // std::cout << "Calling TestAuth()" << std::endl;
   // enum TestAuthMode testAuthMode = FETCH;
-  // bool testAuthRet = client.TestAuth("a.txt", STORE);
-  // std::cout << "testAuthRet = " << testAuthRet << std::endl;
+  // TestAuthReturnType testAuthRet = client.TestAuth("hello-world.txt", testAuthMode);
+  // std::cout << "Status Code: " << testAuthRet.status.error_code()
+  //           << " Error Message: " <<  testAuthRet.status.error_message()
+  //           << " has_changed: " << testAuthRet.response.has_changed()
+  //           << std::endl;
 }
 
 int main(int argc, char* argv[]) 

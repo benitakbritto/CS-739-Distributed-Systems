@@ -38,13 +38,13 @@ make
 
 ## Server: 
 ```
-./server
+./server <path of server root dir>
 ```
 
 Alternative
 Run server in the background 
 ```
-./server &
+./server <path of server root dir> &
 ```
 
 Make sure to kill the process if you are running the server in the background

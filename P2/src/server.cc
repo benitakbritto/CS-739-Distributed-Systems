@@ -194,9 +194,8 @@ class ServiceImplementation final : public FileSystemService::Service {
         for (const auto& entry : std::filesystem::directory_iterator(filepath)) {
             DirectoryEntry* msg = reply->add_entries();
             msg->set_file_name(entry.path().filename());
-            msg->set_mode(entry.is_regular_file() ? FileMode::REG : entry.is_directory() ? FileMode::DIR
-                                                                                         : FileMode::UNSUPPORTED);
-            msg->set_size(entry.file_size());
+            msg->set_mode(entry.is_regular_file() ? FileMode::REG : entry.is_directory() ? FileMode::DIR : FileMode::UNSUPPORTED);
+            msg->set_size(entry.is_regular_file() ? entry.file_size() : 0);
         }
         dbgprintf("list_dir: Exiting function\n");
     }
@@ -275,6 +274,8 @@ class ServiceImplementation final : public FileSystemService::Service {
             // In C++, protobuf `bytes` fields are implemented as strings
             auto content = read_file(filepath);
             reply->set_file_contents(content);
+            reply->mutable_time_modify()->CopyFrom(
+                                        convert_timestamp(read_modify_time(filepath)));
 
             return Status::OK;
         } catch (const ServiceException& e) {
@@ -286,7 +287,6 @@ class ServiceImplementation final : public FileSystemService::Service {
         }
     }
 
-    // free(): invalid size; Aborted (core dumped)
     Status Store(ServerContext* context, const StoreRequest* request, StoreResponse* reply) override {
         dbgprintf("Store: Entering function\n");
         try {

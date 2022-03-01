@@ -101,8 +101,9 @@ namespace FileSystemClient
         else 
         {
           dbgprintf("OpenFile: RPC Failure\n");
-          std::cout << status.error_code() << ": " << status.error_message()
-                    << std::endl;
+          // std::cout << status.error_code() << ": " << status.error_message()
+          //           << std::endl;
+          PrintErrorMessage(status.error_code(), status.error_message(), "OpenFile");
         }
       } 
       
@@ -164,8 +165,10 @@ namespace FileSystemClient
       else 
       {
         dbgprintf("CloseFile: RPC Failure\n");
-        std::cout << status.error_code() << ": " << status.error_message()
-                  << std::endl;
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "CloseFile");
+
       }
       dbgprintf("CloseFile: Exiting function\n");
       return CloseFileReturnType(status,
@@ -230,8 +233,9 @@ namespace FileSystemClient
       } 
       else
       {
-        std::cout << status.error_code() << ": " << status.error_message()
-                  << std::endl;
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "DeleteFile");
         dbgprintf("DeleteFile: RPC failure\n");
       }
 
@@ -269,8 +273,9 @@ namespace FileSystemClient
       } 
       else
       {
-        std::cout << status.error_code() << ": " << status.error_message()
-                  << std::endl;
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "Rename");
         dbgprintf("Rename: RPC failure\n");
       }
       dbgprintf("Rename: Exiting function\n");
@@ -306,8 +311,9 @@ namespace FileSystemClient
       } 
       else 
       {
-        std::cout << status.error_code() << ": " << status.error_message()
-                  << std::endl;
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "GetFileStat");
         dbgprintf("GetFileStat: RPC Failed\n");
       }
       
@@ -344,8 +350,9 @@ namespace FileSystemClient
       }
       else
       {
-        std::cout << status.error_code() << ": " << status.error_message()
-                  << std::endl;
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "MakeDir");
         dbgprintf("MakeDir: RPC failure\n");
       }
 
@@ -382,8 +389,9 @@ namespace FileSystemClient
       } 
       else 
       {
-        std::cout << status.error_code() << ": " << status.error_message()
-                  << std::endl;
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "RemoveDir");
         dbgprintf("RemoveDir: RPC Failure\n");
       }
       dbgprintf("RemoveDir: Exiting function\n");
@@ -421,8 +429,9 @@ namespace FileSystemClient
       } 
       else 
       {
-        std::cout << status.error_code() << ": " << status.error_message()
-                  << std::endl;
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "ListDir");
         dbgprintf("ListDir: RPC Failure\n");
       }
 
@@ -497,8 +506,9 @@ namespace FileSystemClient
       }
       else
       {
-        std::cout << status.error_code() << ": " << status.error_message()
-                  << std::endl;
+        // std::cout << status.error_code() << ": " << status.error_message()
+        //           << std::endl;
+        PrintErrorMessage(status.error_code(), status.error_message(), "TestAuth");
         dbgprintf("TestAuth: RPC Failure\n");
       }
 
@@ -527,6 +537,78 @@ namespace FileSystemClient
       struct stat s;   
       return (stat(path.c_str(), &s) == 0); 
     }
+
+    void PrintErrorMessage(uint32_t errorCode, std::string errorMessage, std::string operation)
+    {
+      std::string error;
+      std::string helperMessage;
+
+      switch (errorCode)
+      {
+        case 1:
+          error = "CANCELLED";
+          helperMessage = "Retry operation if needed.";
+          break;
+        case 2:
+          error = "UNKNOWN";
+          helperMessage = "Retry operation if needed.";
+          break;
+        case 3:
+          error = "INVALID ARGUMENT";
+          helperMessage = "Retry operation with the correct arguments.";
+          break;
+        case 4:
+          error = "DEADLINE_EXCEEDED";
+          break;
+        case 5: 
+          error = "NOT FOUND";
+          break;
+        case 6:
+          error = "ALREADY EXISTS";
+          break;
+        case 7:
+          error = "PERMISSION DENIED";
+          break;
+        case 8:
+          error = "RESOURCE EXHAUSTED";
+          break;
+        case 9: 
+          error = "FAILED PRECONDITION";
+          helperMessage = "Retry operation if needed.";
+          break;
+        case 10:
+          error = "ABORTED";
+          helperMessage = "Retry operation if needed.";
+          break;
+        case 11:
+          error = "OUT_OF_RANGE";
+          helperMessage = "Retry operation with the right arguments";
+          break;
+        case 12:
+          error = "UNIMPLEMENTED";
+          break;
+        case 13:
+          error = "INTERNAL";
+          break;
+        case 14: 
+          error = "UNAVAILABLE";
+          helperMessage = "Retry operation if needed.";
+          break;
+        case 15:
+          error = "DATA_LOSS";
+          break;
+        case 16: 
+          error = "UNAUTHENTICATED";
+          break;
+        default:
+          error = "UNKNOWN";
+          break;
+      }
+
+      std::cout << operation << " failed due to " << error << " error" 
+                << " with error message " << "\"" << errorMessage << "\""
+                << ". " << helperMessage << std::endl;
+    }
   };
 }
 
@@ -548,7 +630,7 @@ void RunClient()
   // Client RPC invokation
   // Uncomment to Test Open-Read-Write-Close
   // std::cout << "Calling OpenFile()" << std::endl;
-  // std::string fetchPath =  "hello-world.txt";
+  // std::string fetchPath =  "test.txt";
   // OpenFileReturnType openFileReturn = client.OpenFile(fetchPath);
   // std::cout << "Status Code: " << openFileReturn.status.error_code()
   //           << " Error Message: " <<  openFileReturn.status.error_message()
@@ -570,21 +652,21 @@ void RunClient()
   //           << std::endl;
 
   // Uncomment to Test DeleteFile
-  std::cout << "Calling DeleteFile()" << std::endl;
-  std::string removePath = "try.txt";
-  DeletFileReturnType deleteFileReturn = client.DeleteFile(removePath);
-  std::cout << "Status Code: " << deleteFileReturn.status.error_code()
-            << " Error Message: " <<  deleteFileReturn.status.error_message()
-            << std::endl;
+  // std::cout << "Calling DeleteFile()" << std::endl;
+  // std::string removePath = "try.txt";
+  // DeletFileReturnType deleteFileReturn = client.DeleteFile(removePath);
+  // std::cout << "Status Code: " << deleteFileReturn.status.error_code()
+  //           << " Error Message: " <<  deleteFileReturn.status.error_message()
+  //           << std::endl;
 
   // Uncomment to Test Rename
-  // std::cout << "Calling Rename()" << std::endl;
-  // std::string oldPath = "hello-world.txt";
-  // std::string newFileName = "hello-world-renamed.txt";
-  // RenameReturnType renameReturn = client.Rename(oldPath, newFileName);
-  // std::cout << "Status Code: " << renameReturn.status.error_code()
-  //           << " Error Message: " <<  renameReturn.status.error_message()
-  //           << std::endl;
+  std::cout << "Calling Rename()" << std::endl;
+  std::string oldPath = "hello-world.txt";
+  std::string newFileName = "hello-world-renamed.txt";
+  RenameReturnType renameReturn = client.Rename(oldPath, newFileName);
+  std::cout << "Status Code: " << renameReturn.status.error_code()
+            << " Error Message: " <<  renameReturn.status.error_message()
+            << std::endl;
 
   // Uncomment to Test GetFileStat
   // std::cout << "Calling GetFileStat()" << std::endl;

@@ -9,10 +9,13 @@
 #include <utime.h>
 #include "client.h"
 
-#define DEBUG               1
-#define dbgprintf(...)      if (DEBUG) { printf(__VA_ARGS__); }
+#define DEBUG                 1
+#define dbgprintf(...)        if (DEBUG) { printf(__VA_ARGS__); }
 //#define SERVER_ADDR         "20.69.154.6:50051"
-#define SERVER_ADDR         "0.0.0.0:50051"
+#define SERVER_ADDR           "0.0.0.0:50051"
+#define MAX_RETRY             5
+#define RETRY_TIME_START      1 // seconds
+#define RETRY_TIME_MULTIPLIER 2
 
 
 using grpc::Channel;
@@ -57,19 +60,26 @@ namespace FileSystemClient
       int file;
       FetchRequest request;
       FetchResponse reply;
-      ClientContext context;
       Status status;
       struct utimbuf ubuf;
+      uint32_t retryCount = 0;
       
       if (TestAuth(path, FETCH).response.has_changed())
       {  
         request.set_pathname(path);
 
         // Make RPC
-        dbgprintf("OpenFile: Invoking Fetch() RPC\n");
-        status = stub_->Fetch(&context, request, &reply);
-        dbgprintf("OpenFile: RPC Returned\n");
-
+        // Retry with backoff
+        do 
+        {
+          ClientContext context;
+          reply.Clear();
+          dbgprintf("OpenFile: Invoking RPC\n");
+          sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+          status = stub_->Fetch(&context, request, &reply);
+          retryCount++;
+        } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE );
+       
         // Checking RPC Status
         if (status.ok()) 
         {
@@ -110,9 +120,9 @@ namespace FileSystemClient
       close(fd.file);
       StoreRequest request;
       StoreResponse reply;
-      ClientContext context;
       Status status;
       struct utimbuf ubuf;
+      uint32_t retryCount = 0;
 
       // No RPC necessary if file wasn't modified
       if (!TestAuth(fd.path, STORE).response.has_changed())
@@ -128,8 +138,16 @@ namespace FileSystemClient
       request.set_file_contents(data);
 
       // Make RPC
-      status = stub_->Store(&context, request, &reply);
-      dbgprintf("CloseFile: RPC returned\n");
+      // Retry with backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("CloseFile: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->Store(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
 
       // Checking RPC Status
       if (status.ok()) 
@@ -187,13 +205,23 @@ namespace FileSystemClient
       dbgprintf("DeleteFile: Entered function\n");
       RemoveRequest request;
       RemoveResponse reply;
-      ClientContext context;
       Status status;
-      
+      uint32_t retryCount = 0;
+    
       request.set_pathname(path);
       
-      // Make RPC
-      status = stub_->Remove(&context, request, &reply);
+      // Make RPC 
+      // Retry with backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("DeleteFile: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->Remove(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE );
+      
 
       // Checking RPC Status 
       if (status.ok()) 
@@ -216,14 +244,23 @@ namespace FileSystemClient
       dbgprintf("Rename: Entered function\n");
       RenameRequest request;
       RenameResponse reply;
-      ClientContext context;
       Status status;
+      uint32_t retryCount = 0;
 
       request.set_pathname(path);
       request.set_componentname(newFileName);
 
       // Make RPC
-      status = stub_->Rename(&context, request, &reply);
+      // Retry w backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("Rename: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->Rename(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
 
       // Checking RPC Status 
       if (status.ok()) 
@@ -245,14 +282,22 @@ namespace FileSystemClient
       dbgprintf("GetFileStat: Entering function\n");
       GetFileStatRequest request;
       GetFileStatResponse reply;
-      ClientContext context;
       Status status;
+      uint32_t retryCount = 0;
 
       request.set_pathname(path);
 
       // Make RPC
-      status = stub_->GetFileStat(&context, request, &reply);
-      dbgprintf("GetFileStat: RPC returned\n");
+      // Retry w backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("GetFileStat: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->GetFileStat(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
 
       // Checking RPC Status
       if (status.ok()) 
@@ -275,14 +320,22 @@ namespace FileSystemClient
       dbgprintf("MakeDir: Entering function\n");
       MakeDirRequest request;
       MakeDirResponse reply;
-      ClientContext context;
       Status status;
+      uint32_t retryCount = 0;
       
       request.set_pathname(path);
 
       // Make RPC
-      status = stub_->MakeDir(&context, request, &reply);
-      dbgprintf("MakeDir: RPC returned\n");
+      // Retry w backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("MakeDir: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->MakeDir(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
 
       // Checking RPC Status
       if (status.ok()) 
@@ -305,14 +358,22 @@ namespace FileSystemClient
       dbgprintf("RemoveDir: Entering function\n");
       RemoveDirRequest request;
       RemoveDirResponse reply;
-      ClientContext context;
       Status status;
+      uint32_t retryCount = 0;
 
       request.set_pathname(path);
 
       // Make RPC
-      status = stub_->RemoveDir(&context, request, &reply);
-      dbgprintf("RemoveDir: RPC Returned\n");
+      // Retry w backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("RemoveDir: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->RemoveDir(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
 
       // Checking RPC Status
       if (status.ok()) 
@@ -334,14 +395,22 @@ namespace FileSystemClient
       dbgprintf("ListDir: Entering function\n");
       ListDirRequest request;
       ListDirResponse reply;
-      ClientContext context;
       Status status;
+      uint32_t retryCount = 0;
 
       request.set_pathname(path);
 
       // Make RPC
-      status = stub_->ListDir(&context, request, &reply);
-      dbgprintf("ListDir: RPC Returned\n");
+      // Retry w backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("ListDir: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->ListDir(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
 
       // std::cout << "count = " << reply.entries().size() << std::endl;
 
@@ -381,10 +450,10 @@ namespace FileSystemClient
       dbgprintf("TestAuth: Entering function\n");
       TestAuthRequest request;
       TestAuthResponse reply;
-      ClientContext context;
       Timestamp t;
       timespec modifyTime;
       Status status;
+      uint32_t retryCount = 0;
 
       // check if local file exists
       if (mode == FETCH)
@@ -411,8 +480,16 @@ namespace FileSystemClient
       request.mutable_time_modify()->CopyFrom(t);
 
       // Make RPC
-      status = stub_->TestAuth(&context, request, &reply);
-      dbgprintf("TestAuth: RPC Returned\n");
+      // Retry w backoff
+      do 
+      {
+        ClientContext context;
+        reply.Clear();
+        dbgprintf("TestAuth: Invoking RPC\n");
+        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+        status = stub_->TestAuth(&context, request, &reply);
+        retryCount++;
+      } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
 
       if (status.ok()) 
       {
@@ -450,7 +527,7 @@ namespace FileSystemClient
       struct stat s;   
       return (stat(path.c_str(), &s) == 0); 
     }
-  };ß
+  };
 }
 
 void RunClient() 
@@ -493,12 +570,12 @@ void RunClient()
   //           << std::endl;
 
   // Uncomment to Test DeleteFile
-  // std::cout << "Calling DeleteFile()" << std::endl;
-  // std::string removePath = "try.txt";
-  // DeletFileReturnType deleteFileReturn = client.DeleteFile(removePath);
-  // std::cout << "Status Code: " << deleteFileReturn.status.error_code()
-  //           << " Error Message: " <<  deleteFileReturn.status.error_message()
-  //           << std::endl;
+  std::cout << "Calling DeleteFile()" << std::endl;
+  std::string removePath = "try.txt";
+  DeletFileReturnType deleteFileReturn = client.DeleteFile(removePath);
+  std::cout << "Status Code: " << deleteFileReturn.status.error_code()
+            << " Error Message: " <<  deleteFileReturn.status.error_message()
+            << std::endl;
 
   // Uncomment to Test Rename
   // std::cout << "Calling Rename()" << std::endl;

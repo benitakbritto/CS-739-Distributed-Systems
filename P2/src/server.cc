@@ -88,11 +88,39 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     string read_file(path filepath) {
-        std::ostringstream strm;
-        // TODO throw if not file or DNE
-        std::ifstream file(filepath, std::ios::binary);
-        strm << file.rdbuf();
-        return strm.str();
+        dbgprintf("read_file: Entering function\n");
+
+        // Check that path exists and is a file before proceeding
+        std::error_code ec;
+        if (!std::filesystem::is_regular_file(filepath)) {
+            dbgprintf("read_file: Exiting function\n");
+
+            if (ec) {
+                switch (ec.value()) {
+                    case ENOENT:
+                        throw new ServiceException("File not found", StatusCode::NOT_FOUND);
+                    case ENOTDIR:
+                        throw new ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+                    default:
+                        throw new ServiceException("Error checking file type", StatusCode::UNKNOWN);
+                }
+            } else {
+                throw new ServiceException("Attempting to read non-file item ", StatusCode::FAILED_PRECONDITION);
+            }
+        }
+
+        std::ifstream file(filepath, std::ios::in | std::ios::binary);
+        std::ostringstream buffer;
+        buffer << file.rdbuf();
+
+        if (file.fail()) {
+            dbgprintf("read_file: Exiting function\n");
+            throw new ServiceException("Error performing file read", StatusCode::UNKNOWN);
+        }
+
+        return buffer.str();
+
+        dbgprintf("read_file: Exiting function\n");
     }
 
     void write_file(path filepath, string content) {
@@ -105,6 +133,21 @@ class ServiceImplementation final : public FileSystemService::Service {
         file.open(filepath, std::ios::binary);
         file << content;
         file.close();
+
+        if (file.fail()) {
+            dbgprintf("write_file: Exiting function\n");
+            switch (errno) {
+                case ENOENT:
+                    throw new ServiceException("Parent directory not fonud", StatusCode::NOT_FOUND);
+                case EISDIR:
+                    throw new ServiceException("Attempting to write file content at name of directory", StatusCode::FAILED_PRECONDITION);
+                case ENOTDIR:
+                    throw new ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+                default:
+                    throw new ServiceException("Error checking file type", StatusCode::UNKNOWN);
+            }
+        }
+
         dbgprintf("write_file: Exiting function\n");
     }
 
@@ -194,7 +237,8 @@ class ServiceImplementation final : public FileSystemService::Service {
         for (const auto& entry : std::filesystem::directory_iterator(filepath)) {
             DirectoryEntry* msg = reply->add_entries();
             msg->set_file_name(entry.path().filename());
-            msg->set_mode(entry.is_regular_file() ? FileMode::REG : entry.is_directory() ? FileMode::DIR : FileMode::UNSUPPORTED);
+            msg->set_mode(entry.is_regular_file() ? FileMode::REG : entry.is_directory() ? FileMode::DIR
+                                                                                         : FileMode::UNSUPPORTED);
             msg->set_size(entry.is_regular_file() ? entry.file_size() : 0);
         }
         dbgprintf("list_dir: Exiting function\n");
@@ -204,9 +248,11 @@ class ServiceImplementation final : public FileSystemService::Service {
         struct stat sb;
 
         if (stat(filepath.c_str(), &sb) == -1) {
-            switch(errno) {
+            switch (errno) {
                 case ENOENT:
-                    throw new ServiceException("Missing item for stat", StatusCode::NOT_FOUND);
+                    throw new ServiceException("Item not found", StatusCode::NOT_FOUND);
+                case ENOTDIR:
+                    throw new ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
                 default:
                     throw new ServiceException("Error in call to stat", StatusCode::UNKNOWN);
             }
@@ -279,7 +325,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             auto content = read_file(filepath);
             reply->set_file_contents(content);
             reply->mutable_time_modify()->CopyFrom(
-                                        convert_timestamp(read_modify_time(filepath)));
+                convert_timestamp(read_modify_time(filepath)));
 
             return Status::OK;
         } catch (const ServiceException& e) {
@@ -368,7 +414,7 @@ class ServiceImplementation final : public FileSystemService::Service {
         try {
             path filepath = to_storage_path(request->pathname());
             dbgprintf("GetFileStat: filepath = %s\n", filepath.c_str());
-            
+
             // TODO wait for read/write lock
             auto status = read_stat(filepath);
             reply->mutable_status()->CopyFrom(status);
@@ -389,7 +435,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("TestAuth: filepath = %s\n", filepath.c_str());
 
             // todo wait for write to finish??
-            
+
             auto ts0 = read_modify_time(filepath);
             auto ts1 = request->time_modify();
             bool changed = (ts0.tv_sec != ts1.sec()) || (ts0.tv_nsec != ts1.nsec());
@@ -414,7 +460,7 @@ class ServiceImplementation final : public FileSystemService::Service {
         try {
             path filepath = to_storage_path(request->pathname());
             dbgprintf("TestAuth: filepath = %s\n", filepath.c_str());
-            
+
             // todo wait for write to finish??
             make_dir(filepath);
             dbgprintf("MakeDir: Exiting function on Success path\n");
@@ -435,7 +481,7 @@ class ServiceImplementation final : public FileSystemService::Service {
         try {
             path filepath = to_storage_path(request->pathname());
             dbgprintf("RemoveDir: filepath = %s\n", filepath.c_str());
-            
+
             // todo wait for write to finish??
             remove_dir(filepath);
             dbgprintf("RemoveDir: Exiting function on Success path\n");

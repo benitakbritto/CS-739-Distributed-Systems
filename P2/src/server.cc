@@ -204,8 +204,12 @@ class ServiceImplementation final : public FileSystemService::Service {
         struct stat sb;
 
         if (stat(filepath.c_str(), &sb) == -1) {
-            // TODO transform error codes
-            throw ServiceException("Stat failed", StatusCode::UNKNOWN);
+            switch(errno) {
+                case ENOENT:
+                    throw new ServiceException("Missing item for stat", StatusCode::NOT_FOUND);
+                default:
+                    throw new ServiceException("Error in call to stat", StatusCode::UNKNOWN);
+            }
         }
 
         FileStat ret;

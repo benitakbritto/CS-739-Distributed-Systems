@@ -84,10 +84,24 @@ namespace FileSystemClient
         if (status.ok()) 
         {
           dbgprintf("OpenFile: RPC Success\n");
+          
           file = open(path.c_str(), O_RDWR | O_TRUNC | O_CREAT, 0666);
+          if (file == -1)
+          {
+            dbgprintf("OpenFile: open() failed\n");
+          }
+          
           dbgprintf("OpenFile: reply.file_contents().length() = %ld\n", reply.file_contents().length());
-          write(file, reply.file_contents().c_str(), reply.file_contents().length());
-          close(file);
+          
+          if (write(file, reply.file_contents().c_str(), reply.file_contents().length()) == -1)
+          {
+            dbgprintf("OpenFile: write() failed\n");
+          }
+          
+          if (close(file) == -1)
+          {
+            dbgprintf("OpenFile: close() failed\n");
+          }
 
           //  Update local file modify time with servers modify time
           ubuf.modtime = reply.time_modify().sec();
@@ -97,12 +111,14 @@ namespace FileSystemClient
           }
           
           file = open(path.c_str(), O_RDWR | O_CREAT);
+          if (file == -1)
+          {
+            dbgprintf("OpenFile: open() failed\n");
+          }
         } 
         else 
         {
           dbgprintf("OpenFile: RPC Failure\n");
-          // std::cout << status.error_code() << ": " << status.error_message()
-          //           << std::endl;
           PrintErrorMessage(status.error_code(), status.error_message(), "OpenFile");
         }
       } 
@@ -117,8 +133,11 @@ namespace FileSystemClient
     CloseFileReturnType CloseFile(FileDescriptor fd, std::string data) 
     {
       dbgprintf("CloseFile: Entered function\n");
-      std::cout << "CloseFile: data = " << data << std::endl;
-      close(fd.file);
+      if (close(fd.file))
+      {
+        dbgprintf("CloseFile: close() failed\n");
+      }
+      
       StoreRequest request;
       StoreResponse reply;
       Status status;
@@ -135,7 +154,6 @@ namespace FileSystemClient
       }
     
       request.set_pathname(fd.path);
-      std::cout << "CloseFile: fd.path = " << fd.path << std::endl;
       request.set_file_contents(data);
 
       // Make RPC
@@ -177,29 +195,62 @@ namespace FileSystemClient
 
     int ReadFile(FileDescriptor fd, char* buf, int length)
     {
+      dbgprintf("ReadFile(): Entering function\n");
       int read_in = read(fd.file, buf, length);
+      if (read_in == -1)
+      {
+        dbgprintf("ReadFile(): read() failed\n");
+      }
+      dbgprintf("ReadFile(): Exiting function\n");
       return read_in;
     }
 
     int WriteFile(FileDescriptor fd, char* buf, int length)
     {
+      dbgprintf("WriteFile(): Entering function\n");
       int written_out = write(fd.file, buf, length);
-      fsync(fd.file);
+      if (written_out == -1)
+      {
+        dbgprintf("WriteFile(): write() failed\n");
+      }
+
+      if (fsync(fd.file) == -1)
+      {
+        dbgprintf("WriteFile(): fsync() failed\n");
+      }
+      
       //std::cout << buf << std::endl;
+      dbgprintf("WriteFile(): Exiting function\n");
       return written_out;
     }
     
     int ReadFile(FileDescriptor fd, char* buf, int length, int offset)
     {
+      dbgprintf("ReadFile(): Entering function\n");
       int read_in = pread(fd.file, buf, length, offset);
+      if (read_in == -1)
+      {
+        dbgprintf("ReadFile(): pread() failed\n");
+      }
+      dbgprintf("ReadFile(): Exiting function\n");
       return read_in;
     }
 
     int WriteFile(FileDescriptor fd, char* buf, int length, int offset)
     {
+      dbgprintf("WriteFile(): Entering function\n");
       int written_out = pwrite(fd.file, buf, length, offset);
-      fsync(fd.file);
+      if (written_out == -1)
+      {
+        dbgprintf("WriteFile(): pwrite() failed\n");
+      }
+      
+      if (fsync(fd.file) == -1)
+      {
+        dbgprintf("WriteFile(): fsync() failed\n");
+      }
       //std::cout << buf << std::endl;
+      dbgprintf("WriteFile(): Exiting function\n");
       return written_out;
     }
 
@@ -622,7 +673,7 @@ class TestFramework {
         // Client RPC invokation
         // Uncomment to Test Open-Read-Write-Close
         std::cout << "Calling OpenFile()" << std::endl;
-        std::string fetchPath = "test.txt";
+        std::string fetchPath = "hello-world.txt";
         OpenFileReturnType openFileReturn = client.OpenFile(fetchPath);
         std::cout << "Status Code: " << openFileReturn.status.error_code()
                   << " Error Message: " << openFileReturn.status.error_message()

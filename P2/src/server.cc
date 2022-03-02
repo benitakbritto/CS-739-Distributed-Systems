@@ -1,12 +1,14 @@
 #include <bits/stdc++.h>
 #include <grpcpp/grpcpp.h>
 #include <sys/stat.h>
-
 #include <exception>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <map>
+#include <chrono>
+#include <utility>
 
 #include "filesystemcomm.grpc.pb.h"
 
@@ -21,7 +23,17 @@
 #define errprintf(...) \
     { printf(__VA_ARGS__); }
 
+#define SMALL_FILE_SIZE_THRESHOLD 10000 // bytes
+#define MEM_MAP_MAX_KEY_COUNT    100 // num keys in map
+#define MEM_MAP_FREE_COUNT       10 // free 10 files
+#define MEM_MAP_START_FREE       50 // start freeing map when keys have reached this count value
+
 namespace fs = std::filesystem;
+
+// For Performance
+// stores filepath, timestamp, content of insertion
+// TODO: Add reader/writer locks
+std::map<fs::path, std::pair<time_t, std::string>> mem_map; 
 
 using filesystemcomm::DirectoryEntry;
 using filesystemcomm::FetchRequest;
@@ -355,6 +367,94 @@ class ServiceImplementation final : public FileSystemService::Service {
         a.set_sec(raw.tv_sec);
         a.set_nsec(raw.tv_nsec);
         return a;
+    }
+
+    auto read_file_size(path filepath)
+    {
+        struct stat sb;
+
+        if (stat(filepath.c_str(), &sb) == -1) {
+            switch (errno) {
+                case ENOENT:
+                    throw ServiceException("Item not found", StatusCode::NOT_FOUND);
+                case ENOTDIR:
+                    throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+                default:
+                    throw ServiceException("Error in call to stat", StatusCode::UNKNOWN);
+            }
+        }
+
+        return sb.st_size;
+    }
+
+    auto get_current_time()
+    {
+        return std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+    }
+
+    // For Performance
+    // TODO: Add to FetchFast for small files
+    // TODO: Add to StoreFast for small files only if file is still small; else delete
+    void put_file_in_mem_map(path filepath, string &content)
+    {
+        auto current_time = get_current_time();
+        if (mem_map.count(filepath) == 0)
+        {
+            mem_map.insert(std::make_pair(filepath, std::make_pair(current_time, content)));
+        }
+        else
+        {
+            mem_map[filepath] = (std::make_pair(current_time, content));
+        }
+    }
+
+    // For Performance
+    // TODO: Add to FetchFast for small files
+    auto get_file_from_mem_map(path filepath)
+    {
+        if (mem_map.count(filepath) == 0)
+        {
+            dbgprintf("get_file_from_mem_map: filepath does not exist in map\n");
+            throw ServiceException("Item not found", StatusCode::NOT_FOUND);
+        }
+        else
+        {
+            return mem_map[filepath].second;
+        }
+    }
+
+    // For Performance
+    // TODO: Add to RemoveFileFast
+    void delete_file_from_mem_map(path filepath)
+    {
+        if (mem_map.count(filepath))
+        {
+            return;
+        }
+        else
+        {
+            mem_map.erase(filepath);
+        }
+    }
+
+    // For Performance
+    /*
+        Frees up to MEM_MAP_FREE_COUNT old entries (based on timestamps)
+        When we hit a watermark of MEM_MAP_START_FREE keys in the map
+        TODO: Invoke using background daemon that keeps polling this function
+    */
+    void partial_free_mem_map()
+    {
+        if (mem_map.size() > MEM_MAP_START_FREE)
+        {
+            uint32_t count = 0;
+            for (std::map<path,std::pair<time_t, string>>::iterator it = mem_map.begin(); 
+                it != mem_map.end() &&  count < MEM_MAP_FREE_COUNT; 
+                ++it, count++)
+            {
+                mem_map.erase(it->first);
+            }
+        }
     }
 
    public:

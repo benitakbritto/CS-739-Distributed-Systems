@@ -612,6 +612,139 @@ namespace FileSystemClient
   };
 }
 
+class TestFramework {
+    FileSystemClient::ClientImplementation &client;
+
+   public:
+    TestFramework(FileSystemClient::ClientImplementation &client) : client(client) {}
+
+    void do_write() {
+        // Client RPC invokation
+        // Uncomment to Test Open-Read-Write-Close
+        std::cout << "Calling OpenFile()" << std::endl;
+        std::string fetchPath = "test.txt";
+        OpenFileReturnType openFileReturn = client.OpenFile(fetchPath);
+        std::cout << "Status Code: " << openFileReturn.status.error_code()
+                  << " Error Message: " << openFileReturn.status.error_message()
+                  << " time_modify: " << openFileReturn.response.time_modify().sec()
+                  << " fd: " << openFileReturn.fd.file
+                  << " filepath: " << openFileReturn.fd.path
+                  << std::endl;
+
+        client.WriteFile(openFileReturn.fd, "hello", 5);
+        
+        char c[10];
+        int read = client.ReadFile(openFileReturn.fd, c, 5, 0);
+        for (int i = 0; i < 5; i++)
+            std::cout << c[i] << std::endl;
+        std::cout << "Calling CloseFile()" << std::endl;
+        CloseFileReturnType closeFileReturn = client.CloseFile(openFileReturn.fd, "new data");
+        std::cout << "Status Code: " << closeFileReturn.status.error_code()
+                  << " Error Message: " << closeFileReturn.status.error_message()
+                  << " time_modify: " << closeFileReturn.response.time_modify().sec()
+                  << std::endl;
+    }
+    
+    void do_rename() {
+      // Uncomment to Test Rename
+      std::cout << "Calling Rename()" << std::endl;
+      std::string oldPath = "test.txt";
+      std::string newFileName = "test-renamed.txt";
+      RenameReturnType renameReturn = client.Rename(oldPath, newFileName);
+      std::cout << "Status Code: " << renameReturn.status.error_code()
+                << " Error Message: " <<  renameReturn.status.error_message()
+                << std::endl;
+
+    }
+    
+    void do_delete() {
+      
+      // Uncomment to Test DeleteFile
+      std::cout << "Calling DeleteFile()" << std::endl;
+      std::string removePath = "test-renamed.txt";
+      DeletFileReturnType deleteFileReturn = client.DeleteFile(removePath);
+      std::cout << "Status Code: " << deleteFileReturn.status.error_code()
+                << " Error Message: " <<  deleteFileReturn.status.error_message()
+                << std::endl;
+    }
+    void do_stat() {
+
+      // Uncomment to Test GetFileStat
+      std::cout << "Calling GetFileStat()" << std::endl;
+      FileStatReturnType fileStatReturn = client.GetFileStat("test.txt");
+      std::cout << "Status Code: " << fileStatReturn.status.error_code()
+                << " Error Message: " <<  fileStatReturn.status.error_message()
+                << fileStatReturn.response.status().file_name() << "\t"
+                << fileStatReturn.response.status().mode() << "\t"
+                << fileStatReturn.response.status().size() << "\t"
+                << fileStatReturn.response.status().time_access().sec() << "\t"
+                << fileStatReturn.response.status().time_access().nsec() << "\t"
+                << fileStatReturn.response.status().time_modify().sec() << "\t"
+                << fileStatReturn.response.status().time_modify().nsec() << "\t"
+                << fileStatReturn.response.status().time_change().sec() << "\t"
+                << fileStatReturn.response.status().time_change().nsec()
+                << std::endl;
+    }
+    
+    void do_mkdir() {
+      // Uncomment to Test MakeDir
+      std::cout << "Calling MakeDir()" << std::endl;
+      MakeDirReturnType makeDirReturn = client.MakeDir("newDir");
+      std::cout << "Status Code: " << makeDirReturn.status.error_code()
+                << " Error Message: " <<  makeDirReturn.status.error_message()
+                << std::endl;
+                
+    }
+    
+    void do_rmdir() {
+
+      // Uncomment to Test RemoveDir
+      std::cout << "Calling RemoveDir()" << std::endl;
+      RemoveDirReturnType removeDirReturn = client.RemoveDir("newDir");
+      std::cout << "Status Code: " << removeDirReturn.status.error_code()
+                << " Error Message: " <<  removeDirReturn.status.error_message()
+                << std::endl;
+    }
+    
+    void do_listdir() {
+      // Uncomment to Test ListDir
+      std::cout << "Calling ListDir()" << std::endl;
+      ListDirReturnType listDirReturn = client.ListDir("newDir");
+      std::cout << "Status Code: " << listDirReturn.status.error_code()
+                << " Error Message: " <<  listDirReturn.status.error_message()
+                << std::endl;
+      for (auto itr = listDirReturn.response.entries().begin(); itr != listDirReturn.response.entries().end(); itr++)
+      {
+        std::cout << "file_name: " << itr->file_name() << std::endl;
+        std::cout << "mode: " << itr->mode() << std::endl;
+        std::cout << "size: " << itr->size() << std::endl;
+        std::cout << std::endl;
+      }
+    }
+    
+    void do_testauth() {
+      // Uncomment to Test TestAuth
+      std::cout << "Calling TestAuth()" << std::endl;
+      enum TestAuthMode testAuthMode = FETCH;
+      TestAuthReturnType testAuthRet = client.TestAuth("test.txt", testAuthMode);
+      std::cout << "Status Code: " << testAuthRet.status.error_code()
+                << " Error Message: " <<  testAuthRet.status.error_message()
+                << " has_changed: " << testAuthRet.response.has_changed()
+                << std::endl;
+    }
+    
+    void happy_path() {
+      do_write();
+      do_stat();
+      do_testauth();
+      do_rename();
+      do_delete();
+      do_mkdir();
+      do_listdir();
+      do_rmdir();
+    }
+};
+
 void RunClient() 
 {
   std::string target_address(SERVER_ADDR);
@@ -626,100 +759,11 @@ void RunClient()
   std::string request;
 
   dbgprintf("Connection established\n");
-
-  // Client RPC invokation
-  // Uncomment to Test Open-Read-Write-Close
-  // std::cout << "Calling OpenFile()" << std::endl;
-  // std::string fetchPath =  "test.txt";
-  // OpenFileReturnType openFileReturn = client.OpenFile(fetchPath);
-  // std::cout << "Status Code: " << openFileReturn.status.error_code()
-  //           << " Error Message: " <<  openFileReturn.status.error_message()
-  //           << " time_modify: " << openFileReturn.response.time_modify().sec()
-  //           << " fd: " << openFileReturn.fd.file
-  //           << " filepath: " << openFileReturn.fd.path
-  //           << std::endl;
-
-  // client.WriteFile(openFileReturn.fd, "hello", 5);
-  // char c[10];
-  // int read = client.ReadFile(openFileReturn.fd, c, 5, 0);
-  // for (int i = 0; i < 5; i++)
-  //   std::cout << c[i] << std::endl;
-  // std::cout << "Calling CloseFile()" << std::endl;
-  // CloseFileReturnType closeFileReturn = client.CloseFile(openFileReturn.fd, "new data");
-  // std::cout << "Status Code: " << closeFileReturn.status.error_code()
-  //           << " Error Message: " <<  closeFileReturn.status.error_message()
-  //           << " time_modify: " << closeFileReturn.response.time_modify().sec()
-  //           << std::endl;
-
-  // Uncomment to Test DeleteFile
-  // std::cout << "Calling DeleteFile()" << std::endl;
-  // std::string removePath = "try.txt";
-  // DeletFileReturnType deleteFileReturn = client.DeleteFile(removePath);
-  // std::cout << "Status Code: " << deleteFileReturn.status.error_code()
-  //           << " Error Message: " <<  deleteFileReturn.status.error_message()
-  //           << std::endl;
-
-  // Uncomment to Test Rename
-  std::cout << "Calling Rename()" << std::endl;
-  std::string oldPath = "hello-world.txt";
-  std::string newFileName = "hello-world-renamed.txt";
-  RenameReturnType renameReturn = client.Rename(oldPath, newFileName);
-  std::cout << "Status Code: " << renameReturn.status.error_code()
-            << " Error Message: " <<  renameReturn.status.error_message()
-            << std::endl;
-
-  // Uncomment to Test GetFileStat
-  // std::cout << "Calling GetFileStat()" << std::endl;
-  // FileStatReturnType fileStatReturn = client.GetFileStat("hello-world.txt");
-  // std::cout << "Status Code: " << fileStatReturn.status.error_code()
-  //           << " Error Message: " <<  fileStatReturn.status.error_message()
-  //           << fileStatReturn.response.status().file_name() << "\t"
-  //           << fileStatReturn.response.status().mode() << "\t"
-  //           << fileStatReturn.response.status().size() << "\t"
-  //           << fileStatReturn.response.status().time_access().sec() << "\t"
-  //           << fileStatReturn.response.status().time_access().nsec() << "\t"
-  //           << fileStatReturn.response.status().time_modify().sec() << "\t"
-  //           << fileStatReturn.response.status().time_modify().nsec() << "\t"
-  //           << fileStatReturn.response.status().time_change().sec() << "\t"
-  //           << fileStatReturn.response.status().time_change().nsec()
-  //           << std::endl;
-
-  // Uncomment to Test MakeDir
-  // std::cout << "Calling MakeDir()" << std::endl;
-  // MakeDirReturnType makeDirReturn = client.MakeDir("newDir");
-  // std::cout << "Status Code: " << makeDirReturn.status.error_code()
-  //           << " Error Message: " <<  makeDirReturn.status.error_message()
-  //           << std::endl;
-
-  // Uncomment to Test RemoveDir
-  // std::cout << "Calling RemoveDir()" << std::endl;
-  // RemoveDirReturnType removeDirReturn = client.RemoveDir("newDir1");
-  // std::cout << "Status Code: " << removeDirReturn.status.error_code()
-  //           << " Error Message: " <<  removeDirReturn.status.error_message()
-  //           << std::endl;
   
-  // Uncomment to Test ListDir
-  // std::cout << "Calling ListDir()" << std::endl;
-  // ListDirReturnType listDirReturn = client.ListDir("newDir");
-  // std::cout << "Status Code: " << listDirReturn.status.error_code()
-  //           << " Error Message: " <<  listDirReturn.status.error_message()
-  //           << std::endl;
-  // for (auto itr = listDirReturn.response.entries().begin(); itr != listDirReturn.response.entries().end(); itr++)
-  // {
-  //   std::cout << "file_name: " << itr->file_name() << std::endl;
-  //   std::cout << "mode: " << itr->mode() << std::endl;
-  //   std::cout << "size: " << itr->size() << std::endl;
-  //   std::cout << std::endl;
-  // }
-
-  // Uncomment to Test TestAuth
-  // std::cout << "Calling TestAuth()" << std::endl;
-  // enum TestAuthMode testAuthMode = FETCH;
-  // TestAuthReturnType testAuthRet = client.TestAuth("hello-world.txt", testAuthMode);
-  // std::cout << "Status Code: " << testAuthRet.status.error_code()
-  //           << " Error Message: " <<  testAuthRet.status.error_message()
-  //           << " has_changed: " << testAuthRet.response.has_changed()
-  //           << std::endl;
+  auto tests = TestFramework(client);
+  tests.happy_path();
+  
+  
 }
 
 int main(int argc, char* argv[]) 

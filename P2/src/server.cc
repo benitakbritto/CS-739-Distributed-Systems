@@ -46,6 +46,7 @@ using filesystemcomm::StoreResponse;
 using filesystemcomm::TestAuthRequest;
 using filesystemcomm::TestAuthResponse;
 using filesystemcomm::Timestamp;
+using fs::path;
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
@@ -54,7 +55,6 @@ using grpc::StatusCode;
 using std::cout;
 using std::endl;
 using std::string;
-using fs::path;
 
 class ServiceException : public std::runtime_error {
     StatusCode code;
@@ -88,14 +88,14 @@ class ServiceImplementation final : public FileSystemService::Service {
 
         return normalized;
     }
-    
+
     path get_tempfile_path(path filepath) {
         return path(filepath.string() + TEMP_FILE_EXT);
     }
 
     string read_file(path filepath) {
         dbgprintf("read_file: Entering function\n");
-        
+
         // Check that path exists and is a file before proceeding
         std::error_code ec;
         if (!fs::is_regular_file(filepath, ec)) {
@@ -104,31 +104,30 @@ class ServiceImplementation final : public FileSystemService::Service {
             if (ec) {
                 switch (ec.value()) {
                     case ENOENT:
-                        throw new ServiceException("File not found", StatusCode::NOT_FOUND);
+                        throw ServiceException("File not found", StatusCode::NOT_FOUND);
                     case ENOTDIR:
-                        throw new ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+                        throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
                     default:
-                        throw new ServiceException("Error checking file type", StatusCode::UNKNOWN);
+                        throw ServiceException("Error checking file type", StatusCode::UNKNOWN);
                 }
             } else {
-                throw new ServiceException("Attempting to read non-file item ", StatusCode::FAILED_PRECONDITION);
+                throw ServiceException("Attempting to read non-file item ", StatusCode::FAILED_PRECONDITION);
             }
         }
 
         std::ifstream file(filepath, std::ios::in | std::ios::binary);
         std::ostringstream buffer;
         buffer << file.rdbuf();
-        
+
         if (file.fail()) {
             dbgprintf("read_file: Exiting function\n");
-            throw new ServiceException("Error performing file read", StatusCode::UNKNOWN);
+            throw ServiceException("Error performing file read", StatusCode::UNKNOWN);
         }
 
         dbgprintf("read_file: Exiting function\n");
         return buffer.str();
     }
-    
-    
+
     // Check that file content can be written to a given path.
     // The path must be either:
     // (a) An existing regular file, or
@@ -136,63 +135,63 @@ class ServiceImplementation final : public FileSystemService::Service {
     void assert_valid_write_destination(path filepath) {
         std::error_code ec;
         auto status = fs::status(filepath, ec);
-        switch(status.type()){
+        switch (status.type()) {
             case fs::file_type::regular:
-                return; // result (a)
+                return;  // result (a)
             case fs::file_type::directory:
-                throw new ServiceException("Attempting to write file to location of directory", StatusCode::FAILED_PRECONDITION);
+                throw ServiceException("Attempting to write file to location of directory", StatusCode::FAILED_PRECONDITION);
             case fs::file_type::not_found:
                 break;
             default:
-                throw new ServiceException("Attempting to write file to location of non-file item", StatusCode::FAILED_PRECONDITION);
+                throw ServiceException("Attempting to write file to location of non-file item", StatusCode::FAILED_PRECONDITION);
         }
-        
+
         // type was not_found, so check the error code
-        switch(ec.value()) {
+        switch (ec.value()) {
             case ENOTDIR:
-                throw new ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+                throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
             case ENOENT:
                 break;
             default:
-                throw new ServiceException("Error checking file status", StatusCode::UNKNOWN);
+                throw ServiceException("Error checking file status", StatusCode::UNKNOWN);
         }
-        
+
         // error code was ENOENT, so check that parent directory exists
-        if(!fs::is_directory(filepath.parent_path(), ec)) {
-            throw new ServiceException("Parent directory does not exist", StatusCode::NOT_FOUND);
+        if (!fs::is_directory(filepath.parent_path(), ec)) {
+            throw ServiceException("Parent directory does not exist", StatusCode::NOT_FOUND);
         }
-        
+
         // result (b)
     }
 
     void write_file(path filepath, string content) {
         dbgprintf("write_file: Entering function\n");
-        
+
         std::ofstream file;
-        
+
         // Check that this is a valid destination
         assert_valid_write_destination(filepath);
-        
+
         path temppath = get_tempfile_path(filepath);
-        
+
         // Write to temp path
         file.open(temppath, std::ios::binary);
         file << content;
         file.close();
-        
+
         // Typical failure cases should be handled by the validity check above,
         // so failure to write the temp file means something unexpected has happened.
-        if(file.fail()) {
+        if (file.fail()) {
             dbgprintf("write_file: Exiting function\n");
-            throw new ServiceException("Error writing temp file", StatusCode::UNKNOWN);
+            throw ServiceException("Error writing temp file", StatusCode::UNKNOWN);
         }
-        
+
         // Overwrite temp file with new file
-        if(rename(temppath.c_str(), filepath.c_str()) == -1) {
+        if (rename(temppath.c_str(), filepath.c_str()) == -1) {
             dbgprintf("write_file: Exiting function\n");
-            throw new ServiceException("Error committing temp file", StatusCode::UNKNOWN);
+            throw ServiceException("Error committing temp file", StatusCode::UNKNOWN);
         }
-        
+
         dbgprintf("write_file: Exiting function\n");
     }
 
@@ -200,7 +199,8 @@ class ServiceImplementation final : public FileSystemService::Service {
         dbgprintf("move_file: Entering function\n");
 
         if (fs::exists(dstpath)) {
-            throw new ServiceException("Attempting to rename item to existing item", StatusCode::FAILED_PRECONDITION);
+            dbgprintf("move_file: Exiting function\n");
+            throw ServiceException("Attempting to rename item to existing item", StatusCode::FAILED_PRECONDITION);
         }
 
         if (rename(srcpath.c_str(), dstpath.c_str()) == -1) {
@@ -208,18 +208,19 @@ class ServiceImplementation final : public FileSystemService::Service {
             switch (errno) {
                 /* These cases shouldn't happen due to our exists() check
                 case EISDIR:
-                    throw new ServiceException("Attempting to rename file to existing directory", StatusCode::FAILED_PRECONDITION);
+                    throw ServiceException("Attempting to rename file to existing directory", StatusCode::FAILED_PRECONDITION);
                 case ENOTDIR:
-                    throw new ServiceException("Attempting to rename directory to existing file", StatusCode::FAILED_PRECONDITION);
+                    throw ServiceException("Attempting to rename directory to existing file", StatusCode::FAILED_PRECONDITION);
                 */
                 case ENOENT:
-                    throw new ServiceException("File not found", StatusCode::NOT_FOUND);
+                    throw ServiceException("File not found", StatusCode::NOT_FOUND);
                 case EINVAL:
-                    throw new ServiceException("Attempting to rename directory to child of itself", StatusCode::INVALID_ARGUMENT);
+                    throw ServiceException("Attempting to rename directory to child of itself", StatusCode::INVALID_ARGUMENT);
                 default:
-                    throw new ServiceException("Error in call to rename", StatusCode::UNKNOWN);
+                    throw ServiceException("Error in call to rename", StatusCode::UNKNOWN);
             }
         }
+        
         dbgprintf("move_file: Exiting function\n");
     }
 
@@ -230,11 +231,11 @@ class ServiceImplementation final : public FileSystemService::Service {
             switch (errno) {
                 case EISDIR:
                 case EPERM:
-                    throw new ServiceException("Called Remove on directory", StatusCode::PERMISSION_DENIED);
+                    throw ServiceException("Called Remove on directory", StatusCode::PERMISSION_DENIED);
                 case ENOENT:
-                    throw new ServiceException("File not found", StatusCode::NOT_FOUND);
+                    throw ServiceException("File not found", StatusCode::NOT_FOUND);
                 default:
-                    throw new ServiceException("Error in call to unlink", StatusCode::UNKNOWN);
+                    throw ServiceException("Error in call to unlink", StatusCode::UNKNOWN);
             }
         }
         dbgprintf("delete_file: Exiting function\n");
@@ -246,13 +247,13 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("make_dir: Exiting function\n");
             switch (errno) {
                 case EEXIST:
-                    throw new ServiceException("Path already exists", StatusCode::ALREADY_EXISTS);
+                    throw ServiceException("Path already exists", StatusCode::ALREADY_EXISTS);
                 case ENOENT:
-                    throw new ServiceException("Missing directory in path prefix", StatusCode::NOT_FOUND);
+                    throw ServiceException("Missing directory in path prefix", StatusCode::NOT_FOUND);
                 case ENOTDIR:
-                    throw new ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+                    throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
                 default:
-                    throw new ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
+                    throw ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
             }
         }
         dbgprintf("make_dir: Exiting function\n");
@@ -263,15 +264,15 @@ class ServiceImplementation final : public FileSystemService::Service {
             switch (errno) {
                 case EEXIST:
                 case ENOTEMPTY:
-                    throw new ServiceException("Attempting to remove non-empty directory", StatusCode::FAILED_PRECONDITION);
+                    throw ServiceException("Attempting to remove non-empty directory", StatusCode::FAILED_PRECONDITION);
                 case EINVAL:
-                    throw new ServiceException("Invalid directory name", StatusCode::INVALID_ARGUMENT);
+                    throw ServiceException("Invalid directory name", StatusCode::INVALID_ARGUMENT);
                 case ENOENT:
-                    throw new ServiceException("Missing directory in path", StatusCode::NOT_FOUND);
+                    throw ServiceException("Missing directory in path", StatusCode::NOT_FOUND);
                 case ENOTDIR:
-                    throw new ServiceException("Non-directory in path", StatusCode::FAILED_PRECONDITION);
+                    throw ServiceException("Non-directory in path", StatusCode::FAILED_PRECONDITION);
                 default:
-                    throw new ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
+                    throw ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
             }
         }
     }
@@ -295,11 +296,11 @@ class ServiceImplementation final : public FileSystemService::Service {
         if (stat(filepath.c_str(), &sb) == -1) {
             switch (errno) {
                 case ENOENT:
-                    throw new ServiceException("Item not found", StatusCode::NOT_FOUND);
+                    throw ServiceException("Item not found", StatusCode::NOT_FOUND);
                 case ENOTDIR:
-                    throw new ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+                    throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
                 default:
-                    throw new ServiceException("Error in call to stat", StatusCode::UNKNOWN);
+                    throw ServiceException("Error in call to stat", StatusCode::UNKNOWN);
             }
         }
 
@@ -529,6 +530,7 @@ class ServiceImplementation final : public FileSystemService::Service {
 
             // todo wait for write to finish??
             remove_dir(filepath);
+
             dbgprintf("RemoveDir: Exiting function on Success path\n");
             return Status::OK;
         } catch (const ServiceException& e) {

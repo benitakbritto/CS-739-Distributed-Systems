@@ -21,6 +21,8 @@
 #define errprintf(...) \
     { printf(__VA_ARGS__); }
 
+namespace fs = std::filesystem;
+
 using filesystemcomm::DirectoryEntry;
 using filesystemcomm::FetchRequest;
 using filesystemcomm::FetchResponse;
@@ -52,7 +54,7 @@ using grpc::StatusCode;
 using std::cout;
 using std::endl;
 using std::string;
-using std::filesystem::path;
+using fs::path;
 
 class ServiceException : public std::runtime_error {
     StatusCode code;
@@ -86,13 +88,17 @@ class ServiceImplementation final : public FileSystemService::Service {
 
         return normalized;
     }
+    
+    path get_tempfile_path(path filepath) {
+        return path(filepath.string() + TEMP_FILE_EXT);
+    }
 
     string read_file(path filepath) {
         dbgprintf("read_file: Entering function\n");
-
+        
         // Check that path exists and is a file before proceeding
         std::error_code ec;
-        if (!std::filesystem::is_regular_file(filepath)) {
+        if (!fs::is_regular_file(filepath, ec)) {
             dbgprintf("read_file: Exiting function\n");
 
             if (ec) {
@@ -112,49 +118,88 @@ class ServiceImplementation final : public FileSystemService::Service {
         std::ifstream file(filepath, std::ios::in | std::ios::binary);
         std::ostringstream buffer;
         buffer << file.rdbuf();
-
+        
         if (file.fail()) {
             dbgprintf("read_file: Exiting function\n");
             throw new ServiceException("Error performing file read", StatusCode::UNKNOWN);
         }
 
-        return buffer.str();
-
         dbgprintf("read_file: Exiting function\n");
+        return buffer.str();
+    }
+    
+    
+    // Check that file content can be written to a given path.
+    // The path must be either:
+    // (a) An existing regular file, or
+    // (b) An empty location in an existing directory.
+    void assert_valid_write_destination(path filepath) {
+        std::error_code ec;
+        auto status = fs::status(filepath, ec);
+        switch(status.type()){
+            case fs::file_type::regular:
+                return; // result (a)
+            case fs::file_type::directory:
+                throw new ServiceException("Attempting to write file to location of directory", StatusCode::FAILED_PRECONDITION);
+            case fs::file_type::not_found:
+                break;
+            default:
+                throw new ServiceException("Attempting to write file to location of non-file item", StatusCode::FAILED_PRECONDITION);
+        }
+        
+        // type was not_found, so check the error code
+        switch(ec.value()) {
+            case ENOTDIR:
+                throw new ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+            case ENOENT:
+                break;
+            default:
+                throw new ServiceException("Error checking file status", StatusCode::UNKNOWN);
+        }
+        
+        // error code was ENOENT, so check that parent directory exists
+        if(!fs::is_directory(filepath.parent_path(), ec)) {
+            throw new ServiceException("Parent directory does not exist", StatusCode::NOT_FOUND);
+        }
+        
+        // result (b)
     }
 
     void write_file(path filepath, string content) {
         dbgprintf("write_file: Entering function\n");
+        
         std::ofstream file;
-
-        // TODO throw if parent dir DNE
-        // TODO throw if exists and not file
-
-        file.open(filepath, std::ios::binary);
+        
+        // Check that this is a valid destination
+        assert_valid_write_destination(filepath);
+        
+        path temppath = get_tempfile_path(filepath);
+        
+        // Write to temp path
+        file.open(temppath, std::ios::binary);
         file << content;
         file.close();
-
-        if (file.fail()) {
+        
+        // Typical failure cases should be handled by the validity check above,
+        // so failure to write the temp file means something unexpected has happened.
+        if(file.fail()) {
             dbgprintf("write_file: Exiting function\n");
-            switch (errno) {
-                case ENOENT:
-                    throw new ServiceException("Parent directory not fonud", StatusCode::NOT_FOUND);
-                case EISDIR:
-                    throw new ServiceException("Attempting to write file content at name of directory", StatusCode::FAILED_PRECONDITION);
-                case ENOTDIR:
-                    throw new ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
-                default:
-                    throw new ServiceException("Error checking file type", StatusCode::UNKNOWN);
-            }
+            throw new ServiceException("Error writing temp file", StatusCode::UNKNOWN);
         }
-
+        
+        // Overwrite temp file with new file
+        if(rename(temppath.c_str(), filepath.c_str()) == -1) {
+            dbgprintf("write_file: Exiting function\n");
+            throw new ServiceException("Error committing temp file", StatusCode::UNKNOWN);
+        }
+        
         dbgprintf("write_file: Exiting function\n");
     }
 
     void move_file(path srcpath, path dstpath) {
         dbgprintf("move_file: Entering function\n");
 
-        if (std::filesystem::exists(dstpath)) {
+        if (fs::exists(dstpath)) {
             throw new ServiceException("Attempting to rename item to existing item", StatusCode::FAILED_PRECONDITION);
         }
 
@@ -234,7 +279,7 @@ class ServiceImplementation final : public FileSystemService::Service {
     void list_dir(path filepath, ListDirResponse* reply) {
         dbgprintf("list_dir: Entered function\n");
         // TODO catch errors from directory_iterator
-        for (const auto& entry : std::filesystem::directory_iterator(filepath)) {
+        for (const auto& entry : fs::directory_iterator(filepath)) {
             DirectoryEntry* msg = reply->add_entries();
             msg->set_file_name(entry.path().filename());
             msg->set_mode(entry.is_regular_file() ? FileMode::REG : entry.is_directory() ? FileMode::DIR
@@ -538,7 +583,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    auto root = std::filesystem::canonical(argv[1]);
+    auto root = fs::canonical(argv[1]);
 
     cout << "Serving files from " << root << endl;
 

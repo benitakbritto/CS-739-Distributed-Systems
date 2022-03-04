@@ -41,6 +41,12 @@
 //#define SERVER_ADDR         "20.69.154.6:50051"
 #define SERVER_ADDR           "0.0.0.0:50051"
 
+#ifdef CRASH_TEST
+#define crash() *((char*)0) = 0;
+#else
+#define crash() do {} while(0)
+#endif
+
 // NAMESPACES
 using namespace std;
 using namespace FileSystemClient;

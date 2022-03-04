@@ -113,6 +113,15 @@ static int fs_rmdir(const char *path)
     return options.client->RemoveDir(fpath);
 }
 
+static int fs_unlink(const char *path)
+{
+	int res;
+	char fpath[PATH_MAX];
+    
+	fs_fullpath(fpath, path);
+
+	return options.client->DeleteFile(fpath);
+}
 
 static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
 {
@@ -127,6 +136,7 @@ static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
 struct fuse_operations fsops = {
     .getattr = fs_getattr,
     .mkdir = fs_mkdir,
+    .unlink = fs_unlink,
     .rmdir = fs_rmdir,
     .readdir = fs_readdir,
 };

@@ -233,6 +233,44 @@ namespace FileSystemClient
                 }
             }
 
+            int DeleteFile(std::string path) 
+            {
+                dbgprintf("DeleteFile: Entered function\n");
+                RemoveRequest request;
+                RemoveResponse reply;
+                Status status;
+                uint32_t retryCount = 0;
+                
+                request.set_pathname(path);
+                
+                // Make RPC 
+                // Retry with backoff
+                do 
+                {
+                    ClientContext context;
+                    reply.Clear();
+                    dbgprintf("DeleteFile: Invoking RPC\n");
+                    sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+                    status = stub_->Remove(&context, request, &reply);
+                    retryCount++;
+                } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE );
+                
+
+                // Checking RPC Status 
+                if (status.ok()) 
+                {
+                    dbgprintf("DeleteFile: RPC success\n");
+                    dbgprintf("DeleteFile: Exiting function\n");
+                    return 0;
+                } 
+                else
+                {
+                    dbgprintf("DeleteFile: RPC failure\n");
+                    dbgprintf("DeleteFile: Exiting function\n");
+                    return -1;
+                }                
+            }
+
         private:
                 std::unique_ptr<FileSystemService::Stub> stub_;
  

@@ -310,6 +310,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("read_stat: failed\n");
             ret.set_error(errno);
             return ret;
+            // not needed
             // switch (errno) {
             //     case ENOENT:
             //         throw ServiceException("Item not found", StatusCode::NOT_FOUND);

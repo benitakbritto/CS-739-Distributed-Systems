@@ -9,6 +9,8 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <utime.h>
+#include <fstream>
+#include <sstream>
 
 // Macros
 #define DEBUG                 1
@@ -18,7 +20,7 @@
 #define MAX_RETRY             5
 #define RETRY_TIME_START      1 // seconds
 #define RETRY_TIME_MULTIPLIER 2
-
+#define LOCAL_CACHE_PREFIX    "/tmp/afs/"
 
 // Namespaces
 using grpc::Channel;
@@ -49,6 +51,20 @@ using filesystemcomm::FileStat;
 using grpc::Status;
 using grpc::StatusCode;
 using namespace std;
+using std::ifstream;
+using std::ostringstream;
+
+// Globals
+struct TestAuthReturnType
+{
+  Status status;
+  TestAuthResponse response;
+  TestAuthReturnType(Status status,
+                    TestAuthResponse response) :
+                    status(status),
+                    response(response)
+                    {}
+};  
 
 namespace FileSystemClient
 {
@@ -271,9 +287,256 @@ namespace FileSystemClient
                 }                
             }
 
+            // TODO - test
+            // TODO - deal with path having hierarchy -- need to call mkdir
+            // TODO - how to deal w creat request
+            int OpenFile(std::string path) 
+            {
+                dbgprintf("OpenFile: Inside function\n");
+                int file;
+                FetchRequest request;
+                FetchResponse reply;
+                Status status;
+                //struct utimbuf ubuf;
+                uint32_t retryCount = 0;
+            
+                // Note: TestAuth will internally call get_cache_path
+                if (TestAuth(path).response.has_changed())
+                {  
+                    request.set_pathname(path);
+
+                    // Make RPC
+                    // Retry with backoff
+                    do 
+                    {
+                        ClientContext context;
+                        reply.Clear();
+                        dbgprintf("OpenFile: Invoking RPC\n");
+                        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+                        status = stub_->Fetch(&context, request, &reply);
+                        retryCount++;
+                    } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE );
+            
+                    // Checking RPC Status
+                    if (status.ok()) 
+                    {
+                        dbgprintf("OpenFile: RPC Success\n");
+                    
+                        file = open(get_cache_path(path).c_str(), O_RDWR | O_TRUNC | O_CREAT, 0666);
+                        if (file == -1)
+                        {
+                            dbgprintf("OpenFile: open() failed\n");
+                            return errno;
+                        }
+                    
+                        //dbgprintf("OpenFile: reply.file_contents().length() = %ld\n", reply.file_contents().length());
+                    
+                        if (write(file, reply.file_contents().c_str(), reply.file_contents().length()) == -1)
+                        {
+                            dbgprintf("OpenFile: write() failed\n");
+                            return errno;
+                        }
+                        
+                        if (fsync(file) == -1)
+                        {
+                            dbgprintf("OpenFile: fsync() failed\n");
+                            return errno;
+                        }
+
+                        if (close(file) == -1)
+                        {
+                            dbgprintf("OpenFile: close() failed\n");
+                            return errno;
+                        }
+
+                        // not needed
+                        // //  Update local file modify time with servers modify time
+                        // ubuf.modtime = reply.time_modify().sec();
+                        // if (utime(path.c_str(), &ubuf) != 0)
+                        // {
+                        //     dbgprintf("OpenFile: utime() failed\n");
+                        // }
+                    } 
+                    else 
+                    {
+                        dbgprintf("OpenFile: RPC Failure\n");
+                        return -1;
+                    }
+                } 
+
+                file = open(get_cache_path(path).c_str(), O_RDWR | O_CREAT, 0666); // QUESTION: Why do we need O_CREAT?
+                if (file == -1)
+                {
+                    dbgprintf("OpenFile: open() failed\n");
+                    return errno;
+                }
+                
+                dbgprintf("OpenFile: Exiting function\n");
+                return file;
+            }
+
+            // TODO - test
+            int CloseFile(int fd, string path) 
+            {
+                dbgprintf("CloseFile: Entered function\n");
+                
+                StoreRequest request;
+                StoreResponse reply;
+                Status status;
+                uint32_t retryCount = 0;
+
+                // No RPC necessary if file wasn't modified
+                
+                // TODO: Add isFileModified here
+                
+                // Set request
+                request.set_pathname(path);
+                request.set_file_contents(readFileIntoString(get_cache_path(path)));
+
+                if (close(fd))
+                {
+                    dbgprintf("CloseFile: close() failed\n");
+                    return -1;
+                }
+
+                // Make RPC
+                // Retry with backoff
+                do 
+                {
+                    ClientContext context;
+                    reply.Clear();
+                    dbgprintf("CloseFile: Invoking RPC\n");
+                    sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+                    status = stub_->Store(&context, request, &reply);
+                    retryCount++;
+                } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+                // Checking RPC Status
+                if (status.ok()) 
+                {
+                    dbgprintf("CloseFile: RPC Success\n");
+                    dbgprintf("CloseFile: Exiting function\n");
+                    return 0;
+                } 
+                else 
+                {
+                    dbgprintf("CloseFile: RPC Failure\n");
+                    dbgprintf("CloseFile: Exiting function\n");
+                    return -1;
+                }
+            }
+
+            // TODO - test
+            /*
+            * When called on Fetch,
+            * TestAuth first checks if local file exits
+            * if it does not exist, TestAuth returns true
+            * 
+            * For Fetch and Store,
+            * TestAuth gets the modify time of the local file
+            * and invokes the TestAuth RPC
+            * if the modify times of the local and server file
+            * do not match, TestAuth returns true, else false
+            *
+            * Error handling for GetModifyTime:
+            * For eg. on Store, if the file does not exist
+            * TestAuth returns false
+            */
+            TestAuthReturnType TestAuth(std::string path)
+            {
+                dbgprintf("TestAuth: Entering function\n");
+                TestAuthRequest request;
+                TestAuthResponse reply;
+                Timestamp t;
+                timespec modifyTime;
+                Status status;
+                uint32_t retryCount = 0;
+
+                // Check if local file exists
+                if (!FileExists(get_cache_path(path)))
+                {
+                    dbgprintf("TestAuth: Local file does not exist\n");
+                    reply.set_has_changed(true);
+                    return TestAuthReturnType(status, reply);
+                }
+                
+                // Get local modified time
+                if (GetModifyTime(get_cache_path(path), &modifyTime) != 0)
+                {
+                    dbgprintf("TestAuth: Exiting function\n");
+                    reply.set_has_changed(false); // TO CHECK: Should we return true or false in this case?
+                    return TestAuthReturnType(status, reply);
+                }
+
+                // Set Request
+                request.set_pathname(path);
+                t.set_sec(modifyTime.tv_sec);
+                t.set_nsec(modifyTime.tv_nsec);
+                request.mutable_time_modify()->CopyFrom(t);
+
+                // Make RPC
+                // Retry w backoff
+                do 
+                {
+                    ClientContext context;
+                    reply.Clear();
+                    dbgprintf("TestAuth: Invoking RPC\n");
+                    sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+                    status = stub_->TestAuth(&context, request, &reply);
+                    retryCount++;
+                } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+                if (status.ok()) 
+                {
+                    dbgprintf("TestAuth: RPC Success\n");
+                }
+                else
+                {
+                    dbgprintf("TestAuth: RPC Failure\n");
+                }
+
+                dbgprintf("TestAuth: Exiting function\n");
+                return TestAuthReturnType(status, reply);
+            }
+
         private:
-                std::unique_ptr<FileSystemService::Stub> stub_;
- 
+            unique_ptr<FileSystemService::Stub> stub_;
+
+            string get_cache_path(string relative_path)
+            {
+                return LOCAL_CACHE_PREFIX + relative_path;
+            }
+
+            bool FileExists(std::string path)
+            {
+                struct stat s;   
+                return (stat(path.c_str(), &s) == 0); 
+            }
+
+            uint32_t GetModifyTime(std::string filepath, timespec * t) 
+            {
+                dbgprintf("GetModifyTime: Entering function\n");
+                struct stat sb;
+                if (stat(filepath.c_str(), &sb) == -1) 
+                {
+                    dbgprintf("GetModifyTime: Failed\n");
+                    return -1;
+                }
+                dbgprintf("GetModifyTime: Exiting function\n");
+                *t = sb.st_mtim;
+                return 0;
+            }
+
+            string readFileIntoString(string path) 
+            {
+                ifstream input_file(path);
+                if (!input_file.is_open()) 
+                {
+                    dbgprintf("readFileIntoString(): failed\n");
+                    return string();
+                }
+                return string((std::istreambuf_iterator<char>(input_file)), std::istreambuf_iterator<char>());
+            }
     };
 }
 

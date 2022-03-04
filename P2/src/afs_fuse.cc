@@ -1,3 +1,7 @@
+/*
+* Reference: https://github.com/libfuse/libfuse/blob/master/example/passthrough.c
+*/
+
 #define FUSE_USE_VERSION 31
 
 #ifdef HAVE_CONFIG_H
@@ -38,8 +42,8 @@
 #include "afs_client.h"
 
 // MACROS
-//#define SERVER_ADDR         "20.69.154.6:50051"
-#define SERVER_ADDR           "0.0.0.0:50051"
+//#define SERVER_ADDR         "20.69.154.6:50051" // for testing on 2 machines
+#define SERVER_ADDR           "0.0.0.0:50051" // for testing on 1 machine
 
 // NAMESPACES
 using namespace std;
@@ -47,7 +51,6 @@ using namespace FileSystemClient;
 
 // GLOBALS
 static int fill_dir_plus = 0;
-char *mount = "/home/benitakbritto/CS-739-Distributed-Systems/P2/src/build/dir_2";
 
 static struct options {	
 	ClientImplementation * client;
@@ -62,37 +65,40 @@ static const struct fuse_opt option_spec[] = {
 	FUSE_OPT_END
 };
 
-// wrong
+// wrong - TODO
 static void show_help(const char *progname)
 {
 	std::cout<<"usage: "<<progname<<" [-s -d] <mountpoint>\n\n";
 }
 
-
 // Helper Functions
-static void fs_fullpath(char fpath[PATH_MAX], const char *path)
+// removes the '/' at the beginning
+char * fs_relative_path(char * path)
 {
-    strcpy(fpath, mount);
-    strncat(fpath, path, PATH_MAX);
+    return path + 1;
 }
 
 
 // FUSE functions
 static int fs_mkdir(const char *path, mode_t mode)
 {
-    char fpath[PATH_MAX];
-    fs_fullpath(fpath, path);
-
-    return options.client->MakeDir(fpath, mode);
+    char * rel_path = fs_relative_path((char *) path);
+    
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+    
+    return options.client->MakeDir(rel_path, mode);
 }
 
 
 static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi, enum fuse_readdir_flags flags)
 {
-    char fpath[PATH_MAX];
-    fs_fullpath(fpath, path);
+    char * rel_path = fs_relative_path((char *) path);
 
-    return options.client->ReadDir(fpath, buf, filler);
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+
+    return options.client->ReadDir(rel_path, buf, filler);
 }
 
 
@@ -100,27 +106,33 @@ static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_inf
 {
 	(void) fi;
 	int res;
-    char fpath[PATH_MAX];
-    fs_fullpath(fpath, path);
-	
-	return options.client->GetFileStat(fpath, stbuf);
+    char * rel_path = fs_relative_path((char *) path);
+
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+    
+	return options.client->GetFileStat(rel_path, stbuf);
 }
 
 static int fs_rmdir(const char *path)
 {
-    char fpath[PATH_MAX];
-    fs_fullpath(fpath, path);
-    return options.client->RemoveDir(fpath);
+    char * rel_path = fs_relative_path((char *) path);
+
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+    
+    return options.client->RemoveDir(rel_path);
 }
 
 static int fs_unlink(const char *path)
 {
 	int res;
-	char fpath[PATH_MAX];
-    
-	fs_fullpath(fpath, path);
+    char * rel_path = fs_relative_path((char *) path);
 
-	return options.client->DeleteFile(fpath);
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+
+	return options.client->DeleteFile(rel_path);
 }
 
 static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
@@ -133,20 +145,115 @@ static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
 	return 0;
 }
 
+// TODO - test
+static int fs_open(const char *path, struct fuse_file_info *fi)
+{
+	int res;
+    char * rel_path = fs_relative_path((char *) path);
+
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+        
+	res = options.client->OpenFile(rel_path);
+	if (res == -1)
+		return -res;
+
+	fi->fh = res;
+	return 0;
+}
+
+// TODO - test
+static int fs_read(const char *path, char *buf, size_t size, off_t offset,
+		    struct fuse_file_info *fi)
+{
+	int fd;
+	int res;
+	char * rel_path = fs_relative_path((char *) path);
+
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+
+	if (fi == NULL) // file not open?
+		fd = options.client->OpenFile(rel_path);
+	else
+		fd = fi->fh;
+	
+	if (fd == -1)
+		return -errno;
+
+	res = pread(fd, buf, size, offset);
+	if (res == -1)
+		res = -errno;
+
+	if (fi == NULL)
+		options.client->CloseFile(fd, rel_path);
+	return res;
+}
+
+// TODO - test
+static int fs_write(const char *path, const char *buf, size_t size,
+		     off_t offset, struct fuse_file_info *fi)
+{
+	int fd;
+	int res;
+	(void) fi;
+	char * rel_path = fs_relative_path((char *) path);
+
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+
+	if (fi == NULL)
+		fd = options.client->OpenFile(rel_path);
+	else
+		fd = fi->fh;
+	
+	if (fd == -1)
+		return -errno;
+
+	res = pwrite(fd, buf, size, offset);
+	if (res == -1)
+	{
+		res = -errno;
+		return res;
+	}
+
+    if (fsync(fd) == -1)
+		return -errno;
+
+	if (fi == NULL)
+		options.client->CloseFile(fd, rel_path);
+
+	return res;
+}
+
+// TODO - test
+static int fs_release(const char *path, struct fuse_file_info *fi)
+{
+	char * rel_path = fs_relative_path((char *) path);
+
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+
+	return options.client->CloseFile(fi->fh, rel_path);
+}
+
+
 struct fuse_operations fsops = {
     .getattr = fs_getattr,
-    .mkdir = fs_mkdir,
-    .unlink = fs_unlink,
-    .rmdir = fs_rmdir,
-    .readdir = fs_readdir,
+	.mkdir = fs_mkdir,
+	.unlink = fs_unlink,
+	.rmdir = fs_rmdir,
+    .open = fs_open,
+    .read = fs_read,
+    .write = fs_write,
+    .release = fs_release,
+	.fsync = fs_fsync,
+	.readdir = fs_readdir,
 };
 
 int
 main(int argc, char *argv[])
 {   
-    //mount = realpath(argv[2], NULL);
-    //printf("mount: %s \n", mount);
-    //argc--;
 	umask(0);
 
     // Init grpc
@@ -154,6 +261,5 @@ main(int argc, char *argv[])
     options.client = new ClientImplementation(grpc::CreateChannel(target_address,
                                 grpc::InsecureChannelCredentials()));
     
-    printf("Calling fuse_main\n");
 	return (fuse_main(argc, argv, &fsops, &options));
 }

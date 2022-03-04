@@ -86,8 +86,10 @@ class ServiceImplementation final : public FileSystemService::Service {
     path root;
 
     path to_storage_path(string relative) {
-    	    path normalized = (root / relative).lexically_normal();
-        dbgprintf("to_storage_path: %s\n", normalized.c_str());
+    	dbgprintf("to_storage_path: root = %s\n", root.c_str());
+	    dbgprintf("to_storage_path: relative = %s\n", relative.c_str());
+	    path normalized = (root / relative).lexically_normal();
+        dbgprintf("to_storage_path: normalized = %s\n", normalized.c_str());
         // Check that this path is under our storage root
         auto [a, b] = std::mismatch(root.begin(), root.end(), normalized.begin());
         if (a != root.end()) {

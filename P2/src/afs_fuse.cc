@@ -82,21 +82,8 @@ static int fs_mkdir(const char *path, mode_t mode)
 {
     char fpath[PATH_MAX];
     fs_fullpath(fpath, path);
-    printf("Here\n");
 
     return options.client->MakeDir(fpath, mode);
-
-    //printf("Here\n");
-    // int res;
-    // char fpath[PATH_MAX];
-
-    // fs_fullpath(fpath, path);
-
-	// res = mkdir(fpath, mode);
-	// if (res == -1)
-	// 	return -errno;
-
-	return 0;
 }
 
 
@@ -142,11 +129,7 @@ static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_inf
 
     fs_fullpath(fpath, path);
 	
-	res = lstat(fpath, stbuf);
-	if (res == -1)
-		return -errno;
-
-	return 0;
+	return options.client->GetFileStat(fpath, stbuf);
 }
 
 

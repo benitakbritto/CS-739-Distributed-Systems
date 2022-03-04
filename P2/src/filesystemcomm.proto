@@ -35,15 +35,21 @@ enum FileMode {
     DIR = 2;
 }
 
-// See https://linux.die.net/man/2/fstat
+
 message FileStat
 {
-    string file_name = 1;
-    FileMode mode = 2;
-    uint64 size = 3; // in bytes
-    Timestamp time_access = 4;
-    Timestamp time_modify = 5;
-    Timestamp time_change = 6;
+    uint32   dev = 1;    
+    uint32   ino = 2;
+    int32   mode = 3;  
+    uint32   nlink = 4;    
+    uint32     uid = 5;     
+    uint32     gid = 6;     
+    sint64     size = 7;    
+    sint64 blksize = 8; 
+    sint64  blocks = 9;  
+    int32    atime = 10;   
+    int32    mtime = 11;   
+    int32    ctime = 12; 
 }
 
 message DirectoryEntry {

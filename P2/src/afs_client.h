@@ -95,6 +95,54 @@ namespace FileSystemClient
                     return -1;
                 }
             }
+
+            int GetFileStat(std::string path, struct stat *stbuf) 
+            {
+                dbgprintf("GetFileStat: Entering function\n");
+                GetFileStatRequest request;
+                GetFileStatResponse reply;
+                Status status;
+                uint32_t retryCount = 0;
+
+                request.set_pathname(path);
+
+                // Make RPC
+                // Retry w backoff
+                do 
+                {
+                    ClientContext context;
+                    reply.Clear();
+                    dbgprintf("GetFileStat: Invoking RPC\n");
+                    sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+                    status = stub_->GetFileStat(&context, request, &reply);
+                    retryCount++;
+                } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+                // Checking RPC Status
+                if (status.ok()) 
+                {
+                    dbgprintf("GetFileStat: RPC Success\n");
+                    stbuf->st_ino = reply.status().ino();
+                    stbuf->st_mode = reply.status().mode();
+                    stbuf->st_nlink = reply.status().nlink();
+                    stbuf->st_uid = reply.status().uid();
+                    stbuf->st_gid = reply.status().gid();
+                    stbuf->st_size = reply.status().size();
+                    stbuf->st_blksize = reply.status().blksize();
+                    stbuf->st_blocks = reply.status().blocks();
+                    stbuf->st_atime = reply.status().atime();
+                    stbuf->st_mtime = reply.status().mtime();
+                    stbuf->st_ctime = reply.status().ctime();
+                    dbgprintf("GetFileStat: Exiting function\n");
+                    return 0;
+                } 
+                else 
+                {
+                    dbgprintf("GetFileStat: RPC Failed\n");
+                    dbgprintf("GetFileStat: Exiting function\n");
+                    return -1;
+                }
+            }
         
         private:
                 std::unique_ptr<FileSystemService::Stub> stub_;

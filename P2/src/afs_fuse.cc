@@ -100,35 +100,9 @@ static int fs_mkdir(const char *path, mode_t mode)
 
 static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi, enum fuse_readdir_flags flags)
 {
-    //MAKE GRPC CALL?
-        
-    //Local version left in for now, needs to be replaced with GRPC:
-    DIR *dp;
-    struct dirent *de;
-    (void) offset;
-    (void) fi;
-    (void) flags;
-
     char fpath[PATH_MAX];
-
     fs_fullpath(fpath, path);
-
-    dp = opendir(fpath);
-    if (dp == NULL)
-        return -errno;
-
-    while ((de = readdir(dp)) != NULL) 
-    {
-        struct stat st;
-        memset(&st, 0, sizeof(st));
-        st.st_ino = de->d_ino;
-        st.st_mode = de->d_type << 12;
-        if (filler(buf, de->d_name, &st, 0, (fuse_fill_dir_flags) fill_dir_plus))
-            break;
-    }
-
-    closedir(dp);
-    return 0;
+    return options.client->ReadDir(fpath, buf, filler);
 }
 
 

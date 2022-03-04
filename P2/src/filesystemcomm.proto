@@ -17,7 +17,7 @@ service FileSystemService
     // Directory operations
     rpc MakeDir (MakeDirRequest) returns (MakeDirResponse) {}
     rpc RemoveDir (RemoveDirRequest) returns (RemoveDirResponse) {}
-    rpc ListDir (ListDirRequest) returns (ListDirResponse) {}
+    rpc ReadDir (ListDirRequest) returns (ListDirResponse) {}
 }
 
 

@@ -134,6 +134,56 @@ namespace FileSystemClient
                 dbgprintf("RemoveDir: Exiting function\n");
                 return 0;
             }
+
+            int ReadDir(std::string path, void *buf, fuse_fill_dir_t filler) 
+            {
+                dbgprintf("ListDir: Entering function\n");
+                ListDirRequest request;
+                ListDirResponse reply;
+                Status status;
+                uint32_t retryCount = 0;
+
+                request.set_pathname(path);
+                // Make RPC
+                // Retry w backoff
+                do 
+                {
+                    ClientContext context;
+                    reply.Clear();
+                    dbgprintf("ListDir: Invoking RPC\n");
+                    sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+                    status = stub_->ReadDir(&context, request, &reply);
+                    retryCount++;
+                } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+                // std::cout << "count = " << reply.entries().size() << std::endl;
+
+                // Checking RPC Status
+                if (status.ok()) 
+                {
+                    dbgprintf("ListDir: RPC Success\n");
+                } 
+                else 
+                {
+                    // std::cout << status.error_code() << ": " << status.error_message()
+                    //           << std::endl;
+                    //PrintErrorMessage(status.error_code(), status.error_message(), "ListDir");
+                    dbgprintf("ListDir: RPC Failure\n");
+                    return -1;
+                }
+
+                dbgprintf("ListDir: Exiting function\n");
+                for (auto itr = reply.entries().begin(); itr != reply.entries().end(); itr++)
+                {
+                    struct stat st;
+                    memset(&st, 0, sizeof(st));
+                    st.st_ino = itr->size();
+                    st.st_mode = itr->mode();
+                    if (filler(buf, itr->file_name().c_str() , &st, 0, static_cast<fuse_fill_dir_flags>(0)))
+                        break;
+                }
+                return 0;
+            }
         
         private:
                 std::unique_ptr<FileSystemService::Stub> stub_;

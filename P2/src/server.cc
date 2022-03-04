@@ -87,6 +87,7 @@ class ServiceImplementation final : public FileSystemService::Service {
 
     path to_storage_path(string relative) {
     	    path normalized = (root / relative).lexically_normal();
+        dbgprintf("to_storage_path: %s\n", normalized.c_str());
         // Check that this path is under our storage root
         auto [a, b] = std::mismatch(root.begin(), root.end(), normalized.begin());
         if (a != root.end()) {
@@ -643,7 +644,7 @@ class ServiceImplementation final : public FileSystemService::Service {
         }
     }
 
-    Status ListDir(ServerContext* context, const ListDirRequest* request, ListDirResponse* reply) override {
+    Status ReadDir(ServerContext* context, const ListDirRequest* request, ListDirResponse* reply) override {
         dbgprintf("ListDir: Entering function\n");
         try {
             path filepath = to_storage_path(request->pathname());

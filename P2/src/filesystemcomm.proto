@@ -50,6 +50,7 @@ message FileStat
     int32    atime = 10;   
     int32    mtime = 11;   
     int32    ctime = 12; 
+    int32    error = 13;
 }
 
 message DirectoryEntry {

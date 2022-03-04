@@ -87,10 +87,7 @@ class ServiceImplementation final : public FileSystemService::Service {
 
     path to_storage_path(string relative) {
     	    path normalized = (root / relative).lexically_normal();
-
-        dbgprintf("to_storage_path: normalized = %s\n", normalized.c_str());
-
-
+        dbgprintf("to_storage_path: %s\n", normalized.c_str());
         // Check that this path is under our storage root
         auto [a, b] = std::mismatch(root.begin(), root.end(), normalized.begin());
         if (a != root.end()) {
@@ -307,19 +304,23 @@ class ServiceImplementation final : public FileSystemService::Service {
 
     FileStat read_stat(path filepath) {
         struct stat sb;
+        FileStat ret;
 
         if (stat(filepath.c_str(), &sb) == -1) {
-            switch (errno) {
-                case ENOENT:
-                    throw ServiceException("Item not found", StatusCode::NOT_FOUND);
-                case ENOTDIR:
-                    throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
-                default:
-                    throw ServiceException("Error in call to stat", StatusCode::UNKNOWN);
-            }
+            dbgprintf("read_stat: failed\n");
+            ret.set_error(errno);
+            return ret;
+            // switch (errno) {
+            //     case ENOENT:
+            //         throw ServiceException("Item not found", StatusCode::NOT_FOUND);
+            //     case ENOTDIR:
+            //         throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+            //     default:
+            //         throw ServiceException("Error in call to stat", StatusCode::UNKNOWN);
+            // }
         }
 
-        FileStat ret;
+        
         ret.set_ino(sb.st_ino);
         ret.set_mode(sb.st_mode);
         ret.set_nlink(sb.st_nlink);
@@ -331,6 +332,7 @@ class ServiceImplementation final : public FileSystemService::Service {
         ret.set_atime(sb.st_atime);
         ret.set_mtime(sb.st_mtime);
         ret.set_ctime(sb.st_ctime);
+        ret.set_error(0);
 
         return ret;
     }

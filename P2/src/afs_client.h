@@ -208,7 +208,7 @@ namespace FileSystemClient
                 } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
 
                 // Checking RPC Status
-                if (status.ok()) 
+                if (status.ok() && reply.status().error() == 0) 
                 {
                     dbgprintf("GetFileStat: RPC Success\n");
                     stbuf->st_ino = reply.status().ino();
@@ -225,11 +225,11 @@ namespace FileSystemClient
                     dbgprintf("GetFileStat: Exiting function\n");
                     return 0;
                 } 
-                else 
+                else
                 {
                     dbgprintf("GetFileStat: RPC Failed\n");
                     dbgprintf("GetFileStat: Exiting function\n");
-                    return -1;
+                    return -reply.status().error();
                 }
             }
 

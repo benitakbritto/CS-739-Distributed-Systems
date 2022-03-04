@@ -25,7 +25,11 @@ make install
 popd
 ```
 
-# Building src 
+# Install FUSE
+Follow: https://github.com/libfuse/libfuse#installation
+
+
+# Building the project 
 ```
 cd src
 mkdir -p build
@@ -34,7 +38,7 @@ cmake ..
 make
 ```
 
-# Run 
+# Run the project 
 
 ## Server: 
 ```
@@ -54,7 +58,7 @@ kill -9 <pid>
 
 To get the pid use the following command
 ```
-ps | grep server
+ps -e | grep "afs-server"
 ```
 
 ## Client:
@@ -63,6 +67,7 @@ ps | grep server
 ```
 
 (Note: -f let's you print debug statements while running fuse). Do Ctrl + C to stop ./afs-client.
+
 
 ## To set the file system:
 Note: Do it from the terminal ONLY (do not use VSCode or any editor)

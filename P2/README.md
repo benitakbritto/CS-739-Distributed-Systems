@@ -28,9 +28,9 @@ popd
 # Building src 
 ```
 cd src
-mkdir -p cmake/build
-cd cmake/build
-cmake ../.. 
+mkdir -p build
+cd build
+cmake .. 
 make
 ```
 
@@ -38,7 +38,7 @@ make
 
 ## Server: 
 ```
-./server <path of server root dir>
+./afs-server <path of server root dir>
 ```
 
 Alternative
@@ -59,5 +59,23 @@ ps | grep server
 
 ## Client:
 ```
-./client
+./afs-client  -f <mount point>
 ```
+
+(Note: -f let's you print debug statements while running fuse). Do Ctrl + C to stop ./afs-client.
+
+## To set the file system:
+Note: Do it from the terminal ONLY (do not use VSCode or any editor)
+```
+mkdir -p /tmp/afs
+cd <mount point>
+<any terminal command>
+```
+
+## General
+Where are the local files stored?
+/tmp/afs
+
+## Misc
+Inorder to run cmake, change the location of the downloaded FUSE path
+in common/FindFUSE.cmake

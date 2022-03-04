@@ -87,7 +87,10 @@ class ServiceImplementation final : public FileSystemService::Service {
 
     path to_storage_path(string relative) {
     	    path normalized = (root / relative).lexically_normal();
-        dbgprintf("to_storage_path: %s\n", normalized.c_str());
+
+        dbgprintf("to_storage_path: normalized = %s\n", normalized.c_str());
+
+
         // Check that this path is under our storage root
         auto [a, b] = std::mismatch(root.begin(), root.end(), normalized.begin());
         if (a != root.end()) {
@@ -317,18 +320,17 @@ class ServiceImplementation final : public FileSystemService::Service {
         }
 
         FileStat ret;
-
-        ret.set_file_name(filepath.filename());
-        ret.set_mode(convert_filemode(sb.st_mode));
+        ret.set_ino(sb.st_ino);
+        ret.set_mode(sb.st_mode);
+        ret.set_nlink(sb.st_nlink);
+        ret.set_uid(sb.st_uid);
+        ret.set_gid(sb.st_gid);
         ret.set_size(sb.st_size);
-
-        Timestamp t_access = convert_timestamp(sb.st_atim);
-        Timestamp t_change = convert_timestamp(sb.st_mtim);
-        Timestamp t_modify = convert_timestamp(sb.st_ctim);
-
-        ret.mutable_time_access()->CopyFrom(t_access);
-        ret.mutable_time_change()->CopyFrom(t_change);
-        ret.mutable_time_modify()->CopyFrom(t_modify);
+        ret.set_blksize(sb.st_blksize);
+        ret.set_blocks(sb.st_blocks);
+        ret.set_atime(sb.st_atime);
+        ret.set_mtime(sb.st_mtime);
+        ret.set_ctime(sb.st_ctime);
 
         return ret;
     }

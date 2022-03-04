@@ -277,6 +277,13 @@ namespace FileSystemClient
                 {
                     dbgprintf("DeleteFile: RPC success\n");
                     dbgprintf("DeleteFile: Exiting function\n");
+
+                    // remove from local cache
+                    if (FileExists(get_cache_path(path)))
+                    {
+                        unlink(get_cache_path(path).c_str());
+                    }
+
                     return 0;
                 } 
                 else
@@ -287,8 +294,7 @@ namespace FileSystemClient
                 }                
             }
 
-            // TODO - test
-            // TODO - deal with path having hierarchy -- need to call mkdir
+            // TODO - deal with path having hierarchy -- need to call mkdir (eg. open(a/b/c.txt), where a/ and b/ not present locally)
             // TODO - how to deal w creat request
             int OpenFile(std::string path) 
             {
@@ -375,7 +381,6 @@ namespace FileSystemClient
                 return file;
             }
 
-            // TODO - test
             int CloseFile(int fd, string path) 
             {
                 dbgprintf("CloseFile: Entered function\n");
@@ -426,7 +431,6 @@ namespace FileSystemClient
                 }
             }
 
-            // TODO - test
             /*
             * When called on Fetch,
             * TestAuth first checks if local file exits

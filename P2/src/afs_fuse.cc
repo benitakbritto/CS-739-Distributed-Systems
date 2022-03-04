@@ -151,7 +151,6 @@ static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
 	return 0;
 }
 
-// TODO - test
 static int fs_open(const char *path, struct fuse_file_info *fi)
 {
 	int res;
@@ -168,7 +167,6 @@ static int fs_open(const char *path, struct fuse_file_info *fi)
 	return 0;
 }
 
-// TODO - test
 static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 		    struct fuse_file_info *fi)
 {
@@ -196,7 +194,6 @@ static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 	return res;
 }
 
-// TODO - test
 static int fs_write(const char *path, const char *buf, size_t size,
 		     off_t offset, struct fuse_file_info *fi)
 {
@@ -232,7 +229,6 @@ static int fs_write(const char *path, const char *buf, size_t size,
 	return res;
 }
 
-// TODO - test
 static int fs_release(const char *path, struct fuse_file_info *fi)
 {
 	char * rel_path = fs_relative_path((char *) path);

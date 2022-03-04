@@ -1,3 +1,7 @@
+/*
+* Reference: https://github.com/libfuse/libfuse/blob/master/example/passthrough.c
+*/
+
 #define FUSE_USE_VERSION 31
 
 #ifdef HAVE_CONFIG_H
@@ -35,64 +39,146 @@
 #include <sys/xattr.h>
 #endif
 
-static int fill_dir_plus = 0;
-char *mount;
+#include "afs_client.h"
 
-static void fs_cachepath(char fpath[PATH_MAX], const char *path)
+// MACROS
+//#define SERVER_ADDR         "20.69.154.6:50051" // for testing on 2 machines
+#define SERVER_ADDR           "0.0.0.0:50051" // for testing on 1 machine
+
+#ifdef CRASH_TEST
+#define crash() *((char*)0) = 0;
+#else
+#define crash() do {} while(0)
+#endif
+
+// NAMESPACES
+using namespace std;
+using namespace FileSystemClient;
+
+// GLOBALS
+static int fill_dir_plus = 0;
+
+static struct options {	
+	ClientImplementation * client;
+	int show_help;
+} options;
+
+#define OPTION(t, p)                           \
+    { t, offsetof(struct options, p), 1 }
+static const struct fuse_opt option_spec[] = {
+	OPTION("-h", show_help),
+	OPTION("--help", show_help),
+	FUSE_OPT_END
+};
+
+// wrong - TODO
+static void show_help(const char *progname)
 {
-    strcpy(fpath, mount);
-    char temp[strlen(path)];
-    strcpy(temp, path);
-    for (int i = 1; i < (int) strlen(temp); i++)
-      if (temp[i] == '/')
-        temp[i] = '-';
-    strncat(fpath, temp, PATH_MAX);
+	std::cout<<"usage: "<<progname<<" [-s -d] <mountpoint>\n\n";
 }
 
-static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
-		       off_t offset, struct fuse_file_info *fi,
-		       enum fuse_readdir_flags flags)
+// Helper Functions
+// removes the '/' at the beginning
+char * fs_relative_path(char * path)
 {
-	//MAKE GRPC CALL?
-	
-	//Local version left in for now, needs to be replaced with GRPC:
-	char fpath[PATH_MAX];
-	DIR *dp;
-	struct dirent *de;
-	(void) offset;
+    return path + 1;
+}
+
+
+// FUSE functions
+static int fs_mkdir(const char *path, mode_t mode)
+{
+    char * rel_path = fs_relative_path((char *) path);
+    
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+    
+    return options.client->MakeDir(rel_path, mode);
+}
+
+
+static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi, enum fuse_readdir_flags flags)
+{
+    char * rel_path = fs_relative_path((char *) path);
+
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+
+    return options.client->ReadDir(rel_path, buf, filler);
+}
+
+
+static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_info *fi)
+{
 	(void) fi;
-	(void) flags;
+	int res;
+    char * rel_path = fs_relative_path((char *) path);
 
-	fs_cachepath(fpath, path);
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+    
+	return options.client->GetFileStat(rel_path, stbuf);
+}
 
-	dp = opendir(fpath);
-	if (dp == NULL)
-		return -errno;
+static int fs_rmdir(const char *path)
+{
+    char * rel_path = fs_relative_path((char *) path);
 
-	while ((de = readdir(dp)) != NULL) {
-		struct stat st;
-		memset(&st, 0, sizeof(st));
-		st.st_ino = de->d_ino;
-		st.st_mode = de->d_type << 12;
-		if (filler(buf, de->d_name, &st, 0, (fuse_fill_dir_flags) fill_dir_plus))
-			break;
-	}
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+    
+    return options.client->RemoveDir(rel_path);
+}
 
-	closedir(dp);
+static int fs_unlink(const char *path)
+{
+	int res;
+    char * rel_path = fs_relative_path((char *) path);
+
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+
+	return options.client->DeleteFile(rel_path);
+}
+
+static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
+{
+	/* Just a stub.	 This method is optional and can safely be left
+	   unimplemented */
+	(void) path;
+	(void) isdatasync;
+	(void) fi;
+	return 0;
+}
+
+static int fs_open(const char *path, struct fuse_file_info *fi)
+{
+	int res;
+    char * rel_path = fs_relative_path((char *) path);
+
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
+        
+	res = options.client->OpenFile(rel_path);
+	if (res == -1)
+		return -res;
+
+	fi->fh = res;
 	return 0;
 }
 
 static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 		    struct fuse_file_info *fi)
 {
-	char fpath[PATH_MAX];
 	int fd;
 	int res;
+	char * rel_path = fs_relative_path((char *) path);
 
-	fs_cachepath(fpath, path);
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
 
-	if(fi == NULL)
-		fd = open(fpath, O_RDONLY);
+	if (fi == NULL) // file not open?
+		fd = options.client->OpenFile(rel_path);
 	else
 		fd = fi->fh;
 	
@@ -103,99 +189,24 @@ static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 	if (res == -1)
 		res = -errno;
 
-	if(fi == NULL)
-		close(fd);
+	if (fi == NULL)
+		options.client->CloseFile(fd, rel_path);
 	return res;
-}
-
-static int fs_open(const char *path, struct fuse_file_info *fi)
-{
-	char fpath[PATH_MAX];
-	int res;
-    
-	fs_cachepath(fpath, path);
-        
-	res = open(fpath, fi->flags);
-	if (res == -1)
-		return -errno;
-
-	fi->fh = res;
-	return 0;
-}
-
-static int fs_getattr(const char *path, struct stat *stbuf,
-		       struct fuse_file_info *fi)
-{
-	char fpath[PATH_MAX];
-	(void) fi;
-	int res;
-
-	fs_cachepath(fpath, path);
-	
-	res = lstat(fpath, stbuf);
-	if (res == -1)
-		return -errno;
-
-	return 0;
-}
-
-static int fs_rename(const char *from, const char *to, unsigned int flags)
-{
-	//MAKE GRPC CALL?
-	
-	//Local version left in for now, needs to be replaced with GRPC:
-	int res;
-	char fpath_from[PATH_MAX];
-	char fpath_to[PATH_MAX];
-
-	fs_cachepath(fpath_from, from);
-	fs_cachepath(fpath_to, to);
-
-	if (flags)
-		return -EINVAL;
-
-	res = rename(fpath_from, fpath_to);
-	if (res == -1)
-		return -errno;
-
-	return 0;
-}
-
-static int fs_truncate(const char *path, off_t size,
-			struct fuse_file_info *fi)
-{
-	//MAKE GRPC CALL?
-	//This might not be supported by a server operation
-	
-	//Local version left in for now, needs to be replaced with GRPC:
-	int res;
-	char fpath[PATH_MAX];
-
-	fs_cachepath(fpath, path);
-
-	if (fi != NULL)
-		res = ftruncate(fi->fh, size);
-	else
-		res = truncate(fpath, size);
-	if (res == -1)
-		return -errno;
-
-	return 0;
 }
 
 static int fs_write(const char *path, const char *buf, size_t size,
 		     off_t offset, struct fuse_file_info *fi)
 {
-	printf("fs_write invoked\n");
 	int fd;
 	int res;
 	(void) fi;
-	char fpath[PATH_MAX];
+	char * rel_path = fs_relative_path((char *) path);
 
-	fs_cachepath(fpath, path);
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
 
-	if(fi == NULL)
-		fd = open(fpath, O_WRONLY);
+	if (fi == NULL)
+		fd = options.client->OpenFile(rel_path);
 	else
 		fd = fi->fh;
 	
@@ -204,85 +215,53 @@ static int fs_write(const char *path, const char *buf, size_t size,
 
 	res = pwrite(fd, buf, size, offset);
 	if (res == -1)
+	{
 		res = -errno;
+		return res;
+	}
 
-	if(fi == NULL)
-		close(fd);
+    if (fsync(fd) == -1)
+		return -errno;
+
+	if (fi == NULL)
+		options.client->CloseFile(fd, rel_path);
+
 	return res;
 }
 
-static int fs_fsync(const char *path, int isdatasync,
-		     struct fuse_file_info *fi)
+static int fs_release(const char *path, struct fuse_file_info *fi)
 {
+	char * rel_path = fs_relative_path((char *) path);
 
-	/* Just a stub.	 This method is optional and can safely be left
-	   unimplemented */
+    dbgprintf("path = %s\n", path);
+    dbgprintf("rel_path = %s\n", rel_path);
 
-
-
-	(void) path;
-	(void) isdatasync;
-	(void) fi;
-	return 0;
+	return options.client->CloseFile(fi->fh, rel_path);
 }
 
-static int fs_create(const char *path, mode_t mode,
-		      struct fuse_file_info *fi)
-{
-	//MAKE GRPC CALL?
-	//Might not be supported by server operation or necessary
-	
-	//Local version left in for now, needs to be replaced with GRPC:
-	
-	int res;
-	char fpath[PATH_MAX];
-
-	fs_cachepath(fpath, path);
-	
-	res = open(fpath, fi->flags, mode);
-	if (res == -1)
-		return -errno;
-
-	fi->fh = res;
-	return 0;
-}
-
-static int fs_statfs(const char *path, struct statvfs *stbuf)
-{
-	
-	//Not sure how to handle this one
-	
-	int res;
-	char fpath[PATH_MAX];
-
-	fs_cachepath(fpath, path);
-	
-	res = statvfs(fpath, stbuf);
-	if (res == -1)
-		return -errno;
-
-	return 0;
-}
 
 struct fuse_operations fsops = {
-	.getattr = fs_getattr,
-	.rename = fs_rename,
-	.truncate = fs_truncate,
-	.open = fs_open,
-	.read = fs_read,
-	.write = fs_write,
-	.statfs = fs_statfs,
-	.fsync = fs_fsync,	
+    .getattr = fs_getattr,
+	.mkdir = fs_mkdir,
+	.unlink = fs_unlink,
+	.rmdir = fs_rmdir,
+    .open = fs_open,
+    .read = fs_read,
+    .write = fs_write,
+    .release = fs_release,
+	.fsync = fs_fsync,
 	.readdir = fs_readdir,
-	.create = fs_create,
 };
 
 int
 main(int argc, char *argv[])
 {   
-	mount = realpath(argv[2], NULL);
-	argc--;
-	std::cout << mount << std::endl;
 	umask(0);
-	return (fuse_main(argc, argv, &fsops, NULL));
+
+    // Init grpc
+    string target_address(SERVER_ADDR);
+    options.client = new ClientImplementation(grpc::CreateChannel(target_address,
+                                grpc::InsecureChannelCredentials()));
+    
+	return (fuse_main(argc, argv, &fsops, &options));
 }

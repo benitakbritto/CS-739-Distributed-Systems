@@ -86,8 +86,10 @@ class ServiceImplementation final : public FileSystemService::Service {
     path root;
 
     path to_storage_path(string relative) {
-        path normalized = (root / relative).lexically_normal();
-
+    	dbgprintf("to_storage_path: root = %s\n", root.c_str());
+	    dbgprintf("to_storage_path: relative = %s\n", relative.c_str());
+	    path normalized = (root / relative).lexically_normal();
+        dbgprintf("to_storage_path: normalized = %s\n", normalized.c_str());
         // Check that this path is under our storage root
         auto [a, b] = std::mismatch(root.begin(), root.end(), normalized.begin());
         if (a != root.end()) {
@@ -253,9 +255,9 @@ class ServiceImplementation final : public FileSystemService::Service {
         dbgprintf("delete_file: Exiting function\n");
     }
 
-    void make_dir(path filepath) {
+    void make_dir(path filepath, int mode) {
         dbgprintf("make_dir: Entering function\n");
-        if (mkdir(filepath.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == -1) {
+        if (mkdir(filepath.c_str(), mode) == -1) {
             dbgprintf("make_dir: Exiting function\n");
             switch (errno) {
                 case EEXIST:
@@ -304,31 +306,36 @@ class ServiceImplementation final : public FileSystemService::Service {
 
     FileStat read_stat(path filepath) {
         struct stat sb;
-
-        if (stat(filepath.c_str(), &sb) == -1) {
-            switch (errno) {
-                case ENOENT:
-                    throw ServiceException("Item not found", StatusCode::NOT_FOUND);
-                case ENOTDIR:
-                    throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
-                default:
-                    throw ServiceException("Error in call to stat", StatusCode::UNKNOWN);
-            }
-        }
-
         FileStat ret;
 
-        ret.set_file_name(filepath.filename());
-        ret.set_mode(convert_filemode(sb.st_mode));
+        if (stat(filepath.c_str(), &sb) == -1) {
+            dbgprintf("read_stat: failed\n");
+            ret.set_error(errno);
+            return ret;
+            // not needed
+            // switch (errno) {
+            //     case ENOENT:
+            //         throw ServiceException("Item not found", StatusCode::NOT_FOUND);
+            //     case ENOTDIR:
+            //         throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+            //     default:
+            //         throw ServiceException("Error in call to stat", StatusCode::UNKNOWN);
+            // }
+        }
+
+        
+        ret.set_ino(sb.st_ino);
+        ret.set_mode(sb.st_mode);
+        ret.set_nlink(sb.st_nlink);
+        ret.set_uid(sb.st_uid);
+        ret.set_gid(sb.st_gid);
         ret.set_size(sb.st_size);
-
-        Timestamp t_access = convert_timestamp(sb.st_atim);
-        Timestamp t_change = convert_timestamp(sb.st_mtim);
-        Timestamp t_modify = convert_timestamp(sb.st_ctim);
-
-        ret.mutable_time_access()->CopyFrom(t_access);
-        ret.mutable_time_change()->CopyFrom(t_change);
-        ret.mutable_time_modify()->CopyFrom(t_modify);
+        ret.set_blksize(sb.st_blksize);
+        ret.set_blocks(sb.st_blocks);
+        ret.set_atime(sb.st_atime);
+        ret.set_mtime(sb.st_mtime);
+        ret.set_ctime(sb.st_ctime);
+        ret.set_error(0);
 
         return ret;
     }
@@ -608,7 +615,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("TestAuth: filepath = %s\n", filepath.c_str());
 
             // todo wait for write to finish??
-            make_dir(filepath);
+            make_dir(filepath, request->mode());
             dbgprintf("MakeDir: Exiting function on Success path\n");
             return Status::OK;
         } catch (const ServiceException& e) {
@@ -644,7 +651,7 @@ class ServiceImplementation final : public FileSystemService::Service {
         }
     }
 
-    Status ListDir(ServerContext* context, const ListDirRequest* request, ListDirResponse* reply) override {
+    Status ReadDir(ServerContext* context, const ListDirRequest* request, ListDirResponse* reply) override {
         dbgprintf("ListDir: Entering function\n");
         try {
             path filepath = to_storage_path(request->pathname());

@@ -95,6 +95,45 @@ namespace FileSystemClient
                     return -1;
                 }
             }
+
+            int RemoveDir(std::string path) 
+            {
+                dbgprintf("RemoveDir: Entering function\n");
+                RemoveDirRequest request;
+                RemoveDirResponse reply;
+                Status status;
+                uint32_t retryCount = 0;
+
+                request.set_pathname(path);
+
+                // Make RPC
+                // Retry w backoff
+                do 
+                {
+                    ClientContext context;
+                    reply.Clear();
+                    dbgprintf("RemoveDir: Invoking RPC\n");
+                    sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+                    status = stub_->RemoveDir(&context, request, &reply);
+                    retryCount++;
+                } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+                // Checking RPC Status
+                if (status.ok()) 
+                {
+                    dbgprintf("RemoveDir: RPC Success\n");
+                } 
+                else 
+                {
+                    // std::cout << status.error_code() << ": " << status.error_message()
+                    //           << std::endl;
+                    //PrintErrorMessage(status.error_code(), status.error_message(), "RemoveDir");
+                    dbgprintf("RemoveDir: RPC Failure\n");
+                    return -1;
+                }
+                dbgprintf("RemoveDir: Exiting function\n");
+                return 0;
+            }
         
         private:
                 std::unique_ptr<FileSystemService::Stub> stub_;

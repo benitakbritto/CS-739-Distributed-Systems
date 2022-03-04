@@ -82,8 +82,6 @@ static int fs_mkdir(const char *path, mode_t mode)
 {
     char fpath[PATH_MAX];
     fs_fullpath(fpath, path);
-    printf("Here\n");
-
     return options.client->MakeDir(fpath, mode);
 
     //printf("Here\n");
@@ -149,14 +147,18 @@ static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_inf
 	return 0;
 }
 
+static int fs_rmdir(const char *path)
+{
+    char fpath[PATH_MAX];
+    fs_fullpath(fpath, path);
+    return options.client->RemoveDir(fpath);
+}
+
 
 static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
 {
 	/* Just a stub.	 This method is optional and can safely be left
 	   unimplemented */
-
-
-
 	(void) path;
 	(void) isdatasync;
 	(void) fi;
@@ -166,6 +168,7 @@ static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
 struct fuse_operations fsops = {
     .getattr = fs_getattr,
     .mkdir = fs_mkdir,
+    .rmdir = fs_rmdir,
     .readdir = fs_readdir,
 };
 

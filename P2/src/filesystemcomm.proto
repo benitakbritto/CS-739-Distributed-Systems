@@ -112,6 +112,7 @@ message TestAuthResponse
 message MakeDirRequest
 {
     string pathname = 1;
+    int32 mode = 2;
 }
 message MakeDirResponse { } // empty ack
 

@@ -86,8 +86,7 @@ class ServiceImplementation final : public FileSystemService::Service {
     path root;
 
     path to_storage_path(string relative) {
-        path normalized = (root / relative).lexically_normal();
-
+    	    path normalized = (root / relative).lexically_normal();
         // Check that this path is under our storage root
         auto [a, b] = std::mismatch(root.begin(), root.end(), normalized.begin());
         if (a != root.end()) {
@@ -253,9 +252,9 @@ class ServiceImplementation final : public FileSystemService::Service {
         dbgprintf("delete_file: Exiting function\n");
     }
 
-    void make_dir(path filepath) {
+    void make_dir(path filepath, int mode) {
         dbgprintf("make_dir: Entering function\n");
-        if (mkdir(filepath.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == -1) {
+        if (mkdir(filepath.c_str(), mode) == -1) {
             dbgprintf("make_dir: Exiting function\n");
             switch (errno) {
                 case EEXIST:
@@ -608,7 +607,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("TestAuth: filepath = %s\n", filepath.c_str());
 
             // todo wait for write to finish??
-            make_dir(filepath);
+            make_dir(filepath, request->mode());
             dbgprintf("MakeDir: Exiting function on Success path\n");
             return Status::OK;
         } catch (const ServiceException& e) {

@@ -577,67 +577,80 @@ namespace FileSystemClient
                 StoreResponse reply;
                 Status status;
                 uint32_t retryCount = 0;
-                ClientContext context;
 
-                // No RPC necessary if file wasn't modified
-                // TODO: IsFileModified
-            
-                std::unique_ptr<ClientWriter<StoreRequest>> writer(
-                    stub_->StoreWithStream(&context, &reply));
-            
-                // Set Request
-                request.set_pathname(path);
-                std::ifstream fin(get_cache_path(path).c_str(), std::ios::binary);
-
-                // Get total chunks
-                struct stat st;
-                stat(get_cache_path(path).c_str(), &st);
-                int fileSize = st.st_size;
-                int totalChunks = 0;
-                totalChunks = fileSize / CHUNK_SIZE;
-                bool aligned = true;
-                int lastChunkSize = CHUNK_SIZE;
-                if (fileSize % CHUNK_SIZE)
+                do
                 {
-                    totalChunks++; // for left overs
-                    aligned = false;
-                    lastChunkSize = fileSize % CHUNK_SIZE;
-                }
+                    ClientContext context;
+                    reply.Clear();
+                    dbgprintf("CloseFileWithStream: Invoking RPC\n");
+
+                    // No RPC necessary if file wasn't modified
+                    // TODO: IsFileModified
                 
-                dbgprintf("CloseFileWithStream: fileSize = %d\n", fileSize);
-                dbgprintf("CloseFileWithStream: totalChunks = %d\n", totalChunks);
-                dbgprintf("CloseFileWithStream: lastChunkSize = %d\n", lastChunkSize);
 
-                // Read and send as stream
-                for (size_t chunk = 0; chunk < totalChunks; chunk++)
-                {
-                    size_t currentChunkSize = (chunk == totalChunks - 1 && !aligned) ? 
-                                              lastChunkSize : CHUNK_SIZE;
-                    
-                    //char * buffer = new char [currentChunkSize + 1];
-                    char * buffer = new char [currentChunkSize];
-                    //buffer[currentChunkSize] = '\0';
+                    sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
 
-                    dbgprintf("CloseFileWithStream: Reading chunks\n");
-                    if (fin.read(buffer, currentChunkSize)) 
+                    std::unique_ptr<ClientWriter<StoreRequest>> writer(
+                        stub_->StoreWithStream(&context, &reply));
+                
+                    // Set Request
+                    request.set_pathname(path);
+                    std::ifstream fin(get_cache_path(path).c_str(), std::ios::binary);
+                    fin.clear();
+                    fin.seekg(0, ios::beg);
+
+
+                    // Get total chunks
+                    struct stat st;
+                    stat(get_cache_path(path).c_str(), &st);
+                    int fileSize = st.st_size;
+                    int totalChunks = 0;
+                    totalChunks = fileSize / CHUNK_SIZE;
+                    bool aligned = true;
+                    int lastChunkSize = CHUNK_SIZE;
+                    if (fileSize % CHUNK_SIZE)
                     {
-                        request.set_file_contents(buffer);
-                        //dbgprintf("buffer = %s\n", buffer); -- do not use if \0 not set at end
+                        totalChunks++; // for left overs
+                        aligned = false;
+                        lastChunkSize = fileSize % CHUNK_SIZE;
+                    }
+                
+                    dbgprintf("CloseFileWithStream: fileSize = %d\n", fileSize);
+                    dbgprintf("CloseFileWithStream: totalChunks = %d\n", totalChunks);
+                    dbgprintf("CloseFileWithStream: lastChunkSize = %d\n", lastChunkSize);
 
-                        if (!writer->Write(request)) 
+                    // Read and send as stream
+                    for (size_t chunk = 0; chunk < totalChunks; chunk++)
+                    {
+                        size_t currentChunkSize = (chunk == totalChunks - 1 && !aligned) ? 
+                                                lastChunkSize : CHUNK_SIZE;
+                        
+                        //char * buffer = new char [currentChunkSize + 1];
+                        char * buffer = new char [currentChunkSize];
+                        //buffer[currentChunkSize] = '\0';
+
+                        dbgprintf("CloseFileWithStream: Reading chunks\n");
+                        if (fin.read(buffer, currentChunkSize)) 
                         {
-                            // Broken stream.
-                            dbgprintf("CloseFileWithStream: Stream broke\n");
-                            break; // TODO: Should we ret errno here?
+                            request.set_file_contents(buffer);
+                            //dbgprintf("buffer = %s\n", buffer); -- do not use if \0 not set at end
+
+                            if (!writer->Write(request)) 
+                            {
+                                // Broken stream.
+                                dbgprintf("CloseFileWithStream: Stream broke\n");
+                                break; // TODO: Should we ret errno here?
+                            }
                         }
                     }
-                }
+                    fin.close();
+                    // Done w Stream
+                    writer->WritesDone();
+                    status = writer->Finish();
 
-                fin.close();
-                // Done w Stream
-                writer->WritesDone();
-                status = writer->Finish();
-
+                    retryCount++;
+                } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+                
                 // Checking RPC Status
                 if (status.ok()) 
                 {
@@ -669,20 +682,31 @@ namespace FileSystemClient
                 // Note: TestAuth will internally call get_cache_path
                 if (TestAuth(path).response.has_changed())
                 {  
-                    request.set_pathname(path);
-                    std::unique_ptr<ClientReader<FetchResponse>> reader(
-                        stub_->FetchWithStream(&context, request));
-                    
-                    std::ofstream file;
-                    file.open(get_cache_path(path), std::ios::binary); // TODO Check flags
-
-                    while (reader->Read(&reply))
+                    do
                     {
-                        file << reply.file_contents();
-                    }
+                        dbgprintf("OpenFileWithStream: Invoking RPC\n");
+                        request.set_pathname(path);
+                        
+                        sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+                        
+                        std::unique_ptr<ClientReader<FetchResponse>> reader(
+                            stub_->FetchWithStream(&context, request));
+                        
+                        std::ofstream file;
+                        file.open(get_cache_path(path), std::ios::binary); // TODO Check flags
+                        file.clear();
+                        file.seekp(0, ios::beg);
 
-                    Status status = reader->Finish();
-                    file.close();
+                        while (reader->Read(&reply))
+                        {
+                            file << reply.file_contents();
+                        }
+
+                        Status status = reader->Finish();
+                        file.close();
+                        retryCount++;
+                    } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+                    
 
                     // Checking RPC Status
                     if (status.ok()) 

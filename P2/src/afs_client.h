@@ -456,8 +456,8 @@ namespace FileSystemClient
                         dbgprintf("OpenFile: RPC Success\n");
                         uint server_errno = reply.fs_errno();
                         if(server_errno) {
-                        dbgprintf("...but error %d on server\n", server_errno);
-                        dbgprintf("OpenFile: Exiting function\n");
+                            dbgprintf("...but error %d on server\n", server_errno);
+                            dbgprintf("OpenFile: Exiting function\n");
                             errno = server_errno;
                             return -1;
                         }
@@ -498,6 +498,8 @@ namespace FileSystemClient
                             dbgprintf("OpenFile: close() failed\n");
                             return -1;
                         }
+                        
+                        dbgprintf("OpenFile: successfully wrote %d bytes to cache\n", (int)reply.file_contents().length());
                     } 
                     else 
                     {

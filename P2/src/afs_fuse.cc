@@ -42,10 +42,11 @@
 #include "afs_client.h"
 
 // MACROS
-//#define SERVER_ADDR         "20.69.154.6:50051" // for testing on 2 machines
-#define SERVER_ADDR           "0.0.0.0:50051" // for testing on 1 machine
+//#define SERVER_ADDR         "52.151.53.152:50051" // Server: VM1
+//#define SERVER_ADDR         "20.69.154.6:50051" // Server: VM2
+//#define SERVER_ADDR         "20.69.94.59:50051" // Server: VM3
+#define SERVER_ADDR           "0.0.0.0:50051" // Server: self
 #define PERFORMANCE           0
-
 #ifdef CRASH_TEST
 #define crash() *((char*)0) = 0;
 #else
@@ -75,7 +76,7 @@ static const struct fuse_opt option_spec[] = {
 // wrong - TODO
 static void show_help(const char *progname)
 {
-	std::cout<<"usage: "<<progname<<" [-s -d] <mountpoint>\n\n";
+	std::cout<<"usage: "<<progname<<" [-f] <mountpoint>\n\n";
 }
 
 // Helper Functions
@@ -334,15 +335,30 @@ struct fuse_operations fsops = {
 	.utimens = fs_utimens,
 };
 
+
+void initgRPC()
+{
+	// make sure local path exists
+	string command = string("mkdir -p ") + LOCAL_CACHE_PREFIX;
+	dbgprintf("initgRPC: command %s\n", command.c_str());
+	if (system(command.c_str()) != 0)
+	{
+		dbgprintf("initgRPC: system() failed\n");
+	}
+
+	// init grpc connection
+	string target_address(SERVER_ADDR);
+    options.client = new ClientImplementation(grpc::CreateChannel(target_address,
+                                grpc::InsecureChannelCredentials()));
+	dbgprintf("initgRPC: Client is contacting server: %s\n", SERVER_ADDR);
+}
+
 int
 main(int argc, char *argv[])
 {
 	umask(0);
 
-    // Init grpc
-    string target_address(SERVER_ADDR);
-    options.client = new ClientImplementation(grpc::CreateChannel(target_address,
-                                grpc::InsecureChannelCredentials()));
-    
+	initgRPC();
+
 	return (fuse_main(argc, argv, &fsops, &options));
 }

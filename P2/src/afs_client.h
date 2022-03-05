@@ -793,6 +793,34 @@ namespace FileSystemClient
                 }
                 return string((std::istreambuf_iterator<char>(input_file)), std::istreambuf_iterator<char>());
             }
+
+            // For Crash Consistency
+            // Log v2
+            // TODO invoke
+            int createPendingFile(string filename)
+            {
+                string command = "touch " + filename + ".tmp";
+                dbgprintf("createPendingFile: command %s\n", command.c_str());
+                return system(command.c_str());
+            }
+
+            // For Crash Consistency
+            // Log v2
+            // TODO invoke
+            int removePendingFile(string filename)
+            {
+                string command = "rm -f " + filename + ".tmp";
+                dbgprintf("removePendingFile: command %s\n", command.c_str());
+                return system(command.c_str());
+            }
+
+            // For Crash Consistency
+            // Log v2
+            // TODO invoke
+            bool isFileModifiedv2(string filename)
+            {
+                return FileExists(filename);
+            }
     };
 }
 

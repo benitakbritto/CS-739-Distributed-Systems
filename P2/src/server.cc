@@ -9,7 +9,7 @@
 #include <map>
 #include <chrono>
 #include <utility>
-#include "filesystemcomm.grpc.pb.h"
+#include "build/filesystemcomm.grpc.pb.h"
 
 /******************************************************************************
  * MACROS

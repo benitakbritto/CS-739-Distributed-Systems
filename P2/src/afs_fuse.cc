@@ -236,9 +236,10 @@ static int fs_release(const char *path, struct fuse_file_info *fi)
     dbgprintf("path = %s\n", path);
     dbgprintf("rel_path = %s\n", rel_path);
 
-	// Uncomment later
-	//return options.client->CloseFile(fi->fh, rel_path);
-	return options.client->CloseFileWithStream(fi->fh, rel_path);
+	
+	return options.client->CloseFile(fi->fh, rel_path);
+	// Uncomment later for Performance. TODO: Add a macro to handle this switch?
+	//return options.client->CloseFileWithStream(fi->fh, rel_path);
 }
 
 struct fuse_operations fsops = {

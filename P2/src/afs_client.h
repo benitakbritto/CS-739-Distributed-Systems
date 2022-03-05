@@ -2,7 +2,7 @@
 #include <string>
 #include <chrono>
 #include <ctime>
-#include "filesystemcomm.grpc.pb.h"
+#include "build/filesystemcomm.grpc.pb.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -497,12 +497,26 @@ namespace FileSystemClient
                             return -1;
                         }
                         
+                        reply.time_modify();
+                            
+                        auto timing = reply.time_modify();
+                        
+                        struct timespec t;
+                        t.tv_sec = timing.sec();
+                        t.tv_nsec = timing.nsec();
+                        
+                        if(set_timings_opened(file,t) == -1) {
+                            dbgprintf("OpenFile: error (%d) setting file timings\n",errno);
+                        } else {
+                            dbgprintf("OpenFile: updated file timings\n");
+                        }
+                        
                         if (fsync(file) == -1)
                         {
                             dbgprintf("OpenFile: fsync() failed\n");
                             return -1;
                         }
-
+                        
                         if (close(file) == -1)
                         {
                             dbgprintf("OpenFile: close() failed\n");
@@ -546,8 +560,10 @@ namespace FileSystemClient
                 // TODO: Add isFileModified here
                 
                 // Set request
+                const string cache_path = get_cache_path(path);
+                
                 request.set_pathname(path);
-                request.set_file_contents(readFileIntoString(get_cache_path(path)));
+                request.set_file_contents(readFileIntoString(cache_path));
 
                 if (close(fd))
                 {
@@ -577,6 +593,18 @@ namespace FileSystemClient
                         dbgprintf("CloseFile: Exiting function\n"); 
                         errno = server_errno;
                             return -1;
+                    }
+                    
+                    auto timing = reply.time_modify();
+                    
+                    struct timespec t;
+                    t.tv_sec = timing.sec();
+                    t.tv_nsec = timing.nsec();
+                    
+                    if(set_timings(cache_path,t) == -1) {
+                        dbgprintf("CloseFile: error (%d) setting file timings\n",errno);
+                    } else {
+                        dbgprintf("CloseFile: updated file timings\n");
                     }
                     
                     dbgprintf("CloseFile: Exiting function\n");
@@ -684,6 +712,8 @@ namespace FileSystemClient
                 Status status;
                 uint32_t retryCount = 0;
 
+                string cache_path = get_cache_path(path);
+                
                 do
                 {
                     ClientContext context;
@@ -701,7 +731,7 @@ namespace FileSystemClient
                 
                     // Set Request
                     request.set_pathname(path);
-                    std::ifstream fin(get_cache_path(path).c_str(), std::ios::binary);
+                    std::ifstream fin(cache_path.c_str(), std::ios::binary);
                     fin.clear();
                     fin.seekg(0, ios::beg);
 
@@ -769,6 +799,18 @@ namespace FileSystemClient
                             return -1;
                     }
                     
+                    auto timing = reply.time_modify();
+                    
+                    struct timespec t;
+                    t.tv_sec = timing.sec();
+                    t.tv_nsec = timing.nsec();
+                    
+                    if(set_timings(cache_path,t) == -1) {
+                        dbgprintf("CloseFileWithStream: error (%d) setting file timings\n",errno);
+                    } else {
+                        dbgprintf("CloseFileWithStream: updated file timings\n");
+                    }
+                    
                     dbgprintf("CloseFileWithStream: Exiting function\n");
                     return 0;
                 } 
@@ -793,6 +835,7 @@ namespace FileSystemClient
                 ClientContext context;
                 //struct utimbuf ubuf;
                 uint32_t retryCount = 0;
+                string cache_path = get_cache_path(path);
             
                 // Note: TestAuth will internally call get_cache_path
                 if (TestAuth(path).response.has_changed())
@@ -808,7 +851,7 @@ namespace FileSystemClient
                             stub_->FetchWithStream(&context, request));
                         
                         std::ofstream file;
-                        file.open(get_cache_path(path), std::ios::binary); // TODO Check flags
+                        file.open(cache_path, std::ios::binary); // TODO Check flags
                         file.clear();
                         file.seekp(0, ios::beg);
 
@@ -833,6 +876,19 @@ namespace FileSystemClient
                             errno = server_errno;
                             return -1;
                         }
+                        
+                        auto timing = reply.time_modify();
+                        
+                        struct timespec t;
+                        t.tv_sec = timing.sec();
+                        t.tv_nsec = timing.nsec();
+                        
+                        if(set_timings(cache_path,t) == -1) {
+                            dbgprintf("CloseFileWithStream: error (%d) setting file timings\n",errno);
+                        } else {
+                            dbgprintf("CloseFileWithStream: updated file timings\n");
+                        }
+                        
                     } 
                     else 
                     {
@@ -856,6 +912,16 @@ namespace FileSystemClient
         private:
             unique_ptr<FileSystemService::Stub> stub_;
 
+            int set_timings(string cache_path, timespec t) {
+                struct timespec p[2] = {t,t};
+                return utimensat(AT_FDCWD,cache_path.c_str(),p,0);
+            }
+
+            int set_timings_opened(int fd, timespec t) {
+                struct timespec p[2] = {t,t};
+                return futimens(fd,p);
+            }
+            
             int create_path(string relative_path, bool is_file)
             {
                 dbgprintf("create_path: Entering function\n");

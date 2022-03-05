@@ -69,8 +69,8 @@ ps -e | grep "afs-server"
 (Note: -f let's you print debug statements while running fuse). Do Ctrl + C to stop ./afs-client.
 
 
-## To set the file system:
-Note: Do it from the terminal ONLY (do not use VSCode or any editor)
+## To test the file system:
+Note: Do it from the *terminal ONLY* (do not use VSCode or any editor's terminal or an editor's build functionality. Why? The editor's FS calls will be intercepted by FUSE.)
 ```
 mkdir -p /tmp/afs
 cd <mount point>
@@ -79,7 +79,10 @@ cd <mount point>
 
 ## General
 Where are the local files stored?
+
+```
 /tmp/afs
+```
 
 ## Misc
 Inorder to run cmake, change the location of the downloaded FUSE path

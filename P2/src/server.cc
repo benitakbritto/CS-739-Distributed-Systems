@@ -27,6 +27,7 @@
 #define MEM_MAP_MAX_KEY_COUNT    100 // num keys in map
 #define MEM_MAP_FREE_COUNT       10 // free 10 files
 #define MEM_MAP_START_FREE       50 // start freeing map when keys have reached this count value
+#define PERFORMANCE_MEM_MAP      0 // setting to read from mem map
 
 namespace fs = std::filesystem;
 
@@ -403,7 +404,7 @@ class ServiceImplementation final : public FileSystemService::Service {
     // For Performance
     // TODO: Add to FetchFast for small files
     // TODO: Add to StoreFast for small files only if file is still small; else delete
-    void put_file_in_mem_map(path filepath, string &content)
+    void put_file_in_mem_map(path filepath, string content)
     {
         auto current_time = get_current_time();
         if (mem_map.count(filepath) == 0)
@@ -469,12 +470,32 @@ class ServiceImplementation final : public FileSystemService::Service {
     ServiceImplementation(path root) : root(root) {}
 
     Status Fetch(ServerContext* context, const FetchRequest* request, FetchResponse* reply) override {
+        path filepath = to_storage_path(request->pathname());
+        dbgprintf("Fetch: filepath = %s\n", filepath.c_str());
+
+#if PERFORMANCE_MEM_MAP == 1
         try {
-            path filepath = to_storage_path(request->pathname());
-            dbgprintf("Fetch: filepath = %s\n", filepath.c_str());
+            auto content = get_file_from_mem_map(filepath);
+            reply->set_file_contents(content);
+            reply->mutable_time_modify()->CopyFrom(
+                convert_timestamp(read_modify_time(filepath)));
+
+            dbgprintf("Fetch: Read from mem map\n");
+            return Status::OK;
+
+        } catch (const ServiceException& e) {
+            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
+            // do nothing
+        } catch (const std::exception& e) {
+            errprintf("[Unexpected Exception] %s\n", e.what());
+            // do nothing
+        }
+#endif
+        // reading from mem map failed, try to get from disk
+
+        try {
 
             // TODO wait for read/write lock
-
             // In C++, protobuf `bytes` fields are implemented as strings
             auto content = read_file(filepath);
             reply->set_file_contents(content);
@@ -499,6 +520,17 @@ class ServiceImplementation final : public FileSystemService::Service {
 
             // TODO wait for read/write lock
             write_file(filepath, request->file_contents());
+
+// if optimization turned on, write to map
+#if PERFORMANCE_MEM_MAP == 1
+            // if the file is small, put in mem map
+            auto file_size = read_file_size(filepath);
+            if (file_size < SMALL_FILE_SIZE_THRESHOLD)
+            {
+                dbgprintf("Store: Storing file in mem map\n");
+                put_file_in_mem_map(filepath, request->file_contents());
+            }
+#endif
 
             auto time = convert_timestamp(read_modify_time(filepath));
             reply->mutable_time_modify()->CopyFrom(time);
@@ -525,6 +557,10 @@ class ServiceImplementation final : public FileSystemService::Service {
             // TODO wait for read/write lock
 
             delete_file(filepath);
+// if optimization turned on, delete from map
+#if PERFORMANCE_MEM_MAP == 1
+            delete_file_from_mem_map(filepath);
+#endif
             dbgprintf("Remove: Exiting function on Success path\n");
             return Status::OK;
         } catch (const ServiceException& e) {

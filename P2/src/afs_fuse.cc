@@ -47,11 +47,7 @@
 //#define SERVER_ADDR         "20.69.94.59:50051" // Server: VM3
 #define SERVER_ADDR           "0.0.0.0:50051" // Server: self
 #define PERFORMANCE           0
-#ifdef CRASH_TEST
-#define crash() *((char*)0) = 0;
-#else
-#define crash() do {} while(0)
-#endif
+
 
 // NAMESPACES
 using namespace std;
@@ -119,6 +115,7 @@ static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t
 
 static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_info *fi)
 {
+	crash(true);
 	dbgprintf("fs_getattr: Entered\n");
 	(void) fi;
 	int res;

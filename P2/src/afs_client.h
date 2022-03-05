@@ -21,6 +21,16 @@
 #define LOCAL_CACHE_PREFIX    "/tmp/afs/"
 #define CHUNK_SIZE            1024
 
+//Remove to disable all crashes
+#define CRASH_TEST
+
+#ifdef CRASH_TEST
+#define crash(...) if (__VA_ARGS__) *((char*)0) = 0; else do {} while(0)
+#else
+#define crash() do {} while(0)
+#endif
+
+
 /******************************************************************************
  * NAMESPACES
  *****************************************************************************/

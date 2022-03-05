@@ -28,6 +28,7 @@
 #define MEM_MAP_FREE_COUNT       10 // free 10 files
 #define MEM_MAP_START_FREE       50 // start freeing map when keys have reached this count value
 #define PERFORMANCE_MEM_MAP      0 // setting to read from mem map
+#define CHUNK_SIZE               1024
 
 namespace fs = std::filesystem;
 
@@ -69,6 +70,7 @@ using std::cout;
 using std::endl;
 using std::string;
 using grpc::ServerReader;
+using grpc::ServerWriter;
 
 class ServiceException : public std::runtime_error {
     StatusCode code;
@@ -312,6 +314,7 @@ class ServiceImplementation final : public FileSystemService::Service {
 
         if (stat(filepath.c_str(), &sb) == -1) {
             dbgprintf("read_stat: failed\n");
+            dbgprintf("read_stat: errno = %d\n", errno);
             ret.set_error(errno);
             return ret;
             // not needed
@@ -746,6 +749,71 @@ class ServiceImplementation final : public FileSystemService::Service {
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }
+
+    // For Performance
+    Status FetchWithStream(ServerContext* context, const FetchRequest* request, ServerWriter<FetchResponse>* writer) override {
+        try {
+            path filepath = to_storage_path(request->pathname());
+            dbgprintf("FetchWithStream: filepath = %s\n", filepath.c_str());
+
+            // TODO wait for read/write lock
+
+            FetchResponse reply;
+            // Set response
+            reply.mutable_time_modify()->CopyFrom(
+                convert_timestamp(read_modify_time(filepath)));
+            
+            // Get total chunks
+            std::ifstream fin(filepath.c_str(), std::ios::binary);
+
+            struct stat st;
+            stat(filepath.c_str(), &st);
+            int fileSize = st.st_size;
+            int totalChunks = 0;
+            totalChunks = fileSize / CHUNK_SIZE;
+            bool aligned = true;
+            int lastChunkSize = CHUNK_SIZE;
+            if (fileSize % CHUNK_SIZE)
+            {
+                totalChunks++; // for left overs
+                aligned = false;
+                lastChunkSize = fileSize % CHUNK_SIZE;
+            }
+                
+            dbgprintf("FetchWithStream: fileSize = %d\n", fileSize);
+            dbgprintf("FetchWithStream: totalChunks = %d\n", totalChunks);
+            dbgprintf("FetchWithStream: lastChunkSize = %d\n", lastChunkSize);
+
+            // Read and send as stream
+            for (size_t chunk = 0; chunk < totalChunks; chunk++)
+            {
+                size_t currentChunkSize = (chunk == totalChunks - 1 && !aligned) ? 
+                                              lastChunkSize : CHUNK_SIZE;
+                    
+                char * buffer = new char [currentChunkSize + 1];
+                //char * buffer = new char [currentChunkSize];
+                buffer[currentChunkSize + 1] = '\0';
+                dbgprintf("CloseFileWithStream: Reading chunks\n");
+                if (fin.read(buffer, currentChunkSize)) 
+                {
+                    //dbgprintf("buffer = %s\n", buffer); -- do not use if \0 not set at end
+                    dbgprintf("FetchWithStream = buffer %s\n", buffer);
+                    reply.set_file_contents(buffer);
+                    writer->Write(reply);
+                }
+            }
+
+            fin.close();
+            return Status::OK;
+        } catch (const ServiceException& e) {
+            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
+            return Status(e.get_code(), e.what());
+        } catch (const std::exception& e) {
+            errprintf("[Unexpected Exception] %s\n", e.what());
+            return Status(StatusCode::UNKNOWN, e.what());
+        }
+    }
+    
 
 };
 

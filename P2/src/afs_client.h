@@ -108,8 +108,8 @@ namespace FileSystemClient
                     dbgprintf("MakeDir: RPC Success\n");
                     dbgprintf("MakeDir: Exiting function\n");
                     
-                    // making the dir in cache directory
-                    mkdir(get_cache_path(path).c_str(), mode);
+                    // making the dir in cache directory, hierarchical if necessary
+                    create_path(path, false);
                     return 0;
                 }
                 else
@@ -382,7 +382,7 @@ namespace FileSystemClient
                         dbgprintf("OpenFile: RPC Success\n");
 
                         // create directory tree if not exists, as it exists on the server
-                        if (create_path(path) != 0)
+                        if (create_path(path, true) != 0)
                         {
                             dbgprintf("create_path: failed\n");
                             return errno;
@@ -718,10 +718,10 @@ namespace FileSystemClient
         private:
             unique_ptr<FileSystemService::Stub> stub_;
 
-            int create_path(string relative_path)
+            int create_path(string relative_path, bool is_file)
             {
                 dbgprintf("create_path: Entering function\n");
-                vector<string> tokens = tokenize_path(relative_path, '/');
+                vector<string> tokens = tokenize_path(relative_path, '/', is_file);
                 string base_path = LOCAL_CACHE_PREFIX;
                 for (auto token : tokens)
                 {
@@ -749,10 +749,11 @@ namespace FileSystemClient
                 return 0;
             }
 
-            vector<string> tokenize_path(string path, char delim)
+            vector<string> tokenize_path(string path, char delim, bool is_file)
             {
                 vector<string> tokens;
                 string temp = "";
+                
                 for(int i = 0; i < path.length(); i++)
                 {
                     if(path[i] == delim){
@@ -762,8 +763,11 @@ namespace FileSystemClient
                     else
                         temp = temp + (path.c_str())[i];           
                 }
-                // purposely not adding last token as it may contain file_name
-                //tokens.push_back(temp);
+
+                // if path is dir not file, create all dirs in path
+                if (!is_file)
+                    tokens.push_back(temp);
+
                 return tokens;
             }
 

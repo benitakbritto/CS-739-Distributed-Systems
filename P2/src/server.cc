@@ -9,11 +9,10 @@
 #include <map>
 #include <chrono>
 #include <utility>
-
 #include "filesystemcomm.grpc.pb.h"
 
 /******************************************************************************
- * Macros
+ * MACROS
  *****************************************************************************/
 #define DEBUG 1
 #define dbgprintf(...)       \
@@ -28,15 +27,12 @@
 #define MEM_MAP_FREE_COUNT       10 // free 10 files
 #define MEM_MAP_START_FREE       50 // start freeing map when keys have reached this count value
 #define PERFORMANCE_MEM_MAP      0 // setting to read from mem map
-#define CHUNK_SIZE               1024
+#define CHUNK_SIZE               1024 // for streaming
 
+/******************************************************************************
+ * NAMESPACE
+ *****************************************************************************/
 namespace fs = std::filesystem;
-
-// For Performance
-// stores filepath, timestamp, content of insertion
-// TODO: Add reader/writer locks
-std::map<fs::path, std::pair<time_t, std::string>> mem_map; 
-
 using filesystemcomm::DirectoryEntry;
 using filesystemcomm::FetchRequest;
 using filesystemcomm::FetchResponse;
@@ -74,6 +70,20 @@ using std::string;
 using grpc::ServerReader;
 using grpc::ServerWriter;
 
+
+/******************************************************************************
+ * GLOBALS
+ *****************************************************************************/
+// For Performance
+// stores filepath, timestamp, content of insertion
+// TODO: Add reader/writer locks
+std::map<fs::path, std::pair<time_t, std::string>> mem_map; 
+static const string TEMP_FILE_EXT = ".afs_tmp";
+
+
+/******************************************************************************
+ * EXCEPTION HANDLER
+ *****************************************************************************/
 class ServiceException : public std::runtime_error {
     StatusCode code;
 
@@ -85,9 +95,9 @@ class ServiceException : public std::runtime_error {
     }
 };
 
-static const string TEMP_FILE_EXT = ".afs_tmp";
-
-// Server Implementation
+/******************************************************************************
+ * gRPC SYNC SERVER IMPLEMENTATION
+ *****************************************************************************/
 class ServiceImplementation final : public FileSystemService::Service {
     path root;
 
@@ -407,8 +417,6 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     // For Performance
-    // TODO: Add to FetchFast for small files
-    // TODO: Add to StoreFast for small files only if file is still small; else delete
     void put_file_in_mem_map(path filepath, string content)
     {
         auto current_time = get_current_time();
@@ -423,7 +431,6 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     // For Performance
-    // TODO: Add to FetchFast for small files
     auto get_file_from_mem_map(path filepath)
     {
         if (mem_map.count(filepath) == 0)
@@ -438,7 +445,6 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     // For Performance
-    // TODO: Add to RemoveFileFast
     void delete_file_from_mem_map(path filepath)
     {
         if (mem_map.count(filepath))
@@ -452,10 +458,10 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     // For Performance
+    // TODO: Invoke using background daemon that keeps polling this function
     /*
         Frees up to MEM_MAP_FREE_COUNT old entries (based on timestamps)
         When we hit a watermark of MEM_MAP_START_FREE keys in the map
-        TODO: Invoke using background daemon that keeps polling this function
     */
     void partial_free_mem_map()
     {
@@ -499,7 +505,6 @@ class ServiceImplementation final : public FileSystemService::Service {
         // reading from mem map failed, try to get from disk
 
         try {
-
             // TODO wait for read/write lock
             // In C++, protobuf `bytes` fields are implemented as strings
             auto content = read_file(filepath);
@@ -855,6 +860,9 @@ void RunServer(path root) {
     server->Wait();
 }
 
+/******************************************************************************
+ * DRIVER
+ *****************************************************************************/
 int main(int argc, char** argv) {
     if (argc != 2) {
         cout << "Usage: " << argv[0] << " root_folder" << endl;

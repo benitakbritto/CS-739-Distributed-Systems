@@ -1,5 +1,3 @@
-// grpc code here
-
 #include <grpcpp/grpcpp.h>
 #include <string>
 #include <chrono>
@@ -12,18 +10,20 @@
 #include <fstream>
 #include <sstream>
 
-// Macros
+/******************************************************************************
+ * MACROS
+ *****************************************************************************/
 #define DEBUG                 1
 #define dbgprintf(...)        if (DEBUG) { printf(__VA_ARGS__); }
-//#define SERVER_ADDR         "20.69.154.6:50051"
-#define SERVER_ADDR           "0.0.0.0:50051"
 #define MAX_RETRY             5
 #define RETRY_TIME_START      1 // seconds
 #define RETRY_TIME_MULTIPLIER 2
 #define LOCAL_CACHE_PREFIX    "/tmp/afs/"
 #define CHUNK_SIZE            1024
 
-// Namespaces
+/******************************************************************************
+ * NAMESPACES
+ *****************************************************************************/
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
@@ -59,7 +59,9 @@ using std::ostringstream;
 using grpc::ClientWriter;
 using grpc::ClientReader;
 
-// Globals
+/******************************************************************************
+ * GLOBALS
+ *****************************************************************************/
 struct TestAuthReturnType
 {
   Status status;
@@ -71,6 +73,9 @@ struct TestAuthReturnType
                     {}
 };  
 
+/******************************************************************************
+ * gRPC SYNC CLIENT IMPLEMENTATION
+ *****************************************************************************/
 namespace FileSystemClient
 {
     class ClientImplementation 
@@ -235,9 +240,6 @@ namespace FileSystemClient
                 } 
                 else 
                 {
-                    // std::cout << status.error_code() << ": " << status.error_message()
-                    //           << std::endl;
-                    //PrintErrorMessage(status.error_code(), status.error_message(), "ListDir");
                     dbgprintf("ListDir: RPC Failure\n");
                     return -1;
                 }
@@ -347,8 +349,6 @@ namespace FileSystemClient
                 }                
             }
 
-            // TODO - deal with path having hierarchy -- need to call mkdir (eg. open(a/b/c.txt), where a/ and b/ not present locally)
-            // TODO - how to deal w creat request
             int OpenFile(std::string path) 
             {
                 dbgprintf("OpenFile: Inside function\n");
@@ -416,14 +416,6 @@ namespace FileSystemClient
                             dbgprintf("OpenFile: close() failed\n");
                             return errno;
                         }
-
-                        // not needed
-                        // //  Update local file modify time with servers modify time
-                        // ubuf.modtime = reply.time_modify().sec();
-                        // if (utime(path.c_str(), &ubuf) != 0)
-                        // {
-                        //     dbgprintf("OpenFile: utime() failed\n");
-                        // }
                     } 
                     else 
                     {

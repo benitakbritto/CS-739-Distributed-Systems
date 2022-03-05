@@ -105,6 +105,9 @@ namespace FileSystemClient
                 {
                     dbgprintf("MakeDir: RPC Success\n");
                     dbgprintf("MakeDir: Exiting function\n");
+                    
+                    // making the dir in cache directory
+                    mkdir(get_cache_path(path).c_str(), mode);
                     return 0;
                 }
                 else
@@ -143,6 +146,9 @@ namespace FileSystemClient
                 {
                     dbgprintf("RemoveDir: RPC Success\n");
                     dbgprintf("RemoveDir: Exiting function\n");
+
+                    // removing directory from cache
+                    rmdir(get_cache_path(path).c_str());
                     return 0;
 
                 } 
@@ -330,7 +336,16 @@ namespace FileSystemClient
                     if (status.ok()) 
                     {
                         dbgprintf("OpenFile: RPC Success\n");
-                    
+
+                        // create directory tree if not exists, as it exists on the server
+                        if (create_path(path) != 0)
+                        {
+                            dbgprintf("create_path: failed\n");
+                            return errno;
+                        }
+
+                        dbgprintf("OpenFile: create_path() Success\n");
+
                         file = open(get_cache_path(path).c_str(), O_RDWR | O_TRUNC | O_CREAT, 0666);
                         if (file == -1)
                         {
@@ -658,6 +673,55 @@ namespace FileSystemClient
                 
         private:
             unique_ptr<FileSystemService::Stub> stub_;
+
+            int create_path(string relative_path)
+            {
+                dbgprintf("create_path: Entering function\n");
+                vector<string> tokens = tokenize_path(relative_path, '/');
+                string base_path = LOCAL_CACHE_PREFIX;
+                for (auto token : tokens)
+                {
+                    base_path += token + "/";
+
+                    struct stat s;
+                    int r = stat(base_path.c_str(), &s);
+                    if (r != 0 && errno == 2) 
+                    {
+                        dbgprintf("create_path: stat() ENOENT\n");
+                        if (mkdir(base_path.c_str(), S_IRWXU) != 0)
+                        {
+                            dbgprintf("create_path: mkdir() failed : %d\n", errno);
+                            return errno;
+                        }
+                    }
+                    else if (r != 0)
+                    {
+                        dbgprintf("create_path: stat() failed : %d\n", errno);
+                        return errno;
+                    }
+                        
+                }
+                dbgprintf("create_path: Exiting function\n");
+                return 0;
+            }
+
+            vector<string> tokenize_path(string path, char delim)
+            {
+                vector<string> tokens;
+                string temp = "";
+                for(int i = 0; i < path.length(); i++)
+                {
+                    if(path[i] == delim){
+                        tokens.push_back(temp);
+                        temp = "";
+                    }
+                    else
+                        temp = temp + (path.c_str())[i];           
+                }
+                // purposely not adding last token as it may contain file_name
+                //tokens.push_back(temp);
+                return tokens;
+            }
 
             bool FileExists(std::string path)
             {

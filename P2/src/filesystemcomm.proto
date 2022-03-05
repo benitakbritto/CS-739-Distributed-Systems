@@ -4,6 +4,7 @@ package filesystemcomm;
 
 service FileSystemService 
 {
+    // BASIC
     // File operations
     rpc Fetch (FetchRequest) returns (FetchResponse) {}
     rpc Store (StoreRequest) returns (StoreResponse) {}
@@ -18,6 +19,10 @@ service FileSystemService
     rpc MakeDir (MakeDirRequest) returns (MakeDirResponse) {}
     rpc RemoveDir (RemoveDirRequest) returns (RemoveDirResponse) {}
     rpc ReadDir (ListDirRequest) returns (ListDirResponse) {}
+
+    // PERFORMANCE
+    // File operations
+    rpc StoreWithStream (stream StoreRequest) returns (StoreResponse) {}
 }
 
 

@@ -236,9 +236,10 @@ static int fs_release(const char *path, struct fuse_file_info *fi)
     dbgprintf("path = %s\n", path);
     dbgprintf("rel_path = %s\n", rel_path);
 
-	return options.client->CloseFile(fi->fh, rel_path);
+	// Uncomment later
+	//return options.client->CloseFile(fi->fh, rel_path);
+	return options.client->CloseFileWithStream(fi->fh, rel_path);
 }
-
 
 struct fuse_operations fsops = {
     .getattr = fs_getattr,
@@ -249,7 +250,7 @@ struct fuse_operations fsops = {
     .read = fs_read,
     .write = fs_write,
     .release = fs_release,
-	.fsync = fs_fsync,
+	.fsync = fs_fsync, 
 	.readdir = fs_readdir,
 };
 

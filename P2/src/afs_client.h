@@ -1,3 +1,5 @@
+// grpc code here
+
 #include <grpcpp/grpcpp.h>
 #include <string>
 #include <chrono>
@@ -10,20 +12,18 @@
 #include <fstream>
 #include <sstream>
 
-/******************************************************************************
- * MACROS
- *****************************************************************************/
+// Macros
 #define DEBUG                 1
 #define dbgprintf(...)        if (DEBUG) { printf(__VA_ARGS__); }
+//#define SERVER_ADDR         "20.69.154.6:50051"
+#define SERVER_ADDR           "0.0.0.0:50051"
 #define MAX_RETRY             5
 #define RETRY_TIME_START      1 // seconds
 #define RETRY_TIME_MULTIPLIER 2
 #define LOCAL_CACHE_PREFIX    "/tmp/afs/"
 #define CHUNK_SIZE            1024
 
-/******************************************************************************
- * NAMESPACES
- *****************************************************************************/
+// Namespaces
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
@@ -59,9 +59,7 @@ using std::ostringstream;
 using grpc::ClientWriter;
 using grpc::ClientReader;
 
-/******************************************************************************
- * GLOBALS
- *****************************************************************************/
+// Globals
 struct TestAuthReturnType
 {
   Status status;
@@ -73,9 +71,6 @@ struct TestAuthReturnType
                     {}
 };  
 
-/******************************************************************************
- * gRPC SYNC CLIENT IMPLEMENTATION
- *****************************************************************************/
 namespace FileSystemClient
 {
     class ClientImplementation 
@@ -240,6 +235,9 @@ namespace FileSystemClient
                 } 
                 else 
                 {
+                    // std::cout << status.error_code() << ": " << status.error_message()
+                    //           << std::endl;
+                    //PrintErrorMessage(status.error_code(), status.error_message(), "ListDir");
                     dbgprintf("ListDir: RPC Failure\n");
                     return -1;
                 }
@@ -349,6 +347,8 @@ namespace FileSystemClient
                 }                
             }
 
+            // TODO - deal with path having hierarchy -- need to call mkdir (eg. open(a/b/c.txt), where a/ and b/ not present locally)
+            // TODO - how to deal w creat request
             int OpenFile(std::string path) 
             {
                 dbgprintf("OpenFile: Inside function\n");
@@ -416,6 +416,14 @@ namespace FileSystemClient
                             dbgprintf("OpenFile: close() failed\n");
                             return errno;
                         }
+
+                        // not needed
+                        // //  Update local file modify time with servers modify time
+                        // ubuf.modtime = reply.time_modify().sec();
+                        // if (utime(path.c_str(), &ubuf) != 0)
+                        // {
+                        //     dbgprintf("OpenFile: utime() failed\n");
+                        // }
                     } 
                     else 
                     {
@@ -443,20 +451,35 @@ namespace FileSystemClient
                 StoreResponse reply;
                 Status status;
                 uint32_t retryCount = 0;
+                dbgprintf("BEGIN CLOSE LOG %s \n", path.c_str());
+                // Check for init closes (fd = -1)
+                if (fd != -1) {
+                    if (close(fd))
+                    {
+                    	dbgprintf("CloseFile: close() failed\n");
+                    	return -1;
+                    }
 
-                // No RPC necessary if file wasn't modified
-                
-                // TODO: Add isFileModified here
-                
+                    // No RPC necessary if file wasn't modified
+                    ifstream log;
+		    bool changed = false;
+		    log.open("/tmp/afs/log", ios::in);
+		    if (log.is_open()) {
+	  		string line;
+	  	        while (getline(log, line)) {
+			    dbgprintf("CLOSE LOG LOOP %s \n", line.c_str());
+			    dbgprintf("CLOSE LOG LOOP 2 %s \n", path.c_str());
+	  		    if (line == path)
+	  		        changed = true;
+	  	        }
+		    }
+		    //if (!changed) return 0; 
+		    dbgprintf("CLOSE LOG CHECK %d \n", (int)changed);
+                }
+
                 // Set request
                 request.set_pathname(path);
                 request.set_file_contents(readFileIntoString(get_cache_path(path)));
-
-                if (close(fd))
-                {
-                    dbgprintf("CloseFile: close() failed\n");
-                    return -1;
-                }
 
                 // Make RPC
                 // Retry with backoff
@@ -474,6 +497,26 @@ namespace FileSystemClient
                 if (status.ok()) 
                 {
                     dbgprintf("CloseFile: RPC Success\n");
+
+                    // Delete entry from log
+                    ifstream log;
+		    log.open("/tmp/afs/log", ios::in);
+		    ofstream newlog;
+		    newlog.open("/tmp/afs/newlog", ios::out);
+		    if (log.is_open() && newlog.is_open()) {
+	  		string line;
+			dbgprintf("CHECK NEWLOG \n");
+	  	        while (getline(log, line)) {	
+	  		    if (line != path) {
+	  		        newlog << line << endl;
+				dbgprintf("CLOSE RPC LOG %s \n", line.c_str());
+			    }
+	  	        }
+	  	        remove("/tmp/afs/log");
+	  	        // If we crash here, we lose the log
+	  	        rename("/tmp/afs/newlog", "tmp/afs/log");
+	  	    }
+
                     dbgprintf("CloseFile: Exiting function\n");
                     return 0;
                 } 
@@ -792,34 +835,6 @@ namespace FileSystemClient
                     return string();
                 }
                 return string((std::istreambuf_iterator<char>(input_file)), std::istreambuf_iterator<char>());
-            }
-
-            // For Crash Consistency
-            // Log v2
-            // TODO invoke
-            int createPendingFile(string filename)
-            {
-                string command = "touch " + filename + ".tmp";
-                dbgprintf("createPendingFile: command %s\n", command.c_str());
-                return system(command.c_str());
-            }
-
-            // For Crash Consistency
-            // Log v2
-            // TODO invoke
-            int removePendingFile(string filename)
-            {
-                string command = "rm -f " + filename + ".tmp";
-                dbgprintf("removePendingFile: command %s\n", command.c_str());
-                return system(command.c_str());
-            }
-
-            // For Crash Consistency
-            // Log v2
-            // TODO invoke
-            bool isFileModifiedv2(string filename)
-            {
-                return FileExists(filename);
             }
     };
 }

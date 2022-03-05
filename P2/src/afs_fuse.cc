@@ -42,11 +42,10 @@
 #include "afs_client.h"
 
 // MACROS
-//#define SERVER_ADDR         "52.151.53.152:50051" // Server: VM1
-//#define SERVER_ADDR         "20.69.154.6:50051" // Server: VM2
-//#define SERVER_ADDR         "20.69.94.59:50051" // Server: VM3
-#define SERVER_ADDR           "0.0.0.0:50051" // Server: self
+//#define SERVER_ADDR         "20.69.154.6:50051" // for testing on 2 machines
+#define SERVER_ADDR           "0.0.0.0:50051" // for testing on 1 machine
 #define PERFORMANCE           0
+
 #ifdef CRASH_TEST
 #define crash() *((char*)0) = 0;
 #else
@@ -76,7 +75,7 @@ static const struct fuse_opt option_spec[] = {
 // wrong - TODO
 static void show_help(const char *progname)
 {
-	std::cout<<"usage: "<<progname<<" [-f] <mountpoint>\n\n";
+	std::cout<<"usage: "<<progname<<" [-s -d] <mountpoint>\n\n";
 }
 
 // Helper Functions
@@ -87,6 +86,29 @@ char * fs_relative_path(char * path)
 }
 
 // FUSE functions
+static void *fs_init(struct fuse_conn_info *conn,
+		      struct fuse_config *cfg)
+{
+	//(void) conn;
+	//cfg->use_ino = 1;
+
+	ifstream log;
+	log.open("/tmp/afs/log", ios::in);
+	if (log.is_open()) {
+	  string line;
+	  while (getline(log, line)) {
+	    options.client->CloseFile(-1, line);
+	    dbgprintf("READ LOG ON INIT %s \n", line.c_str());
+	  }
+	}
+
+	//cfg->entry_timeout = 0;
+	//cfg->attr_timeout = 0;
+	//cfg->negative_timeout = 0;
+
+	return NULL;
+}
+
 static int fs_mkdir(const char *path, mode_t mode)
 {
 	dbgprintf("fs_mkdir: Entered\n");
@@ -281,6 +303,12 @@ static int fs_write(const char *path, const char *buf, size_t size,
 	if (fd == -1)
 		return -errno;
 
+	// Update log to say this file was modified
+	ofstream log;
+	log.open("/tmp/afs/log", ios::out | ios::app);
+	if (log.is_open())
+		log << fs_relative_path((char* ) path) << endl;
+
 	res = pwrite(fd, buf, size, offset);
 	if (res == -1)
 	{
@@ -331,34 +359,20 @@ struct fuse_operations fsops = {
     .release = fs_release,
 	.fsync = fs_fsync, 
 	.readdir = fs_readdir,
+	.init = fs_init,
 	.access = fs_access,
 	.utimens = fs_utimens,
 };
-
-
-void initgRPC()
-{
-	// make sure local path exists
-	string command = string("mkdir -p ") + LOCAL_CACHE_PREFIX;
-	dbgprintf("initgRPC: command %s\n", command.c_str());
-	if (system(command.c_str()) != 0)
-	{
-		dbgprintf("initgRPC: system() failed\n");
-	}
-
-	// init grpc connection
-	string target_address(SERVER_ADDR);
-    options.client = new ClientImplementation(grpc::CreateChannel(target_address,
-                                grpc::InsecureChannelCredentials()));
-	dbgprintf("initgRPC: Client is contacting server: %s\n", SERVER_ADDR);
-}
 
 int
 main(int argc, char *argv[])
 {
 	umask(0);
 
-	initgRPC();
-
+    // Init grpc
+    string target_address(SERVER_ADDR);
+    options.client = new ClientImplementation(grpc::CreateChannel(target_address,
+                                grpc::InsecureChannelCredentials()));
+    
 	return (fuse_main(argc, argv, &fsops, &options));
 }

@@ -714,7 +714,6 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     // For Performance
-    // TODO - test
     Status FetchWithStream(ServerContext* context, const FetchRequest* request, ServerWriter<FetchResponse>* writer) override {
         try {
             path filepath = to_storage_path(request->pathname());

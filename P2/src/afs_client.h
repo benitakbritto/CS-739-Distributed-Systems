@@ -83,7 +83,29 @@ namespace FileSystemClient
         public:
             ClientImplementation(std::shared_ptr<Channel> channel)
                 : stub_(FileSystemService::NewStub(channel)) {}
-        
+            
+            // Convert an RPC failure status code to something like an errno
+            int transform_rpc_err(grpc::StatusCode code) {
+                switch(code) {
+                    case StatusCode::OK:
+                        return 0;
+                    case StatusCode::INVALID_ARGUMENT:
+                        return EINVAL;
+                    case StatusCode::NOT_FOUND:
+                        return ENOENT;
+                    case StatusCode::DEADLINE_EXCEEDED:
+                    case StatusCode::UNAVAILABLE:
+                        return ETIMEDOUT;
+                    case StatusCode::ALREADY_EXISTS:
+                        return EEXIST;
+                    case StatusCode::PERMISSION_DENIED:
+                    case StatusCode::UNAUTHENTICATED:
+                        return EPERM;
+                    default:
+                        return EIO; // fall back to IO err for unexpected issues
+                }
+            }
+            
             int MakeDir(std::string path, mode_t mode) 
             {
                 dbgprintf("MakeDir: Entering function\n");
@@ -112,6 +134,13 @@ namespace FileSystemClient
                 {
                     dbgprintf("MakeDir: RPC Success\n");
                     dbgprintf("MakeDir: Exiting function\n");
+                    uint server_errno = reply.fs_errno();
+                    if(server_errno) {
+                        dbgprintf("...but error %d on server\n", server_errno);
+                        dbgprintf("MakeDir: Exiting function\n"); 
+                        errno = server_errno;
+                            return -1;
+                    }
                     
                     // making the dir in cache directory, hierarchical if necessary
                     create_path(path, false);
@@ -121,7 +150,8 @@ namespace FileSystemClient
                 {
                     dbgprintf("MakeDir: RPC failure\n");
                     dbgprintf("MakeDir: Exiting function\n");
-                    return -1;
+                    errno = transform_rpc_err(status.error_code());
+                        return -1;
                 }
             }
 
@@ -150,10 +180,17 @@ namespace FileSystemClient
                 } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
 
                 // Checking RPC Status
-                if (status.ok() && reply.error() == 0) 
+                if (status.ok()) 
                 {
                     dbgprintf("CreateFile: RPC Success\n");
                     dbgprintf("CreateFile: Exiting function\n");
+                    uint server_errno = reply.fs_errno();
+                    if(server_errno) {
+                        dbgprintf("...but error %d on server\n", server_errno);
+                        dbgprintf("CreateFile: Exiting function\n"); 
+                        errno = server_errno;
+                            return -1;
+                    }
 
                     // adding file to local cache
                     mknod(get_cache_path(path).c_str(), mode, rdev);
@@ -163,7 +200,8 @@ namespace FileSystemClient
                 {
                     dbgprintf("CreateFile: RPC Failure\n");
                     dbgprintf("CreateFile: Exiting function\n");
-                    return reply.error();
+                    errno = transform_rpc_err(status.error_code());
+                        return -1;
                 }
             }
 
@@ -196,6 +234,14 @@ namespace FileSystemClient
                     dbgprintf("RemoveDir: RPC Success\n");
                     dbgprintf("RemoveDir: Exiting function\n");
 
+                    uint server_errno = reply.fs_errno();
+                    if(server_errno) {
+                        dbgprintf("...but error %d on server\n", server_errno);
+                        dbgprintf("RemoveDir: Exiting function\n"); 
+                        errno = server_errno;
+                            return -1;
+                    }
+                    
                     // removing directory from cache
                     rmdir(get_cache_path(path).c_str());
                     return 0;
@@ -205,7 +251,8 @@ namespace FileSystemClient
                 {
                     dbgprintf("RemoveDir: RPC Failure\n");
                     dbgprintf("RemoveDir: Exiting function\n");
-                    return -1;
+                    errno = transform_rpc_err(status.error_code());
+                        return -1;
                 }
             }
 
@@ -237,11 +284,19 @@ namespace FileSystemClient
                 if (status.ok()) 
                 {
                     dbgprintf("ListDir: RPC Success\n");
+                    uint server_errno = reply.fs_errno();
+                    if(server_errno) {
+                        dbgprintf("...but error %d on server\n", server_errno);
+                        dbgprintf("ListDir: Exiting function\n"); 
+                        errno = server_errno;
+                            return -1;
+                    }
                 } 
                 else 
                 {
                     dbgprintf("ListDir: RPC Failure\n");
-                    return -1;
+                    errno = transform_rpc_err(status.error_code());
+                        return -1;
                 }
 
                 dbgprintf("ListDir: Exiting function\n");
@@ -279,9 +334,17 @@ namespace FileSystemClient
                 } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
 
                 // Checking RPC Status
-                if (status.ok() && reply.status().error() == 0) 
+                if (status.ok()) 
                 {
                     dbgprintf("GetFileStat: RPC Success\n");
+                    uint server_errno = reply.fs_errno();
+                    if(server_errno) {
+                        dbgprintf("...but error %d on server\n", server_errno);
+                        dbgprintf("GetFileStat: Exiting function\n"); 
+                        errno = server_errno;
+                            return -1;
+                    }
+                    
                     stbuf->st_ino = reply.status().ino();
                     stbuf->st_mode = reply.status().mode();
                     stbuf->st_nlink = reply.status().nlink();
@@ -300,7 +363,8 @@ namespace FileSystemClient
                 {
                     dbgprintf("GetFileStat: RPC Failed\n");
                     dbgprintf("GetFileStat: Exiting function\n");
-                    return -reply.status().error();
+                    errno = transform_rpc_err(status.error_code());
+                        return -1;
                 }
             }
 
@@ -331,6 +395,14 @@ namespace FileSystemClient
                 if (status.ok()) 
                 {
                     dbgprintf("DeleteFile: RPC success\n");
+                    uint server_errno = reply.fs_errno();
+                    if(server_errno) {
+                        dbgprintf("...but error %d on server\n", server_errno);
+                        dbgprintf("DeleteFile: Exiting function\n"); 
+                        errno = server_errno;
+                            return -1;
+                    }
+                    
                     dbgprintf("DeleteFile: Exiting function\n");
 
                     // remove from local cache
@@ -345,7 +417,8 @@ namespace FileSystemClient
                 {
                     dbgprintf("DeleteFile: RPC failure\n");
                     dbgprintf("DeleteFile: Exiting function\n");
-                    return -1;
+                    errno = transform_rpc_err(status.error_code());
+                        return -1;
                 }                
             }
 
@@ -362,6 +435,7 @@ namespace FileSystemClient
                 // Note: TestAuth will internally call get_cache_path
                 if (TestAuth(path).response.has_changed())
                 {  
+                    dbgprintf("OpenFile: TestAuth reports changed\n");
                     request.set_pathname(path);
 
                     // Make RPC
@@ -380,12 +454,20 @@ namespace FileSystemClient
                     if (status.ok()) 
                     {
                         dbgprintf("OpenFile: RPC Success\n");
+                        uint server_errno = reply.fs_errno();
+                        if(server_errno) {
+                            dbgprintf("...but error %d on server\n", server_errno);
+                            dbgprintf("OpenFile: Exiting function\n");
+                            errno = server_errno;
+                            return -1;
+                        }
+                        
 
                         // create directory tree if not exists, as it exists on the server
                         if (create_path(path, true) != 0)
                         {
                             dbgprintf("create_path: failed\n");
-                            return errno;
+                            return -1;
                         }
 
                         dbgprintf("OpenFile: create_path() Success\n");
@@ -394,7 +476,7 @@ namespace FileSystemClient
                         if (file == -1)
                         {
                             dbgprintf("OpenFile: open() failed\n");
-                            return errno;
+                            return -1;
                         }
                     
                         //dbgprintf("OpenFile: reply.file_contents().length() = %ld\n", reply.file_contents().length());
@@ -402,33 +484,38 @@ namespace FileSystemClient
                         if (write(file, reply.file_contents().c_str(), reply.file_contents().length()) == -1)
                         {
                             dbgprintf("OpenFile: write() failed\n");
-                            return errno;
+                            return -1;
                         }
                         
                         if (fsync(file) == -1)
                         {
                             dbgprintf("OpenFile: fsync() failed\n");
-                            return errno;
+                            return -1;
                         }
 
                         if (close(file) == -1)
                         {
                             dbgprintf("OpenFile: close() failed\n");
-                            return errno;
+                            return -1;
                         }
+                        
+                        dbgprintf("OpenFile: successfully wrote %d bytes to cache\n", (int)reply.file_contents().length());
                     } 
                     else 
                     {
                         dbgprintf("OpenFile: RPC Failure\n");
+                        errno = transform_rpc_err(status.error_code());
                         return -1;
                     }
-                } 
+                } else {
+                    dbgprintf("OpenFile: TestAuth reports no change\n");
+                }
 
                 file = open(get_cache_path(path).c_str(), O_RDWR | O_CREAT, 0666); // QUESTION: Why do we need O_CREAT?
                 if (file == -1)
                 {
                     dbgprintf("OpenFile: open() failed\n");
-                    return errno;
+                    return -1;
                 }
                 
                 dbgprintf("OpenFile: Exiting function\n");
@@ -474,6 +561,14 @@ namespace FileSystemClient
                 if (status.ok()) 
                 {
                     dbgprintf("CloseFile: RPC Success\n");
+                    uint server_errno = reply.fs_errno();
+                    if(server_errno) {
+                        dbgprintf("...but error %d on server\n", server_errno);
+                        dbgprintf("CloseFile: Exiting function\n"); 
+                        errno = server_errno;
+                            return -1;
+                    }
+                    
                     dbgprintf("CloseFile: Exiting function\n");
                     return 0;
                 } 
@@ -481,7 +576,8 @@ namespace FileSystemClient
                 {
                     dbgprintf("CloseFile: RPC Failure\n");
                     dbgprintf("CloseFile: Exiting function\n");
-                    return -1;
+                    errno = transform_rpc_err(status.error_code());
+                        return -1;
                 }
             }
 
@@ -570,7 +666,7 @@ namespace FileSystemClient
                 if (close(fd) == -1)
                 {
                     dbgprintf("CloseFileWithStream: close() failed\n");
-                    return errno;
+                    return -1;
                 }
             
                 StoreRequest request;
@@ -655,6 +751,14 @@ namespace FileSystemClient
                 if (status.ok()) 
                 {
                     dbgprintf("CloseFileWithStream: RPC Success\n");
+                    uint server_errno = reply.fs_errno();
+                    if(server_errno) {
+                        dbgprintf("...but error %d on server\n", server_errno);
+                        dbgprintf("CloseFileWithStream: Exiting function\n"); 
+                        errno = server_errno;
+                            return -1;
+                    }
+                    
                     dbgprintf("CloseFileWithStream: Exiting function\n");
                     return 0;
                 } 
@@ -662,7 +766,8 @@ namespace FileSystemClient
                 {
                     dbgprintf("CloseFileWithStream: RPC Failure\n");
                     dbgprintf("CloseFileWithStream: Exiting function\n");
-                    return -1;
+                    errno = transform_rpc_err(status.error_code());
+                        return -1;
                 }
             } 
 
@@ -712,10 +817,17 @@ namespace FileSystemClient
                     if (status.ok()) 
                     {
                         dbgprintf("OpenFileWithStream: RPC Success\n");
+                        uint server_errno = reply.fs_errno();
+                        if(server_errno) {
+                        dbgprintf("...but error %d on server\n", server_errno);
+                            errno = server_errno;
+                            return -1;
+                        }
                     } 
                     else 
                     {
                         dbgprintf("OpenFileWithStream: RPC Failure\n");
+                        errno = transform_rpc_err(status.error_code());
                         return -1;
                     }
                 } 
@@ -724,7 +836,7 @@ namespace FileSystemClient
                 if (file == -1)
                 {
                     dbgprintf("OpenFile: open() failed\n");
-                    return errno;
+                    return -1;
                 }
                 
                 dbgprintf("OpenFile: Exiting function\n");
@@ -751,13 +863,13 @@ namespace FileSystemClient
                         if (mkdir(base_path.c_str(), S_IRWXU) != 0)
                         {
                             dbgprintf("create_path: mkdir() failed : %d\n", errno);
-                            return errno;
+                            return -1;
                         }
                     }
                     else if (r != 0)
                     {
                         dbgprintf("create_path: stat() failed : %d\n", errno);
-                        return errno;
+                        return -1;
                     }
                         
                 }

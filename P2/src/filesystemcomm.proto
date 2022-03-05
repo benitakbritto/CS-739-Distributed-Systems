@@ -57,7 +57,6 @@ message FileStat
     int32    atime = 10;   
     int32    mtime = 11;   
     int32    ctime = 12; 
-    int32    error = 13;
 }
 
 message DirectoryEntry {
@@ -73,8 +72,9 @@ message FetchRequest
 }
 message FetchResponse
 {
-    bytes file_contents = 1;
-    Timestamp time_modify = 2;
+    uint32 fs_errno = 1;
+    bytes file_contents = 2;
+    Timestamp time_modify = 3;
 }
 
 message MknodRequest
@@ -86,7 +86,7 @@ message MknodRequest
 
 message MknodResponse
 {
-    uint32 error = 1;
+    uint32 fs_errno = 1;
 }
 
 
@@ -97,7 +97,8 @@ message StoreRequest
 }
 message StoreResponse
 {
-    Timestamp time_modify = 1; // this isn't in ITC DFS protocol, but is included for use in TestAuth
+    uint32 fs_errno = 1;
+    Timestamp time_modify = 2; // this isn't in ITC DFS protocol, but is included for use in TestAuth
 }
 
 
@@ -106,7 +107,10 @@ message RemoveRequest
 {
     string pathname = 1;
 }
-message RemoveResponse { } // empty ack
+message RemoveResponse
+{
+    uint32 fs_errno = 1;
+}
 
 
 
@@ -117,7 +121,8 @@ message GetFileStatRequest
 }
 message GetFileStatResponse
 {
-    FileStat status = 1;
+    uint32 fs_errno = 1;
+    FileStat status = 2;
 }
 
 
@@ -128,6 +133,8 @@ message TestAuthRequest
 }
 message TestAuthResponse
 {
+    // note: TestAuth never returns a filesystem error;
+    // any such error is transformed to has_changed=true.
     bool has_changed = 1;
 }
 
@@ -137,15 +144,20 @@ message MakeDirRequest
     string pathname = 1;
     int32 mode = 2;
 }
-message MakeDirResponse { } // empty ack
+message MakeDirResponse
+{
+    uint32 fs_errno = 1;
+}
 
 
 message RemoveDirRequest
 {
     string pathname = 1;
 }
-message RemoveDirResponse { } // empty ack
-
+message RemoveDirResponse
+{
+    uint32 fs_errno = 1;
+}
 
 message ListDirRequest
 {
@@ -153,7 +165,8 @@ message ListDirRequest
 }
 message ListDirResponse
 {
-    repeated DirectoryEntry entries = 1;
+    uint32 fs_errno = 1;
+    repeated DirectoryEntry entries = 2;
 }
 
 
@@ -162,4 +175,7 @@ message RenameRequest
     string pathname = 1;      // old file path, e.g. `/home/guest/data/first.txt`
     string componentname = 2; // new file name, e.g. `second.txt` (within same directory)
 }
-message RenameResponse { } // empty ack
+message RenameResponse
+{
+    uint32 fs_errno = 1;
+}

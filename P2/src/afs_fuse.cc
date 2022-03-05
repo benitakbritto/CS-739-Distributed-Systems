@@ -159,7 +159,9 @@ static int fs_open(const char *path, struct fuse_file_info *fi)
     dbgprintf("path = %s\n", path);
     dbgprintf("rel_path = %s\n", rel_path);
         
+	
 	res = options.client->OpenFile(rel_path);
+	//res = options.client->OpenFileWithStream(rel_path);
 	if (res == -1)
 		return -res;
 

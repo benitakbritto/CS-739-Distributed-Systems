@@ -22,6 +22,7 @@ service FileSystemService
 
     // PERFORMANCE
     // File operations
+    rpc FetchWithStream (FetchRequest) returns (stream FetchResponse) {}
     rpc StoreWithStream (stream StoreRequest) returns (StoreResponse) {}
 }
 

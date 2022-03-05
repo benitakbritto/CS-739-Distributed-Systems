@@ -77,8 +77,8 @@ cd <mount point>
 <any terminal command>
 ```
 
-## General
-Where are the local files stored?
+## General:
+Where are the local client files stored? (Can be changed through the LOCAL_PREFIX macro in src/afs_client.h)
 
 ```
 /tmp/afs

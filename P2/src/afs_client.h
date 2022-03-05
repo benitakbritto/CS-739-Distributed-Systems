@@ -435,6 +435,7 @@ namespace FileSystemClient
                 // Note: TestAuth will internally call get_cache_path
                 if (TestAuth(path).response.has_changed())
                 {  
+                    dbgprintf("OpenFile: TestAuth reports changed\n");
                     request.set_pathname(path);
 
                     // Make RPC
@@ -455,6 +456,8 @@ namespace FileSystemClient
                         dbgprintf("OpenFile: RPC Success\n");
                         uint server_errno = reply.fs_errno();
                         if(server_errno) {
+                        dbgprintf("...but error %d on server\n", server_errno);
+                        dbgprintf("OpenFile: Exiting function\n");
                             errno = server_errno;
                             return -1;
                         }
@@ -502,7 +505,9 @@ namespace FileSystemClient
                         errno = transform_rpc_err(status.error_code());
                         return -1;
                     }
-                } 
+                } else {
+                    dbgprintf("OpenFile: TestAuth reports no change\n");
+                }
 
                 file = open(get_cache_path(path).c_str(), O_RDWR | O_CREAT, 0666); // QUESTION: Why do we need O_CREAT?
                 if (file == -1)
@@ -788,6 +793,7 @@ namespace FileSystemClient
                         dbgprintf("OpenFileWithStream: RPC Success\n");
                         uint server_errno = reply.fs_errno();
                         if(server_errno) {
+                        dbgprintf("...but error %d on server\n", server_errno);
                             errno = server_errno;
                             return -1;
                         }

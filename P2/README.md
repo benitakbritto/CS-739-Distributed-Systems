@@ -70,7 +70,7 @@ ps -e | grep "afs-server"
 
 
 ## To test the file system:
-Note: Do it from the *terminal ONLY* (do not use VSCode or any editor's terminal or an editor's build functionality. Why? The editor's FS calls will be intercepted by FUSE.)
+Note: Do it from the **terminal ONLY** (do not use VSCode or any editor's terminal or an editor's build functionality. Why? The editor's FS calls will be intercepted by FUSE.)
 ```
 mkdir -p /tmp/afs
 cd <mount point>
@@ -78,12 +78,11 @@ cd <mount point>
 ```
 
 ## General:
-Where are the local client files stored? (Can be changed through the LOCAL_PREFIX macro in src/afs_client.h)
+Where are the local client files stored? (Can be changed through the LOCAL_CACHE_PREFIX macro in src/afs_client.h)
 
 ```
 /tmp/afs
 ```
 
 ## Misc
-Inorder to run cmake, change the location of the downloaded FUSE path
-in common/FindFUSE.cmake
+To run cmake, change the location of the downloaded FUSE path in common/FindFUSE.cmake

@@ -514,7 +514,7 @@ namespace FileSystemClient
 	  	        }
 	  	        remove("/tmp/afs/log");
 	  	        // If we crash here, we lose the log
-	  	        rename("/tmp/afs/newlog", "tmp/afs/log");
+	  	        rename("/tmp/afs/newlog", "/tmp/afs/log");
 	  	    }
 
                     dbgprintf("CloseFile: Exiting function\n");

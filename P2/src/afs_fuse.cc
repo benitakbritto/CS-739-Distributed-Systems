@@ -90,7 +90,10 @@ static void *fs_init(struct fuse_conn_info *conn,
 		      struct fuse_config *cfg)
 {
 	//(void) conn;
-	//cfg->use_ino = 1;
+	//cfg->use_ino = 1;        
+
+	// Handle edge case crash when switching from log to newlog
+	rename("/tmp/afs/newlog", "/tmp/afs/log");
 
 	ifstream log;
 	log.open("/tmp/afs/log", ios::in);

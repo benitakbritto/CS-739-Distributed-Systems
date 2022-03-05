@@ -55,7 +55,7 @@ using namespace std;
 using std::ifstream;
 using std::ostringstream;
 using grpc::ClientWriter;
-
+using grpc::ClientReader;
 
 // Globals
 struct TestAuthReturnType
@@ -512,7 +512,6 @@ namespace FileSystemClient
             }
 
             // For Performance
-            // TODO - test
             // TODO - retry
             int CloseFileWithStream(int fd, string path) 
             {
@@ -583,6 +582,7 @@ namespace FileSystemClient
                     }
                 }
 
+                fin.close();
                 // Done w Stream
                 writer->WritesDone();
                 status = writer->Finish();
@@ -601,6 +601,60 @@ namespace FileSystemClient
                     return -1;
                 }
             } 
+
+            // For Performance
+            // TODO - retry
+            int OpenFileWithStream(std::string path) 
+            {
+                dbgprintf("OpenFileWithStream: Inside function\n");
+                int file;
+                FetchRequest request;
+                FetchResponse reply;
+                Status status;
+                ClientContext context;
+                //struct utimbuf ubuf;
+                uint32_t retryCount = 0;
+            
+                // Note: TestAuth will internally call get_cache_path
+                if (TestAuth(path).response.has_changed())
+                {  
+                    request.set_pathname(path);
+                    std::unique_ptr<ClientReader<FetchResponse>> reader(
+                        stub_->FetchWithStream(&context, request));
+                    
+                    std::ofstream file;
+                    file.open(get_cache_path(path), std::ios::binary); // TODO Check flags
+
+                    while (reader->Read(&reply))
+                    {
+                        file << reply.file_contents();
+                    }
+
+                    Status status = reader->Finish();
+                    file.close();
+
+                    // Checking RPC Status
+                    if (status.ok()) 
+                    {
+                        dbgprintf("OpenFileWithStream: RPC Success\n");
+                    } 
+                    else 
+                    {
+                        dbgprintf("OpenFileWithStream: RPC Failure\n");
+                        return -1;
+                    }
+                } 
+
+                file = open(get_cache_path(path).c_str(), O_RDWR | O_CREAT, 0666); // QUESTION: Why do we need O_CREAT?
+                if (file == -1)
+                {
+                    dbgprintf("OpenFile: open() failed\n");
+                    return errno;
+                }
+                
+                dbgprintf("OpenFile: Exiting function\n");
+                return file;
+            }
                 
         private:
             unique_ptr<FileSystemService::Stub> stub_;

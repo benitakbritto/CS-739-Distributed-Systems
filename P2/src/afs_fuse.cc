@@ -115,7 +115,6 @@ static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t
 
 static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_info *fi)
 {
-	crash(true);
 	dbgprintf("fs_getattr: Entered\n");
 	(void) fi;
 	int res;

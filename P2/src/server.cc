@@ -67,6 +67,7 @@ using grpc::StatusCode;
 using std::cout;
 using std::endl;
 using std::string;
+using grpc::ServerReader;
 
 class ServiceException : public std::runtime_error {
     StatusCode code;
@@ -671,6 +672,45 @@ class ServiceImplementation final : public FileSystemService::Service {
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }
+
+    // For Performance
+    Status StoreWithStream(ServerContext* context, ServerReader<StoreRequest> * reader, StoreResponse* reply) override {
+        dbgprintf("StoreWithStream: Entering function\n");
+        StoreRequest request;
+        std::ofstream file;
+        path filepath;
+        int i = 0;
+        try {
+            while (reader->Read(&request))
+            {
+                filepath = to_storage_path(request.pathname());
+                dbgprintf("StoreWithStream: filepath = %s\n", filepath.c_str());
+                if (i == 0) file.open(filepath, std::ios::binary); // set path once
+                i++;
+
+                // TODO wait for read/write lock
+
+                file << request.file_contents();                
+            }
+
+            file.close();
+
+            auto time = convert_timestamp(read_modify_time(filepath));
+            reply->mutable_time_modify()->CopyFrom(time);
+            dbgprintf("StoreWithStream: Exiting function\n");
+
+            return Status::OK; 
+        } catch (const ServiceException& e) {
+            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
+            dbgprintf("Store: Exiting function on ServiceException path\n");
+            return Status(e.get_code(), e.what());
+        } catch (const std::exception& e) {
+            errprintf("[Unexpected Exception] %s\n", e.what());
+            dbgprintf("Store: Exiting function on Exception path\n");
+            return Status(StatusCode::UNKNOWN, e.what());
+        }
+    }
+
 };
 
 void RunServer(path root) {

@@ -21,6 +21,7 @@
 #define RETRY_TIME_START      1 // seconds
 #define RETRY_TIME_MULTIPLIER 2
 #define LOCAL_CACHE_PREFIX    "/tmp/afs/"
+#define CHUNK_SIZE            1024
 
 // Namespaces
 using grpc::Channel;
@@ -53,6 +54,8 @@ using grpc::StatusCode;
 using namespace std;
 using std::ifstream;
 using std::ostringstream;
+using grpc::ClientWriter;
+
 
 // Globals
 struct TestAuthReturnType
@@ -503,13 +506,104 @@ namespace FileSystemClient
                 return TestAuthReturnType(status, reply);
             }
 
-        private:
-            unique_ptr<FileSystemService::Stub> stub_;
-
             string get_cache_path(string relative_path)
             {
                 return LOCAL_CACHE_PREFIX + relative_path;
             }
+
+            // For Performance
+            // TODO - test
+            // TODO - retry
+            int CloseFileWithStream(int fd, string path) 
+            {
+                dbgprintf("CloseFileWithStream: Entered function\n");
+                if (close(fd) == -1)
+                {
+                    dbgprintf("CloseFileWithStream: close() failed\n");
+                    return errno;
+                }
+            
+                StoreRequest request;
+                StoreResponse reply;
+                Status status;
+                uint32_t retryCount = 0;
+                ClientContext context;
+
+                // No RPC necessary if file wasn't modified
+                // TODO: IsFileModified
+            
+                std::unique_ptr<ClientWriter<StoreRequest>> writer(
+                    stub_->StoreWithStream(&context, &reply));
+            
+                // Set Request
+                request.set_pathname(path);
+                std::ifstream fin(get_cache_path(path).c_str(), std::ios::binary);
+
+                // Get total chunks
+                struct stat st;
+                stat(get_cache_path(path).c_str(), &st);
+                int fileSize = st.st_size;
+                int totalChunks = 0;
+                totalChunks = fileSize / CHUNK_SIZE;
+                bool aligned = true;
+                int lastChunkSize = CHUNK_SIZE;
+                if (fileSize % CHUNK_SIZE)
+                {
+                    totalChunks++; // for left overs
+                    aligned = false;
+                    lastChunkSize = fileSize % CHUNK_SIZE;
+                }
+                
+                dbgprintf("CloseFileWithStream: fileSize = %d\n", fileSize);
+                dbgprintf("CloseFileWithStream: totalChunks = %d\n", totalChunks);
+                dbgprintf("CloseFileWithStream: lastChunkSize = %d\n", lastChunkSize);
+
+                // Read and send as stream
+                for (size_t chunk = 0; chunk < totalChunks; chunk++)
+                {
+                    size_t currentChunkSize = (chunk == totalChunks - 1 && !aligned) ? 
+                                              lastChunkSize : CHUNK_SIZE;
+                    
+                    //char * buffer = new char [currentChunkSize + 1];
+                    char * buffer = new char [currentChunkSize];
+                    //buffer[currentChunkSize] = '\0';
+
+                    dbgprintf("CloseFileWithStream: Reading chunks\n");
+                    if (fin.read(buffer, currentChunkSize)) 
+                    {
+                        request.set_file_contents(buffer);
+                        //dbgprintf("buffer = %s\n", buffer); -- do not use if \0 not set at end
+
+                        if (!writer->Write(request)) 
+                        {
+                            // Broken stream.
+                            dbgprintf("CloseFileWithStream: Stream broke\n");
+                            break; // TODO: Should we ret errno here?
+                        }
+                    }
+                }
+
+                // Done w Stream
+                writer->WritesDone();
+                status = writer->Finish();
+
+                // Checking RPC Status
+                if (status.ok()) 
+                {
+                    dbgprintf("CloseFileWithStream: RPC Success\n");
+                    dbgprintf("CloseFileWithStream: Exiting function\n");
+                    return 0;
+                } 
+                else 
+                {
+                    dbgprintf("CloseFileWithStream: RPC Failure\n");
+                    dbgprintf("CloseFileWithStream: Exiting function\n");
+                    return -1;
+                }
+            } 
+                
+        private:
+            unique_ptr<FileSystemService::Stub> stub_;
 
             bool FileExists(std::string path)
             {

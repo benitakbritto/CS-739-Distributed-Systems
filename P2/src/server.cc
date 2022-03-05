@@ -27,7 +27,7 @@
 #define MEM_MAP_MAX_KEY_COUNT    100 // num keys in map
 #define MEM_MAP_FREE_COUNT       10 // free 10 files
 #define MEM_MAP_START_FREE       50 // start freeing map when keys have reached this count value
-#define CHUNK_SIZE            4 // TODO: Change to 1024
+#define CHUNK_SIZE            1024
 
 namespace fs = std::filesystem;
 
@@ -313,6 +313,7 @@ class ServiceImplementation final : public FileSystemService::Service {
 
         if (stat(filepath.c_str(), &sb) == -1) {
             dbgprintf("read_stat: failed\n");
+            dbgprintf("read_stat: errno = %d\n", errno);
             ret.set_error(errno);
             return ret;
             // not needed
@@ -714,7 +715,6 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     // For Performance
-    // TODO - test
     Status FetchWithStream(ServerContext* context, const FetchRequest* request, ServerWriter<FetchResponse>* writer) override {
         try {
             path filepath = to_storage_path(request->pathname());

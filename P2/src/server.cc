@@ -84,14 +84,25 @@ static const string TEMP_FILE_EXT = ".afs_tmp";
 /******************************************************************************
  * EXCEPTION HANDLER
  *****************************************************************************/
-class ServiceException : public std::runtime_error {
+class ProtocolException : public std::runtime_error {
     StatusCode code;
 
    public:
-    ServiceException(const char* msg, StatusCode code) : std::runtime_error(msg), code(code) {}
+    ProtocolException(const char* msg, StatusCode code) : std::runtime_error(msg), code(code) {}
 
     StatusCode get_code() const {
         return code;
+    }
+};
+
+class FileSystemException : public std::runtime_error {
+    uint fs_errno;
+    
+    public:
+    FileSystemException(uint fs_errno) : std::runtime_error("Error in filesystem call"), fs_errno(fs_errno) {}
+    
+    uint get_fs_errno() const {
+        return fs_errno;
     }
 };
 
@@ -109,11 +120,11 @@ class ServiceImplementation final : public FileSystemService::Service {
         // Check that this path is under our storage root
         auto [a, b] = std::mismatch(root.begin(), root.end(), normalized.begin());
         if (a != root.end()) {
-            throw ServiceException("Normalized path is outside storage root", StatusCode::INVALID_ARGUMENT);
+            throw ProtocolException("Normalized path is outside storage root", StatusCode::INVALID_ARGUMENT);
         }
 
         if (normalized.extension() == TEMP_FILE_EXT) {
-            throw ServiceException("Attempting to access file with a reserved extension", StatusCode::INVALID_ARGUMENT);
+            throw ProtocolException("Attempting to access file with a reserved extension", StatusCode::INVALID_ARGUMENT);
         }
 
         return normalized;
@@ -132,16 +143,18 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("read_file: Exiting function\n");
 
             if (ec) {
-                switch (ec.value()) {
-                    case ENOENT:
-                        throw ServiceException("File not found", StatusCode::NOT_FOUND);
-                    case ENOTDIR:
-                        throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
-                    default:
-                        throw ServiceException("Error checking file type", StatusCode::UNKNOWN);
-                }
+                throw FileSystemException(ec.value());
+                // switch (ec.value()) {
+                //     case ENOENT:
+                //         throw ProtocolException("File not found", StatusCode::NOT_FOUND);
+                //     case ENOTDIR:
+                //         throw ProtocolException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+                //     default:
+                //         throw ProtocolException("Error checking file type", StatusCode::UNKNOWN);
+                // }
             } else {
-                throw ServiceException("Attempting to read non-file item ", StatusCode::FAILED_PRECONDITION);
+                throw FileSystemException(EISDIR);
+                // throw ProtocolException("Attempting to read non-file item ", StatusCode::FAILED_PRECONDITION);
             }
         }
 
@@ -151,7 +164,7 @@ class ServiceImplementation final : public FileSystemService::Service {
 
         if (file.fail()) {
             dbgprintf("read_file: Exiting function\n");
-            throw ServiceException("Error performing file read", StatusCode::UNKNOWN);
+            throw ProtocolException("Error performing file read", StatusCode::UNKNOWN);
         }
 
         dbgprintf("read_file: Exiting function\n");
@@ -162,36 +175,42 @@ class ServiceImplementation final : public FileSystemService::Service {
     // The path must be either:
     // (a) An existing regular file, or
     // (b) An empty location in an existing directory.
-    void assert_valid_write_destination(path filepath) {
+    uint check_valid_write_destination(path filepath) {
         std::error_code ec;
         auto status = fs::status(filepath, ec);
         switch (status.type()) {
             case fs::file_type::regular:
-                return;  // result (a)
+                return 0;
             case fs::file_type::directory:
-                throw ServiceException("Attempting to write file to location of directory", StatusCode::FAILED_PRECONDITION);
+                return EISDIR;
+                //throw ProtocolException("Attempting to write file to location of directory", StatusCode::FAILED_PRECONDITION);
             case fs::file_type::not_found:
                 break;
             default:
-                throw ServiceException("Attempting to write file to location of non-file item", StatusCode::FAILED_PRECONDITION);
+                return EPERM;
+                //throw ProtocolException("Attempting to write file to location of non-file item", StatusCode::FAILED_PRECONDITION);
         }
 
         // type was not_found, so check the error code
         switch (ec.value()) {
-            case ENOTDIR:
-                throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
             case ENOENT:
                 break;
+            // case ENOTDIR:
+            //     return ENOTDIR;
+            //     throw ProtocolException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
             default:
-                throw ServiceException("Error checking file status", StatusCode::UNKNOWN);
+                return ec.value();
+                // throw ProtocolException("Error checking file status", StatusCode::UNKNOWN);
         }
 
         // error code was ENOENT, so check that parent directory exists
         if (!fs::is_directory(filepath.parent_path(), ec)) {
-            throw ServiceException("Parent directory does not exist", StatusCode::NOT_FOUND);
+            return ENOENT;
+            // throw ProtocolException("Parent directory does not exist", StatusCode::NOT_FOUND);
         }
 
         // result (b)
+        return 0;
     }
 
     void write_file(path filepath, string content) {
@@ -200,7 +219,10 @@ class ServiceImplementation final : public FileSystemService::Service {
         std::ofstream file;
 
         // Check that this is a valid destination
-        assert_valid_write_destination(filepath);
+        uint pre_err = check_valid_write_destination(filepath);
+        if(pre_err != 0) {
+            throw FileSystemException(pre_err);
+        }
 
         path temppath = get_tempfile_path(filepath);
 
@@ -213,13 +235,13 @@ class ServiceImplementation final : public FileSystemService::Service {
         // so failure to write the temp file means something unexpected has happened.
         if (file.fail()) {
             dbgprintf("write_file: Exiting function\n");
-            throw ServiceException("Error writing temp file", StatusCode::UNKNOWN);
+            throw ProtocolException("Error writing temp file", StatusCode::UNKNOWN);
         }
 
         // Overwrite temp file with new file
         if (rename(temppath.c_str(), filepath.c_str()) == -1) {
             dbgprintf("write_file: Exiting function\n");
-            throw ServiceException("Error committing temp file", StatusCode::UNKNOWN);
+            throw ProtocolException("Error committing temp file", StatusCode::UNKNOWN);
         }
 
         dbgprintf("write_file: Exiting function\n");
@@ -230,25 +252,27 @@ class ServiceImplementation final : public FileSystemService::Service {
 
         if (fs::exists(dstpath)) {
             dbgprintf("move_file: Exiting function\n");
-            throw ServiceException("Attempting to rename item to existing item", StatusCode::FAILED_PRECONDITION);
+            throw FileSystemException(EEXIST);
+            // throw ProtocolException("Attempting to rename item to existing item", StatusCode::FAILED_PRECONDITION);
         }
 
         if (rename(srcpath.c_str(), dstpath.c_str()) == -1) {
             dbgprintf("move_file: Exiting function\n");
-            switch (errno) {
-                /* These cases shouldn't happen due to our exists() check
-                case EISDIR:
-                    throw ServiceException("Attempting to rename file to existing directory", StatusCode::FAILED_PRECONDITION);
-                case ENOTDIR:
-                    throw ServiceException("Attempting to rename directory to existing file", StatusCode::FAILED_PRECONDITION);
-                */
-                case ENOENT:
-                    throw ServiceException("File not found", StatusCode::NOT_FOUND);
-                case EINVAL:
-                    throw ServiceException("Attempting to rename directory to child of itself", StatusCode::INVALID_ARGUMENT);
-                default:
-                    throw ServiceException("Error in call to rename", StatusCode::UNKNOWN);
-            }
+            throw FileSystemException(errno);
+            // switch (errno) {
+            //     /* These cases shouldn't happen due to our exists() check
+            //     case EISDIR:
+            //         throw ProtocolException("Attempting to rename file to existing directory", StatusCode::FAILED_PRECONDITION);
+            //     case ENOTDIR:
+            //         throw ProtocolException("Attempting to rename directory to existing file", StatusCode::FAILED_PRECONDITION);
+            //     */
+            //     case ENOENT:
+            //         throw ProtocolException("File not found", StatusCode::NOT_FOUND);
+            //     case EINVAL:
+            //         throw ProtocolException("Attempting to rename directory to child of itself", StatusCode::INVALID_ARGUMENT);
+            //     default:
+            //         throw ProtocolException("Error in call to rename", StatusCode::UNKNOWN);
+            // }
         }
         
         dbgprintf("move_file: Exiting function\n");
@@ -258,15 +282,16 @@ class ServiceImplementation final : public FileSystemService::Service {
         dbgprintf("delete_file: Entering function\n");
         if (unlink(filepath.c_str()) == -1) {
             dbgprintf("delete_file: Exiting function\n");
-            switch (errno) {
-                case EISDIR:
-                case EPERM:
-                    throw ServiceException("Called Remove on directory", StatusCode::PERMISSION_DENIED);
-                case ENOENT:
-                    throw ServiceException("File not found", StatusCode::NOT_FOUND);
-                default:
-                    throw ServiceException("Error in call to unlink", StatusCode::UNKNOWN);
-            }
+            throw FileSystemException(errno);
+            // switch (errno) {
+            //     case EISDIR:
+            //     case EPERM:
+            //         throw ProtocolException("Called Remove on directory", StatusCode::PERMISSION_DENIED);
+            //     case ENOENT:
+            //         throw ProtocolException("File not found", StatusCode::NOT_FOUND);
+            //     default:
+            //         throw ProtocolException("Error in call to unlink", StatusCode::UNKNOWN);
+            // }
         }
         dbgprintf("delete_file: Exiting function\n");
     }
@@ -275,35 +300,37 @@ class ServiceImplementation final : public FileSystemService::Service {
         dbgprintf("make_dir: Entering function\n");
         if (mkdir(filepath.c_str(), mode) == -1) {
             dbgprintf("make_dir: Exiting function\n");
-            switch (errno) {
-                case EEXIST:
-                    throw ServiceException("Path already exists", StatusCode::ALREADY_EXISTS);
-                case ENOENT:
-                    throw ServiceException("Missing directory in path prefix", StatusCode::NOT_FOUND);
-                case ENOTDIR:
-                    throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
-                default:
-                    throw ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
-            }
+            throw FileSystemException(errno);
+            // switch (errno) {
+            //     case EEXIST:
+            //         throw ProtocolException("Path already exists", StatusCode::ALREADY_EXISTS);
+            //     case ENOENT:
+            //         throw ProtocolException("Missing directory in path prefix", StatusCode::NOT_FOUND);
+            //     case ENOTDIR:
+            //         throw ProtocolException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+            //     default:
+            //         throw ProtocolException("Error in call to mkdir", StatusCode::UNKNOWN);
+            // }
         }
         dbgprintf("make_dir: Exiting function\n");
     }
 
     void remove_dir(path filepath) {
         if (rmdir(filepath.c_str()) == -1) {
-            switch (errno) {
-                case EEXIST:
-                case ENOTEMPTY:
-                    throw ServiceException("Attempting to remove non-empty directory", StatusCode::FAILED_PRECONDITION);
-                case EINVAL:
-                    throw ServiceException("Invalid directory name", StatusCode::INVALID_ARGUMENT);
-                case ENOENT:
-                    throw ServiceException("Missing directory in path", StatusCode::NOT_FOUND);
-                case ENOTDIR:
-                    throw ServiceException("Non-directory in path", StatusCode::FAILED_PRECONDITION);
-                default:
-                    throw ServiceException("Error in call to mkdir", StatusCode::UNKNOWN);
-            }
+            throw FileSystemException(errno);
+            // switch (errno) {
+            //     case EEXIST:
+            //     case ENOTEMPTY:
+            //         throw ProtocolException("Attempting to remove non-empty directory", StatusCode::FAILED_PRECONDITION);
+            //     case EINVAL:
+            //         throw ProtocolException("Invalid directory name", StatusCode::INVALID_ARGUMENT);
+            //     case ENOENT:
+            //         throw ProtocolException("Missing directory in path", StatusCode::NOT_FOUND);
+            //     case ENOTDIR:
+            //         throw ProtocolException("Non-directory in path", StatusCode::FAILED_PRECONDITION);
+            //     default:
+            //         throw ProtocolException("Error in call to mkdir", StatusCode::UNKNOWN);
+            // }
         }
     }
 
@@ -327,16 +354,17 @@ class ServiceImplementation final : public FileSystemService::Service {
         if (stat(filepath.c_str(), &sb) == -1) {
             dbgprintf("read_stat: failed\n");
             dbgprintf("read_stat: errno = %d\n", errno);
-            ret.set_error(errno);
-            return ret;
+            throw FileSystemException(errno);
+            // ret.set_error(errno);
+            // return ret;
             // not needed
             // switch (errno) {
             //     case ENOENT:
-            //         throw ServiceException("Item not found", StatusCode::NOT_FOUND);
+            //         throw ProtocolException("Item not found", StatusCode::NOT_FOUND);
             //     case ENOTDIR:
-            //         throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+            //         throw ProtocolException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
             //     default:
-            //         throw ServiceException("Error in call to stat", StatusCode::UNKNOWN);
+            //         throw ProtocolException("Error in call to stat", StatusCode::UNKNOWN);
             // }
         }
 
@@ -352,7 +380,7 @@ class ServiceImplementation final : public FileSystemService::Service {
         ret.set_atime(sb.st_atime);
         ret.set_mtime(sb.st_mtime);
         ret.set_ctime(sb.st_ctime);
-        ret.set_error(0);
+        // ret.set_error(0);
 
         return ret;
     }
@@ -360,8 +388,9 @@ class ServiceImplementation final : public FileSystemService::Service {
     timespec read_modify_time(path filepath) {
         struct stat sb;
         if (stat(filepath.c_str(), &sb) == -1) {
-            // TODO transform error codes
-            throw ServiceException("Stat failed", StatusCode::UNKNOWN);
+            throw FileSystemException(errno);
+            // // TODO transform error codes
+            // throw ProtocolException("Stat failed", StatusCode::UNKNOWN);
         }
         return sb.st_mtim;
     }
@@ -369,8 +398,9 @@ class ServiceImplementation final : public FileSystemService::Service {
     mode_t read_file_mode(path filepath) {
         struct stat sb;
         if (stat(filepath.c_str(), &sb) == -1) {
-            // TODO transform error codes
-            throw ServiceException("Stat failed", StatusCode::UNKNOWN);
+            throw FileSystemException(errno);
+            // // TODO transform error codes
+            // throw ProtocolException("Stat failed", StatusCode::UNKNOWN);
         }
         return sb.st_mode;
     }
@@ -398,14 +428,16 @@ class ServiceImplementation final : public FileSystemService::Service {
         struct stat sb;
 
         if (stat(filepath.c_str(), &sb) == -1) {
-            switch (errno) {
-                case ENOENT:
-                    throw ServiceException("Item not found", StatusCode::NOT_FOUND);
-                case ENOTDIR:
-                    throw ServiceException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
-                default:
-                    throw ServiceException("Error in call to stat", StatusCode::UNKNOWN);
-            }
+            throw FileSystemException(errno);
+            
+            // switch (errno) {
+            //     case ENOENT:
+            //         throw ProtocolException("Item not found", StatusCode::NOT_FOUND);
+            //     case ENOTDIR:
+            //         throw ProtocolException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
+            //     default:
+            //         throw ProtocolException("Error in call to stat", StatusCode::UNKNOWN);
+            // }
         }
 
         return sb.st_size;
@@ -436,7 +468,7 @@ class ServiceImplementation final : public FileSystemService::Service {
         if (mem_map.count(filepath) == 0)
         {
             dbgprintf("get_file_from_mem_map: filepath does not exist in map\n");
-            throw ServiceException("Item not found", StatusCode::NOT_FOUND);
+            throw ProtocolException("Item not found", StatusCode::NOT_FOUND);
         }
         else
         {
@@ -494,8 +526,8 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("Fetch: Read from mem map\n");
             return Status::OK;
 
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
             // do nothing
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
@@ -513,9 +545,13 @@ class ServiceImplementation final : public FileSystemService::Service {
                 convert_timestamp(read_modify_time(filepath)));
 
             return Status::OK;
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
             return Status(e.get_code(), e.what());
+        } catch(const FileSystemException& e) {
+            dbgprintf("[System Exception: %d]\n", e.get_fs_errno());
+            reply -> set_fs_errno(e.get_fs_errno());
+            return Status::OK;
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
             return Status(StatusCode::UNKNOWN, e.what());
@@ -547,10 +583,14 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("Store: Exiting function on Success path\n");
             return Status::OK;
 
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
-            dbgprintf("Store: Exiting function on ServiceException path\n");
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
+            dbgprintf("Store: Exiting function on ProtocolException path\n");
             return Status(e.get_code(), e.what());
+        } catch(const FileSystemException& e) {
+            dbgprintf("[System Exception: %d]\n", e.get_fs_errno());
+            reply -> set_fs_errno(e.get_fs_errno());
+            return Status::OK;
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("Store: Exiting function on Exception path\n");
@@ -573,10 +613,14 @@ class ServiceImplementation final : public FileSystemService::Service {
 #endif
             dbgprintf("Remove: Exiting function on Success path\n");
             return Status::OK;
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
-            dbgprintf("Remove: Exiting function on ServiceException path\n");
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
+            dbgprintf("Remove: Exiting function on ProtocolException path\n");
             return Status(e.get_code(), e.what());
+        } catch(const FileSystemException& e) {
+            dbgprintf("[System Exception: %d]\n", e.get_fs_errno());
+            reply -> set_fs_errno(e.get_fs_errno());
+            return Status::OK;
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("Remove: Exiting function on Exception path\n");
@@ -598,10 +642,14 @@ class ServiceImplementation final : public FileSystemService::Service {
 
             dbgprintf("Rename: Exiting function on Success path\n");
             return Status::OK;
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
-            dbgprintf("Rename: Exiting function on ServiceException path\n");
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
+            dbgprintf("Rename: Exiting function on ProtocolException path\n");
             return Status(e.get_code(), e.what());
+        } catch(const FileSystemException& e) {
+            dbgprintf("[System Exception: %d]\n", e.get_fs_errno());
+            reply -> set_fs_errno(e.get_fs_errno());
+            return Status::OK;
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("Rename: Exiting function on Exception path\n");
@@ -619,9 +667,13 @@ class ServiceImplementation final : public FileSystemService::Service {
             auto status = read_stat(filepath);
             reply->mutable_status()->CopyFrom(status);
             return Status::OK;
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
             return Status(e.get_code(), e.what());
+        } catch(const FileSystemException& e) {
+            dbgprintf("[System Exception: %d]\n", e.get_fs_errno());
+            reply -> set_fs_errno(e.get_fs_errno());
+            return Status::OK;
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
             return Status(StatusCode::UNKNOWN, e.what());
@@ -643,10 +695,15 @@ class ServiceImplementation final : public FileSystemService::Service {
             reply->set_has_changed(changed);
             dbgprintf("TestAuth: Exiting function on Success path\n");
             return Status::OK;
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
-            dbgprintf("TestAuth: Exiting function on ServiceException path\n");
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
+            dbgprintf("TestAuth: Exiting function on ProtocolException path\n");
             return Status(e.get_code(), e.what());
+        } catch(const FileSystemException& e) {
+            dbgprintf("[System Exception: %d]\n", e.get_fs_errno());
+            // Instead of reporting filesystem error, just invalidate the cache entry
+            reply -> set_has_changed(true); 
+            return Status::OK;
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("TestAuth: Exiting function on Exception path\n");
@@ -665,10 +722,14 @@ class ServiceImplementation final : public FileSystemService::Service {
             make_dir(filepath, request->mode());
             dbgprintf("MakeDir: Exiting function on Success path\n");
             return Status::OK;
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
-            dbgprintf("MakeDir: Exiting function on ServiceException path\n");
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
+            dbgprintf("MakeDir: Exiting function on ProtocolException path\n");
             return Status(e.get_code(), e.what());
+        } catch(const FileSystemException& e) {
+            dbgprintf("[System Exception: %d]\n", e.get_fs_errno());
+            reply -> set_fs_errno(e.get_fs_errno());
+            return Status::OK;
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("MakeDir: Exiting function on Exception path\n");
@@ -684,14 +745,17 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("Mknod: filepath = %s\n", filepath.c_str());
 
             int ret = mknod(filepath.c_str(), request->mode(), request->dev());
-
-            reply->set_error(errno);
+            
             dbgprintf("Mknod: Exiting function on Success path\n");
             return Status::OK;
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
-            dbgprintf("Mknod: Exiting function on ServiceException path\n");
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
+            dbgprintf("Mknod: Exiting function on ProtocolException path\n");
             return Status(e.get_code(), e.what());
+        } catch(const FileSystemException& e) {
+            dbgprintf("[System Exception: %d]\n", e.get_fs_errno());
+            reply -> set_fs_errno(e.get_fs_errno());
+            return Status::OK;
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("Mknod: Exiting function on Exception path\n");
@@ -710,10 +774,14 @@ class ServiceImplementation final : public FileSystemService::Service {
 
             dbgprintf("RemoveDir: Exiting function on Success path\n");
             return Status::OK;
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
-            dbgprintf("RemoveDir: Exiting function on ServiceException path\n");
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
+            dbgprintf("RemoveDir: Exiting function on ProtocolException path\n");
             return Status(e.get_code(), e.what());
+        } catch(const FileSystemException& e) {
+            dbgprintf("[System Exception: %d]\n", e.get_fs_errno());
+            reply -> set_fs_errno(e.get_fs_errno());
+            return Status::OK;
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("RemoveDir: Exiting function on Exception path\n");
@@ -731,10 +799,14 @@ class ServiceImplementation final : public FileSystemService::Service {
             list_dir(filepath, reply);
             dbgprintf("ListDir: Exiting function on Success path\n");
             return Status::OK;
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
-            dbgprintf("ListDir: Exiting function on ServiceException path\n");
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
+            dbgprintf("ListDir: Exiting function on ProtocolException path\n");
             return Status(e.get_code(), e.what());
+        } catch(const FileSystemException& e) {
+            dbgprintf("[System Exception: %d]\n", e.get_fs_errno());
+            reply -> set_fs_errno(e.get_fs_errno());
+            return Status::OK;
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("ListDir: Exiting function on Exception path\n");
@@ -769,10 +841,14 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("StoreWithStream: Exiting function\n");
 
             return Status::OK; 
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
-            dbgprintf("Store: Exiting function on ServiceException path\n");
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
+            dbgprintf("Store: Exiting function on ProtocolException path\n");
             return Status(e.get_code(), e.what());
+        } catch(const FileSystemException& e) {
+            dbgprintf("[System Exception: %d]\n", e.get_fs_errno());
+            reply -> set_fs_errno(e.get_fs_errno());
+            return Status::OK;
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("Store: Exiting function on Exception path\n");
@@ -835,8 +911,8 @@ class ServiceImplementation final : public FileSystemService::Service {
 
             fin.close();
             return Status::OK;
-        } catch (const ServiceException& e) {
-            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
+        } catch (const ProtocolException& e) {
+            dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
             return Status(e.get_code(), e.what());
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());

@@ -90,12 +90,17 @@ char * fs_relative_path(char * path)
 static int fs_mkdir(const char *path, mode_t mode)
 {
 	dbgprintf("fs_mkdir: Entered\n");
+	int res;
     char * rel_path = fs_relative_path((char *) path);
     
     dbgprintf("path = %s\n", path);
     dbgprintf("rel_path = %s\n", rel_path);
     
-    return options.client->MakeDir(rel_path, mode);
+    res = options.client->MakeDir(rel_path, mode);
+	
+	if(res == -1) 
+		return -errno;
+	return 0;
 }
 
 // TODO: decide to keep or no
@@ -108,12 +113,17 @@ static int fs_utimens(const char *path, const struct timespec tv[2], struct fuse
 static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi, enum fuse_readdir_flags flags)
 {
 	dbgprintf("fs_readdir: Entered\n");
+	int res;
     char * rel_path = fs_relative_path((char *) path);
 
     dbgprintf("path = %s\n", path);
     dbgprintf("rel_path = %s\n", rel_path);
 
     return options.client->ReadDir(rel_path, buf, filler);
+	
+	if(res == -1) 
+		return -errno;
+	return 0;
 }
 
 
@@ -127,21 +137,29 @@ static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_inf
     dbgprintf("path = %s\n", path);
     dbgprintf("rel_path = %s\n", rel_path);
     
-	int ret  = options.client->GetFileStat(rel_path, stbuf);
+	res = options.client->GetFileStat(rel_path, stbuf);
 
-	dbgprintf("fs_getattr: ret =  %d\n", ret);
-	return ret;
+	dbgprintf("fs_getattr: res =  %d\n", res);
+	if(res == -1) 
+		return -errno;
+		
+	return 0;
 }
 
 static int fs_rmdir(const char *path)
 {
 	dbgprintf("fs_rmdir: Entered\n");
+	int res;
     char * rel_path = fs_relative_path((char *) path);
 
     dbgprintf("path = %s\n", path);
     dbgprintf("rel_path = %s\n", rel_path);
     
-    return options.client->RemoveDir(rel_path);
+    res = options.client->RemoveDir(rel_path);
+	
+	if(res == -1) 
+		return -errno;
+	return 0;
 }
 
 static int fs_unlink(const char *path)
@@ -153,7 +171,11 @@ static int fs_unlink(const char *path)
     dbgprintf("path = %s\n", path);
     dbgprintf("rel_path = %s\n", rel_path);
 
-	return options.client->DeleteFile(rel_path);
+	res = options.client->DeleteFile(rel_path);
+	
+	if(res == -1) 
+		return -errno;
+	return 0;
 }
 
 static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
@@ -206,7 +228,7 @@ static int fs_open(const char *path, struct fuse_file_info *fi)
 	res = options.client->OpenFile(rel_path);
 #endif
 	if (res == -1)
-		return -res;
+		return -errno;
 
 	fi->fh = res;
 	return 0;
@@ -244,13 +266,15 @@ static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 	if (fi == NULL)
 	{
 	#if PERFORMANCE == 1
-		options.client->CloseFileWithStream(fd, rel_path);
+		res = options.client->CloseFileWithStream(fd, rel_path);
 	#else
-		options.client->CloseFile(fd, rel_path);
+		res = options.client->CloseFile(fd, rel_path);
 	#endif
 	}
 		
-	return res;
+	if(res == -1) 
+		return -errno;
+	return 0;
 }
 
 static int fs_write(const char *path, const char *buf, size_t size,
@@ -294,18 +318,22 @@ static int fs_write(const char *path, const char *buf, size_t size,
 	if (fi == NULL)
 	{
 	#if PERFORMANCE == 1
-		options.client->CloseFileWithStream(fd, rel_path);
+		res = options.client->CloseFileWithStream(fd, rel_path);
 	#else
-		options.client->CloseFile(fd, rel_path);	
+		res = options.client->CloseFile(fd, rel_path);	
 	#endif
 	}
 		
 
-	return res;
+	if(res == -1) 
+		return -errno;
+	return 0;
 }
 
 static int fs_release(const char *path, struct fuse_file_info *fi)
 {
+	int res;
+	
 	dbgprintf("fs_release: Entered\n");
 	char * rel_path = fs_relative_path((char *) path);
 
@@ -313,10 +341,14 @@ static int fs_release(const char *path, struct fuse_file_info *fi)
     dbgprintf("rel_path = %s\n", rel_path);
 
 #if PERFORMANCE == 1
-	return options.client->CloseFileWithStream(fi->fh, rel_path);
+	res = options.client->CloseFileWithStream(fi->fh, rel_path);
 #else
-	return options.client->CloseFile(fi->fh, rel_path);
+	res = options.client->CloseFile(fi->fh, rel_path);
 #endif
+	
+	if(res == -1) 
+		return -errno;
+	return 0;
 }
 
 struct fuse_operations fsops = {

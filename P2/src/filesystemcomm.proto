@@ -10,6 +10,7 @@ service FileSystemService
     rpc Store (StoreRequest) returns (StoreResponse) {}
     rpc Remove (RemoveRequest) returns (RemoveResponse) {}
     rpc Rename (RenameRequest) returns (RenameResponse) {}
+    rpc Mknod (MknodRequest) returns (MknodResponse) {}
     
     // Metadata operations
     rpc GetFileStat (GetFileStatRequest) returns (GetFileStatResponse) {}
@@ -76,6 +77,17 @@ message FetchResponse
     Timestamp time_modify = 2;
 }
 
+message MknodRequest
+{
+    string pathname = 1;
+    uint32 mode = 2;
+    uint32 dev = 3;
+}
+
+message MknodResponse
+{
+    uint32 error = 1;
+}
 
 
 message StoreRequest
@@ -109,7 +121,6 @@ message GetFileStatResponse
 }
 
 
-
 message TestAuthRequest
 {
     string pathname = 1;
@@ -121,7 +132,6 @@ message TestAuthResponse
 }
 
 
-
 message MakeDirRequest
 {
     string pathname = 1;
@@ -130,13 +140,11 @@ message MakeDirRequest
 message MakeDirResponse { } // empty ack
 
 
-
 message RemoveDirRequest
 {
     string pathname = 1;
 }
 message RemoveDirResponse { } // empty ack
-
 
 
 message ListDirRequest
@@ -147,7 +155,6 @@ message ListDirResponse
 {
     repeated DirectoryEntry entries = 1;
 }
-
 
 
 message RenameRequest

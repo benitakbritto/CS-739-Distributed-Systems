@@ -49,6 +49,8 @@ using filesystemcomm::ListDirRequest;
 using filesystemcomm::ListDirResponse;
 using filesystemcomm::MakeDirRequest;
 using filesystemcomm::MakeDirResponse;
+using filesystemcomm::MknodRequest;
+using filesystemcomm::MknodResponse;
 using filesystemcomm::RemoveDirRequest;
 using filesystemcomm::RemoveDirResponse;
 using filesystemcomm::RemoveRequest;
@@ -665,6 +667,29 @@ class ServiceImplementation final : public FileSystemService::Service {
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
             dbgprintf("MakeDir: Exiting function on Exception path\n");
+            return Status(StatusCode::UNKNOWN, e.what());
+        }
+    }
+
+    Status Mknod(ServerContext* context, const MknodRequest* request, MknodResponse* reply) override {
+        dbgprintf("Mknod: Entering function\n");
+
+        try {
+            path filepath = to_storage_path(request->pathname());
+            dbgprintf("Mknod: filepath = %s\n", filepath.c_str());
+
+            int ret = mknod(filepath.c_str(), request->mode(), request->dev());
+
+            reply->set_error(errno);
+            dbgprintf("Mknod: Exiting function on Success path\n");
+            return Status::OK;
+        } catch (const ServiceException& e) {
+            dbgprintf("[Service Exception: %d] %s\n", e.get_code(), e.what());
+            dbgprintf("Mknod: Exiting function on ServiceException path\n");
+            return Status(e.get_code(), e.what());
+        } catch (const std::exception& e) {
+            errprintf("[Unexpected Exception] %s\n", e.what());
+            dbgprintf("Mknod: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }

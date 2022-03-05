@@ -36,6 +36,8 @@ using filesystemcomm::ListDirRequest;
 using filesystemcomm::ListDirResponse;
 using filesystemcomm::MakeDirRequest;
 using filesystemcomm::MakeDirResponse;
+using filesystemcomm::MknodRequest;
+using filesystemcomm::MknodResponse;
 using filesystemcomm::RemoveDirRequest;
 using filesystemcomm::RemoveDirResponse;
 using filesystemcomm::RemoveRequest;
@@ -115,6 +117,48 @@ namespace FileSystemClient
                     dbgprintf("MakeDir: RPC failure\n");
                     dbgprintf("MakeDir: Exiting function\n");
                     return -1;
+                }
+            }
+
+            int CreateFile(std::string path, mode_t mode, dev_t rdev)
+            {
+                dbgprintf("CreateFile: Entering function\n");
+                MknodRequest request;
+                MknodResponse reply;
+                Status status;
+                uint32_t retryCount = 0;
+
+                request.set_pathname(path);
+                request.set_mode(mode);
+                request.set_dev(rdev);
+
+                // Make RPC
+                // Retry w backoff
+                do 
+                {
+                    ClientContext context;
+                    reply.Clear();
+                    dbgprintf("CreateFile: Invoking RPC\n");
+                    sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+                    status = stub_->Mknod(&context, request, &reply);
+                    retryCount++;
+                } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+                // Checking RPC Status
+                if (status.ok() && reply.error() == 0) 
+                {
+                    dbgprintf("CreateFile: RPC Success\n");
+                    dbgprintf("CreateFile: Exiting function\n");
+
+                    // adding file to local cache
+                    mknod(get_cache_path(path).c_str(), mode, rdev);
+                    return 0;
+                } 
+                else 
+                {
+                    dbgprintf("CreateFile: RPC Failure\n");
+                    dbgprintf("CreateFile: Exiting function\n");
+                    return reply.error();
                 }
             }
 

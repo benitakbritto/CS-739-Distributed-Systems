@@ -61,8 +61,7 @@ using namespace FileSystemClient;
  * GLOBALS
  *****************************************************************************/
 static int fill_dir_plus = 0;
-u_int64_t total_time;
-struct timespec start, end;
+
 static struct options {	
 	ClientImplementation * client;
 	int show_help;
@@ -192,6 +191,8 @@ int init_multi_log()
 static void *fs_init(struct fuse_conn_info *conn,
 		      struct fuse_config *cfg)
 {
+    u_int64_t total_time;
+    struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 	//(void) conn;
 	//cfg->use_ino = 1;        
@@ -210,6 +211,8 @@ static void *fs_init(struct fuse_conn_info *conn,
 
 static int fs_mkdir(const char *path, mode_t mode)
 {
+    u_int64_t total_time;
+    struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_mkdir: Entered\n");
 	int res;
@@ -230,6 +233,8 @@ static int fs_mkdir(const char *path, mode_t mode)
 
 static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi, enum fuse_readdir_flags flags)
 {
+    u_int64_t total_time;
+   struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_readdir: Entered\n");
 	int res;
@@ -251,6 +256,8 @@ static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t
 
 static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_info *fi)
 {
+    u_int64_t total_time;
+   struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_getattr: Entered\n");
 	(void) fi;
@@ -273,6 +280,8 @@ static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_inf
 
 static int fs_rmdir(const char *path)
 {
+    u_int64_t total_time;
+struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_rmdir: Entered\n");
 	int res;
@@ -293,6 +302,8 @@ static int fs_rmdir(const char *path)
 
 static int fs_unlink(const char *path)
 {
+    u_int64_t total_time;
+    struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_unlink: Entered\n");
 	int res;
@@ -313,6 +324,8 @@ static int fs_unlink(const char *path)
 
 static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
 {
+    u_int64_t total_time;
+    struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_fsync: Entered\n");
 	/* Just a stub.	 This method is optional and can safely be left
@@ -328,6 +341,8 @@ static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
 
 static int fs_mknod(const char *path, mode_t mode, dev_t rdev)
 {
+    u_int64_t total_time;
+    struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_mknod: Entered\n");
 	int res;
@@ -348,6 +363,8 @@ static int fs_mknod(const char *path, mode_t mode, dev_t rdev)
 
 static int fs_open(const char *path, struct fuse_file_info *fi)
 {
+    u_int64_t total_time;
+    struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_open: Entered\n");
 	int res;
@@ -373,6 +390,8 @@ static int fs_open(const char *path, struct fuse_file_info *fi)
 static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 		    struct fuse_file_info *fi)
 {
+    u_int64_t total_time;
+   struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_read: Entered\n");
 	int fd;
@@ -419,6 +438,8 @@ static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 static int fs_write(const char *path, const char *buf, size_t size,
 		     off_t offset, struct fuse_file_info *fi)
 {
+    u_int64_t total_time;
+struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_write: Entered\n");
 	int fd;
@@ -472,6 +493,8 @@ static int fs_write(const char *path, const char *buf, size_t size,
 
 static int fs_release(const char *path, struct fuse_file_info *fi)
 {
+    u_int64_t total_time;
+struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 	int res;
 	

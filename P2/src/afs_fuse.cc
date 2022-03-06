@@ -44,6 +44,7 @@
 /******************************************************************************
  * NAMESPACE
  *****************************************************************************/
+
 using namespace std;
 using namespace FileSystemClient;
 
@@ -70,7 +71,7 @@ static const struct fuse_opt option_spec[] = {
  *****************************************************************************/
 static void show_help(const char *progname)
 {
-	std::cout<<"usage: "<<progname<<" [-f] <mountpoint>\n\n";
+	std::cout<<"usage: "<<progname<<" [-s -d] <mountpoint>\n\n";
 }
 
 // removes the '/' at the beginning
@@ -79,9 +80,50 @@ char * fs_relative_path(char * path)
     return path + 1;
 }
 
+// SINGLE LOG HELPER FUNCTIONS
+void init_single_log() {
+  // Handle edge case crash when switching from log to newlog
+  rename("/tmp/afs/newlog", "/tmp/afs/log");
+
+  ifstream log;
+  log.open("/tmp/afs/log", ios::in);
+  if (log.is_open()) {
+    string line;
+    while (getline(log, line)) {
+      options.client->CloseFile(-1, line);
+      //dbgprintf("READ LOG ON INIT %s \n", line.c_str());
+    }
+  }
+}
+
+void write_single_log(const char *path){
+  // Update log to say this file was modified
+  ofstream log;
+  log.open("/tmp/afs/log", ios::out | ios::app);
+  if (log.is_open())
+    log << fs_relative_path((char* ) path) << endl;
+}
+
+
 /******************************************************************************
  * FUSE FUNCTIONS
  *****************************************************************************/
+
+static void *fs_init(struct fuse_conn_info *conn,
+		      struct fuse_config *cfg)
+{
+	//(void) conn;
+	//cfg->use_ino = 1;        
+
+	if (SINGLE_LOG) init_single_log();
+
+	//cfg->entry_timeout = 0;
+	//cfg->attr_timeout = 0;
+	//cfg->negative_timeout = 0;
+
+	return NULL;
+}
+
 static int fs_mkdir(const char *path, mode_t mode)
 {
 	dbgprintf("fs_mkdir: Entered\n");
@@ -283,6 +325,7 @@ static int fs_write(const char *path, const char *buf, size_t size,
 	if (fd == -1)
 		return -errno;
 
+	if (SINGLE_LOG) write_single_log(path);
 	res = pwrite(fd, buf, size, offset);
 	if (res == -1)
 		res = -errno;
@@ -336,32 +379,18 @@ struct fuse_operations fsops = {
     .release = fs_release,
 	.fsync = fs_fsync, 
 	.readdir = fs_readdir,
+	.init = fs_init,
 };
-
-
-void initgRPC()
-{
-	// make sure local path exists
-	string command = string("mkdir -p ") + LOCAL_CACHE_PREFIX;
-	dbgprintf("initgRPC: command %s\n", command.c_str());
-	if (system(command.c_str()) != 0)
-	{
-		dbgprintf("initgRPC: system() failed\n");
-	}
-
-	// init grpc connection
-	string target_address(SERVER_ADDR);
-    options.client = new ClientImplementation(grpc::CreateChannel(target_address,
-                                grpc::InsecureChannelCredentials()));
-	dbgprintf("initgRPC: Client is contacting server: %s\n", SERVER_ADDR);
-}
 
 int
 main(int argc, char *argv[])
 {
 	umask(0);
 
-	initgRPC();
-
+    // Init grpc
+    string target_address(SERVER_ADDR);
+    options.client = new ClientImplementation(grpc::CreateChannel(target_address,
+                                grpc::InsecureChannelCredentials()));
+    
 	return (fuse_main(argc, argv, &fsops, &options));
 }

@@ -134,7 +134,10 @@ vector<std::string> glob(const std::string& pattern) {
 // Log v1
 void init_single_log() {
   // Handle edge case crash when switching from log to newlog
-  rename("/tmp/afs/newlog", "/tmp/afs/log");
+  ifstream check_log;
+  check_log.open("/tmp/afs/log", ios::in);
+  if (!check_log.is_open())
+    rename("/tmp/afs/newlog", "/tmp/afs/log");
 
   ifstream log;
   log.open("/tmp/afs/log", ios::in);

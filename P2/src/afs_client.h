@@ -552,8 +552,6 @@ namespace FileSystemClient
                             dbgprintf("OpenFile: write() failed\n");
                             return -1;
                         }
-                        
-                        reply.time_modify();
                             
                         auto timing = reply.time_modify();
                         

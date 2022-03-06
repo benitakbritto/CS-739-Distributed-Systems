@@ -13,23 +13,25 @@
 /******************************************************************************
  * MACROS
  *****************************************************************************/
-#define DEBUG                 1
-#define dbgprintf(...)        if (DEBUG) { printf(__VA_ARGS__); }
-#define MAX_RETRY             5
-#define RETRY_TIME_START      1 // seconds
-#define RETRY_TIME_MULTIPLIER 2
-#define LOCAL_CACHE_PREFIX    "/tmp/afs/"
-#define CHUNK_SIZE            1024
-
-//Remove to disable all crashes
-#define CRASH_TEST
-
+#define DEBUG                 1                                     // for debugging
+#define dbgprintf(...)        if (DEBUG) { printf(__VA_ARGS__); }   // for debugging
+#define MAX_RETRY             5                                     // rpc retry
+#define RETRY_TIME_START      1                                     // in seconds
+#define RETRY_TIME_MULTIPLIER 2                                     // for rpc retry w backoff
+#define LOCAL_CACHE_PREFIX    "/tmp/afs/"                           // location of local files
+#define CHUNK_SIZE            1024                                  // for streaming
+#define LOG_V1                1                                     // set to run log v1; else will run v2
+//#define SERVER_ADDR         "52.151.53.152:50051"                 // Server: VM1
+//#define SERVER_ADDR         "20.69.154.6:50051"                   // Server: VM2
+//#define SERVER_ADDR         "20.69.94.59:50051"                   // Server: VM3
+#define SERVER_ADDR           "0.0.0.0:50051"                       // Server: self
+#define PERFORMANCE           0                                     // set to 1 to run performant functions
+#define CRASH_TEST                                                  //Remove to disable all crashes
 #ifdef CRASH_TEST
 #define crash(...) if (__VA_ARGS__) *((char*)0) = 0; else do {} while(0)
 #else
 #define crash() do {} while(0)
 #endif
-
 
 /******************************************************************************
  * NAMESPACES

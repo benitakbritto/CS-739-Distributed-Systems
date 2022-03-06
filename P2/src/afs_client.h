@@ -20,7 +20,6 @@
 #define RETRY_TIME_MULTIPLIER 2                                     // for rpc retry w backoff
 #define LOCAL_CACHE_PREFIX    "/tmp/afs/"                           // location of local files
 #define CHUNK_SIZE            1024                                  // for streaming
-#define LOG_V1                1                                     // set to run log v1; else will run v2
 //#define SERVER_ADDR         "52.151.53.152:50051"                 // Server: VM1
 //#define SERVER_ADDR         "20.69.154.6:50051"                   // Server: VM2
 //#define SERVER_ADDR         "20.69.94.59:50051"                   // Server: VM3

@@ -4,6 +4,8 @@ package filesystemcomm;
 
 service FileSystemService 
 {
+    rpc Ping (PingMessage) returns (PingMessage) {}
+    
     // BASIC
     // File operations
     rpc Fetch (FetchRequest) returns (FetchResponse) {}
@@ -82,6 +84,7 @@ message DirectoryEntry {
     uint64 size = 3; // in bytes
 }
 
+message PingMessage { }
 
 message FetchRequest
 {

@@ -43,6 +43,7 @@ using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
 using filesystemcomm::FileSystemService;
+using filesystemcomm::PingMessage;
 using filesystemcomm::FetchRequest;
 using filesystemcomm::FetchResponse;
 using filesystemcomm::GetFileStatRequest;
@@ -114,6 +115,47 @@ namespace FileSystemClient
                     default:
                         return EIO; // fall back to IO err for unexpected issues
                 }
+            }
+            
+            int Ping(std::chrono::nanoseconds * round_trip_time) {
+                auto start = chrono::steady_clock::now();
+                
+                PingMessage request;
+                PingMessage reply;
+                Status status;
+                uint32_t retryCount = 0;
+                
+                // Retry w backoff
+                do 
+                {
+                    ClientContext context;
+                    dbgprintf("Ping: Invoking RPC\n");
+                    sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+                    status = stub_->Ping(&context, request, &reply);
+                    retryCount++;
+                } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+                // Checking RPC Status
+                if (status.ok()) 
+                {
+                    
+                    dbgprintf("Ping: RPC Success\n");
+                    auto end = chrono::steady_clock::now();
+                    *round_trip_time = end-start;
+                    #if DEBUG
+                    std::chrono::duration<double,std::ratio<1,1>> seconds = end-start;
+                    dbgprintf("Ping: Exiting function (took %fs)\n",seconds.count());
+                    #endif
+                    return 0;
+                }
+                else
+                {
+                    dbgprintf("Ping: RPC failure\n");
+                    dbgprintf("Ping: Exiting function\n");
+                    return -1;
+                }
+                
+                
             }
             
             int MakeDir(std::string path, mode_t mode) 

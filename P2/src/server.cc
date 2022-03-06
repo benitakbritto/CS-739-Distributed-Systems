@@ -35,6 +35,7 @@
  *****************************************************************************/
 namespace fs = std::filesystem;
 using filesystemcomm::DirectoryEntry;
+using filesystemcomm::PingMessage;
 using filesystemcomm::FetchRequest;
 using filesystemcomm::FetchResponse;
 using filesystemcomm::FileMode;
@@ -508,6 +509,10 @@ class ServiceImplementation final : public FileSystemService::Service {
 
    public:
     ServiceImplementation(path root) : root(root) {}
+
+    Status Ping(ServerContext* context, const PingMessage* request, PingMessage* reply) override {
+        return Status::OK;
+    }
 
     Status Fetch(ServerContext* context, const FetchRequest* request, FetchResponse* reply) override {
         path filepath = to_storage_path(request->pathname());

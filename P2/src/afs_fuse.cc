@@ -101,6 +101,11 @@ void initgRPC()
     options.client = new ClientImplementation(grpc::CreateChannel(target_address,
                                 grpc::InsecureChannelCredentials()));
 	dbgprintf("initgRPC: Client is contacting server: %s\n", SERVER_ADDR);
+	
+	#if DEBUG
+	std::chrono::nanoseconds ping_time;
+	options.client->Ping(&ping_time);
+	#endif
 }
 
 // filename pattern matcher

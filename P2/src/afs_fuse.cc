@@ -489,6 +489,9 @@ static int fs_release(const char *path, struct fuse_file_info *fi)
 	
 	if(res == -1) 
 		return -errno;
+		clock_gettime(CLOCK_MONOTONIC, &end);
+	total_time =  end.tv_nsec - start.tv_nsec;
+  printf("release time = %lu nanoseconds \n", total_time);
 	return 0;
 }
 
@@ -501,9 +504,9 @@ static int fs_utimens(const char *path, const struct timespec tv[2], struct fuse
 // TODO: decide to keep or no
 static int fs_access(const char *path, int dummy)
 {
-    clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_access: Entered\n");
 	return 0;
+	
 }
 
 

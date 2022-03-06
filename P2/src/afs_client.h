@@ -1016,7 +1016,8 @@ namespace FileSystemClient
                     }
                 }
                 dbgprintf("from_flat_file: Exiting function\n");
-                return absolute_path;
+                string rel_path = absolute_path.substr(string(LOCAL_CACHE_PREFIX).length(),absolute_path.length());
+                return rel_path;
             }
                 
         private:

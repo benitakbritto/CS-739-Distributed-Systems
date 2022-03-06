@@ -102,10 +102,8 @@ void initgRPC()
                                 grpc::InsecureChannelCredentials()));
 	dbgprintf("initgRPC: Client is contacting server: %s\n", SERVER_ADDR);
 	
-	#if DEBUG
 	std::chrono::nanoseconds ping_time;
 	options.client->Ping(&ping_time);
-	#endif
 }
 
 // filename pattern matcher
@@ -175,15 +173,25 @@ int createPendingFile(string rel_path)
 // Log v2
 int init_multi_log()
 {
+	// This would close all dirty writes
+	// dbgprintf("init_multi_log: Entering function\n");
+	// string pattern = string(LOCAL_CACHE_PREFIX) + "*.tmp";
+	// vector<string> to_remove = glob(pattern.c_str());
+	// dbgprintf("init_multi_log: to_remove size = %ld\n", to_remove.size());
+	// dbgprintf("init_multi_log: pattern = %s\n", pattern.c_str());
+	// for (auto file : to_remove)
+	// {
+	// 	dbgprintf("init_multi_log: file = %s\n", file.c_str());
+	// 	options.client->CloseFile(-1, from_flat_file(file));
+	// }
+	// dbgprintf("init_multi_log: Exiting function\n");
+    // return 0;
+	// This would delete all .tmp files
 	dbgprintf("init_multi_log: Entering function\n");
-	string pattern = string(LOCAL_CACHE_PREFIX) + "*.tmp";
-	vector<string> to_remove = glob(pattern.c_str());
-	dbgprintf("init_multi_log: to_remove size = %ld\n", to_remove.size());
-	dbgprintf("init_multi_log: pattern = %s\n", pattern.c_str());
-	for (auto file : to_remove)
+	string command = "rm -rf /tmp/afs/*.tmp";
+	if (system(command.c_str()) != 0)
 	{
-		dbgprintf("init_multi_log: file = %s\n", file.c_str());
-		options.client->removePendingFile(file);
+		dbgprintf("init_multi_log: system() failed\n");
 	}
 	dbgprintf("init_multi_log: Exiting function\n");
     return 0;

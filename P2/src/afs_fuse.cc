@@ -131,8 +131,13 @@ vector<std::string> glob(const std::string& pattern) {
 // For Crash Consistency
 // Log v1
 void init_single_log() {
+  
+  ofstream log;
+  log.open("/tmp/afs/log", ios::out | ios::trunc);
+  
+  //Close-log init implementation:
   // Handle edge case crash when switching from log to newlog
-  ifstream check_log;
+  /*ifstream check_log;
   check_log.open("/tmp/afs/log", ios::in);
   if (!check_log.is_open())
     rename("/tmp/afs/newlog", "/tmp/afs/log");
@@ -145,7 +150,7 @@ void init_single_log() {
       options.client->CloseFile(-1, line);
       //dbgprintf("READ LOG ON INIT %s \n", line.c_str());
     }
-  }
+  }*/
 }
 
 // For Crash Consistency

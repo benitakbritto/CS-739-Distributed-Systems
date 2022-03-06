@@ -49,7 +49,7 @@ target_link_libraries(
 )
 
 #### Server
-add_executable(afs-server server.cc)
+add_executable(afs-server server.cc locks.cc)
 target_link_libraries(
         afs-server
         hw_grpc_proto

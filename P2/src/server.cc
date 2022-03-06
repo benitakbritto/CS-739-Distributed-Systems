@@ -10,6 +10,7 @@
 #include <chrono>
 #include <utility>
 #include "build/filesystemcomm.grpc.pb.h"
+#include "locks.h"
 
 /******************************************************************************
  * MACROS
@@ -110,7 +111,10 @@ class FileSystemException : public std::runtime_error {
  * gRPC SYNC SERVER IMPLEMENTATION
  *****************************************************************************/
 class ServiceImplementation final : public FileSystemService::Service {
+    MutexMap locks;
+    
     path root;
+    
 
     path to_storage_path(string relative) {
     	dbgprintf("to_storage_path: root = %s\n", root.c_str());
@@ -133,42 +137,23 @@ class ServiceImplementation final : public FileSystemService::Service {
     path get_tempfile_path(path filepath) {
         return path(filepath.string() + TEMP_FILE_EXT);
     }
-
-    string read_file(path filepath) {
-        dbgprintf("read_file: Entering function\n");
-
-        // Check that path exists and is a file before proceeding
+    
+    uint check_valid_read_location(path filepath) {
         std::error_code ec;
-        if (!fs::is_regular_file(filepath, ec)) {
-            dbgprintf("read_file: Exiting function\n");
-
-            if (ec) {
-                throw FileSystemException(ec.value());
-                // switch (ec.value()) {
-                //     case ENOENT:
-                //         throw ProtocolException("File not found", StatusCode::NOT_FOUND);
-                //     case ENOTDIR:
-                //         throw ProtocolException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
-                //     default:
-                //         throw ProtocolException("Error checking file type", StatusCode::UNKNOWN);
-                // }
-            } else {
-                throw FileSystemException(EISDIR);
-                // throw ProtocolException("Attempting to read non-file item ", StatusCode::FAILED_PRECONDITION);
-            }
+        auto status = fs::status(filepath, ec);
+        
+        if(ec) {
+            return ec.value();
         }
-
-        std::ifstream file(filepath, std::ios::in | std::ios::binary);
-        std::ostringstream buffer;
-        buffer << file.rdbuf();
-
-        if (file.fail()) {
-            dbgprintf("read_file: Exiting function\n");
-            throw ProtocolException("Error performing file read", StatusCode::UNKNOWN);
+        
+        switch (status.type()) {
+            case fs::file_type::regular:
+                return 0;
+            case fs::file_type::directory:
+                return EISDIR;
+            default:
+                return EPERM; // For other types of entry, throw a permission error
         }
-
-        dbgprintf("read_file: Exiting function\n");
-        return buffer.str();
     }
 
     // Check that file content can be written to a given path.
@@ -211,6 +196,28 @@ class ServiceImplementation final : public FileSystemService::Service {
 
         // result (b)
         return 0;
+    }
+
+    string read_file(path filepath) {
+        dbgprintf("read_file: Entering function\n");
+
+        // Check that path exists and is a file before proceeding
+        uint pre_err = check_valid_read_location(filepath);
+        if(pre_err != 0) {
+            throw FileSystemException(pre_err);
+        }
+        
+        std::ifstream file(filepath, std::ios::in | std::ios::binary);
+        std::ostringstream buffer;
+        buffer << file.rdbuf();
+
+        if (file.fail()) {
+            dbgprintf("read_file: Exiting function\n");
+            throw ProtocolException("Error performing file read", StatusCode::UNKNOWN);
+        }
+
+        dbgprintf("read_file: Exiting function\n");
+        return buffer.str();
     }
 
     void write_file(path filepath, string content) {
@@ -386,21 +393,19 @@ class ServiceImplementation final : public FileSystemService::Service {
     }
 
     timespec read_modify_time(path filepath) {
+        // Don't acquire read-lock for this
         struct stat sb;
         if (stat(filepath.c_str(), &sb) == -1) {
             throw FileSystemException(errno);
-            // // TODO transform error codes
-            // throw ProtocolException("Stat failed", StatusCode::UNKNOWN);
         }
         return sb.st_mtim;
     }
 
     mode_t read_file_mode(path filepath) {
+        // Don't acquire read-lock for this
         struct stat sb;
         if (stat(filepath.c_str(), &sb) == -1) {
             throw FileSystemException(errno);
-            // // TODO transform error codes
-            // throw ProtocolException("Stat failed", StatusCode::UNKNOWN);
         }
         return sb.st_mode;
     }
@@ -425,19 +430,11 @@ class ServiceImplementation final : public FileSystemService::Service {
 
     auto read_file_size(path filepath)
     {
+        // Don't acquire read-lock for this
         struct stat sb;
 
         if (stat(filepath.c_str(), &sb) == -1) {
             throw FileSystemException(errno);
-            
-            // switch (errno) {
-            //     case ENOENT:
-            //         throw ProtocolException("Item not found", StatusCode::NOT_FOUND);
-            //     case ENOTDIR:
-            //         throw ProtocolException("Non-directory in path prefix", StatusCode::FAILED_PRECONDITION);
-            //     default:
-            //         throw ProtocolException("Error in call to stat", StatusCode::UNKNOWN);
-            // }
         }
 
         return sb.st_size;
@@ -518,6 +515,8 @@ class ServiceImplementation final : public FileSystemService::Service {
 
 #if PERFORMANCE_MEM_MAP == 1
         try {
+            auto lock = locks.GetReadLock(filepath.string());
+            
             auto content = get_file_from_mem_map(filepath);
             reply->set_file_contents(content);
             reply->mutable_time_modify()->CopyFrom(
@@ -539,7 +538,11 @@ class ServiceImplementation final : public FileSystemService::Service {
         try {
             // TODO wait for read/write lock
             // In C++, protobuf `bytes` fields are implemented as strings
+            
+            auto lock = locks.GetReadLock(filepath.string());
             auto content = read_file(filepath);
+            lock.unlock(); // unlock manually here
+            
             reply->set_file_contents(content);
             reply->mutable_time_modify()->CopyFrom(
                 convert_timestamp(read_modify_time(filepath)));
@@ -564,7 +567,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             path filepath = to_storage_path(request->pathname());
             dbgprintf("Store: filepath = %s\n", filepath.c_str());
 
-            // TODO wait for read/write lock
+            auto lock = locks.GetWriteLock(filepath.string());
             write_file(filepath, request->file_contents());
 
 // if optimization turned on, write to map
@@ -604,8 +607,8 @@ class ServiceImplementation final : public FileSystemService::Service {
             path filepath = to_storage_path(request->pathname());
             cout << "Remove: filepath = " << filepath << endl;
 
-            // TODO wait for read/write lock
-
+            auto lock = locks.GetWriteLock(filepath.string());
+            
             delete_file(filepath);
 // if optimization turned on, delete from map
 #if PERFORMANCE_MEM_MAP == 1
@@ -637,7 +640,10 @@ class ServiceImplementation final : public FileSystemService::Service {
             // TODO: check that dst is in same dir as src
             dbgprintf("Rename: srcpath = %s, dstpath = %s\n", srcpath.c_str(), dstpath.c_str());
 
-            // TODO wait for read/write lock
+            // Lock both paths
+            auto lock1 = locks.GetWriteLock(srcpath.string());
+            auto lock2 = locks.GetWriteLock(dstpath.string());
+            
             move_file(srcpath, dstpath);
 
             dbgprintf("Rename: Exiting function on Success path\n");
@@ -663,7 +669,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             path filepath = to_storage_path(request->pathname());
             dbgprintf("GetFileStat: filepath = %s\n", filepath.c_str());
 
-            // TODO wait for read/write lock
+            auto lock = locks.GetReadLock(filepath.string());
             auto status = read_stat(filepath);
             reply->mutable_status()->CopyFrom(status);
             return Status::OK;
@@ -685,9 +691,8 @@ class ServiceImplementation final : public FileSystemService::Service {
         try {
             path filepath = to_storage_path(request->pathname());
             dbgprintf("TestAuth: filepath = %s\n", filepath.c_str());
-
-            // todo wait for write to finish??
-
+            
+            auto lock = locks.GetReadLock(filepath.string());
             auto ts0 = read_modify_time(filepath);
             auto ts1 = request->time_modify();
             bool changed = (ts0.tv_sec != ts1.sec()) || (ts0.tv_nsec != ts1.nsec());
@@ -718,7 +723,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             path filepath = to_storage_path(request->pathname());
             dbgprintf("TestAuth: filepath = %s\n", filepath.c_str());
 
-            // todo wait for write to finish??
+            auto lock = locks.GetWriteLock(filepath.string());
             make_dir(filepath, request->mode());
             dbgprintf("MakeDir: Exiting function on Success path\n");
             return Status::OK;
@@ -744,6 +749,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             path filepath = to_storage_path(request->pathname());
             dbgprintf("Mknod: filepath = %s\n", filepath.c_str());
 
+            auto lock = locks.GetWriteLock(filepath.string());
             int ret = mknod(filepath.c_str(), request->mode(), request->dev());
             
             dbgprintf("Mknod: Exiting function on Success path\n");
@@ -768,8 +774,12 @@ class ServiceImplementation final : public FileSystemService::Service {
         try {
             path filepath = to_storage_path(request->pathname());
             dbgprintf("RemoveDir: filepath = %s\n", filepath.c_str());
-
-            // todo wait for write to finish??
+            
+            // NOTE: this doesn't wait for any locks in child paths.
+            // This would be an issue in the edge case where we receive a request
+            // to delete the last file in a folder immediately before a request to delete
+            // the folder itself; in this case, the folder might not be deleted as it should be.
+            auto lock = locks.GetWriteLock(filepath.string());
             remove_dir(filepath);
 
             dbgprintf("RemoveDir: Exiting function on Success path\n");
@@ -794,8 +804,12 @@ class ServiceImplementation final : public FileSystemService::Service {
         try {
             path filepath = to_storage_path(request->pathname());
             dbgprintf("ListDir: filepath = %s\n", filepath.c_str());
-
-            // todo wait for write to finish??
+            
+            // NOTE: this doesn't wait for any locks in child paths.
+            // This might cause problems if child files are being created/deleted
+            // during iteration.
+            auto lock = locks.GetReadLock(filepath.string());
+            
             list_dir(filepath, reply);
             dbgprintf("ListDir: Exiting function on Success path\n");
             return Status::OK;
@@ -822,17 +836,22 @@ class ServiceImplementation final : public FileSystemService::Service {
         path filepath;
         int i = 0;
         try {
-            while (reader->Read(&request))
-            {
-                filepath = to_storage_path(request.pathname());
-                dbgprintf("StoreWithStream: filepath = %s\n", filepath.c_str());
-                if (i == 0) file.open(filepath, std::ios::binary); // set path once
-                i++;
-
-                // TODO wait for read/write lock
-
-                file << request.file_contents();                
+            // Read first request in stream
+            if(!reader -> Read(&request)) {
+                throw ProtocolException("Empty stream",StatusCode::CANCELLED);
             }
+            
+            // Note: this assumes all requests in the stream are to the same pathname
+            filepath = to_storage_path(request.pathname());
+            dbgprintf("StoreWithStream: filepath = %s\n", filepath.c_str());
+            
+            auto lock = locks.GetWriteLock(filepath.string());
+            file.open(filepath, std::ios::binary);
+            
+            do {
+                // TODO: check that request.pathname stays constant?
+                file << request.file_contents();                
+            } while (reader->Read(&request));
 
             file.close();
 
@@ -862,9 +881,11 @@ class ServiceImplementation final : public FileSystemService::Service {
             path filepath = to_storage_path(request->pathname());
             dbgprintf("FetchWithStream: filepath = %s\n", filepath.c_str());
 
-            // TODO wait for read/write lock
 
             FetchResponse reply;
+            
+            auto lock = locks.GetReadLock(filepath.string());
+            
             // Set response
             reply.mutable_time_modify()->CopyFrom(
                 convert_timestamp(read_modify_time(filepath)));

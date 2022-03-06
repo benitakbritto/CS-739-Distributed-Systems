@@ -41,16 +41,16 @@
 
 #include "afs_client.h"
 
-// MACROS
-//#define SERVER_ADDR         "20.69.154.6:50051" // for testing on 2 machines
-#define SERVER_ADDR           "0.0.0.0:50051" // for testing on 1 machine
-#define PERFORMANCE           0
+/******************************************************************************
+ * NAMESPACE
+ *****************************************************************************/
 
-// NAMESPACES
 using namespace std;
 using namespace FileSystemClient;
 
-// GLOBALS
+/******************************************************************************
+ * GLOBALS
+ *****************************************************************************/
 static int fill_dir_plus = 0;
 
 static struct options {	
@@ -66,13 +66,14 @@ static const struct fuse_opt option_spec[] = {
 	FUSE_OPT_END
 };
 
-// wrong - TODO
+/******************************************************************************
+ * HELPER FUNCTIONS
+ *****************************************************************************/
 static void show_help(const char *progname)
 {
 	std::cout<<"usage: "<<progname<<" [-s -d] <mountpoint>\n\n";
 }
 
-// Helper Functions
 // removes the '/' at the beginning
 char * fs_relative_path(char * path)
 {
@@ -103,7 +104,11 @@ void write_single_log(const char *path){
     log << fs_relative_path((char* ) path) << endl;
 }
 
-// FUSE functions
+
+/******************************************************************************
+ * FUSE FUNCTIONS
+ *****************************************************************************/
+
 static void *fs_init(struct fuse_conn_info *conn,
 		      struct fuse_config *cfg)
 {
@@ -135,13 +140,6 @@ static int fs_mkdir(const char *path, mode_t mode)
 	return 0;
 }
 
-// TODO: decide to keep or no
-static int fs_utimens(const char *path, const struct timespec tv[2], struct fuse_file_info *fi) {
-	dbgprintf("fs_utimens: Entered\n");
-    return 0;
-}
-
-
 static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi, enum fuse_readdir_flags flags)
 {
 	dbgprintf("fs_readdir: Entered\n");
@@ -157,7 +155,6 @@ static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t
 		return -errno;
 	return 0;
 }
-
 
 static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_info *fi)
 {
@@ -221,7 +218,6 @@ static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
 	return 0;
 }
 
-// TODO: create grpc version
 static int fs_mknod(const char *path, mode_t mode, dev_t rdev)
 {
 	dbgprintf("fs_mknod: Entered\n");
@@ -236,13 +232,6 @@ static int fs_mknod(const char *path, mode_t mode, dev_t rdev)
 	if (res == -1)
 		return -errno;
 
-	return 0;
-}
-
-// TODO: decide to keep or no
-static int fs_access(const char *path, int dummy)
-{
-	dbgprintf("fs_access: Entered\n");
 	return 0;
 }
 
@@ -391,8 +380,6 @@ struct fuse_operations fsops = {
 	.fsync = fs_fsync, 
 	.readdir = fs_readdir,
 	.init = fs_init,
-	.access = fs_access,
-	.utimens = fs_utimens,
 };
 
 int

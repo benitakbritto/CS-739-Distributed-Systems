@@ -9,7 +9,7 @@
 #include <map>
 #include <chrono>
 #include <utility>
-#include "build/filesystemcomm.grpc.pb.h"
+#include "filesystemcomm.grpc.pb.h"
 #include "locks.h"
 
 /******************************************************************************

@@ -4,7 +4,7 @@
 #include <string>
 #include <chrono>
 #include <ctime>
-#include "build/filesystemcomm.grpc.pb.h"
+#include "filesystemcomm.grpc.pb.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -28,7 +28,7 @@
 #define SERVER_ADDR           "0.0.0.0:50051"                       // Server: self
 #define PERFORMANCE           0                                     // set to 1 to run performant functions
 #define CRASH_TEST                                                  //Remove to disable all crashes
-#define SINGLE_LOG            0                                     // Turns on single log functionality
+#define SINGLE_LOG            1                                     // Turns on single log functionality
 
 #ifdef CRASH_TEST
 #define crash(...) if (__VA_ARGS__) *((char*)0) = 0; else do {} while(0)
@@ -551,44 +551,42 @@ namespace FileSystemClient
                 return file;
             }
 
-	    // SINGLE LOG HELPER FUNCTIONS
-	    int checkModified_single_log(int fd, string path) {
-                // No RPC necessary if file wasn't modified
+            // SINGLE LOG HELPER FUNCTIONS
+            int checkModified_single_log(int fd, string path) {
                 ifstream log;
-		bool changed = false;
-		log.open("/tmp/afs/log", ios::in);
-		if (log.is_open()) {
-	  	  string line;
-	  	  while (getline(log, line)) {
-	  	    if (line == path)
-	  	      changed = true;
-	  	  }
-		}
-		if (!changed) return 0; 
-		
-		return 1;
-	    }
+                bool changed = false;
+                log.open("/tmp/afs/log", ios::in);
+                if (log.is_open()) {
+                    string line;
+                    while (getline(log, line)) {
+                        if (line == path)
+                        changed = true;
+                    }
+                }
+                if (!changed) return 0; 
+                
+                return 1;
+            }
 
-	    void closeEntry_single_log(string path) {
-              // Delete entry from log
-              ifstream log;
-	      log.open("/tmp/afs/log", ios::in);
-	      ofstream newlog;
-	      newlog.open("/tmp/afs/newlog", ios::out);
-	      if (log.is_open() && newlog.is_open()) {
-	  	string line;
-		
-	        while (getline(log, line)) {	
-	          if (line != path) {
-	            newlog << line << endl;
-	            
-		  }
-	  	}
-	  	remove("/tmp/afs/log");
-	  	// If we crash here, we lose the log
-	  	rename("/tmp/afs/newlog", "/tmp/afs/log");
-	      }
-	    }
+            void closeEntry_single_log(string path) {
+                // Delete entry from log
+                ifstream log;
+                log.open("/tmp/afs/log", ios::in);
+                ofstream newlog;
+                newlog.open("/tmp/afs/newlog", ios::out);
+                if (log.is_open() && newlog.is_open()) {
+                    string line;
+                
+                    while (getline(log, line)) {	
+                        if (line != path) {
+                            newlog << line << endl;     
+                    }
+                }
+                    remove("/tmp/afs/log");
+                    // If we crash here, we lose the log
+                    rename("/tmp/afs/newlog", "/tmp/afs/log");
+                }
+            }
 
             int CloseFile(int fd, string path) 
             {
@@ -599,16 +597,16 @@ namespace FileSystemClient
                 Status status;
                 uint32_t retryCount = 0;
                 
-	        // Check for init closes (fd = -1) and skip to RPC call
-		if (fd != -1)
-	          if (close(fd))
-                  {
-                      dbgprintf("CloseFile: close() failed\n");
-                      return -1;
-                  }
+	            // Check for init closes (fd = -1) and skip to RPC call
+                if (fd != -1)
+                    if (close(fd))
+                        {
+                            dbgprintf("CloseFile: close() failed\n");
+                            return -1;
+                        }
 
-		if (SINGLE_LOG)
-		    if (!checkModified_single_log(fd, path)) return 0;
+                if (SINGLE_LOG)
+                    if (!checkModified_single_log(fd, path)) return 0;
 
                 // Set request
                 const string cache_path = get_cache_path(path);
@@ -641,7 +639,7 @@ namespace FileSystemClient
                             return -1;
                     }
                     
-		    if (SINGLE_LOG) closeEntry_single_log(path);
+		            if (SINGLE_LOG) closeEntry_single_log(path);
 
                     auto timing = reply.time_modify();
                     
@@ -745,7 +743,7 @@ namespace FileSystemClient
             }
 
             // For Performance
-            // TODO - retry
+            // TODO - add log
             int CloseFileWithStream(int fd, string path) 
             {
                 dbgprintf("CloseFileWithStream: Entered function\n");
@@ -872,7 +870,6 @@ namespace FileSystemClient
             } 
 
             // For Performance
-            // TODO - retry
             int OpenFileWithStream(std::string path) 
             {
                 dbgprintf("OpenFileWithStream: Inside function\n");
@@ -1052,6 +1049,34 @@ namespace FileSystemClient
                     return string();
                 }
                 return string((std::istreambuf_iterator<char>(input_file)), std::istreambuf_iterator<char>());
+            }
+
+            // For Crash Consistency
+            // Log v2
+            // TODO invoke
+            int createPendingFile(string filename)
+            {
+                string command = "touch " + filename + ".tmp";
+                dbgprintf("createPendingFile: command %s\n", command.c_str());
+                return system(command.c_str());
+            }
+
+            // For Crash Consistency
+            // Log v2
+            // TODO invoke
+            int removePendingFile(string filename)
+            {
+                string command = "rm -f " + filename + ".tmp";
+                dbgprintf("removePendingFile: command %s\n", command.c_str());
+                return system(command.c_str());
+            }
+
+            // For Crash Consistency
+            // Log v2
+            // TODO invoke
+            bool isFileModifiedv2(string filename)
+            {
+                return FileExists(filename);
             }
     };
 }

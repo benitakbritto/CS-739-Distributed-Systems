@@ -71,13 +71,30 @@ static const struct fuse_opt option_spec[] = {
  *****************************************************************************/
 static void show_help(const char *progname)
 {
-	std::cout<<"usage: "<<progname<<" [-s -d] <mountpoint>\n\n";
+	std::cout<<"usage: "<<progname<<" [-f] <mountpoint>\n\n";
 }
 
 // removes the '/' at the beginning
 char * fs_relative_path(char * path)
 {
     return path + 1;
+}
+
+void initgRPC()
+{
+	// make sure local path exists
+	string command = string("mkdir -p ") + LOCAL_CACHE_PREFIX;
+	dbgprintf("initgRPC: command %s\n", command.c_str());
+	if (system(command.c_str()) != 0)
+	{
+		dbgprintf("initgRPC: system() failed\n");
+	}
+
+	// init grpc connection
+	string target_address(SERVER_ADDR);
+    options.client = new ClientImplementation(grpc::CreateChannel(target_address,
+                                grpc::InsecureChannelCredentials()));
+	dbgprintf("initgRPC: Client is contacting server: %s\n", SERVER_ADDR);
 }
 
 // SINGLE LOG HELPER FUNCTIONS
@@ -387,10 +404,7 @@ main(int argc, char *argv[])
 {
 	umask(0);
 
-    // Init grpc
-    string target_address(SERVER_ADDR);
-    options.client = new ClientImplementation(grpc::CreateChannel(target_address,
-                                grpc::InsecureChannelCredentials()));
+    initgRPC();
     
 	return (fuse_main(argc, argv, &fsops, &options));
 }

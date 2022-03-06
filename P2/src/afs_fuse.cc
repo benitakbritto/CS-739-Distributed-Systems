@@ -410,10 +410,11 @@ static int fs_write(const char *path, const char *buf, size_t size,
 	if (fd == -1)
 		return -errno;
 
+	res = pwrite(fd, buf, size, offset);
+	
 	if (SINGLE_LOG) write_single_log(path); // v1 
 	else createPendingFile(rel_path); // v2
 
-	res = pwrite(fd, buf, size, offset);
 	if (res == -1)
 		res = -errno;
 

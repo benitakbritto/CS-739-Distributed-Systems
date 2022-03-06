@@ -551,47 +551,9 @@ namespace FileSystemClient
                 return file;
             }
 
-            // SINGLE LOG HELPER FUNCTIONS
-            int checkModified_single_log(int fd, string path) {
-                ifstream log;
-                bool changed = false;
-                log.open("/tmp/afs/log", ios::in);
-                if (log.is_open()) {
-                    string line;
-                    while (getline(log, line)) {
-                        if (line == path)
-                        changed = true;
-                    }
-                }
-                if (!changed) return 0; 
-                
-                return 1;
-            }
-
-            void closeEntry_single_log(string path) {
-                // Delete entry from log
-                ifstream log;
-                log.open("/tmp/afs/log", ios::in);
-                ofstream newlog;
-                newlog.open("/tmp/afs/newlog", ios::out);
-                if (log.is_open() && newlog.is_open()) {
-                    string line;
-                
-                    while (getline(log, line)) {	
-                        if (line != path) {
-                            newlog << line << endl;     
-                    }
-                }
-                    remove("/tmp/afs/log");
-                    // If we crash here, we lose the log
-                    rename("/tmp/afs/newlog", "/tmp/afs/log");
-                }
-            }
-
             int CloseFile(int fd, string path) 
             {
                 dbgprintf("CloseFile: Entered function\n");
-                
                 StoreRequest request;
                 StoreResponse reply;
                 Status status;
@@ -600,13 +562,20 @@ namespace FileSystemClient
 	            // Check for init closes (fd = -1) and skip to RPC call
                 if (fd != -1)
                     if (close(fd))
-                        {
-                            dbgprintf("CloseFile: close() failed\n");
-                            return -1;
-                        }
+                    {
+                        dbgprintf("CloseFile: close() failed\n");
+                        return -1;
+                    }
 
                 if (SINGLE_LOG)
+                {
                     if (!checkModified_single_log(fd, path)) return 0;
+                }
+                else
+                {
+                    if(!isFileModifiedv2(path)) return 0;
+                }
+                   
 
                 // Set request
                 const string cache_path = get_cache_path(path);
@@ -640,6 +609,7 @@ namespace FileSystemClient
                     }
                     
 		            if (SINGLE_LOG) closeEntry_single_log(path);
+                    else removePendingFile(to_flat_file(path));
 
                     auto timing = reply.time_modify();
                     
@@ -953,6 +923,52 @@ namespace FileSystemClient
                 dbgprintf("OpenFile: Exiting function\n");
                 return file;
             }
+
+            // For Crash Consistency
+            // Log v2
+            int removePendingFile(string filename)
+            {
+                dbgprintf("removePendingFile: Entering function\n");
+                string command = "rm -f " + filename;
+                dbgprintf("removePendingFile: command %s\n", command.c_str());
+                dbgprintf("removePendingFile: Exiting function\n");
+                return system(command.c_str());
+            }
+
+            // For Crash Consistency
+            // Log v2
+            string to_flat_file(string relative_path)
+            {
+                dbgprintf("to_flat_file: Entering function\n");
+                for (int i=0; i<relative_path.length(); i++)
+                {
+                    if (relative_path[i] == '/') {
+                        relative_path[i] = '%';
+                    }
+                }
+                string flat_file = LOCAL_CACHE_PREFIX + relative_path + ".tmp"; 
+                dbgprintf("to_flat_file: Exiting function\n");
+                return flat_file;
+            }
+
+            // For Crash Consistency
+            // Log v2
+            string from_flat_file(string absolute_path)
+            {
+                dbgprintf("from_flat_file: Entering function\n");
+
+                int i = 0;
+                while (i++<string(LOCAL_CACHE_PREFIX).length());
+
+                for (; i<absolute_path.length(); i++)
+                {
+                    if (absolute_path[i] == '%') {
+                        absolute_path[i] = '/';
+                    }
+                }
+                dbgprintf("from_flat_file: Exiting function\n");
+                return absolute_path;
+            }
                 
         private:
             unique_ptr<FileSystemService::Stub> stub_;
@@ -1052,31 +1068,50 @@ namespace FileSystemClient
             }
 
             // For Crash Consistency
-            // Log v2
-            // TODO invoke
-            int createPendingFile(string filename)
-            {
-                string command = "touch " + filename + ".tmp";
-                dbgprintf("createPendingFile: command %s\n", command.c_str());
-                return system(command.c_str());
+            // Log v1
+            int checkModified_single_log(int fd, string path) {
+                ifstream log;
+                bool changed = false;
+                log.open("/tmp/afs/log", ios::in);
+                if (log.is_open()) {
+                    string line;
+                    while (getline(log, line)) {
+                        if (line == path)
+                        changed = true;
+                    }
+                }
+                if (!changed) return 0; 
+                
+                return 1;
+            }
+
+            // For Crash Consistency
+            // Log v1
+            void closeEntry_single_log(string path) {
+                // Delete entry from log
+                ifstream log;
+                log.open("/tmp/afs/log", ios::in);
+                ofstream newlog;
+                newlog.open("/tmp/afs/newlog", ios::out);
+                if (log.is_open() && newlog.is_open()) {
+                    string line;
+                
+                    while (getline(log, line)) {	
+                        if (line != path) {
+                            newlog << line << endl;     
+                    }
+                }
+                    remove("/tmp/afs/log");
+                    // If we crash here, we lose the log
+                    rename("/tmp/afs/newlog", "/tmp/afs/log");
+                }
             }
 
             // For Crash Consistency
             // Log v2
-            // TODO invoke
-            int removePendingFile(string filename)
+            bool isFileModifiedv2(string rel_path)
             {
-                string command = "rm -f " + filename + ".tmp";
-                dbgprintf("removePendingFile: command %s\n", command.c_str());
-                return system(command.c_str());
-            }
-
-            // For Crash Consistency
-            // Log v2
-            // TODO invoke
-            bool isFileModifiedv2(string filename)
-            {
-                return FileExists(filename);
+                return FileExists(to_flat_file(rel_path));
             }
     };
 }

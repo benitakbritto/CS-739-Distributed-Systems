@@ -21,6 +21,7 @@
 #include <stdlib.h>
 
 #include <iostream>
+#include <filesystem>
 
 #include <fuse.h>
 #include <stdio.h>
@@ -40,12 +41,17 @@
 #endif
 
 #include "afs_client.h"
+#include <glob.h>
+#include <stdexcept>
+#include <sstream>
+
 
 /******************************************************************************
  * NAMESPACE
  *****************************************************************************/
 
 using namespace std;
+namespace fs = std::filesystem;
 using namespace FileSystemClient;
 
 /******************************************************************************
@@ -97,7 +103,30 @@ void initgRPC()
 	dbgprintf("initgRPC: Client is contacting server: %s\n", SERVER_ADDR);
 }
 
-// SINGLE LOG HELPER FUNCTIONS
+// filename pattern matcher
+vector<std::string> glob(const std::string& pattern) {
+    // glob struct resides on the stack
+    glob_t glob_result;
+    memset(&glob_result, 0, sizeof(glob_result));
+
+    // do the glob operation
+    glob(pattern.c_str(), GLOB_TILDE, NULL, &glob_result);
+
+    // collect all the filenames into a std::list<std::string>
+    vector<string> filenames;
+    for(size_t i = 0; i < glob_result.gl_pathc; ++i) {
+        filenames.push_back(string(glob_result.gl_pathv[i]));
+    }
+
+    // cleanup
+    globfree(&glob_result);
+
+    // done
+    return filenames;
+}
+
+// For Crash Consistency
+// Log v1
 void init_single_log() {
   // Handle edge case crash when switching from log to newlog
   rename("/tmp/afs/newlog", "/tmp/afs/log");
@@ -113,6 +142,8 @@ void init_single_log() {
   }
 }
 
+// For Crash Consistency
+// Log v1
 void write_single_log(const char *path){
   // Update log to say this file was modified
   ofstream log;
@@ -121,6 +152,34 @@ void write_single_log(const char *path){
     log << fs_relative_path((char* ) path) << endl;
 }
 
+// For Crash Consistency
+// Log v2
+int createPendingFile(string rel_path)
+{
+	dbgprintf("createPendingFile: Entering function\n");
+    string command = "touch " + options.client->to_flat_file(rel_path);
+    dbgprintf("createPendingFile: command %s\n", command.c_str());
+	dbgprintf("createPendingFile: Exiting function\n");
+    return system(command.c_str());
+}
+
+// For Crash Consistency
+// Log v2
+int init_multi_log()
+{
+	dbgprintf("init_multi_log: Entering function\n");
+	string pattern = string(LOCAL_CACHE_PREFIX) + "*.tmp";
+	vector<string> to_remove = glob(pattern.c_str());
+	dbgprintf("init_multi_log: to_remove size = %ld\n", to_remove.size());
+	dbgprintf("init_multi_log: pattern = %s\n", pattern.c_str());
+	for (auto file : to_remove)
+	{
+		dbgprintf("init_multi_log: file = %s\n", file.c_str());
+		options.client->removePendingFile(file);
+	}
+	dbgprintf("init_multi_log: Exiting function\n");
+    return 0;
+}
 
 /******************************************************************************
  * FUSE FUNCTIONS
@@ -132,8 +191,9 @@ static void *fs_init(struct fuse_conn_info *conn,
 	//(void) conn;
 	//cfg->use_ino = 1;        
 
-	if (SINGLE_LOG) init_single_log();
-
+	if (SINGLE_LOG) init_single_log(); // v1
+	else init_multi_log(); // v2
+	
 	//cfg->entry_timeout = 0;
 	//cfg->attr_timeout = 0;
 	//cfg->negative_timeout = 0;
@@ -342,7 +402,9 @@ static int fs_write(const char *path, const char *buf, size_t size,
 	if (fd == -1)
 		return -errno;
 
-	if (SINGLE_LOG) write_single_log(path);
+	if (SINGLE_LOG) write_single_log(path); // v1 
+	else createPendingFile(rel_path); // v2
+
 	res = pwrite(fd, buf, size, offset);
 	if (res == -1)
 		res = -errno;
@@ -384,6 +446,20 @@ static int fs_release(const char *path, struct fuse_file_info *fi)
 	return 0;
 }
 
+// TODO: decide to keep or no
+static int fs_utimens(const char *path, const struct timespec tv[2], struct fuse_file_info *fi) {
+	dbgprintf("fs_utimens: Entered\n");
+    return 0;
+}
+
+// TODO: decide to keep or no
+static int fs_access(const char *path, int dummy)
+{
+	dbgprintf("fs_access: Entered\n");
+	return 0;
+}
+
+
 struct fuse_operations fsops = {
     .getattr = fs_getattr,
 	.mknod = fs_mknod,
@@ -397,6 +473,8 @@ struct fuse_operations fsops = {
 	.fsync = fs_fsync, 
 	.readdir = fs_readdir,
 	.init = fs_init,
+	.access = fs_access,
+	.utimens = fs_utimens,
 };
 
 int

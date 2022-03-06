@@ -1141,7 +1141,7 @@ namespace FileSystemClient
                 ifstream log;
                 log.open("/tmp/afs/log", ios::in);
                 ofstream newlog;
-                newlog.open("/tmp/afs/newlog", ios::out);
+                newlog.open("/tmp/afs/newlog", ios::out | ios::trunc);
                 if (log.is_open() && newlog.is_open()) {
                     string line;
                 

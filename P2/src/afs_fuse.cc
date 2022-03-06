@@ -85,6 +85,30 @@ char * fs_relative_path(char * path)
     return path + 1;
 }
 
+// SINGLE LOG HELPER FUNCTIONS
+void init_single_log() {
+  // Handle edge case crash when switching from log to newlog
+  rename("/tmp/afs/newlog", "/tmp/afs/log");
+
+  ifstream log;
+  log.open("/tmp/afs/log", ios::in);
+  if (log.is_open()) {
+    string line;
+    while (getline(log, line)) {
+      options.client->CloseFile(-1, line);
+      //dbgprintf("READ LOG ON INIT %s \n", line.c_str());
+    }
+  }
+}
+
+void write_single_log(const char *path){
+  // Update log to say this file was modified
+  ofstream log;
+  log.open("/tmp/afs/log", ios::out | ios::app);
+  if (log.is_open())
+    log << fs_relative_path((char* ) path) << endl;
+}
+
 // FUSE functions
 static void *fs_init(struct fuse_conn_info *conn,
 		      struct fuse_config *cfg)
@@ -92,18 +116,7 @@ static void *fs_init(struct fuse_conn_info *conn,
 	//(void) conn;
 	//cfg->use_ino = 1;        
 
-	// Handle edge case crash when switching from log to newlog
-	rename("/tmp/afs/newlog", "/tmp/afs/log");
-
-	ifstream log;
-	log.open("/tmp/afs/log", ios::in);
-	if (log.is_open()) {
-	  string line;
-	  while (getline(log, line)) {
-	    options.client->CloseFile(-1, line);
-	    dbgprintf("READ LOG ON INIT %s \n", line.c_str());
-	  }
-	}
+	init_single_log();
 
 	//cfg->entry_timeout = 0;
 	//cfg->attr_timeout = 0;
@@ -306,12 +319,7 @@ static int fs_write(const char *path, const char *buf, size_t size,
 	if (fd == -1)
 		return -errno;
 
-	// Update log to say this file was modified
-	ofstream log;
-	log.open("/tmp/afs/log", ios::out | ios::app);
-	if (log.is_open())
-		log << fs_relative_path((char* ) path) << endl;
-
+	write_single_log(path);
 	res = pwrite(fd, buf, size, offset);
 	if (res == -1)
 	{

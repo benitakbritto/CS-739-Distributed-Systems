@@ -443,6 +443,48 @@ namespace FileSystemClient
                 return file;
             }
 
+	    // SINGLE LOG HELPER FUNCTIONS
+	    int checkModified_single_log(int fd, string path) {
+                //dbgprintf("BEGIN CLOSE LOG %s \n", path.c_str());
+                // No RPC necessary if file wasn't modified
+                ifstream log;
+		bool changed = false;
+		log.open("/tmp/afs/log", ios::in);
+		if (log.is_open()) {
+	  	  string line;
+	  	  while (getline(log, line)) {
+		    //dbgprintf("CLOSE LOG LOOP %s \n", line.c_str());
+		    //dbgprintf("CLOSE LOG LOOP 2 %s \n", path.c_str());
+	  	    if (line == path)
+	  	      changed = true;
+	  	  }
+		}
+		if (!changed) return 0; 
+		//dbgprintf("CLOSE LOG CHECK %d \n", (int)changed);
+		return 1;
+	    }
+
+	    void closeEntry_single_log(string path) {
+              // Delete entry from log
+              ifstream log;
+	      log.open("/tmp/afs/log", ios::in);
+	      ofstream newlog;
+	      newlog.open("/tmp/afs/newlog", ios::out);
+	      if (log.is_open() && newlog.is_open()) {
+	  	string line;
+		//dbgprintf("CHECK NEWLOG \n");
+	        while (getline(log, line)) {	
+	          if (line != path) {
+	            newlog << line << endl;
+	            //dbgprintf("CLOSE RPC LOG %s \n", line.c_str());
+		  }
+	  	}
+	  	remove("/tmp/afs/log");
+	  	// If we crash here, we lose the log
+	  	rename("/tmp/afs/newlog", "/tmp/afs/log");
+	      }
+	    }
+
             int CloseFile(int fd, string path) 
             {
                 dbgprintf("CloseFile: Entered function\n");
@@ -451,31 +493,16 @@ namespace FileSystemClient
                 StoreResponse reply;
                 Status status;
                 uint32_t retryCount = 0;
-                dbgprintf("BEGIN CLOSE LOG %s \n", path.c_str());
-                // Check for init closes (fd = -1)
-                if (fd != -1) {
-                    if (close(fd))
-                    {
-                    	dbgprintf("CloseFile: close() failed\n");
-                    	return -1;
-                    }
+                
+		if (!checkModified_single_log(fd, path)) return 0;
 
-                    // No RPC necessary if file wasn't modified
-                    ifstream log;
-		    bool changed = false;
-		    log.open("/tmp/afs/log", ios::in);
-		    if (log.is_open()) {
-	  		string line;
-	  	        while (getline(log, line)) {
-			    dbgprintf("CLOSE LOG LOOP %s \n", line.c_str());
-			    dbgprintf("CLOSE LOG LOOP 2 %s \n", path.c_str());
-	  		    if (line == path)
-	  		        changed = true;
-	  	        }
-		    }
-		    //if (!changed) return 0; 
-		    dbgprintf("CLOSE LOG CHECK %d \n", (int)changed);
-                }
+	        // Check for init closes (fd = -1) and skip to RPC call
+		if (fd != -1)
+	          if (close(fd))
+                  {
+                      dbgprintf("CloseFile: close() failed\n");
+                      return -1;
+                  }
 
                 // Set request
                 request.set_pathname(path);
@@ -497,26 +524,7 @@ namespace FileSystemClient
                 if (status.ok()) 
                 {
                     dbgprintf("CloseFile: RPC Success\n");
-
-                    // Delete entry from log
-                    ifstream log;
-		    log.open("/tmp/afs/log", ios::in);
-		    ofstream newlog;
-		    newlog.open("/tmp/afs/newlog", ios::out);
-		    if (log.is_open() && newlog.is_open()) {
-	  		string line;
-			dbgprintf("CHECK NEWLOG \n");
-	  	        while (getline(log, line)) {	
-	  		    if (line != path) {
-	  		        newlog << line << endl;
-				dbgprintf("CLOSE RPC LOG %s \n", line.c_str());
-			    }
-	  	        }
-	  	        remove("/tmp/afs/log");
-	  	        // If we crash here, we lose the log
-	  	        rename("/tmp/afs/newlog", "/tmp/afs/log");
-	  	    }
-
+		    closeEntry_single_log(path);
                     dbgprintf("CloseFile: Exiting function\n");
                     return 0;
                 } 

@@ -45,7 +45,10 @@
 #include <stdexcept>
 #include <sstream>
 
-
+#include <pthread.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
 /******************************************************************************
  * NAMESPACE
  *****************************************************************************/
@@ -58,7 +61,8 @@ using namespace FileSystemClient;
  * GLOBALS
  *****************************************************************************/
 static int fill_dir_plus = 0;
-
+u_int64_t total_time;
+struct timespec start, end;
 static struct options {	
 	ClientImplementation * client;
 	int show_help;
@@ -188,6 +192,7 @@ int init_multi_log()
 static void *fs_init(struct fuse_conn_info *conn,
 		      struct fuse_config *cfg)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	//(void) conn;
 	//cfg->use_ino = 1;        
 
@@ -197,12 +202,15 @@ static void *fs_init(struct fuse_conn_info *conn,
 	//cfg->entry_timeout = 0;
 	//cfg->attr_timeout = 0;
 	//cfg->negative_timeout = 0;
-
+    clock_gettime(CLOCK_MONOTONIC, &end);
+	total_time =  end.tv_nsec - start.tv_nsec;
+    printf("init time = %lu nanoseconds \n", total_time);
 	return NULL;
 }
 
 static int fs_mkdir(const char *path, mode_t mode)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_mkdir: Entered\n");
 	int res;
     char * rel_path = fs_relative_path((char *) path);
@@ -214,11 +222,15 @@ static int fs_mkdir(const char *path, mode_t mode)
 	
 	if(res == -1) 
 		return -errno;
+	clock_gettime(CLOCK_MONOTONIC, &end);
+	 total_time =  end.tv_nsec - start.tv_nsec;
+    printf("mkdir time = %lu nanoseconds \n", total_time);
 	return 0;
 }
 
 static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi, enum fuse_readdir_flags flags)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_readdir: Entered\n");
 	int res;
     char * rel_path = fs_relative_path((char *) path);
@@ -230,11 +242,16 @@ static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t
 	
 	if(res == -1) 
 		return -errno;
+		clock_gettime(CLOCK_MONOTONIC, &end);
+	 total_time =  end.tv_nsec - start.tv_nsec;
+    printf("readdir time = %lu nanoseconds \n", total_time);
+	
 	return 0;
 }
 
 static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_info *fi)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_getattr: Entered\n");
 	(void) fi;
 	int res;
@@ -248,12 +265,15 @@ static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_inf
 	dbgprintf("fs_getattr: res =  %d\n", res);
 	if(res == -1) 
 		return -errno;
-		
+	 clock_gettime(CLOCK_MONOTONIC, &end);
+	 total_time =  end.tv_nsec - start.tv_nsec;
+  printf("getattr time = %lu nanoseconds \n", total_time);
 	return 0;
 }
 
 static int fs_rmdir(const char *path)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_rmdir: Entered\n");
 	int res;
     char * rel_path = fs_relative_path((char *) path);
@@ -265,11 +285,15 @@ static int fs_rmdir(const char *path)
 	
 	if(res == -1) 
 		return -errno;
+	clock_gettime(CLOCK_MONOTONIC, &end);
+	 total_time =  end.tv_nsec - start.tv_nsec;
+    printf("rmdir time = %lu nanoseconds \n", total_time);
 	return 0;
 }
 
 static int fs_unlink(const char *path)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_unlink: Entered\n");
 	int res;
     char * rel_path = fs_relative_path((char *) path);
@@ -281,22 +305,30 @@ static int fs_unlink(const char *path)
 	
 	if(res == -1) 
 		return -errno;
+	 clock_gettime(CLOCK_MONOTONIC, &end);
+	 total_time =  end.tv_nsec - start.tv_nsec;
+  printf("unlink time = %lu nanoseconds \n", total_time);
 	return 0;
 }
 
 static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_fsync: Entered\n");
 	/* Just a stub.	 This method is optional and can safely be left
 	   unimplemented */
 	(void) path;
 	(void) isdatasync;
 	(void) fi;
+	 clock_gettime(CLOCK_MONOTONIC, &end);
+	 total_time =  end.tv_nsec - start.tv_nsec;
+     printf("fsync time = %lu nanoseconds \n", total_time);
 	return 0;
 }
 
 static int fs_mknod(const char *path, mode_t mode, dev_t rdev)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_mknod: Entered\n");
 	int res;
 	char * rel_path = fs_relative_path((char *) path);
@@ -308,12 +340,15 @@ static int fs_mknod(const char *path, mode_t mode, dev_t rdev)
 
 	if (res == -1)
 		return -errno;
-
+    clock_gettime(CLOCK_MONOTONIC, &end);
+	total_time =  end.tv_nsec - start.tv_nsec;
+  printf("mknod time = %lu nanoseconds \n", total_time);
 	return 0;
 }
 
 static int fs_open(const char *path, struct fuse_file_info *fi)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_open: Entered\n");
 	int res;
     char * rel_path = fs_relative_path((char *) path);
@@ -329,12 +364,16 @@ static int fs_open(const char *path, struct fuse_file_info *fi)
 		return -errno;
 
 	fi->fh = res;
+	clock_gettime(CLOCK_MONOTONIC, &end);
+	total_time =  end.tv_nsec - start.tv_nsec;
+    printf("open time = %lu nanoseconds \n", total_time);
 	return 0;
 }
 
 static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 		    struct fuse_file_info *fi)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_read: Entered\n");
 	int fd;
 	int res;
@@ -371,12 +410,16 @@ static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 	}
 	
 	// Return -errorno or number of bytes read
+	clock_gettime(CLOCK_MONOTONIC, &end);
+	total_time =  end.tv_nsec - start.tv_nsec;
+    printf("read time = %lu nanoseconds \n", total_time);
 	return res;
 }
 
 static int fs_write(const char *path, const char *buf, size_t size,
 		     off_t offset, struct fuse_file_info *fi)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_write: Entered\n");
 	int fd;
 	int res;
@@ -420,13 +463,16 @@ static int fs_write(const char *path, const char *buf, size_t size,
 		options.client->CloseFile(fd, rel_path);	
 	#endif
 	}
-	
+	clock_gettime(CLOCK_MONOTONIC, &end);
+	total_time =  end.tv_nsec - start.tv_nsec;
+  printf("write time = %lu nanoseconds \n", total_time);
 	// Return -errorno or number of bytes written
 	return res;
 }
 
 static int fs_release(const char *path, struct fuse_file_info *fi)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	int res;
 	
 	dbgprintf("fs_release: Entered\n");
@@ -455,6 +501,7 @@ static int fs_utimens(const char *path, const struct timespec tv[2], struct fuse
 // TODO: decide to keep or no
 static int fs_access(const char *path, int dummy)
 {
+    clock_gettime(CLOCK_MONOTONIC, &start);
 	dbgprintf("fs_access: Entered\n");
 	return 0;
 }

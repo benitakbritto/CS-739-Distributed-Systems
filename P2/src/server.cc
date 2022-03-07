@@ -246,7 +246,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             throw ProtocolException("Error writing temp file", StatusCode::UNKNOWN);
         }
 
-        // Overwrite temp file with new file
+        // Overwrite dest file with temp file
         if (rename(temppath.c_str(), filepath.c_str()) == -1) {
             dbgprintf("write_file: Exiting function\n");
             throw ProtocolException("Error committing temp file", StatusCode::UNKNOWN);
@@ -851,7 +851,16 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("StoreWithStream: filepath = %s\n", filepath.c_str());
             
             auto lock = locks.GetWriteLock(filepath.string());
-            file.open(filepath, std::ios::binary);
+            
+            // Check that this is a valid destination
+            uint pre_err = check_valid_write_destination(filepath);
+            if(pre_err != 0) {
+                throw FileSystemException(pre_err);
+            }
+
+            path temppath = get_tempfile_path(filepath);
+            
+            file.open(temppath, std::ios::binary);
             
             unsigned long iter = 0;
             unsigned long bytes = 0;
@@ -868,6 +877,12 @@ class ServiceImplementation final : public FileSystemService::Service {
 
             file.close();
 
+            // Overwrite dest file with temp file
+            if (rename(temppath.c_str(), filepath.c_str()) == -1) {
+                dbgprintf("StoreWithStream: Exiting function\n");
+                throw ProtocolException("Error committing temp file", StatusCode::UNKNOWN);
+            }
+
             auto time = convert_timestamp(read_modify_time(filepath));
             reply->mutable_time_modify()->CopyFrom(time);
             dbgprintf("StoreWithStream: Exiting function\n");
@@ -875,7 +890,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             return Status::OK; 
         } catch (const ProtocolException& e) {
             dbgprintf("[Protocol Exception: %d] %s\n", e.get_code(), e.what());
-            dbgprintf("Store: Exiting function on ProtocolException path\n");
+            dbgprintf("StoreWithStream: Exiting function on ProtocolException path\n");
             return Status(e.get_code(), e.what());
         } catch(const FileSystemException& e) {
             dbgprintf("[System Exception: %d]\n", e.get_fs_errno());
@@ -883,7 +898,7 @@ class ServiceImplementation final : public FileSystemService::Service {
             return Status::OK;
         } catch (const std::exception& e) {
             errprintf("[Unexpected Exception] %s\n", e.what());
-            dbgprintf("Store: Exiting function on Exception path\n");
+            dbgprintf("StoreWithStream: Exiting function on Exception path\n");
             return Status(StatusCode::UNKNOWN, e.what());
         }
     }

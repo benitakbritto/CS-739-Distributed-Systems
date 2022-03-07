@@ -853,9 +853,17 @@ class ServiceImplementation final : public FileSystemService::Service {
             auto lock = locks.GetWriteLock(filepath.string());
             file.open(filepath, std::ios::binary);
             
+            unsigned long iter = 0;
+            unsigned long bytes = 0;
+            
+            string chunk;
+            
             do {
-                // TODO: check that request.pathname stays constant?
-                file << request.file_contents();                
+                chunk = request.file_contents();
+                file << chunk;
+                iter++;
+                bytes += chunk.length();
+                dbgprintf("StoreWithStream: Read message [iter %ld, total %ld B]\n",iter,bytes);
             } while (reader->Read(&request));
 
             file.close();
@@ -915,22 +923,30 @@ class ServiceImplementation final : public FileSystemService::Service {
             dbgprintf("FetchWithStream: fileSize = %d\n", fileSize);
             dbgprintf("FetchWithStream: totalChunks = %d\n", totalChunks);
             dbgprintf("FetchWithStream: lastChunkSize = %d\n", lastChunkSize);
-
+            
+            unsigned long bytes=0;
+            unsigned long bytes_read = 0;
             // Read and send as stream
             for (size_t chunk = 0; chunk < totalChunks; chunk++)
             {
                 size_t currentChunkSize = (chunk == totalChunks - 1 && !aligned) ? 
                                               lastChunkSize : CHUNK_SIZE;
                     
-                char * buffer = new char [currentChunkSize + 1];
-                //char * buffer = new char [currentChunkSize];
-                buffer[currentChunkSize + 1] = '\0';
-                dbgprintf("CloseFileWithStream: Reading chunks\n");
+                char * buffer = new char [currentChunkSize];
+                // char * buffer = new char [currentChunkSize + 1];
+                // buffer[currentChunkSize] = '\0';
+                dbgprintf("FetchWithStream: Reading chunks\n");
                 if (fin.read(buffer, currentChunkSize)) 
                 {
                     //dbgprintf("buffer = %s\n", buffer); -- do not use if \0 not set at end
-                    dbgprintf("FetchWithStream = buffer %s\n", buffer);
-                    reply.set_file_contents(buffer);
+                    // dbgprintf("FetchWithStream = buffer %s\n", buffer);
+                    auto gct = fin.gcount();
+                    bytes += currentChunkSize;
+                    bytes_read += gct;
+                    
+                    reply.set_file_contents(buffer, gct);
+                    
+                    dbgprintf("FetchWithStream: Read chunk [iter %ld, expect %ld B, read %ld B]\n",chunk, bytes, bytes_read);
                     writer->Write(reply);
                 }
             }

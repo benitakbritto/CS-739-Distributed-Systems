@@ -26,7 +26,7 @@
 //#define SERVER_ADDR         "20.69.154.6:50051"                   // Server: VM2
 //#define SERVER_ADDR         "20.69.94.59:50051"                   // Server: VM3
 #define SERVER_ADDR           "0.0.0.0:50051"                       // Server: self
-#define PERFORMANCE           0                                     // set to 1 to run performant functions
+#define PERFORMANCE           1                                     // set to 1 to run performant functions
 #define CRASH_TEST                                                  //Remove to disable all crashes
 #define SINGLE_LOG            1                                     // Turns on single log functionality
 
@@ -821,6 +821,9 @@ namespace FileSystemClient
                     dbgprintf("CloseFileWithStream: lastChunkSize = %d\n", lastChunkSize);
 
                     // Read and send as stream
+                    unsigned long bytes = 0;
+                    unsigned long bytes_read = 0;
+                    
                     for (size_t chunk = 0; chunk < totalChunks; chunk++)
                     {
                         size_t currentChunkSize = (chunk == totalChunks - 1 && !aligned) ? 
@@ -829,11 +832,15 @@ namespace FileSystemClient
                         //char * buffer = new char [currentChunkSize + 1];
                         char * buffer = new char [currentChunkSize];
                         //buffer[currentChunkSize] = '\0';
-
-                        dbgprintf("CloseFileWithStream: Reading chunks\n");
+                        
+                        bytes += currentChunkSize;
+                        
                         if (fin.read(buffer, currentChunkSize)) 
                         {
-                            request.set_file_contents(buffer);
+                            auto gct = fin.gcount();
+                            bytes_read += gct;
+                            request.set_file_contents(buffer,gct);
+                            dbgprintf("CloseFileWithStream: Read chunk [iter %ld, expect %ld B, read %ld B]\n",chunk, bytes, bytes_read);
                             //dbgprintf("buffer = %s\n", buffer); -- do not use if \0 not set at end
 
                             if (!writer->Write(request)) 
@@ -842,6 +849,8 @@ namespace FileSystemClient
                                 dbgprintf("CloseFileWithStream: Stream broke\n");
                                 break; // TODO: Should we ret errno here?
                             }
+                        } else {
+                            dbgprintf("CloseFileWithStream: Failed to read chunk [iter %ld, total %ld B]\n",chunk,bytes);
                         }
                     }
                     fin.close();
@@ -948,9 +957,9 @@ namespace FileSystemClient
                         t.tv_nsec = timing.nsec();
                         
                         if(set_timings(cache_path,t) == -1) {
-                            dbgprintf("CloseFileWithStream: error (%d) setting file timings\n",errno);
+                            dbgprintf("OpenFileWithStream: error (%d) setting file timings\n",errno);
                         } else {
-                            dbgprintf("CloseFileWithStream: updated file timings\n");
+                            dbgprintf("OpenFileWithStream: updated file timings\n");
                         }
                         
                     } 

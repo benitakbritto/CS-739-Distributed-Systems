@@ -20,7 +20,7 @@
 #define MAX_RETRY             5                                     // rpc retry
 #define RETRY_TIME_START      1                                     // in seconds
 #define RETRY_TIME_MULTIPLIER 2                                     // for rpc retry w backoff
-#define LOCAL_CACHE_PREFIX    "/tmp/afs/"                           // location of local files
+// #define LOCAL_CACHE_PREFIX    "/tmp/afs/"                           // location of local files
 #define CHUNK_SIZE            1024                                  // for streaming
 //#define SERVER_ADDR         "52.151.53.152:50051"                 // Server: VM1
 //#define SERVER_ADDR         "20.69.154.6:50051"                   // Server: VM2
@@ -76,6 +76,8 @@ using grpc::ClientWriter;
 using grpc::ClientReader;
 
 // Globals
+string cache_root;
+
 struct TestAuthReturnType
 {
   Status status;
@@ -758,7 +760,7 @@ namespace FileSystemClient
 
             string get_cache_path(string relative_path)
             {
-                return LOCAL_CACHE_PREFIX + relative_path;
+                return cache_root + relative_path;
             }
 
             // For Performance
@@ -1004,7 +1006,7 @@ namespace FileSystemClient
                         relative_path[i] = '%';
                     }
                 }
-                string flat_file = LOCAL_CACHE_PREFIX + relative_path + ".tmp"; 
+                string flat_file = cache_root + relative_path + ".tmp"; 
                 dbgprintf("to_flat_file: Exiting function\n");
                 return flat_file;
             }
@@ -1016,7 +1018,7 @@ namespace FileSystemClient
                 dbgprintf("from_flat_file: Entering function\n");
 
                 int i = 0;
-                while (i++<string(LOCAL_CACHE_PREFIX).length());
+                while (i++<cache_root.length());
 
                 for (; i<absolute_path.length(); i++)
                 {
@@ -1025,7 +1027,7 @@ namespace FileSystemClient
                     }
                 }
                 dbgprintf("from_flat_file: Exiting function\n");
-                string rel_path = absolute_path.substr(string(LOCAL_CACHE_PREFIX).length(),absolute_path.length());
+                string rel_path = absolute_path.substr(cache_root.length(),absolute_path.length());
                 return rel_path;
             }
                 
@@ -1046,7 +1048,7 @@ namespace FileSystemClient
             {
                 dbgprintf("create_path: Entering function\n");
                 vector<string> tokens = tokenize_path(relative_path, '/', is_file);
-                string base_path = LOCAL_CACHE_PREFIX;
+                string base_path = cache_root;
                 for (auto token : tokens)
                 {
                     base_path += token + "/";
@@ -1131,7 +1133,7 @@ namespace FileSystemClient
             int checkModified_single_log(int fd, string path) {
                 ifstream log;
                 bool changed = false;
-                log.open("/tmp/afs/log", ios::in);
+                log.open(cache_root + "log", ios::in);
                 if (log.is_open()) {
                     string line;
                     while (getline(log, line)) {
@@ -1149,9 +1151,12 @@ namespace FileSystemClient
             void closeEntry_single_log(string path) {
                 // Delete entry from log
                 ifstream log;
-                log.open("/tmp/afs/log", ios::in);
+                auto path_old = (cache_root + "log").c_str();
+                auto path_new = (cache_root + "newlog").c_str();
+                
+                log.open(path_old, ios::in);
                 ofstream newlog;
-                newlog.open("/tmp/afs/newlog", ios::out | ios::trunc);
+                newlog.open(path_new, ios::out | ios::trunc);
                 if (log.is_open() && newlog.is_open()) {
                     string line;
                 
@@ -1160,9 +1165,10 @@ namespace FileSystemClient
                             newlog << line << endl;     
                     }
                 }
-                    remove("/tmp/afs/log");
+                    // I think this isn't necessary? rename should overwrite
+                    remove(path_old);
                     // If we crash here, we lose the log
-                    rename("/tmp/afs/newlog", "/tmp/afs/log");
+                    rename(path_new, path_old);
                 }
             }
 

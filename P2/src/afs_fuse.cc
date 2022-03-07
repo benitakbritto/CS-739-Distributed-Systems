@@ -93,7 +93,7 @@ char * fs_relative_path(char * path)
 void initgRPC()
 {
 	// make sure local path exists
-	string command = string("mkdir -p ") + LOCAL_CACHE_PREFIX;
+	string command = string("mkdir -p ") + cache_root;
 	dbgprintf("initgRPC: command %s\n", command.c_str());
 	if (system(command.c_str()) != 0)
 	{
@@ -137,16 +137,16 @@ vector<std::string> glob(const std::string& pattern) {
 void init_single_log() {
   
   ofstream log;
-  log.open("/tmp/afs/log", ios::out | ios::trunc);
+  log.open(cache_root + "log", ios::out | ios::trunc);
   
   //Close-log init implementation:
   // Handle edge case crash when switching from log to newlog
   /*ifstream check_log;
-  check_log.open("/tmp/afs/log", ios::in);
+  check_log.open(cache_root + "log", ios::in);
   if (!check_log.is_open())
-    rename("/tmp/afs/newlog", "/tmp/afs/log");
+    rename(cache_root + "newlog", cache_root + "log");
   ifstream log;
-  log.open("/tmp/afs/log", ios::in);
+  log.open(cache_root + "log", ios::in);
   if (log.is_open()) {
     string line;
     while (getline(log, line)) {
@@ -161,7 +161,7 @@ void init_single_log() {
 void write_single_log(const char *path){
   // Update log to say this file was modified
   ofstream log;
-  log.open("/tmp/afs/log", ios::out | ios::app);
+  log.open(cache_root + "log", ios::out | ios::app);
   if (log.is_open())
     log << fs_relative_path((char* ) path) << endl;
 }
@@ -183,7 +183,7 @@ int init_multi_log()
 {
 	// This would close all dirty writes
 	// dbgprintf("init_multi_log: Entering function\n");
-	// string pattern = string(LOCAL_CACHE_PREFIX) + "*.tmp";
+	// string pattern = cache_root + "*.tmp";
 	// vector<string> to_remove = glob(pattern.c_str());
 	// dbgprintf("init_multi_log: to_remove size = %ld\n", to_remove.size());
 	// dbgprintf("init_multi_log: pattern = %s\n", pattern.c_str());
@@ -196,7 +196,7 @@ int init_multi_log()
     // return 0;
 	// This would delete all .tmp files
 	dbgprintf("init_multi_log: Entering function\n");
-	string command = "rm -rf /tmp/afs/*.tmp";
+	string command = "rm -rf " + cache_root + "*.tmp";
 	if (system(command.c_str()) != 0)
 	{
 		dbgprintf("init_multi_log: system() failed\n");
@@ -240,9 +240,9 @@ static int fs_mkdir(const char *path, mode_t mode)
 	if(res == -1) 
 		return -errno;
 	
-  	auto end = std::chrono::steady_clock::now();
- 	std::chrono::nanoseconds ns = end-start;
-  	std::cout << "mkdir time: " << ns.count() << "nanoseconds";
+  auto end = std::chrono::steady_clock::now();
+ std::chrono::nanoseconds ns = end-start;
+  std::cout << "mkdir time: " << ns.count() << "nanoseconds" << std::endl;
 	return 0;
 }
 
@@ -261,9 +261,9 @@ static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t
 	if(res == -1) 
 		return -errno;
 
-  	auto end = std::chrono::steady_clock::now();
- 	std::chrono::nanoseconds ns = end-start;
-  	std::cout << "readdir time: " << ns.count() << "nanoseconds";
+  auto end = std::chrono::steady_clock::now();
+ std::chrono::nanoseconds ns = end-start;
+  std::cout << "readdir time: " << ns.count() << "nanoseconds" << std::endl;
 	return 0;
 }
 
@@ -284,8 +284,8 @@ static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_inf
 	if(res == -1) 
 		return -errno;
 	auto end = std::chrono::steady_clock::now();
- 	std::chrono::nanoseconds ns = end-start;
-  	std::cout << "getattr time: " << ns.count() << "nanoseconds";
+ std::chrono::nanoseconds ns = end-start;
+  std::cout << "getattr time: " << ns.count() << "nanoseconds" << std::endl;
   
 	return 0;
 }
@@ -305,8 +305,8 @@ static int fs_rmdir(const char *path)
 	if(res == -1) 
 		return -errno;
 	auto end = std::chrono::steady_clock::now();
- 	std::chrono::nanoseconds ns = end-start;
-  	std::cout << "rmdir time: " << ns.count() << "nanoseconds";
+ std::chrono::nanoseconds ns = end-start;
+  std::cout << "rmdir time: " << ns.count() << "nanoseconds" << std::endl;
 	return 0;
 }
 
@@ -325,8 +325,8 @@ static int fs_unlink(const char *path)
 	if(res == -1) 
 		return -errno;
 	auto end = std::chrono::steady_clock::now();
- 	std::chrono::nanoseconds ns = end-start;
-  	std::cout << "unlink time: " << ns.count() << "nanoseconds";
+ std::chrono::nanoseconds ns = end-start;
+  std::cout << "unlink time: " << ns.count() << "nanoseconds" << std::endl;
 	return 0;
 }
 
@@ -340,9 +340,9 @@ static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
 	(void) isdatasync;
 	(void) fi;
 	auto end = std::chrono::steady_clock::now();
- 	std::chrono::nanoseconds ns = end-start;
-  	std::cout << "fsync time: " << ns.count() << "nanoseconds";
-  	return 0;
+ std::chrono::nanoseconds ns = end-start;
+  std::cout << "fsync time: " << ns.count() << "nanoseconds" << std::endl;
+  return 0;
 }
 
 static int fs_mknod(const char *path, mode_t mode, dev_t rdev)
@@ -360,8 +360,8 @@ static int fs_mknod(const char *path, mode_t mode, dev_t rdev)
 	if (res == -1)
 		return -errno;
     auto end = std::chrono::steady_clock::now();
- 	std::chrono::nanoseconds ns = end-start;
-  	std::cout << "mknod time: " << ns.count() << "nanoseconds";
+ std::chrono::nanoseconds ns = end-start;
+  std::cout << "mknod time: " << ns.count() << "nanoseconds" << std::endl;
 	return 0;
 }
 
@@ -385,8 +385,8 @@ static int fs_open(const char *path, struct fuse_file_info *fi)
 	fi->fh = res;
 	
 	auto end = std::chrono::steady_clock::now();
- 	std::chrono::nanoseconds ns = end-start;
-  	std::cout << "open time: " << ns.count() << "nanoseconds";
+ std::chrono::nanoseconds ns = end-start;
+  std::cout << "open time: " << ns.count() << "nanoseconds" << std::endl;
 	return 0;
 }
 
@@ -429,8 +429,8 @@ static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 	#endif
 	}
 	auto end = std::chrono::steady_clock::now();
- 	std::chrono::nanoseconds ns = end-start;
-  	std::cout << "read time: " << ns.count() << "nanoseconds";
+ std::chrono::nanoseconds ns = end-start;
+  std::cout << "read time: " << ns.count() << "nanoseconds" << std::endl;
 	// Return -errorno or number of bytes read
 	return res;
 }
@@ -484,8 +484,8 @@ static int fs_write(const char *path, const char *buf, size_t size,
 	#endif
 	}
 	auto end = std::chrono::steady_clock::now();
- 	std::chrono::nanoseconds ns = end-start;
-  	std::cout << "write time: " << ns.count() << "nanoseconds";
+ std::chrono::nanoseconds ns = end-start;
+  std::cout << "write time: " << ns.count() << "nanoseconds" << std::endl;
 	// Return -errorno or number of bytes written
 	return res;
 }
@@ -511,8 +511,8 @@ static int fs_release(const char *path, struct fuse_file_info *fi)
 		return -errno;
 		
 	auto end = std::chrono::steady_clock::now();
- 	std::chrono::nanoseconds ns = end-start;
-  	std::cout << "release time: " << ns.count() << "nanoseconds";
+ std::chrono::nanoseconds ns = end-start;
+  std::cout << "release time: " << ns.count() << "nanoseconds" << std::endl;
 	return 0;
 	
 }
@@ -550,10 +550,28 @@ struct fuse_operations fsops = {
 
 int
 main(int argc, char *argv[])
-{
+{   
+	if(argc != 4) {
+		printf("usage: %s -f [network directory] [cache path]\n", argv[0]);
+		return 1;
+	}
+	
+	auto cache_root_fs = std::filesystem::weakly_canonical(argv[3]);
+	
+	cache_root = cache_root_fs.string();
+	
+	// Ensure cache path ends with slash (to match legacy macro)
+	if(cache_root[cache_root.length()-1] != '/') {
+		cache_root += "/";
+	}
+	
+	printf("Initializing with cache path %s\n", cache_root.c_str());
+	
+	argc--; // hide last arg
+	
 	umask(0);
-
-    initgRPC();
-    
-	return (fuse_main(argc, argv, &fsops, &options));
+	
+	initgRPC();
+	
+	return (fuse_main(argc, argv, &fsops, NULL));
 }

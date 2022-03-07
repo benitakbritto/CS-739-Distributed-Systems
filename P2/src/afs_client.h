@@ -26,7 +26,7 @@
 //#define SERVER_ADDR         "20.69.154.6:50051"                   // Server: VM2
 //#define SERVER_ADDR         "20.69.94.59:50051"                   // Server: VM3
 #define SERVER_ADDR           "0.0.0.0:50051"                       // Server: self
-#define PERFORMANCE           0                                     // set to 1 to run performant functions
+#define PERFORMANCE           1                                     // set to 1 to run performant functions
 #define CRASH_TEST                                                  //Remove to disable all crashes
 #define SINGLE_LOG            1                                     // Turns on single log functionality
 
@@ -43,6 +43,7 @@ using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
 using filesystemcomm::FileSystemService;
+using filesystemcomm::PingMessage;
 using filesystemcomm::FetchRequest;
 using filesystemcomm::FetchResponse;
 using filesystemcomm::GetFileStatRequest;
@@ -114,6 +115,47 @@ namespace FileSystemClient
                     default:
                         return EIO; // fall back to IO err for unexpected issues
                 }
+            }
+            
+            int Ping(std::chrono::nanoseconds * round_trip_time) {
+                auto start = chrono::steady_clock::now();
+                
+                PingMessage request;
+                PingMessage reply;
+                Status status;
+                uint32_t retryCount = 0;
+                
+                // Retry w backoff
+                do 
+                {
+                    ClientContext context;
+                    dbgprintf("Ping: Invoking RPC\n");
+                    sleep(RETRY_TIME_START * retryCount * RETRY_TIME_MULTIPLIER);
+                    status = stub_->Ping(&context, request, &reply);
+                    retryCount++;
+                } while (retryCount < MAX_RETRY && status.error_code() == StatusCode::UNAVAILABLE);
+
+                // Checking RPC Status
+                if (status.ok()) 
+                {
+                    
+                    dbgprintf("Ping: RPC Success\n");
+                    auto end = chrono::steady_clock::now();
+                    *round_trip_time = end-start;
+                    #if DEBUG
+                    std::chrono::duration<double,std::ratio<1,1>> seconds = end-start;
+                    dbgprintf("Ping: Exiting function (took %fs)\n",seconds.count());
+                    #endif
+                    return 0;
+                }
+                else
+                {
+                    dbgprintf("Ping: RPC failure\n");
+                    dbgprintf("Ping: Exiting function\n");
+                    return -1;
+                }
+                
+                
             }
             
             int MakeDir(std::string path, mode_t mode) 
@@ -448,9 +490,18 @@ namespace FileSystemClient
                 uint32_t retryCount = 0;
             
                 // Note: TestAuth will internally call get_cache_path
-                if (TestAuth(path).response.has_changed())
+                auto test_auth_result = TestAuth(path);
+                
+                if (!test_auth_result.status.ok() || test_auth_result.response.has_changed())
                 {  
-                    dbgprintf("OpenFile: TestAuth reports changed\n");
+                    #if DEBUG
+                    if(test_auth_result.status.ok()) {
+                        dbgprintf("OpenFile: TestAuth reports changed\n");
+                    } else {
+                        dbgprintf("OpenFile: TestAuth RPC failed\n");
+                    }
+                    #endif
+                    
                     request.set_pathname(path);
 
                     // Make RPC
@@ -501,8 +552,6 @@ namespace FileSystemClient
                             dbgprintf("OpenFile: write() failed\n");
                             return -1;
                         }
-                        
-                        reply.time_modify();
                             
                         auto timing = reply.time_modify();
                         
@@ -772,6 +821,9 @@ namespace FileSystemClient
                     dbgprintf("CloseFileWithStream: lastChunkSize = %d\n", lastChunkSize);
 
                     // Read and send as stream
+                    unsigned long bytes = 0;
+                    unsigned long bytes_read = 0;
+                    
                     for (size_t chunk = 0; chunk < totalChunks; chunk++)
                     {
                         size_t currentChunkSize = (chunk == totalChunks - 1 && !aligned) ? 
@@ -780,11 +832,15 @@ namespace FileSystemClient
                         //char * buffer = new char [currentChunkSize + 1];
                         char * buffer = new char [currentChunkSize];
                         //buffer[currentChunkSize] = '\0';
-
-                        dbgprintf("CloseFileWithStream: Reading chunks\n");
+                        
+                        bytes += currentChunkSize;
+                        
                         if (fin.read(buffer, currentChunkSize)) 
                         {
-                            request.set_file_contents(buffer);
+                            auto gct = fin.gcount();
+                            bytes_read += gct;
+                            request.set_file_contents(buffer,gct);
+                            dbgprintf("CloseFileWithStream: Read chunk [iter %ld, expect %ld B, read %ld B]\n",chunk, bytes, bytes_read);
                             //dbgprintf("buffer = %s\n", buffer); -- do not use if \0 not set at end
 
                             if (!writer->Write(request)) 
@@ -793,6 +849,8 @@ namespace FileSystemClient
                                 dbgprintf("CloseFileWithStream: Stream broke\n");
                                 break; // TODO: Should we ret errno here?
                             }
+                        } else {
+                            dbgprintf("CloseFileWithStream: Failed to read chunk [iter %ld, total %ld B]\n",chunk,bytes);
                         }
                     }
                     fin.close();
@@ -899,9 +957,9 @@ namespace FileSystemClient
                         t.tv_nsec = timing.nsec();
                         
                         if(set_timings(cache_path,t) == -1) {
-                            dbgprintf("CloseFileWithStream: error (%d) setting file timings\n",errno);
+                            dbgprintf("OpenFileWithStream: error (%d) setting file timings\n",errno);
                         } else {
-                            dbgprintf("CloseFileWithStream: updated file timings\n");
+                            dbgprintf("OpenFileWithStream: updated file timings\n");
                         }
                         
                     } 
@@ -967,7 +1025,8 @@ namespace FileSystemClient
                     }
                 }
                 dbgprintf("from_flat_file: Exiting function\n");
-                return absolute_path;
+                string rel_path = absolute_path.substr(string(LOCAL_CACHE_PREFIX).length(),absolute_path.length());
+                return rel_path;
             }
                 
         private:
@@ -1092,7 +1151,7 @@ namespace FileSystemClient
                 ifstream log;
                 log.open("/tmp/afs/log", ios::in);
                 ofstream newlog;
-                newlog.open("/tmp/afs/newlog", ios::out);
+                newlog.open("/tmp/afs/newlog", ios::out | ios::trunc);
                 if (log.is_open() && newlog.is_open()) {
                     string line;
                 

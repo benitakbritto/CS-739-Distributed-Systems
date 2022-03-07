@@ -48,10 +48,31 @@ target_link_libraries(
         ${_PROTOBUF_LIBPROTOBUF}
 )
 
+#### Client
+add_executable(afs-async-client async_afs_client.cc)
+target_link_libraries(
+        afs-async-client
+        hw_grpc_proto
+        ${_REFLECTION}
+        ${_GRPC_GRPCPP}
+        ${_PROTOBUF_LIBPROTOBUF}
+)
+
+
 #### Server
 add_executable(afs-server server.cc locks.cc)
 target_link_libraries(
         afs-server
+        hw_grpc_proto
+        ${_REFLECTION}
+        ${_GRPC_GRPCPP}
+        ${_PROTOBUF_LIBPROTOBUF}
+)
+
+#### Server
+add_executable(afs-async-server async_server.cc locks.cc)
+target_link_libraries(
+        afs-async-server
         hw_grpc_proto
         ${_REFLECTION}
         ${_GRPC_GRPCPP}

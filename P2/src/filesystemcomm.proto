@@ -4,6 +4,8 @@ package filesystemcomm;
 
 service FileSystemService 
 {
+    rpc Ping (PingMessage) returns (PingMessage) {}
+    
     // BASIC
     // File operations
     rpc Fetch (FetchRequest) returns (FetchResponse) {}
@@ -25,6 +27,23 @@ service FileSystemService
     // File operations
     rpc FetchWithStream (FetchRequest) returns (stream FetchResponse) {}
     rpc StoreWithStream (stream StoreRequest) returns (StoreResponse) {}
+
+    // ASYNC
+    // File operations
+    //rpc FetchAsync (FetchRequest) returns (FetchResponse) {}
+    //rpc StoreAsync (StoreRequest) returns (StoreResponse) {}
+    //rpc RemoveAsync (RemoveRequest) returns (RemoveResponse) {}
+    //rpc RenameAsync (RenameRequest) returns (RenameResponse) {}
+    //rpc MknodAsync (MknodRequest) returns (MknodResponse) {}
+    
+    // Metadata operations
+    //rpc GetFileStatAsync (GetFileStatRequest) returns (GetFileStatResponse) {}
+    //rpc TestAuthAsync (TestAuthRequest) returns (TestAuthResponse) {}
+    
+    // Directory operations
+    //rpc MakeDirAsync (MakeDirRequest) returns (MakeDirResponse) {}
+    //rpc RemoveDirAsync (RemoveDirRequest) returns (RemoveDirResponse) {}
+    //rpc ReadDirAsync (ListDirRequest) returns (ListDirResponse) {}
 }
 
 
@@ -65,6 +84,7 @@ message DirectoryEntry {
     uint64 size = 3; // in bytes
 }
 
+message PingMessage { }
 
 message FetchRequest
 {

@@ -144,6 +144,7 @@ void init_single_log() {
   check_log.open("/tmp/afs/log", ios::in);
   if (!check_log.is_open())
     rename("/tmp/afs/newlog", "/tmp/afs/log");
+
   ifstream log;
   log.open("/tmp/afs/log", ios::in);
   if (log.is_open()) {

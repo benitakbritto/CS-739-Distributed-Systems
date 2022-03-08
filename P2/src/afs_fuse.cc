@@ -242,7 +242,7 @@ static int fs_mkdir(const char *path, mode_t mode)
 	
   auto end = std::chrono::steady_clock::now();
  std::chrono::nanoseconds ns = end-start;
-  std::cout << "mkdir time: " << ns.count() << "nanoseconds" << std::endl;
+  printf("mkdir time: %ld nanoseconds\n", ns.count());
 	return 0;
 }
 
@@ -263,7 +263,7 @@ static int fs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t
 
   auto end = std::chrono::steady_clock::now();
  std::chrono::nanoseconds ns = end-start;
-  std::cout << "readdir time: " << ns.count() << "nanoseconds" << std::endl;
+  printf("readdir time: %ld nanoseconds\n", ns.count());
 	return 0;
 }
 
@@ -285,7 +285,7 @@ static int fs_getattr(const char *path, struct stat *stbuf, struct fuse_file_inf
 		return -errno;
 	auto end = std::chrono::steady_clock::now();
  std::chrono::nanoseconds ns = end-start;
-  std::cout << "getattr time: " << ns.count() << "nanoseconds" << std::endl;
+  printf("getattr time: %ld nanoseconds\n", ns.count());
   
 	return 0;
 }
@@ -306,7 +306,7 @@ static int fs_rmdir(const char *path)
 		return -errno;
 	auto end = std::chrono::steady_clock::now();
  std::chrono::nanoseconds ns = end-start;
-  std::cout << "rmdir time: " << ns.count() << "nanoseconds" << std::endl;
+  printf("rmdir time: %ld nanoseconds\n", ns.count());
 	return 0;
 }
 
@@ -326,7 +326,7 @@ static int fs_unlink(const char *path)
 		return -errno;
 	auto end = std::chrono::steady_clock::now();
  std::chrono::nanoseconds ns = end-start;
-  std::cout << "unlink time: " << ns.count() << "nanoseconds" << std::endl;
+  printf("unlink time: %ld nanoseconds\n", ns.count());
 	return 0;
 }
 
@@ -341,7 +341,7 @@ static int fs_fsync(const char *path, int isdatasync, struct fuse_file_info *fi)
 	(void) fi;
 	auto end = std::chrono::steady_clock::now();
  std::chrono::nanoseconds ns = end-start;
-  std::cout << "fsync time: " << ns.count() << "nanoseconds" << std::endl;
+  printf("fsync time: %ld nanoseconds\n", ns.count());
   return 0;
 }
 
@@ -361,7 +361,7 @@ static int fs_mknod(const char *path, mode_t mode, dev_t rdev)
 		return -errno;
     auto end = std::chrono::steady_clock::now();
  std::chrono::nanoseconds ns = end-start;
-  std::cout << "mknod time: " << ns.count() << "nanoseconds" << std::endl;
+  printf("mknod time: %ld nanoseconds\n", ns.count());
 	return 0;
 }
 
@@ -386,7 +386,7 @@ static int fs_open(const char *path, struct fuse_file_info *fi)
 	
 	auto end = std::chrono::steady_clock::now();
  std::chrono::nanoseconds ns = end-start;
-  std::cout << "open time: " << ns.count() << "nanoseconds" << std::endl;
+  printf("open time: %ld nanoseconds\n", ns.count());
 	return 0;
 }
 
@@ -430,7 +430,7 @@ static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 	}
 	auto end = std::chrono::steady_clock::now();
  std::chrono::nanoseconds ns = end-start;
-  std::cout << "read time: " << ns.count() << "nanoseconds" << std::endl;
+  printf("read time: %ld nanoseconds\n", ns.count());
 	// Return -errorno or number of bytes read
 	return res;
 }
@@ -485,7 +485,7 @@ static int fs_write(const char *path, const char *buf, size_t size,
 	}
 	auto end = std::chrono::steady_clock::now();
  std::chrono::nanoseconds ns = end-start;
-  std::cout << "write time: " << ns.count() << "nanoseconds" << std::endl;
+  printf("write time: %ld nanoseconds\n", ns.count());
 	// Return -errorno or number of bytes written
 	return res;
 }
@@ -512,7 +512,7 @@ static int fs_release(const char *path, struct fuse_file_info *fi)
 		
 	auto end = std::chrono::steady_clock::now();
  std::chrono::nanoseconds ns = end-start;
-  std::cout << "release time: " << ns.count() << "nanoseconds" << std::endl;
+  printf("release time: %ld nanoseconds\n", ns.count());
 	return 0;
 	
 }

@@ -23,7 +23,8 @@
 #define errprintf(...) \
     { printf(__VA_ARGS__); }
 
-#define SMALL_FILE_SIZE_THRESHOLD 1000 // bytes
+#define ONE_MEGABYTE 1048576
+#define SMALL_FILE_SIZE_THRESHOLD ONE_MEGABYTE // bytes
 #define MEM_MAP_MAX_KEY_COUNT    100 // num keys in map
 #define MEM_MAP_FREE_COUNT       10 // free 10 files
 #define MEM_MAP_START_FREE       50 // start freeing map when keys have reached this count value

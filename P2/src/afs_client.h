@@ -906,7 +906,7 @@ namespace FileSystemClient
                     errno = transform_rpc_err(status.error_code());
                         return -1;
                 }
-            } 
+            }
 
             // For Performance
             int OpenFileWithStream(std::string path) 
@@ -922,8 +922,18 @@ namespace FileSystemClient
                 string cache_path = get_cache_path(path);
             
                 // Note: TestAuth will internally call get_cache_path
-                if (TestAuth(path).response.has_changed())
+                auto test_auth_result = TestAuth(path);
+                
+                if (!test_auth_result.status.ok() || test_auth_result.response.has_changed())
                 {  
+                    #if DEBUG
+                    if(test_auth_result.status.ok()) {
+                        dbgprintf("OpenFile: TestAuth reports changed\n");
+                    } else {
+                        dbgprintf("OpenFile: TestAuth RPC failed\n");
+                    }
+                    #endif
+                    
                     do
                     {
                         dbgprintf("OpenFileWithStream: Invoking RPC\n");
@@ -981,7 +991,11 @@ namespace FileSystemClient
                         return -1;
                     }
                 } 
-
+                else
+                {
+                    dbgprintf("OpenFile: TestAuth reports no change\n");
+                }
+                
                 file = open(get_cache_path(path).c_str(), O_RDWR | O_CREAT, 0666); // QUESTION: Why do we need O_CREAT?
                 if (file == -1)
                 {

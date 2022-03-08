@@ -1,0 +1,12 @@
+
+nanosecondsnanoseconds
+<manual>
+
+([a-z]+) time: ([a-z]+) time: ([0-9]+)nanoseconds\n?([0-9]+)\n?nanoseconds
+$1 time: $3nanoseconds\n$2 time: $4nanoseconds
+
+([a-z]+) time: ([0-9]+)nanoseconds([a-z]+) time: \n?([0-9]+)\n?nanoseconds
+$1 time: $2nanoseconds\n$3 time: $4nanoseconds
+
+([a-z]+) time: ([0-9]+)([a-z]+) time: nanoseconds\n([0-9]+)nanoseconds
+$1 time: $2nanoseconds\n$3 time: $4nanoseconds

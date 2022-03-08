@@ -1,68 +1,77 @@
 batch,version,case,fname,ns
- read-perf, basic, 256_KB, getattr,424644.2584798945
- read-perf, basic, 256_KB, open,1765422.3567063466
- read-perf, basic, 256_KB, read,29654.040717740674
- read-perf, basic, 256_KB, release,7422.31073050718
- read-perf, basic, 4_KB, getattr,850140.8951679199
- read-perf, basic, 4_KB, open,3834066.6718573514
- read-perf, basic, 4_KB, read,12735.9337250018
- read-perf, basic, 4_KB, release,6565.942772120977
- read-perf, basic, 64_B, getattr,699394.6768418025
- read-perf, basic, 64_B, open,1337970.2158665813
- read-perf, basic, 64_B, read,1764.2606886097467
- read-perf, basic, 64_B, release,5855.275069110715
- read-perf, perf, 16_MB, getattr,131298796.48955402
- read-perf, perf, 16_MB, open,260157671.13481244
- read-perf, perf, 16_MB, read,49298.66616464604
- read-perf, perf, 16_MB, release,18817808.05288776
- read-perf, perf, 256_KB, getattr,1060941.4133458764
- read-perf, perf, 256_KB, open,1536414.2240294411
- read-perf, perf, 256_KB, read,175196.72455216918
- read-perf, perf, 256_KB, release,912440.1756195878
- read-perf, perf, 4_KB, getattr,340660.06751218776
- read-perf, perf, 4_KB, open,670040.697770553
- read-perf, perf, 4_KB, read,4008.7557117994143
- read-perf, perf, 4_KB, release,621425.8213864656
- read-perf, perf, 64_B, getattr,502212.6408039104
- read-perf, perf, 64_B, open,835962.7955273367
- read-perf, perf, 64_B, read,1950.7579137298917
- read-perf, perf, 64_B, release,1175478.5818538596
- write-perf, basic, 256_KB, getattr,848249.7201871637
- write-perf, basic, 256_KB, mknod,
- write-perf, basic, 256_KB, open,3547825.0662578363
- write-perf, basic, 256_KB, read,43147.452993642255
- write-perf, basic, 256_KB, release,3346188.417123869
- write-perf, basic, 256_KB, write,1877552.780206629
- write-perf, basic, 4_KB, getattr,496620.2547420089
- write-perf, basic, 4_KB, mknod,
- write-perf, basic, 4_KB, open,1109397.9882899167
- write-perf, basic, 4_KB, read,2009.2825539250416
- write-perf, basic, 4_KB, release,1927818.1650081426
- write-perf, basic, 4_KB, write,1810519.5221038628
- write-perf, basic, 64_B, getattr,521391.26259710727
- write-perf, basic, 64_B, mknod,
- write-perf, basic, 64_B, open,888530.4289356286
- write-perf, basic, 64_B, read,9383.309424863239
- write-perf, basic, 64_B, release,1751710.237314623
- write-perf, basic, 64_B, write,7325989.784782878
- write-perf, perf, 16_MB, getattr,269645024.68896466
- write-perf, perf, 16_MB, mknod,
- write-perf, perf, 16_MB, open,39102238.18618785
- write-perf, perf, 16_MB, read,69432.07188909069
- write-perf, perf, 16_MB, release,94420477.46966682
- write-perf, perf, 16_MB, write,4441602.664249463
- write-perf, perf, 256_KB, getattr,3844894.7791995937
- write-perf, perf, 256_KB, open,1031733.5267985157
- write-perf, perf, 256_KB, read,93161.00255716272
- write-perf, perf, 256_KB, release,2009157.3543670366
- write-perf, perf, 256_KB, write,2114475.5695992094
- write-perf, perf, 4_KB, getattr,694686.856231062
- write-perf, perf, 4_KB, open,637325.4430319542
- write-perf, perf, 4_KB, read,4253.624614440947
- write-perf, perf, 4_KB, release,880123.7685088838
- write-perf, perf, 4_KB, write,1791033.6683920873
- write-perf, perf, 64_B, getattr,552507.6825883999
- write-perf, perf, 64_B, open,676150.9567978984
- write-perf, perf, 64_B, read,9800.823910614285
- write-perf, perf, 64_B, release,657258.4216223098
- write-perf, perf, 64_B, write,3792132.771032126
+read-perf,basic,256_KB,getattr,424644.2584798945
+read-perf,basic,256_KB,open,1765422.3567063466
+read-perf,basic,256_KB,read,29654.040717740674
+read-perf,basic,256_KB,release,7422.31073050718
+read-perf,basic,4_KB,getattr,850140.8951679199
+read-perf,basic,4_KB,open,3834066.6718573514
+read-perf,basic,4_KB,read,12735.9337250018
+read-perf,basic,4_KB,release,6565.942772120977
+read-perf,basic,64_B,getattr,699394.6768418025
+read-perf,basic,64_B,open,1337970.2158665813
+read-perf,basic,64_B,read,1764.2606886097467
+read-perf,basic,64_B,release,5855.275069110715
+read-perf,perf,16_MB,getattr,131298796.48955402
+read-perf,perf,16_MB,open,260157671.13481244
+read-perf,perf,16_MB,read,49298.66616464604
+read-perf,perf,16_MB,release,18817808.05288776
+read-perf,perf,1_GB,getattr,5961704676.0415325
+read-perf,perf,1_GB,open,12145345326.435461
+read-perf,perf,1_GB,read,125342.40154081938
+read-perf,perf,1_GB,release,746204402.0357412
+read-perf,perf,256_KB,getattr,1060941.4133458764
+read-perf,perf,256_KB,open,1536414.2240294411
+read-perf,perf,256_KB,read,175196.72455216918
+read-perf,perf,256_KB,release,912440.1756195878
+read-perf,perf,4_KB,getattr,340660.06751218776
+read-perf,perf,4_KB,open,670040.697770553
+read-perf,perf,4_KB,read,4008.7557117994143
+read-perf,perf,4_KB,release,621425.8213864656
+read-perf,perf,64_B,getattr,502212.6408039104
+read-perf,perf,64_B,open,835962.7955273367
+read-perf,perf,64_B,read,1950.7579137298917
+read-perf,perf,64_B,release,1175478.5818538596
+write-perf,basic,256_KB,getattr,848249.7201871637
+write-perf,basic,256_KB,mknod,0.0
+write-perf,basic,256_KB,open,3547825.0662578363
+write-perf,basic,256_KB,read,43147.452993642255
+write-perf,basic,256_KB,release,3346188.417123869
+write-perf,basic,256_KB,write,1877552.780206629
+write-perf,basic,4_KB,getattr,496620.2547420089
+write-perf,basic,4_KB,mknod,0.0
+write-perf,basic,4_KB,open,1109397.9882899167
+write-perf,basic,4_KB,read,2009.2825539250416
+write-perf,basic,4_KB,release,1927818.1650081426
+write-perf,basic,4_KB,write,1810519.5221038628
+write-perf,basic,64_B,getattr,521391.26259710727
+write-perf,basic,64_B,mknod,0.0
+write-perf,basic,64_B,open,888530.4289356286
+write-perf,basic,64_B,read,9383.309424863239
+write-perf,basic,64_B,release,1751710.237314623
+write-perf,basic,64_B,write,7325989.784782878
+write-perf,perf,16_MB,getattr,269645024.68896466
+write-perf,perf,16_MB,mknod,0.0
+write-perf,perf,16_MB,open,39102238.18618785
+write-perf,perf,16_MB,read,69432.07188909069
+write-perf,perf,16_MB,release,94420477.46966682
+write-perf,perf,16_MB,write,4441602.664249463
+write-perf,perf,1_GB,getattr,2567073241.4115753
+write-perf,perf,1_GB,open,6354654002.839541
+write-perf,perf,1_GB,read,71522.0359882793
+write-perf,perf,1_GB,release,497144779.64238197
+write-perf,perf,1_GB,write,23118323.41823528
+write-perf,perf,256_KB,getattr,3844894.7791995937
+write-perf,perf,256_KB,open,1031733.5267985157
+write-perf,perf,256_KB,read,93161.00255716272
+write-perf,perf,256_KB,release,2009157.3543670366
+write-perf,perf,256_KB,write,2114475.5695992094
+write-perf,perf,4_KB,getattr,694686.856231062
+write-perf,perf,4_KB,open,637325.4430319542
+write-perf,perf,4_KB,read,4253.624614440947
+write-perf,perf,4_KB,release,880123.7685088838
+write-perf,perf,4_KB,write,1791033.6683920873
+write-perf,perf,64_B,getattr,552507.6825883999
+write-perf,perf,64_B,open,676150.9567978984
+write-perf,perf,64_B,read,9800.823910614285
+write-perf,perf,64_B,release,657258.4216223098
+write-perf,perf,64_B,write,3792132.771032126

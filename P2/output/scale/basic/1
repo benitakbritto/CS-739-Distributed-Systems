@@ -1,0 +1,5493 @@
+testing make
+start
+19:46:33.925341
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:34.693589
+rm -f *.o
+start
+19:46:34.713514
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+end
+19:46:34.992693
+rm -f *.o
+start
+19:46:35.017991
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:35.781759
+rm -f *.o
+start
+19:46:35.804920
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:36.524589
+rm -f *.o
+start
+19:46:36.550657
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:37.311804
+rm -f *.o
+start
+19:46:37.335216
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:38.067520
+rm -f *.o
+start
+19:46:38.091043
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:38.836736
+rm -f *.o
+start
+19:46:38.860072
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:39.586270
+rm -f *.o
+start
+19:46:39.606967
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:40.341786
+rm -f *.o
+start
+19:46:40.361863
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:41.084764
+rm -f *.o
+start
+19:46:41.108338
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:41.863827
+rm -f *.o
+start
+19:46:41.887287
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:42.636627
+rm -f *.o
+start
+19:46:42.663612
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:43.405083
+rm -f *.o
+start
+19:46:43.425431
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:44.115845
+rm -f *.o
+start
+19:46:44.138677
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:44.868291
+rm -f *.o
+start
+19:46:44.890461
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:45.605506
+rm -f *.o
+start
+19:46:45.628474
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:46.365929
+rm -f *.o
+start
+19:46:46.389419
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:47.102576
+rm -f *.o
+start
+19:46:47.127164
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:47.864383
+rm -f *.o
+start
+19:46:47.888286
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:48.584871
+rm -f *.o
+start
+19:46:48.604355
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:49.331567
+rm -f *.o
+start
+19:46:49.357780
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:50.084492
+rm -f *.o
+start
+19:46:50.107485
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:50.827907
+rm -f *.o
+start
+19:46:50.849633
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:51.611820
+rm -f *.o
+start
+19:46:51.633859
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:52.356096
+rm -f *.o
+start
+19:46:52.377527
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:53.095316
+rm -f *.o
+start
+19:46:53.121319
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:53.883746
+rm -f *.o
+start
+19:46:53.909112
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:54.641061
+rm -f *.o
+start
+19:46:54.663555
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:55.416246
+rm -f *.o
+start
+19:46:55.438340
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:56.160813
+rm -f *.o
+start
+19:46:56.187292
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:56.958946
+rm -f *.o
+start
+19:46:56.979752
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:57.716898
+rm -f *.o
+start
+19:46:57.738560
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:58.485445
+rm -f *.o
+start
+19:46:58.506591
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+end
+19:46:58.804934
+rm -f *.o
+start
+19:46:58.828919
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:46:59.548107
+rm -f *.o
+start
+19:46:59.569668
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+end
+19:46:59.837189
+rm -f *.o
+start
+19:46:59.861378
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:00.590099
+rm -f *.o
+start
+19:47:00.615104
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+end
+19:47:00.875965
+rm -f *.o
+start
+19:47:00.899992
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:01.646980
+rm -f *.o
+start
+19:47:01.669799
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+end
+19:47:01.942753
+rm -f *.o
+start
+19:47:01.969442
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:02.723552
+rm -f *.o
+start
+19:47:02.745345
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:03.474149
+rm -f *.o
+start
+19:47:03.499590
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:04.260831
+rm -f *.o
+start
+19:47:04.283013
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:04.995576
+rm -f *.o
+start
+19:47:05.018686
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:05.790514
+rm -f *.o
+start
+19:47:05.812486
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:06.523981
+rm -f *.o
+start
+19:47:06.549528
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:07.266630
+rm -f *.o
+start
+19:47:07.287668
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:07.987148
+rm -f *.o
+start
+19:47:08.014100
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:08.760844
+rm -f *.o
+start
+19:47:08.785271
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:09.480957
+rm -f *.o
+start
+19:47:09.507525
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:10.253192
+rm -f *.o
+start
+19:47:10.273672
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:10.971723
+rm -f *.o
+start
+19:47:10.995218
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:11.764685
+rm -f *.o
+start
+19:47:11.786760
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:12.504994
+rm -f *.o
+start
+19:47:12.525714
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:13.277243
+rm -f *.o
+start
+19:47:13.298362
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:14.008671
+rm -f *.o
+start
+19:47:14.032629
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:14.787181
+rm -f *.o
+start
+19:47:14.811195
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:15.532372
+rm -f *.o
+start
+19:47:15.555536
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:16.328907
+rm -f *.o
+start
+19:47:16.353209
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:17.081626
+rm -f *.o
+start
+19:47:17.108034
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:17.865261
+rm -f *.o
+start
+19:47:17.894912
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:18.647788
+rm -f *.o
+start
+19:47:18.674494
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:19.420645
+rm -f *.o
+start
+19:47:19.445275
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:20.168122
+rm -f *.o
+start
+19:47:20.193994
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:20.923604
+rm -f *.o
+start
+19:47:20.954926
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:21.665319
+rm -f *.o
+start
+19:47:21.687714
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:22.431711
+rm -f *.o
+start
+19:47:22.453766
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:23.168006
+rm -f *.o
+start
+19:47:23.191670
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:23.950414
+rm -f *.o
+start
+19:47:23.972625
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:24.686151
+rm -f *.o
+start
+19:47:24.713224
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:25.417455
+rm -f *.o
+start
+19:47:25.440883
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:26.132042
+rm -f *.o
+start
+19:47:26.156918
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:26.942933
+rm -f *.o
+start
+19:47:26.963644
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:27.676849
+rm -f *.o
+start
+19:47:27.701419
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:28.456399
+rm -f *.o
+start
+19:47:28.478349
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+end
+19:47:28.793129
+rm -f *.o
+start
+19:47:28.818495
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:29.555996
+rm -f *.o
+start
+19:47:29.577795
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+end
+19:47:29.890317
+rm -f *.o
+start
+19:47:29.916438
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:30.643750
+rm -f *.o
+start
+19:47:30.669155
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+end
+19:47:30.962920
+rm -f *.o
+start
+19:47:30.989401
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:31.721859
+rm -f *.o
+start
+19:47:31.744602
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:32.456397
+rm -f *.o
+start
+19:47:32.482551
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:33.211995
+rm -f *.o
+start
+19:47:33.240405
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:33.991319
+rm -f *.o
+start
+19:47:34.035181
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:34.759970
+rm -f *.o
+start
+19:47:34.781475
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:35.512516
+rm -f *.o
+start
+19:47:35.537505
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:36.286757
+rm -f *.o
+start
+19:47:36.307372
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:37.053773
+rm -f *.o
+start
+19:47:37.077758
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:37.825057
+rm -f *.o
+start
+19:47:37.850331
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:38.616210
+rm -f *.o
+start
+19:47:38.642421
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:39.373271
+rm -f *.o
+start
+19:47:39.396322
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:40.120059
+rm -f *.o
+start
+19:47:40.144642
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:40.856186
+rm -f *.o
+start
+19:47:40.881600
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:41.589144
+rm -f *.o
+start
+19:47:41.609360
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:42.360820
+rm -f *.o
+start
+19:47:42.383797
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:43.100551
+rm -f *.o
+start
+19:47:43.127533
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:43.887488
+rm -f *.o
+start
+19:47:43.922564
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:44.877132
+rm -f *.o
+start
+19:47:44.903432
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:45.730097
+rm -f *.o
+start
+19:47:45.755473
+################################################################################
+### CUSTOMIZE BELOW HERE #######################################################
+
+CC=gcc # define the compiler to use
+TARGET=runme # define the name of the executable
+SOURCES=main.c functions.c
+CFLAGS=-O3
+LFLAGS=-lm
+
+################################################################################
+### DO NOT EDIT THE FOLLOWING LINES ############################################
+
+# define list of objects
+OBJSC=$(SOURCES:.c=.o)
+OBJS=$(OBJSC:.cpp=.o)
+
+# the target is obtained linking all .o files
+all: $(SOURCES) $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+
+purge: clean
+	rm -f $(TARGET)
+
+clean:
+	rm -f *.o
+
+################################################################################
+################################################################################
+#include <stdio.h>
+
+void call_function() {
+  printf("Hello World!\n");
+}
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+void call_function();
+
+#endif // FUNCTIONS_H
+#include "functions.h"
+
+int main(int argc, char ** argv) {
+  call_function();
+  return 0;
+}
+gcc  -O3   -c -o main.o main.c
+gcc  -O3   -c -o functions.o functions.c
+gcc  -lm main.o functions.o -o runme 
+end
+19:47:46.484868
+rm -f *.o

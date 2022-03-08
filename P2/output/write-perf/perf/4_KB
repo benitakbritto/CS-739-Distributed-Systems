@@ -1,1003 +1,1004 @@
 Initializing with cache path /tmp/afs/
-getattr time: 2641018nanoseconds
-getattr time: 1446116nanoseconds
-getattr time: 1816421nanoseconds
-getattr time: 1145313nanoseconds
-open time: 1302515nanoseconds
-open time: 2611230nanoseconds
-getattr time: 1226514nanoseconds
-read time: 3600nanoseconds
-write time: 11088227nanoseconds
-read time: 2000nanoseconds
-release time: 1991022nanoseconds
-release time: 1958123nanoseconds
-getattr time: 1900422nanoseconds
-getattr time: 1015111nanoseconds
-open time: 1350615nanoseconds
-open time: 1802421nanoseconds
-getattr time: 1212614nanoseconds
-read time: 5200nanoseconds
-write time: 9166905nanoseconds
-read time: 4400nanoseconds
-release time: 3256238nanoseconds
-release time: 4101847nanoseconds
-getattr time: 2743631nanoseconds
-getattr time: 1046212nanoseconds
-open time: 2408028nanoseconds
-open time: 1281014nanoseconds
-getattr time: 2654831nanoseconds
-read time: 16200nanoseconds
-write time: 12073738nanoseconds
-read time: 2100nanoseconds
-release time: 2576229nanoseconds
-release time: 2722731nanoseconds
-getattr time: 1260614nanoseconds
-getattr time: 1165414nanoseconds
-open time: 1973523nanoseconds
-open time: 1545418nanoseconds
-getattr time: 1882921nanoseconds
-read time: 5200nanoseconds
-write time: 6952380nanoseconds
-read time: 2500nanoseconds
-release time: 1677820nanoseconds
-release time: 2198125nanoseconds
-getattr time: 1133312nanoseconds
-getattr time: 1202813nanoseconds
-open time: 1132313nanoseconds
-open time: 1571918nanoseconds
-getattr time: 1718619nanoseconds
-read time: 5500nanoseconds
-write time: 9471108nanoseconds
-read time: 2000nanoseconds
-release time: 1533817nanoseconds
-release time: 3550340nanoseconds
-getattr time: 2039123nanoseconds
-getattr time: 1034412nanoseconds
-open time: 1721720nanoseconds
-open time: 1092913nanoseconds
-getattr time: 1664419nanoseconds
-read time: 5000nanoseconds
-write time: 8764401nanoseconds
-read time: 2000nanoseconds
-release time: 2016723nanoseconds
-release time: 2071923nanoseconds
-getattr time: 1395916nanoseconds
-getattr time: 1136613nanoseconds
-open time: 1454516nanoseconds
-open time: 1082612nanoseconds
-getattr time: 1430216nanoseconds
-read time: 4400nanoseconds
-write time: 7937791nanoseconds
-read time: 2100nanoseconds
-release time: 1800021nanoseconds
-release time: 2438728nanoseconds
-getattr time: 1146014nanoseconds
-getattr time: 2213926nanoseconds
-open time: 1408016nanoseconds
-open time: 1356215nanoseconds
-getattr time: 1347815nanoseconds
-read time: 4700nanoseconds
-write time: 8109893nanoseconds
-read time: 22901nanoseconds
-release time: 1998523nanoseconds
-release time: 2129424nanoseconds
-getattr time: 2953934nanoseconds
-getattr time: 2577530nanoseconds
-open time: 1913722nanoseconds
-open time: 1681119nanoseconds
-getattr time: 1120913nanoseconds
-read time: 7800nanoseconds
-write time: 7506886nanoseconds
-read time: 2200nanoseconds
-release time: 1624619nanoseconds
-release time: 2548729nanoseconds
-getattr time: 1143414nanoseconds
-getattr time: 1624118nanoseconds
-open time: 1664619nanoseconds
-open time: 1176013nanoseconds
-getattr time: 1229314nanoseconds
-read time: 6501nanoseconds
-write time: 5642265nanoseconds
-read time: 2100nanoseconds
-release time: 1260114nanoseconds
-release time: 1840521nanoseconds
-getattr time: 1186914nanoseconds
-getattr time: 853010nanoseconds
-open time: 1448717nanoseconds
-open time: 7960691nanoseconds
-getattr time: 1131713nanoseconds
-read time: 7300nanoseconds
-write time: 8853901nanoseconds
-read time: 2500nanoseconds
-release time: 1411416nanoseconds
-release time: 1967422nanoseconds
-getattr time: 859709nanoseconds
-getattr time: 1320115nanoseconds
-open time: 1501117nanoseconds
-open time: 1070012nanoseconds
-getattr time: 1033112nanoseconds
-read time: 5400nanoseconds
-write time: 4750654nanoseconds
-read time: 2400nanoseconds
-release time: 1567318nanoseconds
-release time: 1735819nanoseconds
-getattr time: 799609nanoseconds
-getattr time: 1103412nanoseconds
-open time: 1027512nanoseconds
-open time: 1122613nanoseconds
-getattr time: 1041912nanoseconds
-read time: 4800nanoseconds
-write time: 5152059nanoseconds
-read time: 2000nanoseconds
-release time: 1585318nanoseconds
-release time: 2056023nanoseconds
-getattr time: 1005511nanoseconds
-getattr time: 1535918nanoseconds
-open time: 1310015nanoseconds
-open time: 1326515nanoseconds
-getattr time: 959711nanoseconds
-read time: 4800nanoseconds
-write time: 5202460nanoseconds
-read time: 2000nanoseconds
-release time: 1534218nanoseconds
-release time: 1612018nanoseconds
-getattr time: 1023911nanoseconds
-getattr time: 1370916nanoseconds
-open time: 1336616nanoseconds
-open time: 1012711nanoseconds
-getattr time: 1451516nanoseconds
-read time: 4900nanoseconds
-write time: 8058692nanoseconds
-read time: 2100nanoseconds
-release time: 6254072nanoseconds
-release time: 6289772nanoseconds
-getattr time: 4861456nanoseconds
-getattr time: 1107113nanoseconds
-open time: 1194814nanoseconds
-open time: 1878421nanoseconds
-getattr time: 1343916nanoseconds
-read time: 9800nanoseconds
-write time: 7374885nanoseconds
-read time: 2000nanoseconds
-release time: 2546229nanoseconds
-release time: 2622430nanoseconds
-getattr time: 1760520nanoseconds
-getattr time: 1469017nanoseconds
-open time: 1267715nanoseconds
-open time: 1244314nanoseconds
-getattr time: 1394716nanoseconds
-read time: 5900nanoseconds
-write time: 5951468nanoseconds
-read time: 2100nanoseconds
-release time: 2240325nanoseconds
-release time: 2750731nanoseconds
-getattr time: 1359916nanoseconds
-getattr time: 1583718nanoseconds
-open time: 1276914nanoseconds
-open time: 1275315nanoseconds
-getattr time: 1578718nanoseconds
-read time: 4600nanoseconds
-write time: 5721765nanoseconds
-read time: 2300nanoseconds
-release time: 1673519nanoseconds
-release time: 1838521nanoseconds
-getattr time: 1534818nanoseconds
-getattr time: 1442216nanoseconds
-open time: 1150713nanoseconds
-open time: 1676719nanoseconds
-getattr time: 1300015nanoseconds
-read time: 8100nanoseconds
-write time: 7941991nanoseconds
-read time: 2200nanoseconds
-release time: 1875521nanoseconds
-release time: 1988722nanoseconds
-getattr time: 1465917nanoseconds
-getattr time: 1292215nanoseconds
-open time: 2088524nanoseconds
-open time: 1556518nanoseconds
-getattr time: 1436017nanoseconds
-read time: 4700nanoseconds
-write time: 5549064nanoseconds
-read time: 2300nanoseconds
-release time: 2933934nanoseconds
-release time: 3216037nanoseconds
-getattr time: 1434416nanoseconds
-getattr time: 1288614nanoseconds
-open time: 1252915nanoseconds
-open time: 1602119nanoseconds
-getattr time: 3695443nanoseconds
-read time: 4700nanoseconds
-write time: 5728866nanoseconds
-read time: 2100nanoseconds
-release time: 3318338nanoseconds
-release time: 3350639nanoseconds
-getattr time: 1901022nanoseconds
-getattr time: 2483529nanoseconds
-open time: 1581518nanoseconds
-open time: 2167624nanoseconds
-getattr time: 3213437nanoseconds
-read time: 8100nanoseconds
-write time: 6311973nanoseconds
-read time: 2200nanoseconds
-release time: 2145625nanoseconds
-getattr time: 1252214nanoseconds
-release time: 2500429nanoseconds
-getattr time: 1661219nanoseconds
-open time: 1907621nanoseconds
-open time: 1906422nanoseconds
-getattr time: 1885622nanoseconds
-read time: 7900nanoseconds
-write time: 6711477nanoseconds
-read time: 2100nanoseconds
-release time: 1899422nanoseconds
-release time: 2036623nanoseconds
-getattr time: 1180513nanoseconds
-getattr time: 1598818nanoseconds
-open time: 1434417nanoseconds
-open time: 1763020nanoseconds
-getattr time: 2435328nanoseconds
-read time: 4900nanoseconds
-write time: 5505863nanoseconds
-read time: 2200nanoseconds
-release time: 1733820nanoseconds
-release time: 1986022nanoseconds
-getattr time: 1393816nanoseconds
-getattr time: 1660819nanoseconds
-open time: 2207025nanoseconds
-open time: 1779721nanoseconds
-getattr time: 1509817nanoseconds
-read time: 22500nanoseconds
-write time: 6423073nanoseconds
-read time: 2100nanoseconds
-release time: 2722131nanoseconds
-getattr time: 1873222nanoseconds
-release time: 3160037nanoseconds
-getattr time: 1064513nanoseconds
-open time: 1364216nanoseconds
-open time: 1510517nanoseconds
-getattr time: 1251114nanoseconds
-read time: 6100nanoseconds
-write time: 5354761nanoseconds
-read time: 2000nanoseconds
-release time: 1766921nanoseconds
-release time: 1809721nanoseconds
-getattr time: 1231014nanoseconds
-getattr time: 2007623nanoseconds
-open time: 1499317nanoseconds
-open time: 1753620nanoseconds
-getattr time: 1703419nanoseconds
-read time: 4900nanoseconds
-write time: 6886278nanoseconds
-read time: 2200nanoseconds
-release time: 1853321nanoseconds
-release time: 2470328nanoseconds
-getattr time: 1921222nanoseconds
-getattr time: 1215314nanoseconds
-open time: 1796521nanoseconds
-open time: 1762420nanoseconds
-getattr time: 1334816nanoseconds
-read time: 5700nanoseconds
-write time: 7351384nanoseconds
-read time: 2200nanoseconds
-release time: 2008023nanoseconds
-getattr time: 2674831nanoseconds
-release time: 4267048nanoseconds
-getattr time: 1296715nanoseconds
-open time: 1608418nanoseconds
-open time: 1534518nanoseconds
-getattr time: 1906022nanoseconds
-read time: 7300nanoseconds
-write time: 7545586nanoseconds
-read time: 2200nanoseconds
-release time: 1904422nanoseconds
-release time: 2055223nanoseconds
-getattr time: 1217314nanoseconds
-getattr time: 1208014nanoseconds
-open time: 1625519nanoseconds
-open time: 1289314nanoseconds
-getattr time: 1524017nanoseconds
-read time: 5900nanoseconds
-write time: 5571264nanoseconds
-read time: 2300nanoseconds
-release time: 2968334nanoseconds
-release time: 3016735nanoseconds
-getattr time: 1626519nanoseconds
-getattr time: 2176325nanoseconds
-open time: 1259714nanoseconds
-open time: 1221714nanoseconds
-getattr time: 1366216nanoseconds
-read time: 26800nanoseconds
-write time: 5241560nanoseconds
-read time: 2200nanoseconds
-release time: 1625119nanoseconds
-release time: 1835521nanoseconds
-getattr time: 1556118nanoseconds
-getattr time: 2008623nanoseconds
-open time: 1428716nanoseconds
-open time: 2702931nanoseconds
-getattr time: 1954322nanoseconds
-read time: 6200nanoseconds
-write time: 5683065nanoseconds
-read time: 2300nanoseconds
-release time: 1662419nanoseconds
-release time: 1831121nanoseconds
-getattr time: 1094512nanoseconds
-getattr time: 1135613nanoseconds
-open time: 1819020nanoseconds
-open time: 1636819nanoseconds
-getattr time: 1848921nanoseconds
-read time: 6000nanoseconds
-write time: 10764223nanoseconds
-read time: 2000nanoseconds
-release time: 1848021nanoseconds
-release time: 2080924nanoseconds
-getattr time: 1433616nanoseconds
-getattr time: 1542017nanoseconds
-open time: 1371616nanoseconds
-open time: 1554517nanoseconds
-getattr time: 2050023nanoseconds
-read time: 5400nanoseconds
-write time: 11907236nanoseconds
-read time: 2000nanoseconds
-release time: 1387016nanoseconds
-release time: 1754820nanoseconds
-getattr time: 1726920nanoseconds
-getattr time: 3659042nanoseconds
-open time: 1504517nanoseconds
-open time: 1695620nanoseconds
-getattr time: 2520529nanoseconds
-read time: 7600nanoseconds
-write time: 9682211nanoseconds
-read time: 2300nanoseconds
-release time: 1861021nanoseconds
-release time: 1940822nanoseconds
-getattr time: 1476717nanoseconds
-getattr time: 1702920nanoseconds
-open time: 2214825nanoseconds
-open time: 1252214nanoseconds
-getattr time: 1575818nanoseconds
-read time: 8100nanoseconds
-write time: 9388207nanoseconds
-read time: 20001nanoseconds
-release time: 1533518nanoseconds
-release time: 1965822nanoseconds
-getattr time: 1239514nanoseconds
-getattr time: 1314415nanoseconds
-open time: 1738620nanoseconds
-open time: 1359216nanoseconds
-getattr time: 1800321nanoseconds
-read time: 5800nanoseconds
-write time: 9927913nanoseconds
-read time: 2000nanoseconds
-release time: 2551929nanoseconds
-release time: 2810332nanoseconds
-getattr time: 1073712nanoseconds
-getattr time: 1435016nanoseconds
-open time: 1835121nanoseconds
-open time: 1217514nanoseconds
-getattr time: 1523017nanoseconds
-read time: 4900nanoseconds
-write time: 7594487nanoseconds
-read time: 2100nanoseconds
-release time: 2327026nanoseconds
-getattr time: 1419317nanoseconds
-release time: 2714531nanoseconds
-getattr time: 1040912nanoseconds
-open time: 1590419nanoseconds
-open time: 1140713nanoseconds
-getattr time: 1474217nanoseconds
-read time: 7800nanoseconds
-write time: 7229683nanoseconds
-read time: 2100nanoseconds
-release time: 2166325nanoseconds
-release time: 2854933nanoseconds
-getattr time: 1588418nanoseconds
-getattr time: 1165613nanoseconds
-open time: 1281415nanoseconds
-open time: 1351915nanoseconds
-getattr time: 1891022nanoseconds
-read time: 5300nanoseconds
-write time: 6880379nanoseconds
-read time: 2100nanoseconds
-release time: 2021623nanoseconds
-release time: 2275926nanoseconds
-getattr time: 2457528nanoseconds
-getattr time: 2079424nanoseconds
-open time: 1314515nanoseconds
-open time: 1239214nanoseconds
-getattr time: 1300715nanoseconds
-read time: 6501nanoseconds
-write time: 11639233nanoseconds
-read time: 2200nanoseconds
-release time: 2064523nanoseconds
-release time: 2196725nanoseconds
-getattr time: 1063412nanoseconds
-getattr time: 1185513nanoseconds
-open time: 1534718nanoseconds
-open time: 1059112nanoseconds
-getattr time: 2157325nanoseconds
-read time: 5600nanoseconds
-write time: 6457074nanoseconds
-read time: 2100nanoseconds
-release time: 1821121nanoseconds
-release time: 1921422nanoseconds
-getattr time: 2147125nanoseconds
-getattr time: 984911nanoseconds
-open time: 2227625nanoseconds
-open time: 1190413nanoseconds
-getattr time: 1554918nanoseconds
-read time: 5800nanoseconds
-write time: 9044603nanoseconds
-read time: 2300nanoseconds
-release time: 1106513nanoseconds
-release time: 1448916nanoseconds
-getattr time: 1059512nanoseconds
-getattr time: 1163513nanoseconds
-open time: 2480929nanoseconds
-open time: 4195648nanoseconds
-getattr time: 1318015nanoseconds
-read time: 5500nanoseconds
-write time: 5579564nanoseconds
-read time: 2200nanoseconds
-release time: 1806221nanoseconds
-release time: 1885722nanoseconds
-getattr time: 910211nanoseconds
-getattr time: 1074812nanoseconds
-open time: 990311nanoseconds
-open time: 1067512nanoseconds
-getattr time: 957411nanoseconds
-read time: 5400nanoseconds
-write time: 5568863nanoseconds
-read time: 2300nanoseconds
-release time: 1867721nanoseconds
-release time: 2127324nanoseconds
-getattr time: 1091212nanoseconds
-getattr time: 912511nanoseconds
-open time: 1188313nanoseconds
-open time: 1220514nanoseconds
-getattr time: 1009311nanoseconds
-read time: 5400nanoseconds
-write time: 6189971nanoseconds
-read time: 2200nanoseconds
-release time: 1726220nanoseconds
-release time: 2118324nanoseconds
-getattr time: 977711nanoseconds
-getattr time: 819810nanoseconds
-open time: 949711nanoseconds
-open time: 1156713nanoseconds
-getattr time: 993611nanoseconds
-read time: 5000nanoseconds
-write time: 5089058nanoseconds
-read time: 2100nanoseconds
-release time: 6292072nanoseconds
-release time: 6364973nanoseconds
-getattr time: 5918867nanoseconds
-getattr time: 4146148nanoseconds
-open time: 1250314nanoseconds
-open time: 1403116nanoseconds
-getattr time: 1508818nanoseconds
-read time: 6600nanoseconds
-write time: 7146482nanoseconds
-read time: 2300nanoseconds
-release time: 1574818nanoseconds
-release time: 1744220nanoseconds
-getattr time: 1018011nanoseconds
-getattr time: 1574818nanoseconds
-open time: 1370815nanoseconds
-open time: 1220614nanoseconds
-getattr time: 1206814nanoseconds
-read time: 6001nanoseconds
-write time: 5558564nanoseconds
-read time: 2300nanoseconds
-release time: 1601419nanoseconds
-release time: 2295726nanoseconds
-getattr time: 2476329nanoseconds
-getattr time: 2375428nanoseconds
-open time: 1367816nanoseconds
-open time: 1646819nanoseconds
-getattr time: 1332815nanoseconds
-read time: 5500nanoseconds
-write time: 6600876nanoseconds
-read time: 2300nanoseconds
-release time: 1751521nanoseconds
-release time: 2572030nanoseconds
-getattr time: 1217214nanoseconds
-getattr time: 1112613nanoseconds
-open time: 1003111nanoseconds
-open time: 1333415nanoseconds
-getattr time: 1503717nanoseconds
-read time: 5100nanoseconds
-write time: 6794878nanoseconds
-read time: 2200nanoseconds
-release time: 2161425nanoseconds
-release time: 3168536nanoseconds
-getattr time: 1679019nanoseconds
-getattr time: 1094012nanoseconds
-open time: 1463317nanoseconds
-open time: 1278915nanoseconds
-getattr time: 1205513nanoseconds
-read time: 5300nanoseconds
-write time: 6733877nanoseconds
-read time: 4600nanoseconds
-release time: 1569118nanoseconds
-release time: 1672119nanoseconds
-getattr time: 1225014nanoseconds
-getattr time: 1166514nanoseconds
-open time: 1111913nanoseconds
-open time: 1475317nanoseconds
-getattr time: 1153413nanoseconds
-read time: 12000nanoseconds
-write time: 7503786nanoseconds
-read time: 4500nanoseconds
-release time: 2103724nanoseconds
-release time: 2193125nanoseconds
-getattr time: 911310nanoseconds
-getattr time: 1435616nanoseconds
-open time: 1439917nanoseconds
-open time: 1359215nanoseconds
-getattr time: 1027812nanoseconds
-read time: 4600nanoseconds
-write time: 7775490nanoseconds
-read time: 2100nanoseconds
-release time: 2220925nanoseconds
-release time: 2330926nanoseconds
-getattr time: 1013312nanoseconds
-getattr time: 1515618nanoseconds
-open time: 2291026nanoseconds
-open time: 2055724nanoseconds
-getattr time: 3511740nanoseconds
-read time: 7600nanoseconds
-write time: 8522498nanoseconds
-read time: 2700nanoseconds
-release time: 5963669nanoseconds
-getattr time: 4361350nanoseconds
-release time: 6035369nanoseconds
-getattr time: 2006723nanoseconds
-open time: 2507529nanoseconds
-open time: 1416016nanoseconds
-getattr time: 1498017nanoseconds
-read time: 5200nanoseconds
-write time: 6340573nanoseconds
-read time: 2200nanoseconds
-release time: 1661619nanoseconds
-release time: 1812521nanoseconds
-getattr time: 1255214nanoseconds
-getattr time: 1638819nanoseconds
-open time: 1168313nanoseconds
-open time: 1479117nanoseconds
-getattr time: 1873321nanoseconds
-read time: 5200nanoseconds
-write time: 5935168nanoseconds
-read time: 2300nanoseconds
-release time: 2934833nanoseconds
-release time: 2974434nanoseconds
-getattr time: 2489128nanoseconds
-getattr time: 1637119nanoseconds
-open time: 1241014nanoseconds
-open time: 1783821nanoseconds
-getattr time: 1402016nanoseconds
-read time: 5300nanoseconds
-write time: 7411585nanoseconds
-read time: 2100nanoseconds
-release time: 3171236nanoseconds
-release time: 3197436nanoseconds
-getattr time: 1778721nanoseconds
-getattr time: 1942322nanoseconds
-open time: 1204814nanoseconds
-open time: 1424317nanoseconds
-getattr time: 1355215nanoseconds
-read time: 4800nanoseconds
-write time: 7129582nanoseconds
-read time: 2500nanoseconds
-release time: 1798021nanoseconds
-release time: 1864421nanoseconds
-getattr time: 1688219nanoseconds
-getattr time: 1626719nanoseconds
-open time: 1420616nanoseconds
-open time: 1274915nanoseconds
-getattr time: 1619818nanoseconds
-read time: 5800nanoseconds
-write time: 7828990nanoseconds
-read time: 2200nanoseconds
-release time: 2533229nanoseconds
-release time: 2684531nanoseconds
-getattr time: 1350015nanoseconds
-getattr time: 2032824nanoseconds
-open time: 1335016nanoseconds
-open time: 1740220nanoseconds
-getattr time: 2089524nanoseconds
-read time: 21901nanoseconds
-write time: 8065092nanoseconds
-read time: 2000nanoseconds
-release time: 2660931nanoseconds
-release time: 2692230nanoseconds
-getattr time: 1297515nanoseconds
-getattr time: 2486528nanoseconds
-open time: 2006423nanoseconds
-open time: 1353516nanoseconds
-getattr time: 1184613nanoseconds
-read time: 8100nanoseconds
-write time: 11793535nanoseconds
-read time: 1900nanoseconds
-release time: 2299126nanoseconds
-release time: 2370427nanoseconds
-getattr time: 3187937nanoseconds
-getattr time: 1906622nanoseconds
-open time: 1577618nanoseconds
-open time: 1406616nanoseconds
-getattr time: 1218914nanoseconds
-read time: 5600nanoseconds
-write time: 8156094nanoseconds
-read time: 2000nanoseconds
-release time: 1892021nanoseconds
-release time: 1635218nanoseconds
-getattr time: 1653519nanoseconds
-getattr time: 1255415nanoseconds
-open time: 1511017nanoseconds
-open time: 1423516nanoseconds
-getattr time: 3167236nanoseconds
-read time: 4700nanoseconds
-write time: 8875902nanoseconds
-read time: 2600nanoseconds
-release time: 2051923nanoseconds
-release time: 2586430nanoseconds
-getattr time: 1154313nanoseconds
-getattr time: 1369415nanoseconds
-open time: 1820021nanoseconds
-open time: 1577118nanoseconds
-getattr time: 1161614nanoseconds
-read time: 11101nanoseconds
-write time: 9969414nanoseconds
-read time: 1900nanoseconds
-release time: 2062724nanoseconds
-release time: 2131224nanoseconds
-getattr time: 5202660nanoseconds
-getattr time: 1461916nanoseconds
-open time: 1155813nanoseconds
-open time: 1156214nanoseconds
-getattr time: 1488717nanoseconds
-read time: 5100nanoseconds
-write time: 10229417nanoseconds
-read time: 2200nanoseconds
-release time: 1532817nanoseconds
-release time: 3572140nanoseconds
-getattr time: 2148225nanoseconds
-getattr time: 1098513nanoseconds
-open time: 2236026nanoseconds
-open time: 1801420nanoseconds
-getattr time: 1921222nanoseconds
-read time: 4800nanoseconds
-write time: 9824612nanoseconds
-read time: 3800nanoseconds
-release time: 2985934nanoseconds
-release time: 3842944nanoseconds
-getattr time: 1823721nanoseconds
-getattr time: 1379816nanoseconds
-open time: 1528017nanoseconds
-open time: 1599718nanoseconds
-getattr time: 3381339nanoseconds
-read time: 5100nanoseconds
-write time: 6536175nanoseconds
-read time: 4500nanoseconds
-release time: 1441317nanoseconds
-release time: 1978523nanoseconds
-getattr time: 1339215nanoseconds
-getattr time: 1451817nanoseconds
-open time: 1414216nanoseconds
-open time: 1507718nanoseconds
-getattr time: 1503217nanoseconds
-read time: 5800nanoseconds
-write time: 5703065nanoseconds
-read time: 2100nanoseconds
-release time: 2271626nanoseconds
-release time: 2311926nanoseconds
-getattr time: 1438817nanoseconds
-getattr time: 1686919nanoseconds
-open time: 1473017nanoseconds
-open time: 1391416nanoseconds
-getattr time: 1322915nanoseconds
-read time: 5200nanoseconds
-write time: 5752366nanoseconds
-read time: 2000nanoseconds
-release time: 2634030nanoseconds
-getattr time: 1887122nanoseconds
-release time: 3039935nanoseconds
-getattr time: 1844121nanoseconds
-open time: 1816621nanoseconds
-open time: 1272314nanoseconds
-getattr time: 1605519nanoseconds
-read time: 5700nanoseconds
-write time: 6757378nanoseconds
-read time: 3200nanoseconds
-release time: 2035223nanoseconds
-release time: 2184725nanoseconds
-getattr time: 1071112nanoseconds
-getattr time: 1889621nanoseconds
-open time: 1886922nanoseconds
-open time: 1529917nanoseconds
-getattr time: 2113524nanoseconds
-read time: 4900nanoseconds
-write time: 6068569nanoseconds
-read time: 2100nanoseconds
-release time: 1932622nanoseconds
-release time: 2038824nanoseconds
-getattr time: 1481817nanoseconds
-getattr time: 2333026nanoseconds
-open time: 1732019nanoseconds
-open time: 1597418nanoseconds
-getattr time: 1794820nanoseconds
-read time: 5700nanoseconds
-write time: 5563964nanoseconds
-read time: 1900nanoseconds
-release time: 1763620nanoseconds
-release time: 1868621nanoseconds
-getattr time: 1885521nanoseconds
-getattr time: 2024823nanoseconds
-open time: 1064312nanoseconds
-open time: 3030934nanoseconds
-getattr time: 1850021nanoseconds
-read time: 7200nanoseconds
-write time: 7328984nanoseconds
-read time: 2300nanoseconds
-release time: 2126524nanoseconds
-release time: 2443528nanoseconds
-getattr time: 1384316nanoseconds
-getattr time: 1442417nanoseconds
-open time: 3000435nanoseconds
-open time: 1305815nanoseconds
-getattr time: 1301915nanoseconds
-read time: 6500nanoseconds
-write time: 5983168nanoseconds
-read time: 2100nanoseconds
-release time: 1995823nanoseconds
-release time: 2241326nanoseconds
-getattr time: 1524418nanoseconds
-getattr time: 1473016nanoseconds
-open time: 1630119nanoseconds
-open time: 1972123nanoseconds
-getattr time: 1456517nanoseconds
-read time: 6000nanoseconds
-write time: 5129758nanoseconds
-read time: 2400nanoseconds
-release time: 1531417nanoseconds
-release time: 2175624nanoseconds
-getattr time: 1430616nanoseconds
-getattr time: 1112512nanoseconds
-open time: 1309415nanoseconds
-open time: 1166413nanoseconds
-getattr time: 1729020nanoseconds
-read time: 5800nanoseconds
-write time: 6746077nanoseconds
-read time: 2000nanoseconds
-release time: 2066524nanoseconds
-release time: 2156925nanoseconds
-getattr time: 1094313nanoseconds
-getattr time: 1253614nanoseconds
-open time: 2829632nanoseconds
-open time: 1168914nanoseconds
-getattr time: 2164125nanoseconds
-read time: 5600nanoseconds
-write time: 8366795nanoseconds
-read time: 2100nanoseconds
-release time: 1706119nanoseconds
-release time: 3381339nanoseconds
-getattr time: 1988623nanoseconds
-getattr time: 1833121nanoseconds
-open time: 3326834nanoseconds
-open time: 1907113nanoseconds
-getattr time: 1851313nanoseconds
-read time: 4700nanoseconds
-write time: 9016563nanoseconds
-read time: 2300nanoseconds
-release time: 3125222nanoseconds
-release time: 3160722nanoseconds
-getattr time: 1711512nanoseconds
-getattr time: 2162015nanoseconds
-open time: 1801113nanoseconds
-open time: 1395410nanoseconds
-getattr time: 2748019nanoseconds
-read time: 7500nanoseconds
-write time: 6204644nanoseconds
-read time: 2700nanoseconds
-release time: 1965613nanoseconds
-release time: 1978714nanoseconds
-getattr time: 1276509nanoseconds
-getattr time: 1876313nanoseconds
-open time: 2268216nanoseconds
-open time: 2180415nanoseconds
-getattr time: 2221415nanoseconds
-read time: 6800nanoseconds
-write time: 7788255nanoseconds
-read time: 2000nanoseconds
-release time: 2108515nanoseconds
-release time: 2279416nanoseconds
-getattr time: 1053908nanoseconds
-getattr time: 1325909nanoseconds
-open time: 1772612nanoseconds
-open time: 1948214nanoseconds
-getattr time: 1729412nanoseconds
-read time: 9800nanoseconds
-write time: 9095964nanoseconds
-read time: 2100nanoseconds
-release time: 2923420nanoseconds
-release time: 2979921nanoseconds
-getattr time: 3057322nanoseconds
-getattr time: 1647511nanoseconds
-open time: 1603912nanoseconds
-open time: 2025714nanoseconds
-getattr time: 1257309nanoseconds
-read time: 4800nanoseconds
-write time: 5506139nanoseconds
-read time: 2300nanoseconds
-release time: 1616911nanoseconds
-release time: 1808613nanoseconds
-getattr time: 922306nanoseconds
-getattr time: 2098015nanoseconds
-open time: 1521511nanoseconds
-open time: 2191415nanoseconds
-getattr time: 1566011nanoseconds
-read time: 5400nanoseconds
-write time: 5775040nanoseconds
-read time: 2900nanoseconds
-release time: 1788213nanoseconds
-release time: 2320717nanoseconds
-getattr time: 1281209nanoseconds
-getattr time: 1530811nanoseconds
-open time: 1551411nanoseconds
-open time: 1968813nanoseconds
-getattr time: 1250109nanoseconds
-read time: 5600nanoseconds
-write time: 6450845nanoseconds
-read time: 2200nanoseconds
-release time: 2218416nanoseconds
-release time: 2329216nanoseconds
-getattr time: 1307409nanoseconds
-getattr time: 1559511nanoseconds
-open time: 1800012nanoseconds
-open time: 1439210nanoseconds
-getattr time: 1337609nanoseconds
-read time: 4900nanoseconds
-write time: 8169057nanoseconds
-read time: 3400nanoseconds
-release time: 2063014nanoseconds
-release time: 2155315nanoseconds
-getattr time: 2033014nanoseconds
-getattr time: 1270209nanoseconds
-open time: 1869413nanoseconds
-open time: 1590711nanoseconds
-getattr time: 2439717nanoseconds
-read time: 6200nanoseconds
-write time: 8338558nanoseconds
-read time: 2000nanoseconds
-release time: 1732412nanoseconds
-release time: 1769213nanoseconds
-getattr time: 1186509nanoseconds
-getattr time: 4611732nanoseconds
-open time: 1398810nanoseconds
-open time: 1410610nanoseconds
-getattr time: 1870813nanoseconds
-read time: 4600nanoseconds
-write time: 10439473nanoseconds
-read time: 1900nanoseconds
-release time: 1912413nanoseconds
-release time: 2220416nanoseconds
-getattr time: 931707nanoseconds
-getattr time: 1032107nanoseconds
-open time: 1324609nanoseconds
-open time: 1032507nanoseconds
-getattr time: 1664812nanoseconds
-read time: 4800nanoseconds
-write time: 6923148nanoseconds
-read time: 2100nanoseconds
-release time: 2604718nanoseconds
-getattr time: 1630212nanoseconds
-release time: 2946721nanoseconds
-getattr time: 969107nanoseconds
-open time: 1686611nanoseconds
-open time: 1812713nanoseconds
-getattr time: 1347910nanoseconds
-read time: 21900nanoseconds
-write time: 11292479nanoseconds
-read time: 2100nanoseconds
-release time: 1936314nanoseconds
-release time: 2445117nanoseconds
-getattr time: 1235109nanoseconds
-getattr time: 1298509nanoseconds
-open time: 1048207nanoseconds
-open time: 1499611nanoseconds
-getattr time: 1682611nanoseconds
-read time: 22400nanoseconds
-write time: 8730761nanoseconds
-read time: 2200nanoseconds
-release time: 1731612nanoseconds
-release time: 1831913nanoseconds
-getattr time: 1349109nanoseconds
-getattr time: 1322209nanoseconds
-open time: 1920613nanoseconds
-open time: 1270608nanoseconds
-getattr time: 1629411nanoseconds
-read time: 5600nanoseconds
-write time: 11135478nanoseconds
-read time: 2900nanoseconds
-release time: 2151915nanoseconds
-release time: 2199016nanoseconds
-getattr time: 1335409nanoseconds
-getattr time: 2076914nanoseconds
-open time: 1019007nanoseconds
-open time: 1463910nanoseconds
-getattr time: 1429910nanoseconds
-read time: 5100nanoseconds
-write time: 6679247nanoseconds
-read time: 4500nanoseconds
-release time: 3233223nanoseconds
-release time: 4187730nanoseconds
-getattr time: 2928621nanoseconds
-getattr time: 986007nanoseconds
-open time: 1731412nanoseconds
-open time: 1130608nanoseconds
-getattr time: 1636811nanoseconds
-read time: 21600nanoseconds
-write time: 8255358nanoseconds
-read time: 2000nanoseconds
-release time: 2244715nanoseconds
-release time: 2382116nanoseconds
-getattr time: 1790213nanoseconds
-getattr time: 1917614nanoseconds
-open time: 2140815nanoseconds
-open time: 1408910nanoseconds
-getattr time: 1623011nanoseconds
-read time: 4600nanoseconds
-write time: 8497659nanoseconds
-read time: 2000nanoseconds
-release time: 2033514nanoseconds
-release time: 2689019nanoseconds
-getattr time: 1300209nanoseconds
-getattr time: 1038208nanoseconds
-open time: 1878013nanoseconds
-open time: 1456810nanoseconds
-getattr time: 1746713nanoseconds
-read time: 4800nanoseconds
-write time: 8814962nanoseconds
-read time: 2200nanoseconds
-release time: 1603411nanoseconds
-release time: 1712112nanoseconds
-getattr time: 1583911nanoseconds
-getattr time: 1409210nanoseconds
-open time: 2429217nanoseconds
-open time: 1437310nanoseconds
-getattr time: 1871813nanoseconds
-read time: 5300nanoseconds
-write time: 6246544nanoseconds
-read time: 1900nanoseconds
-release time: 1785212nanoseconds
-release time: 2139215nanoseconds
-getattr time: 1674812nanoseconds
-getattr time: 2152015nanoseconds
-open time: 2031914nanoseconds
-open time: 1936314nanoseconds
-getattr time: 2911320nanoseconds
-read time: 9000nanoseconds
-write time: 7692253nanoseconds
-read time: 2500nanoseconds
-release time: 1783113nanoseconds
-release time: 2155515nanoseconds
-getattr time: 1070908nanoseconds
-getattr time: 1801013nanoseconds
-open time: 1258709nanoseconds
-open time: 1262709nanoseconds
-getattr time: 1337309nanoseconds
-read time: 6100nanoseconds
-write time: 7638653nanoseconds
-read time: 2000nanoseconds
-release time: 2152515nanoseconds
-release time: 2215216nanoseconds
-getattr time: 1242209nanoseconds
-getattr time: 1501311nanoseconds
-open time: 1252709nanoseconds
-open time: 1120808nanoseconds
-getattr time: 1488110nanoseconds
-read time: 4900nanoseconds
-write time: 7921656nanoseconds
-read time: 4500nanoseconds
-release time: 2506818nanoseconds
-release time: 2554018nanoseconds
+getattr time: 1598618 nanoseconds
+getattr time: 1514617 nanoseconds
+getattr time: 1485817 nanoseconds
+getattr time: 2009624 nanoseconds
+getattr time: 970112 nanoseconds
+open time: 1454217 nanoseconds
+open time: 13844360 nanoseconds
+getattr time: 1380416 nanoseconds
+read time: 4700 nanoseconds
+write time: 5381763 nanoseconds
+read time: 2700 nanoseconds
+release time: 11100 nanoseconds
+getattr time: 1195014 nanoseconds
+getattr time: 1216014 nanoseconds
+release time: 4788955 nanoseconds
+open time: 1525518 nanoseconds
+open time: 1154313 nanoseconds
+getattr time: 1065912 nanoseconds
+read time: 4400 nanoseconds
+write time: 6128971 nanoseconds
+read time: 2600 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 1445517 nanoseconds
+release time: 3231437 nanoseconds
+getattr time: 1397016 nanoseconds
+open time: 1136913 nanoseconds
+open time: 1544418 nanoseconds
+getattr time: 1784821 nanoseconds
+read time: 3700 nanoseconds
+write time: 6512975 nanoseconds
+read time: 2600 nanoseconds
+release time: 5000 nanoseconds
+getattr time: 1465117 nanoseconds
+release time: 3284238 nanoseconds
+getattr time: 1476217 nanoseconds
+open time: 1418717 nanoseconds
+open time: 1366716 nanoseconds
+getattr time: 1488917 nanoseconds
+read time: 4100 nanoseconds
+write time: 5814268 nanoseconds
+read time: 2500 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 1094713 nanoseconds
+release time: 5341362 nanoseconds
+getattr time: 3149437 nanoseconds
+open time: 1196214 nanoseconds
+open time: 1180414 nanoseconds
+getattr time: 1332015 nanoseconds
+read time: 4300 nanoseconds
+write time: 5751967 nanoseconds
+read time: 2501 nanoseconds
+release time: 4600 nanoseconds
+getattr time: 1295315 nanoseconds
+release time: 3887345 nanoseconds
+getattr time: 968611 nanoseconds
+open time: 1412616 nanoseconds
+open time: 1312115 nanoseconds
+getattr time: 1608318 nanoseconds
+read time: 4800 nanoseconds
+write time: 10702624 nanoseconds
+read time: 3100 nanoseconds
+release time: 5700 nanoseconds
+getattr time: 1039712 nanoseconds
+release time: 3231237 nanoseconds
+getattr time: 1252515 nanoseconds
+open time: 4157448 nanoseconds
+open time: 1795521 nanoseconds
+getattr time: 1099312 nanoseconds
+read time: 10700 nanoseconds
+write time: 6060470 nanoseconds
+read time: 2900 nanoseconds
+release time: 5100 nanoseconds
+getattr time: 1252415 nanoseconds
+release time: 3549441 nanoseconds
+getattr time: 2898934 nanoseconds
+open time: 1573619 nanoseconds
+open time: 1199714 nanoseconds
+getattr time: 1342515 nanoseconds
+read time: 4200 nanoseconds
+write time: 6056370 nanoseconds
+read time: 2700 nanoseconds
+release time: 4701 nanoseconds
+getattr time: 1745820 nanoseconds
+release time: 3509241 nanoseconds
+getattr time: 1072712 nanoseconds
+open time: 1550618 nanoseconds
+open time: 1777221 nanoseconds
+getattr time: 1447917 nanoseconds
+read time: 10300 nanoseconds
+write time: 7091082 nanoseconds
+read time: 2500 nanoseconds
+release time: 4100 nanoseconds
+getattr time: 1526317 nanoseconds
+release time: 3706343 nanoseconds
+getattr time: 1105912 nanoseconds
+open time: 1483418 nanoseconds
+open time: 1602619 nanoseconds
+getattr time: 1243414 nanoseconds
+read time: 3800 nanoseconds
+write time: 6238172 nanoseconds
+read time: 2700 nanoseconds
+release time: 4700 nanoseconds
+release time: 3446540 nanoseconds
+getattr time: 1362016 nanoseconds
+getattr time: 1019812 nanoseconds
+open time: 1245814 nanoseconds
+open time: 1471317 nanoseconds
+getattr time: 1184914 nanoseconds
+read time: 3800 nanoseconds
+write time: 5391162 nanoseconds
+read time: 2500 nanoseconds
+release time: 4500 nanoseconds
+getattr time: 1098512 nanoseconds
+release time: 2970834 nanoseconds
+getattr time: 1397916 nanoseconds
+open time: 1552517 nanoseconds
+open time: 1216114 nanoseconds
+getattr time: 3247037 nanoseconds
+read time: 5600 nanoseconds
+write time: 7889991 nanoseconds
+read time: 2500 nanoseconds
+release time: 4600 nanoseconds
+getattr time: 1210114 nanoseconds
+release time: 3804044 nanoseconds
+getattr time: 1586218 nanoseconds
+open time: 1421416 nanoseconds
+open time: 1304115 nanoseconds
+getattr time: 1240814 nanoseconds
+read time: 4300 nanoseconds
+write time: 5765967 nanoseconds
+read time: 2500 nanoseconds
+release time: 4300 nanoseconds
+getattr time: 990911 nanoseconds
+getattr time: 1338516 nanoseconds
+release time: 3778044 nanoseconds
+open time: 1184814 nanoseconds
+open time: 2290227 nanoseconds
+getattr time: 1306115 nanoseconds
+read time: 4200 nanoseconds
+write time: 5169060 nanoseconds
+read time: 2700 nanoseconds
+release time: 5001 nanoseconds
+getattr time: 1109312 nanoseconds
+release time: 3074136 nanoseconds
+getattr time: 1100313 nanoseconds
+open time: 1195013 nanoseconds
+open time: 1082113 nanoseconds
+getattr time: 1362116 nanoseconds
+read time: 3600 nanoseconds
+write time: 6054070 nanoseconds
+read time: 2400 nanoseconds
+release time: 4600 nanoseconds
+getattr time: 1285515 nanoseconds
+release time: 3265038 nanoseconds
+getattr time: 1415316 nanoseconds
+open time: 1015012 nanoseconds
+open time: 1202814 nanoseconds
+getattr time: 1303715 nanoseconds
+read time: 4000 nanoseconds
+write time: 5388963 nanoseconds
+read time: 2800 nanoseconds
+release time: 5000 nanoseconds
+release time: 3421440 nanoseconds
+getattr time: 1714520 nanoseconds
+getattr time: 1634619 nanoseconds
+open time: 1401716 nanoseconds
+open time: 1335415 nanoseconds
+getattr time: 1313815 nanoseconds
+read time: 3700 nanoseconds
+write time: 5218560 nanoseconds
+read time: 2500 nanoseconds
+release time: 4600 nanoseconds
+getattr time: 1267215 nanoseconds
+release time: 3177736 nanoseconds
+getattr time: 1340015 nanoseconds
+open time: 1155113 nanoseconds
+open time: 1136213 nanoseconds
+getattr time: 1471517 nanoseconds
+read time: 4000 nanoseconds
+write time: 9118506 nanoseconds
+read time: 2500 nanoseconds
+release time: 4600 nanoseconds
+release time: 3097936 nanoseconds
+getattr time: 1415816 nanoseconds
+getattr time: 1184114 nanoseconds
+open time: 1674820 nanoseconds
+open time: 1524317 nanoseconds
+getattr time: 2201725 nanoseconds
+read time: 6100 nanoseconds
+write time: 9999816 nanoseconds
+read time: 2400 nanoseconds
+release time: 60800 nanoseconds
+getattr time: 1258515 nanoseconds
+release time: 3540041 nanoseconds
+getattr time: 1139014 nanoseconds
+open time: 1355316 nanoseconds
+open time: 1374116 nanoseconds
+getattr time: 3719643 nanoseconds
+read time: 4900 nanoseconds
+write time: 7433586 nanoseconds
+read time: 2700 nanoseconds
+release time: 7000 nanoseconds
+getattr time: 1531017 nanoseconds
+release time: 3433940 nanoseconds
+getattr time: 1447516 nanoseconds
+open time: 1304615 nanoseconds
+open time: 1483417 nanoseconds
+getattr time: 1175313 nanoseconds
+read time: 4700 nanoseconds
+write time: 8064494 nanoseconds
+read time: 2500 nanoseconds
+release time: 4800 nanoseconds
+getattr time: 1428416 nanoseconds
+getattr time: 1623919 nanoseconds
+release time: 5736166 nanoseconds
+open time: 1458917 nanoseconds
+open time: 1431116 nanoseconds
+getattr time: 866310 nanoseconds
+read time: 3900 nanoseconds
+write time: 10761624 nanoseconds
+read time: 2400 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 1194914 nanoseconds
+release time: 3683842 nanoseconds
+getattr time: 1468517 nanoseconds
+open time: 1352515 nanoseconds
+open time: 1493018 nanoseconds
+getattr time: 1225314 nanoseconds
+read time: 4200 nanoseconds
+write time: 5503864 nanoseconds
+read time: 3000 nanoseconds
+release time: 4700 nanoseconds
+getattr time: 1289815 nanoseconds
+release time: 3883845 nanoseconds
+getattr time: 1185813 nanoseconds
+open time: 1283715 nanoseconds
+open time: 1464117 nanoseconds
+getattr time: 1948423 nanoseconds
+read time: 5300 nanoseconds
+write time: 8869003 nanoseconds
+read time: 2700 nanoseconds
+release time: 5000 nanoseconds
+getattr time: 1356115 nanoseconds
+release time: 3226037 nanoseconds
+getattr time: 1311215 nanoseconds
+open time: 1325015 nanoseconds
+open time: 1206214 nanoseconds
+getattr time: 1455017 nanoseconds
+read time: 3800 nanoseconds
+write time: 8431298 nanoseconds
+read time: 4600 nanoseconds
+release time: 5400 nanoseconds
+release time: 3199337 nanoseconds
+getattr time: 1391916 nanoseconds
+getattr time: 1264714 nanoseconds
+open time: 1302215 nanoseconds
+open time: 2977534 nanoseconds
+getattr time: 1245215 nanoseconds
+read time: 4000 nanoseconds
+write time: 7431286 nanoseconds
+read time: 2500 nanoseconds
+release time: 4200 nanoseconds
+release time: 3159337 nanoseconds
+getattr time: 1705619 nanoseconds
+getattr time: 1564918 nanoseconds
+open time: 1545818 nanoseconds
+open time: 1233715 nanoseconds
+getattr time: 1361616 nanoseconds
+read time: 22100 nanoseconds
+write time: 6220172 nanoseconds
+read time: 2900 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 1586818 nanoseconds
+release time: 3809544 nanoseconds
+getattr time: 1160113 nanoseconds
+open time: 2458928 nanoseconds
+open time: 1425017 nanoseconds
+getattr time: 1391216 nanoseconds
+read time: 4000 nanoseconds
+write time: 5561265 nanoseconds
+read time: 2800 nanoseconds
+release time: 4600 nanoseconds
+release time: 3028935 nanoseconds
+getattr time: 2047323 nanoseconds
+getattr time: 1421416 nanoseconds
+open time: 1820921 nanoseconds
+open time: 1916822 nanoseconds
+getattr time: 1472717 nanoseconds
+read time: 3700 nanoseconds
+write time: 5685166 nanoseconds
+read time: 2501 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 1769620 nanoseconds
+release time: 3922345 nanoseconds
+getattr time: 1806821 nanoseconds
+open time: 1900722 nanoseconds
+open time: 1427117 nanoseconds
+getattr time: 1498618 nanoseconds
+read time: 4100 nanoseconds
+write time: 7672589 nanoseconds
+read time: 2600 nanoseconds
+release time: 4600 nanoseconds
+release time: 3049535 nanoseconds
+getattr time: 2300526 nanoseconds
+getattr time: 1483717 nanoseconds
+open time: 1520518 nanoseconds
+open time: 1493817 nanoseconds
+getattr time: 1989423 nanoseconds
+read time: 4100 nanoseconds
+write time: 5759066 nanoseconds
+read time: 2300 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 1321815 nanoseconds
+release time: 3069435 nanoseconds
+getattr time: 2307127 nanoseconds
+open time: 1437416 nanoseconds
+open time: 1197314 nanoseconds
+getattr time: 1426916 nanoseconds
+read time: 4900 nanoseconds
+write time: 6182872 nanoseconds
+read time: 2500 nanoseconds
+release time: 4900 nanoseconds
+getattr time: 1341315 nanoseconds
+release time: 3097236 nanoseconds
+getattr time: 1566218 nanoseconds
+open time: 1233415 nanoseconds
+open time: 1313715 nanoseconds
+getattr time: 1206014 nanoseconds
+read time: 4000 nanoseconds
+write time: 6211472 nanoseconds
+read time: 2500 nanoseconds
+release time: 4600 nanoseconds
+getattr time: 1123413 nanoseconds
+release time: 3632842 nanoseconds
+getattr time: 1436016 nanoseconds
+open time: 1878921 nanoseconds
+open time: 1589818 nanoseconds
+getattr time: 1353116 nanoseconds
+read time: 3900 nanoseconds
+write time: 5781167 nanoseconds
+read time: 2400 nanoseconds
+release time: 4200 nanoseconds
+getattr time: 1448217 nanoseconds
+release time: 4329950 nanoseconds
+getattr time: 1634019 nanoseconds
+open time: 1487017 nanoseconds
+open time: 1297215 nanoseconds
+getattr time: 1267415 nanoseconds
+read time: 4200 nanoseconds
+write time: 7411286 nanoseconds
+read time: 2500 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 1226714 nanoseconds
+release time: 3785044 nanoseconds
+getattr time: 1008912 nanoseconds
+open time: 1018312 nanoseconds
+open time: 1002511 nanoseconds
+getattr time: 1243315 nanoseconds
+read time: 4100 nanoseconds
+write time: 5832367 nanoseconds
+read time: 2500 nanoseconds
+release time: 4300 nanoseconds
+getattr time: 974511 nanoseconds
+release time: 3713743 nanoseconds
+getattr time: 1181314 nanoseconds
+open time: 1040512 nanoseconds
+open time: 1219714 nanoseconds
+getattr time: 1385716 nanoseconds
+read time: 4100 nanoseconds
+write time: 6017670 nanoseconds
+read time: 2400 nanoseconds
+release time: 22100 nanoseconds
+getattr time: 1422717 nanoseconds
+getattr time: 1545118 nanoseconds
+open time: 1298115 nanoseconds
+release time: 12593246 nanoseconds
+open time: 10142017 nanoseconds
+getattr time: 1432016 nanoseconds
+read time: 44101 nanoseconds
+write time: 5636266 nanoseconds
+read time: 2700 nanoseconds
+release time: 5400 nanoseconds
+getattr time: 1248714 nanoseconds
+release time: 4688654 nanoseconds
+getattr time: 1135513 nanoseconds
+open time: 1196314 nanoseconds
+open time: 1269315 nanoseconds
+getattr time: 1141713 nanoseconds
+read time: 5000 nanoseconds
+write time: 5292961 nanoseconds
+read time: 2800 nanoseconds
+release time: 5300 nanoseconds
+getattr time: 1255514 nanoseconds
+release time: 3203637 nanoseconds
+getattr time: 1059512 nanoseconds
+open time: 1065312 nanoseconds
+open time: 1169713 nanoseconds
+getattr time: 1414316 nanoseconds
+read time: 4000 nanoseconds
+write time: 5344261 nanoseconds
+read time: 2400 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 2942834 nanoseconds
+release time: 5769267 nanoseconds
+getattr time: 1181714 nanoseconds
+open time: 1436816 nanoseconds
+open time: 1384016 nanoseconds
+getattr time: 1861921 nanoseconds
+read time: 4000 nanoseconds
+write time: 5479664 nanoseconds
+read time: 2500 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 1366715 nanoseconds
+release time: 3113136 nanoseconds
+getattr time: 1324715 nanoseconds
+open time: 1252715 nanoseconds
+open time: 1472217 nanoseconds
+getattr time: 1398216 nanoseconds
+read time: 3600 nanoseconds
+write time: 5323162 nanoseconds
+read time: 2500 nanoseconds
+release time: 4700 nanoseconds
+getattr time: 1379716 nanoseconds
+release time: 3380940 nanoseconds
+getattr time: 1855422 nanoseconds
+open time: 1353715 nanoseconds
+open time: 1299015 nanoseconds
+getattr time: 1412416 nanoseconds
+read time: 3400 nanoseconds
+write time: 5784767 nanoseconds
+read time: 2400 nanoseconds
+release time: 4300 nanoseconds
+getattr time: 1184614 nanoseconds
+release time: 3403439 nanoseconds
+getattr time: 1206814 nanoseconds
+open time: 1159613 nanoseconds
+open time: 1571918 nanoseconds
+getattr time: 2319627 nanoseconds
+read time: 9800 nanoseconds
+write time: 15115075 nanoseconds
+read time: 2800 nanoseconds
+release time: 5700 nanoseconds
+getattr time: 1378816 nanoseconds
+release time: 3506740 nanoseconds
+getattr time: 1127213 nanoseconds
+open time: 1952823 nanoseconds
+open time: 2131325 nanoseconds
+getattr time: 1129213 nanoseconds
+read time: 3900 nanoseconds
+write time: 5489163 nanoseconds
+read time: 2600 nanoseconds
+release time: 5000 nanoseconds
+getattr time: 1225214 nanoseconds
+release time: 3566342 nanoseconds
+getattr time: 1799821 nanoseconds
+open time: 1635419 nanoseconds
+open time: 2550130 nanoseconds
+getattr time: 1724020 nanoseconds
+read time: 5400 nanoseconds
+write time: 6657877 nanoseconds
+read time: 3000 nanoseconds
+release time: 11400 nanoseconds
+getattr time: 1245414 nanoseconds
+release time: 3527141 nanoseconds
+getattr time: 1304416 nanoseconds
+open time: 1216414 nanoseconds
+open time: 2094024 nanoseconds
+getattr time: 1253714 nanoseconds
+read time: 3900 nanoseconds
+write time: 6398874 nanoseconds
+read time: 3000 nanoseconds
+release time: 4800 nanoseconds
+getattr time: 1542418 nanoseconds
+release time: 3675343 nanoseconds
+getattr time: 1296915 nanoseconds
+open time: 1499217 nanoseconds
+open time: 1131113 nanoseconds
+getattr time: 1446316 nanoseconds
+read time: 3800 nanoseconds
+write time: 5589964 nanoseconds
+read time: 2500 nanoseconds
+release time: 4800 nanoseconds
+getattr time: 1066912 nanoseconds
+getattr time: 1167213 nanoseconds
+release time: 4211049 nanoseconds
+open time: 1163514 nanoseconds
+open time: 1134213 nanoseconds
+getattr time: 1099113 nanoseconds
+read time: 4100 nanoseconds
+write time: 5400462 nanoseconds
+read time: 2400 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 1519717 nanoseconds
+release time: 3580942 nanoseconds
+getattr time: 931011 nanoseconds
+open time: 1764521 nanoseconds
+open time: 2575230 nanoseconds
+getattr time: 1566418 nanoseconds
+read time: 3900 nanoseconds
+write time: 7456487 nanoseconds
+read time: 2500 nanoseconds
+release time: 4800 nanoseconds
+getattr time: 1171314 nanoseconds
+release time: 3085235 nanoseconds
+getattr time: 1155514 nanoseconds
+open time: 1319015 nanoseconds
+open time: 1528318 nanoseconds
+getattr time: 1404816 nanoseconds
+read time: 3800 nanoseconds
+write time: 8786902 nanoseconds
+read time: 2600 nanoseconds
+release time: 4600 nanoseconds
+getattr time: 1065613 nanoseconds
+release time: 3448240 nanoseconds
+getattr time: 993112 nanoseconds
+open time: 1128213 nanoseconds
+open time: 1320815 nanoseconds
+getattr time: 1882122 nanoseconds
+read time: 4100 nanoseconds
+write time: 5504264 nanoseconds
+read time: 2700 nanoseconds
+release time: 4900 nanoseconds
+getattr time: 1373516 nanoseconds
+release time: 4206749 nanoseconds
+getattr time: 1349415 nanoseconds
+open time: 1139513 nanoseconds
+open time: 1116813 nanoseconds
+getattr time: 1221114 nanoseconds
+read time: 6500 nanoseconds
+write time: 8724501 nanoseconds
+read time: 2700 nanoseconds
+release time: 4800 nanoseconds
+release time: 3453740 nanoseconds
+getattr time: 1544318 nanoseconds
+getattr time: 1176014 nanoseconds
+open time: 1570719 nanoseconds
+open time: 1220914 nanoseconds
+getattr time: 1426517 nanoseconds
+read time: 4700 nanoseconds
+write time: 7602288 nanoseconds
+read time: 3100 nanoseconds
+release time: 5100 nanoseconds
+getattr time: 1441317 nanoseconds
+release time: 3519941 nanoseconds
+getattr time: 1245415 nanoseconds
+open time: 1707420 nanoseconds
+open time: 1200714 nanoseconds
+getattr time: 1183814 nanoseconds
+read time: 4600 nanoseconds
+write time: 9954215 nanoseconds
+read time: 3700 nanoseconds
+release time: 5300 nanoseconds
+getattr time: 1710620 nanoseconds
+release time: 3907945 nanoseconds
+getattr time: 2298427 nanoseconds
+open time: 1204213 nanoseconds
+open time: 1926323 nanoseconds
+getattr time: 1508418 nanoseconds
+read time: 4600 nanoseconds
+write time: 8454298 nanoseconds
+read time: 3500 nanoseconds
+release time: 5300 nanoseconds
+getattr time: 1200114 nanoseconds
+release time: 4445752 nanoseconds
+getattr time: 1188514 nanoseconds
+open time: 1434016 nanoseconds
+open time: 1314715 nanoseconds
+getattr time: 1249214 nanoseconds
+read time: 4400 nanoseconds
+write time: 9836414 nanoseconds
+read time: 3000 nanoseconds
+release time: 5200 nanoseconds
+getattr time: 1435417 nanoseconds
+release time: 3690242 nanoseconds
+getattr time: 1615719 nanoseconds
+open time: 1235015 nanoseconds
+open time: 1066113 nanoseconds
+getattr time: 1724120 nanoseconds
+read time: 4700 nanoseconds
+write time: 10918626 nanoseconds
+read time: 4700 nanoseconds
+release time: 6200 nanoseconds
+getattr time: 1232215 nanoseconds
+release time: 4194549 nanoseconds
+getattr time: 1027512 nanoseconds
+open time: 1216614 nanoseconds
+open time: 1559119 nanoseconds
+getattr time: 1241115 nanoseconds
+read time: 4600 nanoseconds
+write time: 5765667 nanoseconds
+read time: 3800 nanoseconds
+release time: 5500 nanoseconds
+getattr time: 1147113 nanoseconds
+release time: 3947346 nanoseconds
+getattr time: 1415816 nanoseconds
+open time: 1622119 nanoseconds
+open time: 1474617 nanoseconds
+getattr time: 1395116 nanoseconds
+read time: 4300 nanoseconds
+write time: 5664665 nanoseconds
+read time: 3000 nanoseconds
+release time: 5101 nanoseconds
+getattr time: 1157113 nanoseconds
+release time: 3596242 nanoseconds
+getattr time: 1100113 nanoseconds
+open time: 1369515 nanoseconds
+open time: 1350416 nanoseconds
+getattr time: 1225914 nanoseconds
+read time: 5000 nanoseconds
+write time: 5607865 nanoseconds
+read time: 3100 nanoseconds
+release time: 5200 nanoseconds
+release time: 3781044 nanoseconds
+getattr time: 2125725 nanoseconds
+getattr time: 1462117 nanoseconds
+open time: 1083212 nanoseconds
+open time: 1262515 nanoseconds
+getattr time: 1188514 nanoseconds
+read time: 5201 nanoseconds
+write time: 5758467 nanoseconds
+read time: 3300 nanoseconds
+release time: 6100 nanoseconds
+release time: 3193437 nanoseconds
+getattr time: 1028812 nanoseconds
+getattr time: 1776420 nanoseconds
+open time: 1122613 nanoseconds
+open time: 1080912 nanoseconds
+getattr time: 1438717 nanoseconds
+read time: 4000 nanoseconds
+write time: 5169260 nanoseconds
+read time: 2800 nanoseconds
+release time: 8500 nanoseconds
+getattr time: 1434417 nanoseconds
+release time: 7899991 nanoseconds
+getattr time: 1459917 nanoseconds
+open time: 990812 nanoseconds
+open time: 1094513 nanoseconds
+getattr time: 1063313 nanoseconds
+read time: 4801 nanoseconds
+write time: 7560987 nanoseconds
+read time: 2800 nanoseconds
+release time: 5400 nanoseconds
+getattr time: 1268414 nanoseconds
+release time: 3530341 nanoseconds
+getattr time: 2688231 nanoseconds
+open time: 1115213 nanoseconds
+open time: 1518817 nanoseconds
+getattr time: 1050012 nanoseconds
+read time: 3800 nanoseconds
+write time: 13865861 nanoseconds
+read time: 4400 nanoseconds
+release time: 5800 nanoseconds
+getattr time: 1304215 nanoseconds
+release time: 4268450 nanoseconds
+getattr time: 1298715 nanoseconds
+open time: 1214914 nanoseconds
+open time: 1506617 nanoseconds
+getattr time: 2797732 nanoseconds
+read time: 4700 nanoseconds
+write time: 6628077 nanoseconds
+read time: 2500 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 1390116 nanoseconds
+release time: 4130848 nanoseconds
+getattr time: 1158113 nanoseconds
+open time: 1093613 nanoseconds
+open time: 2000123 nanoseconds
+getattr time: 1533318 nanoseconds
+read time: 4200 nanoseconds
+write time: 5196260 nanoseconds
+read time: 2800 nanoseconds
+release time: 4900 nanoseconds
+getattr time: 1046712 nanoseconds
+release time: 3600442 nanoseconds
+getattr time: 923110 nanoseconds
+open time: 1227914 nanoseconds
+open time: 1016312 nanoseconds
+getattr time: 1299315 nanoseconds
+read time: 3900 nanoseconds
+write time: 7142083 nanoseconds
+read time: 2500 nanoseconds
+release time: 4100 nanoseconds
+getattr time: 1326915 nanoseconds
+release time: 3986246 nanoseconds
+getattr time: 1169913 nanoseconds
+open time: 1455717 nanoseconds
+open time: 1196013 nanoseconds
+getattr time: 1103513 nanoseconds
+read time: 3900 nanoseconds
+write time: 6415575 nanoseconds
+read time: 2400 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 1308415 nanoseconds
+release time: 3080836 nanoseconds
+getattr time: 1016312 nanoseconds
+open time: 1634319 nanoseconds
+open time: 1208714 nanoseconds
+getattr time: 1535018 nanoseconds
+read time: 4201 nanoseconds
+write time: 6476675 nanoseconds
+read time: 2601 nanoseconds
+release time: 4600 nanoseconds
+getattr time: 1093113 nanoseconds
+release time: 3549741 nanoseconds
+getattr time: 1558918 nanoseconds
+open time: 1360416 nanoseconds
+open time: 1470417 nanoseconds
+getattr time: 1311315 nanoseconds
+read time: 3700 nanoseconds
+write time: 6006469 nanoseconds
+read time: 2800 nanoseconds
+release time: 5100 nanoseconds
+getattr time: 1070312 nanoseconds
+release time: 3289538 nanoseconds
+getattr time: 986412 nanoseconds
+open time: 1321315 nanoseconds
+open time: 2065424 nanoseconds
+getattr time: 1312415 nanoseconds
+read time: 3600 nanoseconds
+write time: 8841902 nanoseconds
+read time: 3000 nanoseconds
+release time: 5300 nanoseconds
+getattr time: 1271415 nanoseconds
+release time: 3334439 nanoseconds
+getattr time: 1014511 nanoseconds
+open time: 1317315 nanoseconds
+open time: 1368415 nanoseconds
+getattr time: 996112 nanoseconds
+read time: 4400 nanoseconds
+write time: 5795267 nanoseconds
+read time: 2700 nanoseconds
+release time: 4900 nanoseconds
+getattr time: 1062512 nanoseconds
+release time: 3976446 nanoseconds
+getattr time: 1217114 nanoseconds
+open time: 1181514 nanoseconds
+open time: 1633319 nanoseconds
+getattr time: 1085813 nanoseconds
+read time: 4100 nanoseconds
+write time: 5909368 nanoseconds
+read time: 2800 nanoseconds
+release time: 5000 nanoseconds
+getattr time: 1341416 nanoseconds
+release time: 3583042 nanoseconds
+getattr time: 1548217 nanoseconds
+open time: 1195614 nanoseconds
+open time: 1331015 nanoseconds
+getattr time: 1142614 nanoseconds
+read time: 3400 nanoseconds
+write time: 5955369 nanoseconds
+read time: 2500 nanoseconds
+release time: 4300 nanoseconds
+getattr time: 1294815 nanoseconds
+release time: 3291338 nanoseconds
+getattr time: 1705219 nanoseconds
+open time: 2042824 nanoseconds
+open time: 1511517 nanoseconds
+getattr time: 1428116 nanoseconds
+read time: 3700 nanoseconds
+write time: 5499763 nanoseconds
+read time: 2300 nanoseconds
+release time: 4200 nanoseconds
+getattr time: 1154214 nanoseconds
+release time: 3440240 nanoseconds
+getattr time: 1002312 nanoseconds
+open time: 1014011 nanoseconds
+open time: 1052213 nanoseconds
+getattr time: 1083812 nanoseconds
+read time: 3800 nanoseconds
+write time: 5184760 nanoseconds
+read time: 2500 nanoseconds
+release time: 4500 nanoseconds
+getattr time: 1098713 nanoseconds
+release time: 3470140 nanoseconds
+getattr time: 1336416 nanoseconds
+open time: 1234115 nanoseconds
+open time: 1124513 nanoseconds
+getattr time: 1778320 nanoseconds
+read time: 3600 nanoseconds
+write time: 4912657 nanoseconds
+read time: 2500 nanoseconds
+release time: 4100 nanoseconds
+getattr time: 973311 nanoseconds
+release time: 3331739 nanoseconds
+getattr time: 1129113 nanoseconds
+open time: 1236314 nanoseconds
+open time: 1571218 nanoseconds
+getattr time: 1344515 nanoseconds
+read time: 4500 nanoseconds
+write time: 5402562 nanoseconds
+read time: 2600 nanoseconds
+release time: 4700 nanoseconds
+getattr time: 1218514 nanoseconds
+release time: 3566241 nanoseconds
+getattr time: 1238215 nanoseconds
+open time: 1429717 nanoseconds
+open time: 1222314 nanoseconds
+getattr time: 1035712 nanoseconds
+read time: 4100 nanoseconds
+write time: 9210807 nanoseconds
+read time: 5800 nanoseconds
+release time: 7200 nanoseconds
+release time: 4081947 nanoseconds
+getattr time: 1762020 nanoseconds
+getattr time: 3029935 nanoseconds
+open time: 1228214 nanoseconds
+open time: 1297815 nanoseconds
+getattr time: 1356816 nanoseconds
+read time: 4300 nanoseconds
+write time: 6086670 nanoseconds
+read time: 2500 nanoseconds
+release time: 4700 nanoseconds
+getattr time: 1365216 nanoseconds
+release time: 3555742 nanoseconds
+getattr time: 1376916 nanoseconds
+open time: 1402117 nanoseconds
+open time: 1165814 nanoseconds
+getattr time: 1346915 nanoseconds
+read time: 4500 nanoseconds
+write time: 6314673 nanoseconds
+read time: 2600 nanoseconds
+release time: 4700 nanoseconds
+getattr time: 1282115 nanoseconds
+release time: 3313038 nanoseconds
+getattr time: 1362816 nanoseconds
+open time: 1288115 nanoseconds
+open time: 1528618 nanoseconds
+getattr time: 1329415 nanoseconds
+read time: 3800 nanoseconds
+write time: 5456963 nanoseconds
+read time: 2700 nanoseconds
+release time: 4400 nanoseconds
+release time: 2980235 nanoseconds
+getattr time: 1718219 nanoseconds
+getattr time: 1302815 nanoseconds
+open time: 1450217 nanoseconds
+open time: 1245014 nanoseconds
+getattr time: 1462716 nanoseconds
+read time: 3500 nanoseconds
+write time: 5976769 nanoseconds
+read time: 2500 nanoseconds
+release time: 21000 nanoseconds
+getattr time: 1521018 nanoseconds
+release time: 3280738 nanoseconds
+getattr time: 1473517 nanoseconds
+open time: 1396416 nanoseconds
+open time: 1087312 nanoseconds
+getattr time: 1321115 nanoseconds
+read time: 3400 nanoseconds
+write time: 5087859 nanoseconds
+read time: 2500 nanoseconds
+release time: 4400 nanoseconds
+getattr time: 1252114 nanoseconds
+release time: 3409240 nanoseconds
+getattr time: 1460517 nanoseconds
+open time: 1421517 nanoseconds
+open time: 1103112 nanoseconds
+getattr time: 1301315 nanoseconds
+read time: 4200 nanoseconds
+write time: 6101071 nanoseconds
+read time: 2800 nanoseconds
+release time: 4800 nanoseconds
+getattr time: 1327415 nanoseconds
+release time: 3332939 nanoseconds
+getattr time: 1091113 nanoseconds
+open time: 2507829 nanoseconds
+open time: 1320016 nanoseconds
+getattr time: 1218114 nanoseconds
+read time: 3700 nanoseconds
+write time: 11198129 nanoseconds
+read time: 2400 nanoseconds
+release time: 4600 nanoseconds
+getattr time: 1428016 nanoseconds
+release time: 3492741 nanoseconds
+getattr time: 2217625 nanoseconds
+open time: 1393317 nanoseconds
+open time: 1849722 nanoseconds
+getattr time: 1856622 nanoseconds
+read time: 4300 nanoseconds
+write time: 10444021 nanoseconds
+read time: 2800 nanoseconds
+release time: 4700 nanoseconds
+getattr time: 1326615 nanoseconds
+release time: 3889045 nanoseconds
+getattr time: 1539318 nanoseconds
+open time: 1920122 nanoseconds
+open time: 1355216 nanoseconds
+getattr time: 1779621 nanoseconds
+read time: 4000 nanoseconds
+write time: 9728813 nanoseconds
+read time: 2900 nanoseconds
+release time: 4800 nanoseconds
+getattr time: 1336216 nanoseconds
+release time: 4110248 nanoseconds
+getattr time: 1020311 nanoseconds
+open time: 1065112 nanoseconds
+open time: 1405017 nanoseconds
+getattr time: 1137313 nanoseconds
+read time: 3500 nanoseconds
+write time: 6690478 nanoseconds
+read time: 2800 nanoseconds
+release time: 5100 nanoseconds
+getattr time: 1096713 nanoseconds
+getattr time: 1713919 nanoseconds
+release time: 5059258 nanoseconds
+open time: 2172325 nanoseconds
+open time: 1406817 nanoseconds
+getattr time: 1382016 nanoseconds
+read time: 4200 nanoseconds
+write time: 8755401 nanoseconds
+read time: 2700 nanoseconds
+release time: 5400 nanoseconds
+getattr time: 1289615 nanoseconds
+release time: 3633842 nanoseconds
+getattr time: 1159313 nanoseconds
+open time: 1226614 nanoseconds
+open time: 1278915 nanoseconds
+getattr time: 1883022 nanoseconds
+read time: 4400 nanoseconds
+write time: 8232796 nanoseconds
+read time: 2700 nanoseconds
+release time: 5100 nanoseconds
+getattr time: 1869122 nanoseconds
+release time: 3925345 nanoseconds
+getattr time: 949111 nanoseconds
+open time: 1097813 nanoseconds
+open time: 1746421 nanoseconds
+getattr time: 1944223 nanoseconds
+read time: 3900 nanoseconds
+write time: 7933792 nanoseconds
+read time: 2400 nanoseconds
+release time: 10500 nanoseconds
+getattr time: 1026712 nanoseconds
+release time: 3375939 nanoseconds
+getattr time: 1734820 nanoseconds
+open time: 2030923 nanoseconds
+open time: 1151013 nanoseconds
+getattr time: 1192214 nanoseconds
+read time: 7000 nanoseconds
+write time: 7916391 nanoseconds
+read time: 2700 nanoseconds
+release time: 5601 nanoseconds
+getattr time: 2010823 nanoseconds
+release time: 4981358 nanoseconds
+getattr time: 1312715 nanoseconds
+open time: 1303615 nanoseconds
+open time: 1405316 nanoseconds
+getattr time: 1289715 nanoseconds
+read time: 4100 nanoseconds
+write time: 6292773 nanoseconds
+read time: 2300 nanoseconds
+release time: 8800 nanoseconds
+getattr time: 1348115 nanoseconds
+release time: 3955446 nanoseconds
+getattr time: 1191214 nanoseconds
+open time: 1232914 nanoseconds
+open time: 1584418 nanoseconds
+getattr time: 1353816 nanoseconds
+read time: 3500 nanoseconds
+write time: 6093971 nanoseconds
+read time: 2700 nanoseconds
+release time: 4700 nanoseconds
+getattr time: 1197014 nanoseconds
+release time: 3838444 nanoseconds
+getattr time: 1614918 nanoseconds
+open time: 1586618 nanoseconds
+open time: 1881422 nanoseconds
+getattr time: 1420116 nanoseconds
+read time: 4100 nanoseconds
+write time: 6402874 nanoseconds
+read time: 2800 nanoseconds
+release time: 4500 nanoseconds
+getattr time: 1139113 nanoseconds
+getattr time: 1032412 nanoseconds
+release time: 3977046 nanoseconds
+open time: 1221614 nanoseconds
+open time: 1376316 nanoseconds
+getattr time: 1270015 nanoseconds
+read time: 3500 nanoseconds
+write time: 11311631 nanoseconds
+read time: 2801 nanoseconds
+release time: 5800 nanoseconds
+getattr time: 1651619 nanoseconds
+release time: 3897345 nanoseconds
+getattr time: 1102313 nanoseconds
+open time: 1064312 nanoseconds
+open time: 1227514 nanoseconds
+getattr time: 1477417 nanoseconds
+read time: 4900 nanoseconds
+write time: 6616676 nanoseconds
+read time: 2600 nanoseconds
+release time: 4500 nanoseconds
+release time: 3605242 nanoseconds
+getattr time: 2257126 nanoseconds
+getattr time: 1268115 nanoseconds
+open time: 2135224 nanoseconds
+open time: 1729520 nanoseconds
+getattr time: 6847779 nanoseconds
+read time: 7300 nanoseconds
+write time: 5658065 nanoseconds
+read time: 2700 nanoseconds
+release time: 5000 nanoseconds
+release time: 3161937 nanoseconds

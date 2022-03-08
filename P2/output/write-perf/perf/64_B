@@ -404,8 +404,8 @@ open time: 1472914nanoseconds
 getattr time: 1532315nanoseconds
 read time: 21900nanoseconds
 write time: 6356164nanoseconds
-release time: release time: 4902949nanoseconds
-4887849nanoseconds
+release time: 4902949nanoseconds
+release time: 4887849nanoseconds
 getattr time: 3296834nanoseconds
 getattr time: 1767718nanoseconds
 open time: 1991120nanoseconds

@@ -26,7 +26,7 @@
 //#define SERVER_ADDR         "20.69.154.6:50051"                   // Server: VM2
 //#define SERVER_ADDR         "20.69.94.59:50051"                   // Server: VM3
 #define SERVER_ADDR           "0.0.0.0:50051"                       // Server: self
-#define PERFORMANCE           1                                     // set to 1 to run performant functions
+#define USE_STREAMING         1                                     // set to 1 to use gRPC streaming for store/fetch
 #define CRASH_TEST                                                  //Remove to disable all crashes
 #define SINGLE_LOG            1                                     // Turns on single log functionality
 

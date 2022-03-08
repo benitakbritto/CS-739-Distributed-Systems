@@ -374,7 +374,7 @@ static int fs_open(const char *path, struct fuse_file_info *fi)
 
     dbgprintf("path = %s\n", path);
     dbgprintf("rel_path = %s\n", rel_path);
-#if PERFORMANCE == 1
+#if USE_STREAMING == 1
     res = options.client->OpenFileWithStream(rel_path);
 #else
 	res = options.client->OpenFile(rel_path);
@@ -404,7 +404,7 @@ static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 
 	if (fi == NULL)
 	{
-	#if PERFORMANCE == 1
+	#if USE_STREAMING == 1
 		fd = options.client->OpenFileWithStream(rel_path);
 	#else
 		fd = options.client->OpenFile(rel_path);
@@ -422,7 +422,7 @@ static int fs_read(const char *path, char *buf, size_t size, off_t offset,
 
 	if (fi == NULL)
 	{
-	#if PERFORMANCE == 1
+	#if USE_STREAMING == 1
 		options.client->CloseFileWithStream(fd, rel_path);
 	#else
 		options.client->CloseFile(fd, rel_path);
@@ -450,7 +450,7 @@ static int fs_write(const char *path, const char *buf, size_t size,
 
 	if (fi == NULL)
 	{
-	#if PERFORMANCE == 1
+	#if USE_STREAMING == 1
 		fd = options.client->OpenFileWithStream(rel_path);
 	#else
 		fd = options.client->OpenFile(rel_path);
@@ -477,7 +477,7 @@ static int fs_write(const char *path, const char *buf, size_t size,
 
 	if (fi == NULL)
 	{
-	#if PERFORMANCE == 1
+	#if USE_STREAMING == 1
 		options.client->CloseFileWithStream(fd, rel_path);
 	#else
 		options.client->CloseFile(fd, rel_path);	
@@ -501,7 +501,7 @@ static int fs_release(const char *path, struct fuse_file_info *fi)
     dbgprintf("path = %s\n", path);
     dbgprintf("rel_path = %s\n", rel_path);
 
-#if PERFORMANCE == 1
+#if USE_STREAMING == 1
 	res = options.client->CloseFileWithStream(fi->fh, rel_path);
 #else
 	res = options.client->CloseFile(fi->fh, rel_path);

@@ -764,7 +764,6 @@ namespace FileSystemClient
             }
 
             // For Performance
-            // TODO - add log
             int CloseFileWithStream(int fd, string path) 
             {
                 dbgprintf("CloseFileWithStream: Entered function\n");
@@ -774,6 +773,16 @@ namespace FileSystemClient
                     return -1;
                 }
             
+                if (SINGLE_LOG)
+                {
+                    if (!checkModified_single_log(fd, path)) return 0;
+                }
+                else
+                {
+                    if(!isFileModifiedv2(path)) return 0;
+                }
+                   
+
                 StoreRequest request;
                 StoreResponse reply;
                 Status status;

@@ -103,6 +103,8 @@ To run cmake, change the location of the downloaded FUSE path in common/FindFUSE
 - Location (server): src/server.cc
 - Functions: write_file()
 
+- We use CRASH_TEST in src/afs_client.h and src/server cc to add simulated crash points around our update protocols. 
+
 2.1 Performance
 - Location: src/server.cc
 - Functions: put_file_in_mem_map(), get_file_from_mem_map(), delete_file_from_mem_map(), partial_free_mem_map(), StoreWithStream(), FetchWithStream()

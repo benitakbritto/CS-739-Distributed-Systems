@@ -63,7 +63,7 @@ ps -e | grep "afs-server"
 
 ## Client:
 ```
-./afs-client  -f <mount point>
+./afs-client  -f <mount point> <client cache>
 ```
 
 (Note: -f let's you print debug statements while running fuse). Do Ctrl + C to stop ./afs-client.
@@ -77,12 +77,39 @@ cd <mount point>
 <any terminal command>
 ```
 
-## General:
-Where are the local client files stored? (Can be changed through the LOCAL_CACHE_PREFIX macro in src/afs_client.h)
-
-```
-/tmp/afs
-```
-
 ## Misc
 To run cmake, change the location of the downloaded FUSE path in common/FindFUSE.cmake
+
+## Rubric
+1.1. Posix Compliance
+- Location: src/afs_fuse.cc
+
+1.2. AFS Protocol and Semantics
+- Location (client - grpc): src/afs_client.h
+- Functions: MakeDir(), CreateFile(), RemoveDir(), ReadDir(), GetFileStat(), DeleteFile(), OpenFile(), CloseFile(), TestAuth(), CloseFileWithStream(), OpenFileWithStream()
+
+- Location (server - grpc): src/server.cc
+- Functions: Fetch(), Store(), GetFileStat(), TestAuth(), MakeDir(), Mknod(), RemoveDir(), ReadDir(), StoreWithStream(), FetchWithStream()
+
+- Location (protobuf - grpc): src/filesystemcomm.proto
+
+1.3. Durability and 1.4 Crash Recovery Protocol
+- Location (client): src/afs_fuse.cc
+- Functions: init_single_log(), write_single_log(), createPendingFile(), init_multi_log()
+
+- Location (client): src/fs_client.h
+- Functions: checkModified_single_log(), isFileModifiedv2(), closeEntry_single_log(), removePendingFile()
+
+- Location (server): src/server.cc
+- Functions: write_file()
+
+2.1 Performance
+- Location: src/server.cc
+- Functions: put_file_in_mem_map(), get_file_from_mem_map(), delete_file_from_mem_map(), partial_free_mem_map(), StoreWithStream(), FetchWithStream()
+
+- Location: src/afs_client.h
+- Functions: OpenFileWithStream(), CloseFileWithStream()
+
+
+
+
